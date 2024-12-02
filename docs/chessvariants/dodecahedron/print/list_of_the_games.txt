@@ -1,0 +1,16 @@
+
+Lichess:
+    Chess  
+    AntiChess 
+    Atomic
+    Chess960
+    CrazyHouse
+    Horde
+    King of the Hill
+    Racing Kings
+    Tree-check
+	
+Other:
+    DiceChess
+    RandomChess
+    перекат

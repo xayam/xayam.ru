@@ -1,0 +1,6 @@
+
+
+Options +Indexes
+IndexOptions NameWidth=*
+IndexOptions FancyIndexing
+IndexOrderDefault Descending Date

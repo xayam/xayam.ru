@@ -1,0 +1,9 @@
+.git/
+.github/
+venv/
+.idea/
+__pycache__/
+.run/
+releases/
+docs/rewlis/data/*
+!docs/rewlis/data/__init__.py

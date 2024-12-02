@@ -1,0 +1,75 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+button {
+    margin: 5px;
+    padding: 10px;
+}
+
+#board {
+    position: absolute;
+    left: calc(50% - 375px);
+    z-index: 0;
+}
+
+#menu {
+    position: absolute;
+    left: calc(50% - 225px);
+    top: 600px;
+    width: 600px;
+    text-align: left;
+}
+
+#debug div {
+    text-align: left;
+}
+
+.l_back {
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    cursor: pointer;
+    margin-right: 30px;
+    border-radius: 50px;
+    z-index: 1;
+}
+
+.l_field {
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    cursor: pointer;
+    margin-right: 30px;
+    border-radius: 50px;
+    font-size: 80px;
+    color: black;
+    padding-top: 25px;
+    z-index: 10;
+}
+
+.l_black {
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    cursor: pointer;
+    margin-right: 30px;
+    border-radius: 50px;
+    font-size: 40px;
+    color: blue;
+    z-index: 20;
+}
+
+.l_white {
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    cursor: pointer;
+    margin-right: 30px;
+    border-radius: 50px;
+    font-size: 40px;
+    color: red;
+    z-index: 30;
+}
