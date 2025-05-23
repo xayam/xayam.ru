@@ -1,0 +1,1 @@
+cd ~ && source absolarisenv/bin/activate && absolarisenv/bin/python www/xayam.ru/absolaris/absolaris.py 

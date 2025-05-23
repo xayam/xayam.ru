@@ -1,0 +1,15 @@
+Options +FollowSymlinks -Indexes
+
+AddCharset UTF-8 .txt
+AddType 'text/plain; charset=UTF-8' txt
+
+AddCharset UTF-8 .html
+AddType 'text/html; charset=UTF-8' html
+
+DirectoryIndex index.html
+
+#<IfModule mod_rewrite.c>
+#RewriteEngine on
+#RewriteCond %{HTTPS} off
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}
+#</IfModule>

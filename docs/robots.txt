@@ -1,0 +1,9 @@
+# robots for
+User-agent: *
+Sitemap: http://xayam.ru/sitemap.xml
+Allow: /
+Allow: /index.html
+Allow: /rewlis/index.html
+Allow: /rewlis/hlayout.html
+Crawl-delay: 1
+Host: xayam.ru
