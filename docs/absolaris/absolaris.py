@@ -27,7 +27,7 @@ def simple_format(text):
     jobs = [
         (r"\<think\>.*?\<\/think\>", r""),
         (r"\<think\>", r""),
-        (r"\</think\>", r""),
+        (r"\<\/think\>", r""),
         (r"\<", r"&lt;"),
         (r"\>", r"&gt;"),
         (r"\*\*(.*?)\*\*", r"<b>\1</b>"),
