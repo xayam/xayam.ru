@@ -17,17 +17,17 @@ class Model:
         self.providers = [
             {
                 "base_url": "https://api.fireworks.ai/inference/v1",
-                "api_key": FIREWORKS_API_ID,
+                "api_key": FIREWORKS_API_KEY,
                 "model_name": "accounts/fireworks/models/deepseek-r1",
             },
             {
                 "base_url": "https://openrouter.ai/api/v1",
-                "api_key": OPENROUTER_API_ID,
+                "api_key": OPENROUTER_API_KEY,
                 "model_name": "deepseek/deepseek-r1:free",
             },
             {
                 "base_url": "https://api.sambanova.ai/v1",
-                "api_key": SAMBANOVA_API_ID,
+                "api_key": SAMBANOVA_API_KEY,
                 "model_name": "DeepSeek-R1",
             },
         ]
