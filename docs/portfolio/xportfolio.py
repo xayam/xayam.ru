@@ -76,7 +76,18 @@ commands = {
 
 @bot.message_handler(content_types=['text'])
 def process_commands(message):
-    commands[message.text](message)
+    try:
+        info_file = "/" + message.text[1:] + ".html"
+        info = commands[message.text](message)
+    except KeyError:
+        info = "Ошибка. Команда не распознана. Выберите корректную команду в меню."
+    bot.send_message(
+        chat_id=message.chat.id,
+        text=info,
+        parse_mode="HTML",
+        reply_to_message_id=message.message_id,
+        allow_sending_without_reply=False,
+    )
 
 
 while True:
