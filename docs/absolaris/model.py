@@ -1,5 +1,5 @@
 from openai import OpenAI
-from . import *
+from __init__ import *
 
 class Model:
 

@@ -7,7 +7,7 @@ import re
 import telebot
 import model
 
-from . import *
+from __init__ import *
 
 bot_id = 7865099164
 bot = telebot.TeleBot(str(bot_id) + TELEGRAM_API_ID)
