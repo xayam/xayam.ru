@@ -56,7 +56,7 @@ def get_text_messages(message):
     print("Input message | " + message.text)
     replies_file = replies_folder + "/" + str(message.from_user.id) + ".json"
     replies = []
-    if message.text == "/start":
+    if (message.text == "/start") or (message.text == "/clear"):
         if os.path.exists(replies_file):
             os.remove(replies_file)
         bot.send_message(
