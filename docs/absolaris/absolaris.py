@@ -76,7 +76,7 @@ def get_text_messages(message):
     if message.text == "/history":
         bot.send_message(
             chat_id=message.chat.id,
-            text=str(messages),
+            text=str(len(messages)) + " | " + str(messages[-1]),
             reply_to_message_id=message.message_id,
             allow_sending_without_reply=False,
         )
