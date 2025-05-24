@@ -19,43 +19,43 @@ bot = telebot.TeleBot(TELEGRAM_BOT_API_KEY)
 #             allow_sending_without_reply=False,
 #         )
 
-def command_start(message):
+def command_start(message, data):
     pass
 
-def command_projects(message):
+def command_projects(message, data):
     pass
 
-def command_links(message):
+def command_links(message, data):
     pass
 
-def command_skills(message):
+def command_skills(message, data):
     pass
 
-def command_tools(message):
+def command_tools(message, data):
     pass
 
-def command_education(message):
+def command_education(message, data):
     pass
 
-def command_experience(message):
+def command_experience(message, data):
     pass
 
-def command_interests(message):
+def command_interests(message, data):
     pass
 
-def command_disease(message):
+def command_disease(message, data):
     pass
 
-def command_autobiography(message):
+def command_autobiography(message, data):
     pass
 
-def command_status(message):
+def command_status(message, data):
     pass
 
-def command_html(message):
+def command_html(message, data):
     pass
 
-def command_pdf(message):
+def command_pdf(message, data):
     pass
 
 commands = {
@@ -77,8 +77,11 @@ commands = {
 @bot.message_handler(content_types=['text'])
 def process_commands(message):
     try:
-        info_file = "/" + message.text[1:] + ".html"
-        info = commands[message.text](message)
+        data_file = "xportfolio/" + message.text[1:] + ".html"
+        if os.path.exists(data_file):
+            with open(data_file, mode="r", encoding="UTF-8") as f:
+                data = f.read()
+            info = commands[message.text](message=message, data=data)
     except KeyError:
         info = "Ошибка. Команда не распознана. Выберите корректную команду в меню."
     bot.send_message(
