@@ -73,14 +73,14 @@ def get_text_messages(message):
     messages = replies + [
         {"role": "user", "content": message.text}
     ]
-    if message.text == "/history":
-        bot.send_message(
-            chat_id=message.chat.id,
-            text=str(len(messages)) + " | " + str(messages[-1]),
-            reply_to_message_id=message.message_id,
-            allow_sending_without_reply=False,
-        )
-        return
+    # if message.text == "/history":
+    #     bot.send_message(
+    #         chat_id=message.chat.id,
+    #         text=str(len(messages)) + " | " + str(messages[-1]),
+    #         reply_to_message_id=message.message_id,
+    #         allow_sending_without_reply=False,
+    #     )
+    #     return
     print("Messages | " + str(messages))
     print("Processing... | Генерирую ответ")
     try:
