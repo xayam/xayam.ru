@@ -8,4 +8,4 @@ releases/
 docs/rewlis/data/*
 !docs/rewlis/data/__init__.py
 docs/absolaris/__init__.py
-docs/portfolio/__init__.py
+docs/xportfolios/__init__.py
