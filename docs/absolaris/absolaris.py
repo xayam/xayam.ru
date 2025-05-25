@@ -9,8 +9,8 @@ import model
 
 from __init__ import *
 
-bot_id = 7865099164
-bot = telebot.TeleBot(str(bot_id) + TELEGRAM_BOT_API_KEY)
+
+bot = telebot.TeleBot(TELEGRAM_BOT_API_KEY)
 m = model.Model()
 limit = 22
 replies_folder = "history"
