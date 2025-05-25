@@ -13,7 +13,7 @@ from __init__ import *
 bot = telebot.TeleBot(TELEGRAM_BOT_API_KEY)
 m = model.Model()
 limit = 22
-replies_folder = "history"
+replies_folder = os.getcwd() + "/absolaris"
 if not os.path.exists(replies_folder):
     os.mkdir(replies_folder)
 
