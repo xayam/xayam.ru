@@ -16,6 +16,11 @@ class Model:
         }
         self.providers = [
             {
+                "base_url": "https://api.novita.ai/v3/openai",
+                "api_key": NOVITA_API_KEY,
+                "model_name": "deepseek/deepseek-r1-turbo",
+            },
+            {
                 "base_url": "https://api.fireworks.ai/inference/v1",
                 "api_key": FIREWORKS_API_KEY,
                 "model_name": "accounts/fireworks/models/deepseek-r1",
