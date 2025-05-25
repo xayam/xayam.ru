@@ -11,20 +11,16 @@ from telebot import types
 
 bot = telebot.TeleBot(TELEGRAM_BOT_API_KEY)
 
-
-def command_start(command="/start", message=None):
+def command_html():
     pass
 
-def command_html(command="/html", message=None):
-    pass
-
-def command_pdf(command="/pdf", message=None):
+def command_pdf():
     pass
 
 
 def menu_execute(command, message):
     try:
-        data_file = os.getcwd() + "/" + command.text[1:] + ".html"
+        data_file = os.getcwd() + "/xportfolios/" + command[1:] + ".html"
         print(data_file)
         info = "В базе бота отсутствует информация по данной команде."
         if os.path.exists(data_file):
@@ -32,12 +28,11 @@ def menu_execute(command, message):
                 info = f.read()
     except KeyError:
         info = "Ошибка. Команда не корректна. Выберите правильную команду в меню."
+    info += "\n\n/menu"
     bot.send_message(
         chat_id=message.chat.id,
         text=info,
         parse_mode="HTML",
-        reply_to_message_id=message.message_id,
-        allow_sending_without_reply=False,
     )
 
 commands = {
@@ -55,24 +50,33 @@ commands = {
     "/pdf": { "handler": command_pdf, "name": "PDF"},
 }
 
-def menu_create(message) -> types.InlineKeyboardMarkup:
-    markup = types.InlineKeyboardMarkup()
+def menu_create() -> types.InlineKeyboardMarkup:
     btn_list = dict()
     for command in commands:
-        btn_list[commands[command]["name"]] = \
-            lambda: commands[command]["handler"](command, message)
+        btn_list[commands[command]["name"]] = command
+    menu = []
+    row = []
     for element in btn_list.items():
-        btn = types.InlineKeyboardButton(text=element[0], callback_data=element[1])
-        markup.add(btn)
-    return markup
+        btn = types.InlineKeyboardButton(
+            text=element[0], callback_data=element[1],
+        )
+        row.append(btn)
+        if len(row) == 2:
+            menu.append(row)
+            row = []
+    return types.InlineKeyboardMarkup(menu)
 
-@bot.message_handler(commands=["start"])
+@bot.message_handler(commands=["start", "menu"])
 def start(message):
     bot.send_message(
         chat_id=message.chat.id,
-        text="Добро пожаловать.",
-        reply_markup=menu_create(message)
+        text="Выберите нужный пункт меню...",
+        reply_markup=menu_create()
     )
+
+@bot.callback_query_handler(func=lambda call: True)
+def callback_inline(call):
+    commands[call.data]["handler"](command=call.data, message=call.message)
 
 
 while True:
