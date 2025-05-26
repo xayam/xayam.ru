@@ -53,37 +53,30 @@ def build_conversation_chain(message, limit=500):
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
-    print("Input message | " + message.text)
-    replies_file = replies_folder + "/" + str(message.from_user.id) + ".json"
-    replies = []
-    if (message.text == "/start") or (message.text == "/clear"):
-        if os.path.exists(replies_file):
-            os.remove(replies_file)
-        bot.send_message(
-            chat_id=message.chat.id,
-            text="<b>История очищена.</b> Начните диалог с Абсолярисом заново. Океан ждет...",
-            parse_mode="HTML",
-            reply_to_message_id=message.message_id,
-            allow_sending_without_reply=False,
-        )
-        return
-    if os.path.exists(replies_file):
-        with open(replies_file, mode="r", encoding="UTF-8") as f:
-            replies = json.load(f)
-    messages = replies + [
-        {"role": "user", "content": message.text}
-    ]
-    # if message.text == "/history":
-    #     bot.send_message(
-    #         chat_id=message.chat.id,
-    #         text=str(len(messages)) + " | " + str(messages[-1]),
-    #         reply_to_message_id=message.message_id,
-    #         allow_sending_without_reply=False,
-    #     )
-    #     return
-    print("Messages | " + str(messages))
-    print("Processing... | Генерирую ответ")
+    answer = ""
     try:
+        print("Input message | " + message.text)
+        replies_file = replies_folder + "/" + str(message.from_user.id) + ".json"
+        replies = []
+        if (message.text == "/start") or (message.text == "/clear"):
+            if os.path.exists(replies_file):
+                os.remove(replies_file)
+            bot.send_message(
+                chat_id=message.chat.id,
+                text="<b>История очищена.</b> Начните диалог с Абсолярисом заново. Океан ждет...",
+                parse_mode="HTML",
+                reply_to_message_id=message.message_id,
+                allow_sending_without_reply=False,
+            )
+            return
+        if os.path.exists(replies_file):
+            with open(replies_file, mode="r", encoding="UTF-8") as f:
+                replies = json.load(f)
+        messages = replies + [
+            {"role": "user", "content": message.text}
+        ]
+        print("Messages | " + str(messages))
+        print("Processing... | Генерирую ответ")
         answer = m.prompt(messages)
         replies.append(
             {"role": "user", "content": message.text}
@@ -95,17 +88,23 @@ def get_text_messages(message):
             json.dump(replies, f, ensure_ascii=False, indent=4)
 
         answer = simple_format(answer)
+    except Exception as e:
+        error = "ERROR 1101 | " + str(type(e)) + " / " + e.__str__()
+        print(error)
         bot.send_message(
             chat_id=message.chat.id,
-            text=answer,
-            parse_mode="HTML",
+            text=error,
             reply_to_message_id=message.message_id,
             allow_sending_without_reply=False,
         )
-        print("Answer | Ответ отослан пользователю " + str(message.from_user.id))
-    except Exception as e:
-        print("ERROR 1101 | " + str(type(e)) + " / " + e.__str__())
-
+    bot.send_message(
+        chat_id=message.chat.id,
+        text=answer,
+        parse_mode="HTML",
+        reply_to_message_id=message.message_id,
+        allow_sending_without_reply=False,
+    )
+    print("Answer | Ответ отослан пользователю " + str(message.from_user.id))
 
 if __name__ == '__main__':
     try:
