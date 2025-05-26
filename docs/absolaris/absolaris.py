@@ -104,7 +104,7 @@ def get_text_messages(message):
         )
         print("Answer | Ответ отослан пользователю " + str(message.from_user.id))
     except Exception as e:
-        print("ERROR 1001 | " + e.__str__())
+        print("ERROR 1001 | " + str(type(e)) + " / " + e.__str__())
 
 
 if __name__ == '__main__':
