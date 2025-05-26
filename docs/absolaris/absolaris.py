@@ -107,10 +107,5 @@ def get_text_messages(message):
         print("ERROR 1001 | " + e.__str__())
 
 
-while True:
-    try:
-        bot.polling(none_stop=True, interval=0)
-    except telebot.apihelper.ApiTelegramException:
-        break
-    except Exception as e:
-        print("ERROR 1000: " + str(type(e)) + " / " + e.__str__())
+if __name__ == '__main__':
+     bot.infinity_polling()
