@@ -7,9 +7,9 @@ pip install pyTelegramBotAPI
 
 absolarisvenv/bin/python www/xayam.ru/absolaris/absolaris.py
 ps aufx | grep absolaris.py
-pkill -f absolaris.py
 
-pkill -f absolaris.py && cd /var/www/www-root/data && absolarisvenv/bin/python www/xayam.ru/absolaris/absolaris.py
+pkill -f absolaris.py
+cd /var/www/www-root/data && absolarisvenv/bin/python www/xayam.ru/absolaris/absolaris.py
 
 ps aufx | grep absolaris.py
 
