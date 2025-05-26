@@ -93,20 +93,19 @@ def get_text_messages(message):
             replies = replies[2:]
         with open(replies_file, mode="w", encoding="UTF-8") as f:
             json.dump(replies, f, ensure_ascii=False, indent=4)
-        try:
-            answer = simple_format(answer)
-            bot.send_message(
-                chat_id=message.chat.id,
-                text=answer,
-                parse_mode="HTML",
-                reply_to_message_id=message.message_id,
-                allow_sending_without_reply=False,
-            )
-            print("Answer | Ответ отослан пользователю " + str(message.from_user.id))
-        except Exception as e:
-            print("ERROR 1001 | " + e.__str__())
-    except Exception as _:
-        pass
+
+        answer = simple_format(answer)
+        bot.send_message(
+            chat_id=message.chat.id,
+            text=answer,
+            parse_mode="HTML",
+            reply_to_message_id=message.message_id,
+            allow_sending_without_reply=False,
+        )
+        print("Answer | Ответ отослан пользователю " + str(message.from_user.id))
+    except Exception as e:
+        print("ERROR 1001 | " + e.__str__())
+
 
 while True:
     try:
