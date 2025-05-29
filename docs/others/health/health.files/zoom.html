@@ -1,11 +1,14 @@
-<html xmlns="http://www.w3.org/TR/REC-html40">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns="http://www.w3.org/TR/REC-html40">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<style type="text/css">
+	 v\:* { behavior: url(#default#VML); }
+</style>
 
 <script type="text/javascript" language="javascript">
 
 var BUFFER = 1;
-var pnzObj = null;
 
 // ----- START ----- cross-browser event manipulation helpers ---------------------------
 
@@ -63,7 +66,7 @@ function showObject( divObject, divID )
 	
 	if( divObject != null ) 
 	{
-		divObject.style.visibility = "visible";
+		divObject.style.visibility = "visible"
 	}
 	return divObject;
 }
@@ -131,63 +134,110 @@ function findContent()
 	if (parent.parent.frmDrawing && parent.parent.viewMgr)
 	{
 		var viewMgr = parent.parent.viewMgr;
-		var createPNZ = parent.parent.viewMgr.createPNZ;
 
-		if (createPNZ)
+		var getPNZ = parent.parent.viewMgr.getPNZ;
+		if (getPNZ)
 		{
+			var tmp = parent.parent.frmDrawing;
+
 			divThumb = document.getElementById("divThumbnail");
 
-			pnzObj = createPNZ(divThumb, document.body.clientWidth, document.body.clientHeight);
-				
-			// Force this window to call the correct callback function
-			window[pnzObj.callbackIndex] = function(a){ pnzObj.handleLoad(a); };
+			if (divThumb.innerHTML.length == 0)
+			{
+				divThumb.innerHTML = getPNZ();
+			}
+			else
+			{
+				var pnzInfo = getPNZ();
+				var idIndex = pnzInfo.indexOf("ConvertedImage");
+				if (idIndex >= 0)
+				{
+					var test = pnzInfo;
+					pnzInfo = test.substring (0, idIndex);
+					pnzInfo += "Temp";
+					pnzInfo += test.substring (idIndex, test.length);
+
+					divTempThumbnail.innerHTML = pnzInfo;
+
+					var vmlGroup = divThumbnail.childNodes(0);
+					var vmlTempGroup = divTempThumbnail.childNodes(0);
+					CopyVMLAttrs(vmlGroup, vmlTempGroup);
+					
+					var vmlShape = vmlGroup.childNodes(1);
+					var vmlTempShape = vmlTempGroup.childNodes(1);
+					CopyVMLAttrs(vmlShape, vmlTempShape);
+
+					CopyVMLAttrs(vmlGroup.childNodes(0), vmlTempGroup.childNodes(0));
+					
+					var vmlImageData = vmlShape.childNodes(0);
+					var vmlTempImageData = vmlTempShape.childNodes(0);
+					CopyVMLImageData(vmlImageData, vmlTempImageData);
+				}
+			}
 
 			zoomRectObj = document.getElementById("zoomRectDiv");
 			showObject( zoomRectObj );
-			
-			viewMgr.viewChanged = PageViewChanged;
+
+			PNZimg = document.getElementById("ConvertedImage");
+			if (PNZimg)
+			{
+				PNZimg.style.left = 0;
+				PNZimg.style.top = 0;
+
+				if (PNZimg.style.pixelWidth > PNZimg.style.pixelHeight)
+				{
+					var oldWidth = PNZimg.style.pixelWidth;
+					PNZimg.style.width = document.body.clientWidth;
+					PNZimg.style.height = (document.body.clientWidth / oldWidth) * PNZimg.style.pixelHeight;
+
+					divThumb.style.top = (document.body.clientHeight - parseInt(PNZimg.style.height)) / 2;
+					divThumb.style.left = 0;
+				}
+				else
+				{
+					var oldHeight = PNZimg.style.pixelHeight;
+					PNZimg.style.height = document.body.clientHeight;
+					PNZimg.style.width = (document.body.clientHeight / oldHeight) * PNZimg.style.pixelWidth;
+
+					divThumb.style.left = (document.body.clientWidth - parseInt(PNZimg.style.width)) / 2;
+					divThumb.style.top = 0;
+				}
+
+				PNZimg.style.visibility = "visible";
+
+				var strOutput = divThumb.innerHTML;
+				if (strOutput.length > 0)
+				{
+					var tmp2 = document.all['ConvertedImage'];
+					zoomObj.updateContent( tmp.document.body.clientWidth, tmp.document.body.clientHeight, parseInt(tmp2.style.left), parseInt(tmp2.style.top), parseInt(tmp2.clientWidth), parseInt(tmp2.clientHeight) );
+
+					viewMgr.viewChanged = PageViewChanged;
+				}
+			}
 		}
 	}
 }
 
-function getPixelWidth()
+function CopyVMLAttrs(vmlObjDst, vmlObjSrc)
 {
-    return pnzObj.rootCanvas.Width * pnzObj.scale;
+	if (vmlObjDst != null && vmlObjSrc != null)
+	{
+		vmlObjDst.style.cssText = vmlObjSrc.style.cssText;
+	}
 }
 
-function getPixelHeight()
+function CopyVMLImageData(vmlImageDataDst, vmlImageDataSrc)
 {
-    return pnzObj.rootCanvas.Height * pnzObj.scale;
-}
-
-function getPixelTop()
-{
-    if(pnzObj.rootCanvas['Canvas.Top'])
-        return pnzObj.rootCanvas['Canvas.Top'];
-    else
-        return 0;
-}
-
-function getPixelLeft()
-{
-    if(pnzObj.rootCanvas['Canvas.Left'])
-        return pnzObj.rootCanvas['Canvas.Left'];
-    else
-        return 0;
-}
-
-function inSLBounds(x, y)
-{
-    if(x < getPixelLeft() || x > getPixelLeft() + getPixelWidth() ||
-       y < getPixelTop() || y > getPixelTop() + getPixelHeight())
-       return false;
-   
-    return true;
+	if (vmlImageDataDst != null && vmlImageDataSrc != null)
+	{
+		vmlImageDataDst.src = vmlImageDataSrc.src;
+	}
 }
 
 function setZoomRectCursor(event)
 {
 	var event = getEvent(event);
+	
 	var x = getMouseXcoord(event) - zoomObj.zoomWinLeft;
 	var y = getMouseYcoord(event) - zoomObj.zoomWinTop;
 
@@ -212,7 +262,6 @@ function setZoomRectCursor(event)
 
 function startZoomRectDrag(event)
 {
-	var event = getEvent(event);
 	var currentCursor = zoomRectObj.style.cursor;
 
 	if( currentCursor.indexOf( '-' ) != -1 )
@@ -228,6 +277,8 @@ function startZoomRectDrag(event)
 
 function doZoomRectDrag(dragObj, x, y)
 {
+	var PNZimg = document.getElementById("ConvertedImage");
+
 	var rectLeft = parseInt(dragObj.divObject.style.left);
 	var rectTop = parseInt(dragObj.divObject.style.top);
 	var rectWidth = parseInt(dragObj.divObject.style.width);
@@ -239,10 +290,10 @@ function doZoomRectDrag(dragObj, x, y)
 	var xPercent = 0;
 	var yPercent = 0;
 
-	var pnzImgLeft = getPixelLeft();
-	var pnzImgTop = getPixelTop();
-	var pnzImgWidth = getPixelWidth();
-	var pnzImgHeight = getPixelHeight();
+	var pnzImgLeft = parseInt(divThumbnail.style.left);
+	var pnzImgTop = parseInt(divThumbnail.style.top);
+	var pnzImgWidth = parseInt(PNZimg.style.pixelWidth);
+	var pnzImgHeight = parseInt(PNZimg.style.pixelHeight);
 		
 	xOffset = x + dragObj.xOffset - pnzImgLeft;
 	xPercent = xOffset / pnzImgWidth;
@@ -295,6 +346,7 @@ function stopZoomRectDrag(dragObj, x, y)
 {
 	var event = dragObj.event;
 	var el = getSrcElem(event);
+	
 	g_newLeft = parseInt(el.style.left);
 	g_newTop = parseInt(el.style.top);
 }
@@ -328,9 +380,6 @@ function setZWinSize( newWidth, newHeight, newLeft, newTop )
 
 function doResizeZoomRectDrag(dragObj, x, y)
 {
-	if(!inSLBounds(x,y))
-        return;
-		
 	var newWidth	= null;
 	var newHeight	= null;
 	var newLeft		= null;
@@ -435,8 +484,10 @@ function doResizeZoomRectDrag(dragObj, x, y)
 
 function stopResizeZoomRectDrag(dragObj, x, y)
 {
-	var xWidthPercent = parseInt(zoomRectDiv.style.width) / getPixelWidth();
-	var yHeightPercent = parseInt(zoomRectDiv.style.height) / getPixelHeight();
+	PNZimg = document.getElementById("ConvertedImage");
+
+	var xWidthPercent = parseInt(zoomRectDiv.style.width) / PNZimg.style.pixelWidth;
+	var yHeightPercent = parseInt(zoomRectDiv.style.height) / PNZimg.style.pixelHeight;
 
 	var newZoomLevel = GetZoomLevel (xWidthPercent, yHeightPercent);
 
@@ -471,11 +522,11 @@ function GetZoomLevel (xWidthPercent, yHeightPercent)
 
 function PostZoomProcessing (newZoomLevel)
 {
-	var xOffset = parseInt(zoomRectDiv.style.left) - getPixelLeft();
-	var yOffset = parseInt(zoomRectDiv.style.top) - getPixelTop();
+	var xOffset = parseInt(zoomRectDiv.style.left) - parseInt(divThumbnail.style.left);
+	var yOffset = parseInt(zoomRectDiv.style.top) - parseInt(divThumbnail.style.top);
 
-	var xPercent = xOffset / getPixelWidth();
-	var yPercent = yOffset / getPixelHeight();
+	var xPercent = xOffset / PNZimg.style.pixelWidth;
+	var yPercent = yOffset / PNZimg.style.pixelHeight;
 
 	var viewMgr = parent.parent.viewMgr;
 	viewMgr.ChangingView = true;
@@ -534,12 +585,9 @@ function PostSetViewProcessing ()
 function startNewZoomRectDrag(event)
 {
 	var event = getEvent(event);
+	
 	var x = getMouseXcoord(event);
 	var y = getMouseYcoord(event);
-	
-	if(!inSLBounds(x, y))
-		return;
-		
 	zoomObj.newZWinStartX = x;
 	zoomObj.newZWinStartY = y;
 	
@@ -551,6 +599,8 @@ function startNewZoomRectDrag(event)
 
 function doNewZoomRectDrag(dragObj, x, y)
 {
+	var PNZimg = document.getElementById("ConvertedImage");
+
 	var width	= Math.abs( zoomObj.newZWinStartX - x );
 	var height	= Math.abs( zoomObj.newZWinStartY - y );
 
@@ -565,32 +615,11 @@ function doNewZoomRectDrag(dragObj, x, y)
 		height = width / (aspectRatio);
 	}
 
-	width = Math.min (width, getPixelWidth());
-	height = Math.min (height, getPixelHeight());
+	width = Math.min (width, parseInt(PNZimg.style.pixelWidth));
+	height = Math.min (height, parseInt(PNZimg.style.pixelHeight));
 
-    var left, top;
-    if(x > zoomObj.newZWinStartX)
-    {
-        left = zoomObj.newZWinStartX;
-        width = Math.min(width, getPixelWidth() - (left - getPixelLeft()));
-    }
-    else
-    {
-        width = Math.min(zoomObj.newZWinStartX - getPixelLeft(), width);
-        left = zoomObj.newZWinStartX - width;
-        
-    }
-    if(y > zoomObj.newZWinStartY)
-    {
-        top = zoomObj.newZWinStartY;
-        height = Math.min(height, getPixelHeight() - (top - getPixelTop()));
-    }
-    else
-    {
-        height = Math.min(zoomObj.newZWinStartY - getPixelTop(), height);
-        top = zoomObj.newZWinStartY - height;
-        
-    }
+	var left = (x > zoomObj.newZWinStartX) ? zoomObj.newZWinStartX : zoomObj.newZWinStartX - width;
+	var top  = (y > zoomObj.newZWinStartY) ? zoomObj.newZWinStartY : zoomObj.newZWinStartY - height;
 
 	newZoomWindowDiv.style.top = top;
 	newZoomWindowDiv.style.left = left;
@@ -658,8 +687,8 @@ function mouseMove(event)
 function mouseUp(event) 
 {
 	var event = getEvent(event);
-	var x = event.clientX + document.body.scrollLeft;
-	var y = event.clientU + document.body.scrollTop;
+	var x = event.x + document.body.scrollLeft;
+	var y = event.y + document.body.scrollTop;
 	
 	stopDrag(null,x,y);
 	return true;
@@ -668,8 +697,8 @@ function mouseUp(event)
 function mouseOut(event) 
 {
 	var event = getEvent(event);
-	var x = event.clientX + document.body.scrollLeft;
-	var y = event.clientY + document.body.scrollTop;
+	var x = event.x + document.body.scrollLeft;
+	var y = event.y + document.body.scrollTop;
 
 	if( x < 0 ) x = -1;
 	if( x >= document.body.clientWidth ) x = -1;
@@ -692,13 +721,13 @@ function mouseOut(event)
 function getMouseXcoord(event)
 {
 	var event = getEvent(event);
-	return event.clientX + document.body.scrollLeft;
+	return event.x + document.body.scrollLeft;
 }
 
 function getMouseYcoord(event)
 {
 	var event = getEvent(event);
-	return event.clientY + document.body.scrollTop;
+	return event.y + document.body.scrollTop;
 }
 
 var g_width		= -1;
@@ -715,33 +744,33 @@ function keydown(event)
 {
 	var event = getEvent(event);
 	var key = event.keyCode;
+	var el = getSrcElem(event);
 
 	if(key == 37 || key == 38 || key == 39 || key == 40)
 	{
-	    var zoomDiv = document.getElementById('zoomRectDiv');
 		if(g_width == -1)
-			g_width		= parseInt(zoomDiv.style.pixelWidth);
+			g_width		= parseInt(el.style.pixelWidth);
 			
 		if(g_height == -1)
-			g_height		= parseInt(zoomDiv.style.pixelHeight);
+			g_height		= parseInt(el.style.pixelHeight);
 			
 		if(g_newLeft == -1)
-			g_newLeft		= parseInt(zoomDiv.style.left);	
+			g_newLeft		= parseInt(el.style.left);	
 		
 		if(g_newTop == -1)
-			g_newTop		= parseInt(zoomDiv.style.top);
+			g_newTop		= parseInt(el.style.top);
 		
 		if(g_pnzImgWidth == -1)
-			g_pnzImgWidth = getPixelWidth();
+			g_pnzImgWidth = parseInt(PNZimg.style.pixelWidth);
 			
 		if(g_pnzImgHeight == -1)
-			g_pnzImgHeight = getPixelHeight();
+			g_pnzImgHeight = parseInt(PNZimg.style.pixelHeight);
 			
 		if(g_pnzImgLeft == -1)
-			g_pnzImgLeft = getPixelLeft();
+			g_pnzImgLeft = parseInt(divThumbnail.style.left);
 			
 		if(g_pnzImgTop == -1)
-			g_pnzImgTop = getPixelTop();
+			g_pnzImgTop = parseInt(divThumbnail.style.top);
 	
 
 		if(key == 37)	
@@ -778,7 +807,7 @@ function keydown(event)
 			}
 		}
 		
-		setZoomRectCursor(event);
+		setZoomRectCursor();
 
 		var xOffset = g_newLeft - g_pnzImgLeft;
 		var yOffset = g_newTop - g_pnzImgTop;
@@ -848,16 +877,17 @@ function startDrag( event, divID, dragFunctionPtr, dragStopFunctionPointer, xOff
 	var divObject = document.getElementById(divID);
 	if( divObject != null ) 
 	{
-		if (document.selection)
-			document.selection.empty();
-		else if (window.getSelection)
-			window.getSelection().removeAllRanges();
+		document.selection.empty();
 		
 		if( xOffset == null )
+		{
 			xOffset = parseInt(divObject.style.left) - g_lastX;
+		}
 		
 		if( yOffset == null )
+		{
 			yOffset = parseInt(divObject.style.top)  - g_lastY;
+		}
 
 		dragList[ dragList.length ] = new dragObject( event, divID, divObject, xOffset, yOffset, dragFunctionPtr, dragStopFunctionPointer );
 		return true;
@@ -877,10 +907,7 @@ function doDrag( x, y )
 	}
 	if( dragList.length )
 	{
-		if (document.selection)
-			document.selection.empty();
-		else if (window.getSelection)
-			window.getSelection().removeAllRanges();
+		document.selection.empty();
 	}
 }
 
@@ -918,22 +945,22 @@ function PageViewChanged(newLeftPercent, newTopPercent, newWidthPercent, newHeig
 
 		if (newLeftPercent != null)
 		{
-			newLeft = (newLeftPercent * getPixelWidth()) + getPixelLeft();
+			newLeft = (newLeftPercent * PNZimg.style.pixelWidth) + parseInt(divThumbnail.style.left);
 		}
 		
 		if (newTopPercent != null)
 		{
-			newTop = (newTopPercent * getPixelHeight()) + getPixelTop();
+			newTop = (newTopPercent * PNZimg.style.pixelHeight) + parseInt(divThumbnail.style.top);
 		}
 		
 		if (newWidthPercent != null)
 		{
-			newWidth = newWidthPercent * getPixelWidth();
+			newWidth = newWidthPercent * PNZimg.style.pixelWidth;
 		}
 		
 		if (newHeightPercent != null)
 		{
-			newHeight = newHeightPercent * getPixelHeight();
+			newHeight = newHeightPercent * PNZimg.style.pixelHeight;
 		}
 
 		setZWinSize (newWidth, newHeight, newLeft, newTop);
@@ -981,14 +1008,14 @@ function unload()
 
 </script>
 </head>
-<body onload="load()" onunload="unload()" onmousedown="mouseDown(event)" onmousemove="mouseMove(event)" onmouseup="mouseUp(event)" onmouseout="mouseOut(event)">
-<div id="divPZWindow" style="width: 100%; height: 100%;" onkeydown="keydown(event)" onmousedown="startNewZoomRectDrag(event);">
-	<div id="divThumbnail" style="position: absolute;"></div>
+<body onload="load();" onunload="unload();" onmousedown="mouseDown(event)" onmousemove="mouseMove(event)" onmouseup="mouseUp(event)" onmouseout="mouseOut(event)">
+<div id="divPZWindow" style="width: 100%; height: 100%;">
+	<div id="divThumbnail" style="position: absolute; " onmousedown="startNewZoomRectDrag(event);"></div>
 </div>
 <div id="divTempThumbnail" style="position: absolute; visibility:hidden; display:none;" ></div>
 
-<div id="zoomRectDiv" tabindex="1" title="Видимая область. Для перемещения используйте мышь или клавиши со стрелками." onkeydown="keydown(event)" onkeyup="keyup(event)" style="display:none;position: absolute; border: solid red 2px; z-index: 3; background-color: #DDDDDD; filter:alpha(opacity=50); opacity:0.5;" onmousedown="startZoomRectDrag(event)" onmouseover="setZoomRectCursor(event)" onmousemove="setZoomRectCursor(event)"></div>
-<div id="newZoomWindowDiv" style="position: absolute; border: solid blue 2px; z-index: 4; visibility: hidden;"></div>
+<div id="zoomRectDiv" tabindex="1" title="Видимая область. Для перемещения используйте мышь или клавиши со стрелками." onkeydown="keydown(event)" onkeyup="keyup(event)" style="display:none;position: absolute; border: solid red thin; z-index: 3;" onmousedown="startZoomRectDrag(event)" onmouseover="setZoomRectCursor(event)" onmousemove="setZoomRectCursor(event)"></div>
+<div id="newZoomWindowDiv" style="position: absolute; border: solid blue thin; z-index: 4; visibility: hidden;"></div>
 
 </body>
 </html>

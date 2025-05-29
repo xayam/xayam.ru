@@ -26,11 +26,11 @@ function FileEntry (pageIndex, pageID, pageName, priImage, secImage)
 var viewMgr = null;
 
 var g_FileList = new  Array(
- new FileEntry (1, 0, "неделя", "xaml_1.html", "png_1.html"),
- new FileEntry (2, 7, "день", "xaml_2.html", "png_2.html"),
- new FileEntry (3, 5, "курьер", "xaml_3.html", "png_3.html"),
- new FileEntry (4, 4, "аутофагия", "xaml_4.html", "png_4.html"),
- new FileEntry (5, 6, "зарядка", "xaml_5.html", "png_5.html")
+ new FileEntry (1, 0, "неделя", "png_1.htmL", ""),
+ new FileEntry (2, 7, "день", "png_2.htmL", ""),
+ new FileEntry (3, 5, "курьер", "png_3.htmL", ""),
+ new FileEntry (4, 4, "аутофагия", "png_4.htmL", ""),
+ new FileEntry (5, 6, "зарядка", "png_5.htmL", "")
 
 );
 
@@ -757,19 +757,19 @@ function CreateHLObj (hlNode)
 	</head>
 	
 	<frameset id="frmstOuter" cols="237,*">
-		<frame src="health.files/toolbar.html" name="frmToolbar" id="frmToolbar" title="Эта рамка содержит инструменты для управления документом." frameborder="6" bordercolor="#999999" scrolling="no" marginheight="0" marginwidth="0" >
-		<frame src="health.files/png_1.html" name="frmDrawing" title="Эта рамка содержит страницы документа." marginheight="10" marginwidth="10" onload="if (parent.isUpLevel) FramePageLoaded()" >
+		<frame src="health.files/toolbar.htmL" name="frmToolbar" id="frmToolbar" title="Эта рамка содержит инструменты для управления документом." frameborder="6" bordercolor="#999999" scrolling="no" marginheight="0" marginwidth="0" >
+		<frame src="health.files/png_1.htmL" name="frmDrawing" title="Эта рамка содержит страницы документа." marginheight="10" marginwidth="10" onload="if (parent.isUpLevel) FramePageLoaded()" >
 
 		<noframes>
 			<body>
 
 				<h1>health</h1>
 				<ul>
-				<li><a href="health.files/png_1.html">неделя</a></li>
-				<li><a href="health.files/png_2.html">день</a></li>
-				<li><a href="health.files/png_3.html">курьер</a></li>
-				<li><a href="health.files/png_4.html">аутофагия</a></li>
-				<li><a href="health.files/png_5.html">зарядка</a></li>
+				<li><a href="health.files/png_1.htmL">неделя</a></li>
+				<li><a href="health.files/png_2.htmL">день</a></li>
+				<li><a href="health.files/png_3.htmL">курьер</a></li>
+				<li><a href="health.files/png_4.htmL">аутофагия</a></li>
+				<li><a href="health.files/png_5.htmL">зарядка</a></li>
 
 				</ul>
 			</body>
