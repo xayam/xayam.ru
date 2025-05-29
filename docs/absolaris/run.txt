@@ -5,11 +5,16 @@ source absolarisvenv/bin/activate
 pip install openai
 pip install pyTelegramBotAPI
 
+cd /var/www/www-root/data && python -m venv absolarisvenv && source absolarisvenv/bin/activate && pip install openai && pip install pyTelegramBotAPI
+
 absolarisvenv/bin/python www/xayam.ru/absolaris/absolaris.py
+
 ps aufx | grep absolaris.py
+ps aufx | grep python
 
 pkill -f absolaris.py
 cd /var/www/www-root/data && absolarisvenv/bin/python www/xayam.ru/absolaris/absolaris.py
 
 ps aufx | grep absolaris.py
+ps aufx | grep python
 

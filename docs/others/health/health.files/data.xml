@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisioDocument>
+	<DocumentProperties>
+		<Title></Title>
+		<HyperlinkBase href=""></HyperlinkBase>
+	</DocumentProperties>
+	<Pages>
+		<Page ID="0" Name="неделя" NameU="расписание">
+			<Shapes>
+				<Shape ID="1" UniqueID="{BA9B134A-964A-4B14-8594-975CE6241CD9}" Name="Прямоугольник" NameU="Rectangle" Master="2">
+					<Text>ВОСКР</Text>
+					<XForm>
+						<PinX Unit="MM">1.046713220138352</PinX>
+						<PinY Unit="MM">4.744527559055108</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="2" UniqueID="{961007D2-3CDE-4A24-A2F9-36199311D687}" Name="Прямоугольник.2" NameU="Rectangle.2" Master="2">
+					<Text>ПОНЕД</Text>
+					<XForm>
+						<PinX Unit="MM">2.638756667646122</PinX>
+						<PinY Unit="MM">4.744527559055108</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="3" UniqueID="{AB034C8F-3663-432D-A8D6-5FC919C9D6AB}" Name="Прямоугольник.3" NameU="Rectangle.3" Master="2">
+					<Text>ВТОРН</Text>
+					<XForm>
+						<PinX Unit="MM">4.230800115153897</PinX>
+						<PinY Unit="MM">4.744527559055108</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="4" UniqueID="{42173E93-CF32-411A-BE52-AA00BDCA908D}" Name="Прямоугольник.4" NameU="Rectangle.4" Master="2">
+					<Text>СРЕДА</Text>
+					<XForm>
+						<PinX Unit="MM">5.822843562661674</PinX>
+						<PinY Unit="MM">4.744527559055104</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="5" UniqueID="{0095C495-2101-4707-810F-7098A80768AF}" Name="Прямоугольник.5" NameU="Rectangle.5" Master="2">
+					<Text>ЧЕТВЕРГ</Text>
+					<XForm>
+						<PinX Unit="MM">7.414887010169446</PinX>
+						<PinY Unit="MM">4.744527559055104</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="6" UniqueID="{4EB3944C-3B31-424A-852C-855AAEF31F1D}" Name="Прямоугольник.6" NameU="Rectangle.6" Master="2">
+					<Text>ПЯТНИЦ</Text>
+					<XForm>
+						<PinX Unit="MM">9.006930457677218</PinX>
+						<PinY Unit="MM">4.744527559055108</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="7" UniqueID="{2E300435-20FC-498E-A575-33F61DF4319E}" Name="Прямоугольник.7" NameU="Rectangle.7" Master="2">
+					<Text>СУББОТ</Text>
+					<XForm>
+						<PinX Unit="MM">10.610137508038390</PinX>
+						<PinY Unit="MM">4.744527559055108</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{B1753CB7-745F-4010-B454-7CC0755D9BDD}" Name="Прямоугольник.8" NameU="Rectangle.8" Master="2">
+					<Text>ПОДГОТОВ
+ 6 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">1.046713220138352</PinX>
+						<PinY Unit="MM">3.575531496062972</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="9" UniqueID="{12435D52-7039-4EFB-BEC9-782C7377A449}" Name="Прямоугольник.9" NameU="Rectangle.9" Master="2">
+					<Text>КУРЬЕР
+12 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">2.638756667646125</PinX>
+						<PinY Unit="MM">2.874133858267697</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="10" UniqueID="{EBC1C484-1DF8-4DCC-AE66-0127660A78D2}" Name="Прямоугольник.10" NameU="Rectangle.10" Master="2">
+					<Text>ПОДГОТОВ
+ 6 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">4.230800115153901</PinX>
+						<PinY Unit="MM">3.575531496062972</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="12" UniqueID="{84985150-0D5C-4A0D-9209-0ADF8511E9E1}" Name="Прямоугольник.12" NameU="Rectangle.12" Master="2">
+					<Text>ПОДГОТОВ
+ 6 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">7.414887010169446</PinX>
+						<PinY Unit="MM">3.575531496062970</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="13" UniqueID="{79AA9B85-A411-4BEA-984E-E989658C2F95}" Name="Прямоугольник.13" NameU="Rectangle.13" Master="2">
+					<Text>КУРЬЕР 
+12 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">9.006930457677218</PinX>
+						<PinY Unit="MM">2.874133858267697</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="14" UniqueID="{F84BF93A-4D17-499F-92E1-4346D9EA93AB}" Name="Прямоугольник.14" NameU="Rectangle.14" Master="2">
+					<Text>ОТДЫХ
+6 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">10.610137508038390</PinX>
+						<PinY Unit="MM">3.575531496062972</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="17" UniqueID="{0B9A213D-E350-49E4-B309-15FFC29AE434}" Name="Прямоугольник.17" NameU="Rectangle.17" Master="2">
+					<Text>КОДИНГ
+6 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">1.046713220138352</PinX>
+						<PinY Unit="MM">2.172736220472423</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="19" UniqueID="{42E71932-25D6-4306-8C39-FE00DAD35D0D}" Name="Прямоугольник.19" NameU="Rectangle.19" Master="2">
+					<Text>КОДИНГ
+6 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">4.230800115153901</PinX>
+						<PinY Unit="MM">2.172736220472423</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="21" UniqueID="{10B016D5-BFE2-46CE-9AB6-72EB71F02AD2}" Name="Прямоугольник.21" NameU="Rectangle.21" Master="2">
+					<Text>КОДИНГ
+6 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">7.414887010169446</PinX>
+						<PinY Unit="MM">2.172736220472423</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="23" UniqueID="{1D1603A1-6C35-4A15-A738-F5ABBDD5F8AE}" Name="Прямоугольник.23" NameU="Rectangle.23" Master="2">
+					<Text>КОДИНГ
+6 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">10.610137508038390</PinX>
+						<PinY Unit="MM">2.172736220472423</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="27" UniqueID="{5CA212DD-A0A2-42BB-8579-D15D8DE68080}" Name="Прямоугольник.27" NameU="Rectangle.27" Master="2">
+					<Text>СОН 12 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">5.834007165515065</PinX>
+						<PinY Unit="MM">0.847874015748026</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="28" UniqueID="{58150EF8-31AD-4882-A29C-E833FEEA2C3E}" Name="Прямоугольник.28" NameU="Rectangle.28" Master="2">
+					<Text>НЕДЕЛЯ
+РАСПИСАНИЕ РАБОТЫ/ОТДЫХА</Text>
+					<XForm>
+						<PinX Unit="MM">5.833661417322834</PinX>
+						<PinY Unit="MM">6.614921259842520</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="11" UniqueID="{16734D5E-F4AF-4111-95B1-6ADFC767EC28}" Name="Прямоугольник.11" NameU="Rectangle.11" Master="2">
+					<Text>КУРЬЕР
+12 ЧАСОВ</Text>
+					<XForm>
+						<PinX Unit="MM">5.822843562661675</PinX>
+						<PinY Unit="MM">2.874133858267697</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+		<Page ID="7" Name="день" NameU="Page-5">
+			<Shapes>
+				<Shape ID="1" UniqueID="{823D46C6-965B-4E8C-AFF5-17B797951674}" Name="Прямоугольник.1" NameU="Rectangle.1" Master="2">
+					<Text>ДЕНЬ
+РАСПОРЯДОК ДНЯ</Text>
+					<XForm>
+						<PinX Unit="MM">5.833853995014179</PinX>
+						<PinY Unit="MM">6.856397637795281</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="2" UniqueID="{F0E8E70A-8ABA-4401-8314-A6CF8B73849B}" Name="Прямоугольник.2" NameU="Rectangle.2" Master="2">
+					<Text>СОН
+
+19:00 – 
+7:00</Text>
+					<XForm>
+						<PinX Unit="MM">2.635252308993412</PinX>
+						<PinY Unit="MM">2.985334645669322</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="3" UniqueID="{751D703F-B9CD-4857-A35A-56B15C0F2511}" Name="Прямоугольник.3" NameU="Rectangle.3" Master="2">
+					<Text>ПОНЕД</Text>
+					<XForm>
+						<PinX Unit="MM">1.047564919832789</PinX>
+						<PinY Unit="MM">4.533759842519704</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="4" UniqueID="{EB5DE86E-387F-4C13-8EC2-6D88682CD1CE}" Name="Прямоугольник.4" NameU="Rectangle.4" Master="2">
+					<Text>ВТОРН</Text>
+					<XForm>
+						<PinX Unit="MM">1.047564919832789</PinX>
+						<PinY Unit="MM">3.759547244094510</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="5" UniqueID="{F43C36A7-DCEE-471E-B389-1DD207516F2C}" Name="Прямоугольник.5" NameU="Rectangle.5" Master="2">
+					<Text>СРЕДА</Text>
+					<XForm>
+						<PinX Unit="MM">1.047564919832789</PinX>
+						<PinY Unit="MM">2.985334645669304</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="6" UniqueID="{283A1E2B-E293-422D-B2E5-EE79F5220AD6}" Name="Прямоугольник.6" NameU="Rectangle.6" Master="2">
+					<Text>ЧЕТВЕРГ</Text>
+					<XForm>
+						<PinX Unit="MM">1.047564919832789</PinX>
+						<PinY Unit="MM">2.211122047244099</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="7" UniqueID="{57BBB8A1-BFD4-41D2-B3EA-73A2119DDE38}" Name="Прямоугольник.7" NameU="Rectangle.7" Master="2">
+					<Text>ПЯТНИЦ</Text>
+					<XForm>
+						<PinX Unit="MM">1.047564919832787</PinX>
+						<PinY Unit="MM">1.436909448818907</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{9DF4E4C5-0EAB-46D7-BE20-0917DF07BEAD}" Name="Прямоугольник.8" NameU="Rectangle.8" Master="2">
+					<Text>СУББОТ</Text>
+					<XForm>
+						<PinX Unit="MM">1.047564919832787</PinX>
+						<PinY Unit="MM">0.662696850393702</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="9" UniqueID="{739D8F3A-0996-4516-9D6B-A9A2332E8B25}" Name="Прямоугольник.39" NameU="Rectangle.39" Master="2">
+					<Text>ПОДГОТОВ
+7:00 - 9:00</Text>
+					<XForm>
+						<PinX Unit="MM">4.094380867417996</PinX>
+						<PinY Unit="MM">5.307972440944897</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="10" UniqueID="{C6D026A7-175B-415B-9EE8-541DDCB56DEA}" Name="Прямоугольник.44" NameU="Rectangle.44" Master="2">
+					<Text>ВОСКР</Text>
+					<XForm>
+						<PinX Unit="MM">1.047564919832789</PinX>
+						<PinY Unit="MM">5.307972440944895</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="11" UniqueID="{525B2C14-8FD2-4841-A49D-1D2153A712C6}" Name="Прямоугольник.48" NameU="Rectangle.48" Master="2">
+					<Text>КОДИНГ
+9:00 - 11:00</Text>
+					<XForm>
+						<PinX Unit="MM">5.417136726104881</PinX>
+						<PinY Unit="MM">5.307972440944897</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="12" UniqueID="{0FEF1324-0F6D-408A-AA50-F125E381B289}" Name="Прямоугольник.51" NameU="Rectangle.51" Master="2">
+					<Text>ПОДГОТОВ
+11:00 - 13:00</Text>
+					<XForm>
+						<PinX Unit="MM">6.713147166216472</PinX>
+						<PinY Unit="MM">5.307972440944897</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="13" UniqueID="{434B2EE8-D482-4AFA-AE4C-23DD594465FA}" Name="Прямоугольник.52" NameU="Rectangle.52" Master="2">
+					<Text>КОДИНГ
+13:00 - 15:00</Text>
+					<XForm>
+						<PinX Unit="MM">8.044843498075597</PinX>
+						<PinY Unit="MM">5.307972440944897</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="14" UniqueID="{278A9938-865C-4E5F-B9B8-6AB0EF15FB23}" Name="Прямоугольник.53" NameU="Rectangle.53" Master="2">
+					<Text>ПОДГОТОВ
+15:00 - 17:00</Text>
+					<XForm>
+						<PinX Unit="MM">9.349220216790789</PinX>
+						<PinY Unit="MM">5.307972440944897</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="15" UniqueID="{D67B8331-3DDE-4D6B-A462-19F65B269853}" Name="Прямоугольник.54" NameU="Rectangle.54" Master="2">
+					<Text>КОДИНГ
+17:00 - 19:00</Text>
+					<XForm>
+						<PinX Unit="MM">10.718716159291590</PinX>
+						<PinY Unit="MM">5.307972440944897</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="16" UniqueID="{1814FC34-2712-4118-BE08-957A81E6D1C8}" Name="Прямоугольник.56" NameU="Rectangle.56" Master="2">
+					<Text>ПОДГОТОВ
+7:00 - 9:00</Text>
+					<XForm>
+						<PinX Unit="MM">4.095072168727681</PinX>
+						<PinY Unit="MM">3.759547244094515</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="17" UniqueID="{5FA087C1-9E95-4827-8021-8DA1FC942C25}" Name="Прямоугольник.57" NameU="Rectangle.57" Master="2">
+					<Text>КОДИНГ
+9:00 - 11:00</Text>
+					<XForm>
+						<PinX Unit="MM">5.417828027414576</PinX>
+						<PinY Unit="MM">3.759547244094515</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="18" UniqueID="{9FE109A5-66F6-4D2B-A8C1-F1BAB5BA9AD3}" Name="Прямоугольник.58" NameU="Rectangle.58" Master="2">
+					<Text>ПОДГОТОВ
+11:00 - 13:00</Text>
+					<XForm>
+						<PinX Unit="MM">6.713838467526159</PinX>
+						<PinY Unit="MM">3.759547244094518</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="19" UniqueID="{0EB22F22-4DEE-4023-9A09-40DA06504787}" Name="Прямоугольник.59" NameU="Rectangle.59" Master="2">
+					<Text>КОДИНГ
+13:00 - 15:00</Text>
+					<XForm>
+						<PinX Unit="MM">8.045534799385283</PinX>
+						<PinY Unit="MM">3.759547244094518</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="20" UniqueID="{BA714F91-400F-4D3F-98E7-A855D7687624}" Name="Прямоугольник.60" NameU="Rectangle.60" Master="2">
+					<Text>ПОДГОТОВ
+15:00 - 17:00</Text>
+					<XForm>
+						<PinX Unit="MM">9.349911518100480</PinX>
+						<PinY Unit="MM">3.759547244094518</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="21" UniqueID="{E4C97449-5F7B-451D-864A-5ACC18A0C7B5}" Name="Прямоугольник.61" NameU="Rectangle.61" Master="2">
+					<Text>КОДИНГ
+17:00 - 19:00</Text>
+					<XForm>
+						<PinX Unit="MM">10.719407460601280</PinX>
+						<PinY Unit="MM">3.759547244094518</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="22" UniqueID="{B5D7D518-5B08-4CDE-8541-27C04393D68B}" Name="Прямоугольник.62" NameU="Rectangle.62" Master="2">
+					<Text>ПОДГОТОВ
+7:00 - 9:00</Text>
+					<XForm>
+						<PinX Unit="MM">4.095072168727681</PinX>
+						<PinY Unit="MM">2.211122047244122</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="23" UniqueID="{874118E8-9E39-450F-B5D8-8A977A6713BA}" Name="Прямоугольник.63" NameU="Rectangle.63" Master="2">
+					<Text>КОДИНГ
+9:00 - 11:00</Text>
+					<XForm>
+						<PinX Unit="MM">5.417828027414576</PinX>
+						<PinY Unit="MM">2.211122047244122</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="24" UniqueID="{23A056E2-B541-44CD-BCFF-9E21621BA96F}" Name="Прямоугольник.64" NameU="Rectangle.64" Master="2">
+					<Text>ПОДГОТОВ
+11:00 - 13:00</Text>
+					<XForm>
+						<PinX Unit="MM">6.713838467526159</PinX>
+						<PinY Unit="MM">2.211122047244124</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="25" UniqueID="{E997D840-4CC7-45B8-B9E3-C585C2C55952}" Name="Прямоугольник.65" NameU="Rectangle.65" Master="2">
+					<Text>КОДИНГ
+13:00 - 15:00</Text>
+					<XForm>
+						<PinX Unit="MM">8.045534799385287</PinX>
+						<PinY Unit="MM">2.211122047244124</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="26" UniqueID="{D879E626-E4D1-4E1A-BBCE-EAC29F6AC3E5}" Name="Прямоугольник.66" NameU="Rectangle.66" Master="2">
+					<Text>ПОДГОТОВ
+15:00 - 17:00</Text>
+					<XForm>
+						<PinX Unit="MM">9.349911518100480</PinX>
+						<PinY Unit="MM">2.211122047244124</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="27" UniqueID="{3E9F9259-3D15-4B1B-84B2-5B24373CCADC}" Name="Прямоугольник.67" NameU="Rectangle.67" Master="2">
+					<Text>КОДИНГ
+17:00 - 19:00</Text>
+					<XForm>
+						<PinX Unit="MM">10.719407460601280</PinX>
+						<PinY Unit="MM">2.211122047244124</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="28" UniqueID="{AA87C462-090A-4F52-B5A6-68A54A3C48E4}" Name="Прямоугольник.68" NameU="Rectangle.68" Master="2">
+					<Text>ОТДЫХ
+7:00 - 9:00</Text>
+					<XForm>
+						<PinX Unit="MM">4.095072168727681</PinX>
+						<PinY Unit="MM">0.662696850393735</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="29" UniqueID="{B2948A87-FE91-4534-B62E-661FC7644F36}" Name="Прямоугольник.69" NameU="Rectangle.69" Master="2">
+					<Text>КОДИНГ
+9:00 - 11:00</Text>
+					<XForm>
+						<PinX Unit="MM">5.417828027414576</PinX>
+						<PinY Unit="MM">0.662696850393735</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="30" UniqueID="{8A1FFB3E-C3CF-4C68-9FDA-F38BB6DDB66D}" Name="Прямоугольник.70" NameU="Rectangle.70" Master="2">
+					<Text>ОТДЫХ
+11:00 - 13:00</Text>
+					<XForm>
+						<PinX Unit="MM">6.713838467526159</PinX>
+						<PinY Unit="MM">0.662696850393737</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="31" UniqueID="{A0C28EEF-7EBF-4F86-BF46-455F10201764}" Name="Прямоугольник.71" NameU="Rectangle.71" Master="2">
+					<Text>КОДИНГ
+13:00 - 15:00</Text>
+					<XForm>
+						<PinX Unit="MM">8.045534799385287</PinX>
+						<PinY Unit="MM">0.662696850393737</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="32" UniqueID="{870909B5-0816-43BF-9992-FA459310E8F3}" Name="Прямоугольник.72" NameU="Rectangle.72" Master="2">
+					<Text>ОТДЫХ
+15:00 - 17:00</Text>
+					<XForm>
+						<PinX Unit="MM">9.349911518100480</PinX>
+						<PinY Unit="MM">0.662696850393737</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="33" UniqueID="{73871EAC-4C9C-4E6E-8026-34BA983DD8D7}" Name="Прямоугольник.73" NameU="Rectangle.73" Master="2">
+					<Text>КОДИНГ
+17:00 - 19:00</Text>
+					<XForm>
+						<PinX Unit="MM">10.719407460601280</PinX>
+						<PinY Unit="MM">0.662696850393737</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="34" UniqueID="{15890C78-941B-4427-A4C8-83091E3FD9E3}" Name="Прямоугольник.76" NameU="Rectangle.76" Master="2">
+					<Text>КУРЬЕР
+7:00 – 19:00</Text>
+					<XForm>
+						<PinX Unit="MM">7.425793969330471</PinX>
+						<PinY Unit="MM">4.533759842519711</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="35" UniqueID="{A3F0DDF6-5999-46DF-9910-90DC06EFE433}" Name="Прямоугольник.77" NameU="Rectangle.77" Master="2">
+					<Text>КУРЬЕР
+7:00 – 19:00</Text>
+					<XForm>
+						<PinX Unit="MM">7.426485270640160</PinX>
+						<PinY Unit="MM">2.980173228346447</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="36" UniqueID="{DCCD2806-43F6-47A5-BAB3-6CAD44E8528D}" Name="Прямоугольник.78" NameU="Rectangle.78" Master="2">
+					<Text>КУРЬЕР
+7:00 – 19:00</Text>
+					<XForm>
+						<PinX Unit="MM">7.426485270640160</PinX>
+						<PinY Unit="MM">1.431748031496060</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+		<Page ID="5" Name="курьер" NameU="Page-3">
+			<Shapes>
+				<Shape ID="1" UniqueID="{131DCF31-0FB4-40BE-ABAF-A80D037EA2D8}" Name="Прямоугольник.1" NameU="Rectangle.1" Master="2">
+					<Text>КУРЬЕР
+СТРАТЕГИЯ НА ДВА ДЕНЬ</Text>
+					<XForm>
+						<PinX Unit="MM">5.860827148814662</PinX>
+						<PinY Unit="MM">6.856397637795283</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="2" UniqueID="{A263BFE4-1E54-47CB-B826-3BBABEE63AF4}" Name="Прямоугольник.2" NameU="Rectangle.2" Master="2">
+					<Text>ВТОРОЙ ДЕНЬ КУРЬЕРСТВО + ПОИСК МАЛЕНЬКИХ ЗАКАЗОВ (2 ЗАКАЗА ПО 500 РУБЛЕЙ)</Text>
+					<XForm>
+						<PinX Unit="MM">5.872931123095539</PinX>
+						<PinY Unit="MM">1.811220472440959</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{9EDE208E-624E-451A-821F-59E508B9C5B3}" Name="Прямоугольник.44" NameU="Rectangle.44" Master="2">
+					<Text>ПЕРВЫЙ ДЕНЬ ПОДГОТОВКА – ПОИСК ОДНОГО ХОРОШЕГО ЗАКАЗА (1000-1500 РУБЛЕЙ)</Text>
+					<XForm>
+						<PinX Unit="MM">5.848723174533804</PinX>
+						<PinY Unit="MM">4.533759842519709</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+		<Page ID="4" Name="аутофагия" NameU="аутофагия">
+			<Shapes>
+				<Shape ID="1" UniqueID="{A52F2BEF-2C45-4329-9B14-DD3925C01873}" Name="Прямоугольник.1" NameU="Rectangle.1" Master="2">
+					<Text>НЕЛЬЗЯ</Text>
+					<XForm>
+						<PinX Unit="MM">3.018700787401574</PinX>
+						<PinY Unit="MM">6.433562992125983</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="2" UniqueID="{E3AC12E2-14AB-4FB7-8161-09A148602242}" Name="Прямоугольник.2" NameU="Rectangle.2" Master="2">
+					<Text>МОЖНО (УМЕРЕННО)</Text>
+					<XForm>
+						<PinX Unit="MM">8.615157480314958</PinX>
+						<PinY Unit="MM">6.433562992125983</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="3" UniqueID="{532C4CD9-A88C-4A12-8FD7-93772113E729}" Name="Прямоугольник.3" NameU="Rectangle.3" Master="2">
+					<Text>- уксус
+- варенье
+- колбаса
+- сосиски
+- консервированное
+- белый хлеб, булочки
+- кетчуп
+- жареный картофель
+- рафинированное масло
+- торты
+- печенье, пряники, пирожные
+- сгущенное молоко
+- сахар, фруктоза
+- чай
+- газированная вода, сладкая вода
+- кофе, заменители кофе
+- пиво, алкоголь, энергетики
+
++- пельмени (нежелательно)
++- соль (нежелательно)</Text>
+					<XForm>
+						<PinX Unit="MM">3.018700787401574</PinX>
+						<PinY Unit="MM">3.274606299212598</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="4" UniqueID="{1023CCB4-923A-4EFA-AF1D-8B29E909EB50}" Name="Прямоугольник.4" NameU="Rectangle.4" Master="2">
+					<Text>+ чистая горячая питьевая вода (в любое время)
++ какао
++ свекла, морковь, капуста, лук, чеснок
++ варенный картофель с кожурой
++ запеченный картофель
++ хурма, тыква, огурцы
++ пшено, гречка, геркулес
++ перловка, рис, макароны
++ альдента (недоваренное)
++ сало, курица, индейка, рыба, сельдь
++ орехи, грецкие орехи, арахис (без соли)
++ семечки, семена тыквы, кешью, кинуа
++ мёд, финики, изюм, курага
++ молоко, кефир, ряженка, сметана
++ йогурт без сахара, творог обезжиренный
++ куриные яйца
++ черный хлеб
++ сливочное масло, нерафинированное масло
++ овощная замороженная смесь
++ перец, горчица, приправы, специи</Text>
+					<XForm>
+						<PinX Unit="MM">8.615157480314958</PinX>
+						<PinY Unit="MM">3.274606299212602</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="5" UniqueID="{C078E800-E5B7-463E-AB83-5F0AE3A7B3A9}" Name="Прямоугольник" NameU="Rectangle" Master="2">
+					<Text>ИНТЕРВАЛЬНОЕ ГОЛОДАНИЕ</Text>
+					<XForm>
+						<PinX Unit="MM">5.846456692913383</PinX>
+						<PinY Unit="MM">7.883366141732282</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="6" UniqueID="{439AACF3-ABD2-4613-97E0-F92BB0692B9F}" Name="Прямоугольник.6" NameU="Rectangle.6" Master="2">
+					<Text>8 часов для приема пищи (три раза + перекусы)
+10:00 – 18:00</Text>
+					<XForm>
+						<PinX Unit="MM">8.615157480314961</PinX>
+						<PinY Unit="MM">7.378444881889763</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="7" UniqueID="{FC86EAA0-5364-4949-8B24-4B97A833260D}" Name="Прямоугольник.10" NameU="Rectangle.10" Master="2">
+					<Text>16 часов голодания (разрешается только вода)
+18:00 – 10:00</Text>
+					<XForm>
+						<PinX Unit="MM">3.018700787401572</PinX>
+						<PinY Unit="MM">7.378444881889763</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{D1F401DE-B0D3-4B94-9EB4-DD0DA718E700}" Name="Прямоугольник.11" NameU="Rectangle.11" Master="2">
+					<Text>Желательно один раз в 7-8 дней – голодание 24 часа</Text>
+					<XForm>
+						<PinX Unit="MM">5.846456692913383</PinX>
+						<PinY Unit="MM">6.787893700787402</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+		<Page ID="6" Name="зарядка" NameU="зарядка">
+			<Shapes>
+				<Shape ID="1" UniqueID="{1424538B-1C1D-4E4E-94DD-C7B48779094E}" Name="Прямоугольник.1" NameU="Rectangle.1" Master="2">
+					<Text>ЗАРЯДКА
+УПРАЖНЕНИЯ НА ДЕНЬ</Text>
+					<XForm>
+						<PinX Unit="MM">5.859444546195286</PinX>
+						<PinY Unit="MM">6.856397637795283</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="3" UniqueID="{6CC7207F-24F4-4293-A140-AF91765DCBEE}" Name="Прямоугольник.3" NameU="Rectangle.3" Master="2">
+					<Text>РАСТЯЖКА</Text>
+					<XForm>
+						<PinX Unit="MM">5.847340571914428</PinX>
+						<PinY Unit="MM">4.533759842519705</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="4" UniqueID="{600407D6-5D61-4576-B7AF-A0542691BC1C}" Name="Прямоугольник.4" NameU="Rectangle.4" Master="2">
+					<Text>ВЗМАХИ</Text>
+					<XForm>
+						<PinX Unit="MM">5.847340571914428</PinX>
+						<PinY Unit="MM">3.759547244094512</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="5" UniqueID="{7FF3A608-3D06-416A-9220-45D6E0829AD3}" Name="Прямоугольник.5" NameU="Rectangle.5" Master="2">
+					<Text>ПРИСЕДАНИЯ</Text>
+					<XForm>
+						<PinX Unit="MM">5.847340571914428</PinX>
+						<PinY Unit="MM">2.985334645669306</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="6" UniqueID="{06FC9B02-6FB6-40D2-B742-189BF1EF5F6A}" Name="Прямоугольник.6" NameU="Rectangle.6" Master="2">
+					<Text>ОТЖИМАНИЯ</Text>
+					<XForm>
+						<PinX Unit="MM">5.847340571914428</PinX>
+						<PinY Unit="MM">2.211122047244101</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="7" UniqueID="{D722F3C6-E516-49ED-B0C2-B8EBD4C6263E}" Name="Прямоугольник.7" NameU="Rectangle.7" Master="2">
+					<Text>ПОДТЯГИВАНИЕ</Text>
+					<XForm>
+						<PinX Unit="MM">5.847340571914410</PinX>
+						<PinY Unit="MM">1.436909448818910</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{68AA4A6F-A098-461D-A5A0-BF68F55A755F}" Name="Прямоугольник.8" NameU="Rectangle.8" Master="2">
+					<Text>ПРОГУЛКА</Text>
+					<XForm>
+						<PinX Unit="MM">5.847340571914410</PinX>
+						<PinY Unit="MM">0.662696850393704</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="10" UniqueID="{0D5C1306-C767-4470-B4BF-D7E6CBD8ABAF}" Name="Прямоугольник.44" NameU="Rectangle.44" Master="2">
+					<Text>ВЗМАХИ</Text>
+					<XForm>
+						<PinX Unit="MM">5.847340571914428</PinX>
+						<PinY Unit="MM">5.307972440944898</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+	</Pages>
+</VisioDocument>
