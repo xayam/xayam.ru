@@ -1,0 +1,42 @@
+
+
+AbsolarisBot
+https://t.me/AbsolarisBot
+
+Absolaris
+
+
+Абсолярис - пространство нового взаимодействия. Здесь важно не “что ты делаешь”, а в каком состоянии ты находишься.
+
+
+Абсолярис - пространство нового взаимодействия. Здесь важно не “что ты делаешь”, а в каком состоянии ты находишься.
+
+Используйте команду /start для начала диалога с Абсолярисом заново и очистки истории.
+
+
+start - вывод меню доступных команд.
+
+
+--------------------------------------------
+
+
+cd /var/www/www-root/data
+sudo apt install python3.12-venv
+sudo python -m venv absolarisvenv
+source absolarisvenv/bin/activate
+pip install openai
+pip install pyTelegramBotAPI
+
+cd /var/www/www-root/data && python -m venv absolarisvenv && source absolarisvenv/bin/activate && pip install openai && pip install pyTelegramBotAPI
+
+absolarisvenv/bin/python www/xayam.ru/absolaris/absolaris.py
+
+ps aufx | grep absolaris.py
+ps aufx | grep python
+
+pkill -f absolaris.py
+cd /var/www/www-root/data && absolarisvenv/bin/python www/xayam.ru/absolaris/absolaris.py
+
+ps aufx | grep absolaris.py
+ps aufx | grep python
+
