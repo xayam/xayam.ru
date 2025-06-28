@@ -9,6 +9,7 @@ docs/rewlis/data/*
 !docs/rewlis/data/__init__.py
 docs/absolaris/__init__.py
 docs/absolaris/__secret__.py
+*to.dgt.from.xayam.txt
 *.gif
 *.mp4
 *.avi
