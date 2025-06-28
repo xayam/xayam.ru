@@ -9,3 +9,10 @@ docs/rewlis/data/*
 !docs/rewlis/data/__init__.py
 docs/absolaris/__init__.py
 docs/absolaris/__secret__.py
+.mp4
+.avi
+.mkv
+.mp3
+.zip
+.7z
+.rar
