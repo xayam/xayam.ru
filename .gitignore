@@ -9,6 +9,7 @@ docs/rewlis/data/*
 !docs/rewlis/data/__init__.py
 docs/absolaris/__init__.py
 docs/absolaris/__secret__.py
+*.gif
 *.mp4
 *.avi
 *.mkv
