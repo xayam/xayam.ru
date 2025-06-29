@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<main ru="Основной товар" en="Main product">
+    <product id="1000010"
+             ru="Продукт 1"
+             en="Product 1">
+        <ru href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </product>
+</main>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shops ru="Магазины" en="Shops">
+    <shop
+            id="ozon"
+            ru="Озон"
+            en="Ozon">
+        <ru href="https://www.ozon.ru/seller/xayam-ru-2439849"
+            title="Магазин КСАЯМ на Озоне">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="Shop XAYAM on Ozon">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </shop>
+    <shop
+            id="avito"
+            ru="Авито"
+            en="Avito">
+        <ru href="https://www.avito.ru"
+            title="Магазин КСАЯМ на Авито">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="Shop XAYAM on Avito">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </shop>
+    <shop
+            id="vk"
+            ru="ВК Озон"
+            en="VK Ozon">
+        <ru href="https://vk.com/xayam_ru_ozon"
+            title="Магазин КСАЯМ в ВК-сообществе">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="Shop XAYAM in VK-community">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </shop>
+</shops>

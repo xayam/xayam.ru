@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<reviews ru="Новости" en="News">
+    <review id="202506010000"
+         ru="Отзыв 2025.06.01 00:00"
+         en="Review 2025.06.01 00:00">
+        <ru href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </review>
+</reviews>

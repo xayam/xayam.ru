@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-    <xsl:template match="/">
+    <xsl:template match="/root">
         <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
         <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
         <html lang="ru">
@@ -8,18 +8,18 @@
                 <title>
                     <xsl:value-of
                             select="translate(config/domain, $lowercase, $uppercase)" /> ::
-                    <xsl:value-of select="data/site/slogan/ru" />
+                    <xsl:value-of select="document('site.xml')//slogan/ru" />
                 </title>
                 <meta charset="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
                 <meta name="robots" content="INDEX,FOLLOW"/>
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-                <link rel="stylesheet" href="res/styles.css"/>
+                <link rel="stylesheet" href="res/img/style.css"/>
             </head>
             <body>
                 <script>
-                    let domain = "&lt;xsl:value-of select='config/domain' />";
+                    let domain = "";
                     let title = '';
                 </script>
                 <div id="header">
@@ -39,7 +39,7 @@
                     </div>
                     <div id="slogan">
                         <i>
-                            <xsl:value-of select="data/site/slogan/ru" />
+                            <xsl:value-of select="document('site.xml')//slogan/ru" />
                         </i>
                     </div>
                 </div>

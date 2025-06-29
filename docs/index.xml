@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="load.xsl"?>
-<root xmlns:xi="http://www.w3.org/2001/XInclude">
-    <xi:include href="load.xml"/>
+<?xml-stylesheet type="text/xsl" href="res/transform.xsl"?>
+<root>
+    <config>
+        <domain>xayam.ru</domain>
+        <languages>
+            <ru>ru</ru>
+            <en>en</en>
+        </languages>
+    </config>
+    <menu>
+        <catalog ru="Каталог" en="Catalog" />
+        <standards ru="Стандарты" en="Standards" />
+            <standard id="xall"
+                      ru="Общее"
+                      en="Common">
+                <ru href=""
+                    title="">
+                    <img src=""/>
+                    <img src=""/>
+                </ru>
+                <en href="" title="">
+                    <img src=""/>
+                    <img src=""/>
+                </en>
+            </standard>
+            <standard id="x"
+                      ru="Стандарт КСАЯМ"
+                      en="Standardt XAYAM">
+                <ru href=""
+                    title="">
+                    <img src=""/>
+                    <img src=""/>
+                </ru>
+                <en href="" title="">
+                    <img src=""/>
+                    <img src=""/>
+                </en>
+            </standard>
+            <standard id="xplus"
+                      ru="Стандарт КСАЯМ+"
+                      en="Standardt XAYAM+">
+                <ru href=""
+                    title="">
+                    <img src=""/>
+                    <img src=""/>
+                </ru>
+                <en href="" title="">
+                    <img src=""/>
+                    <img src=""/>
+                </en>
+            </standard>
+            <standard id="xplusplus"
+                      ru="Стандарт КСАЯМ++"
+                      en="Standardt XAYAM++">
+                <ru href=""
+                    title="">
+                    <img src=""/>
+                    <img src=""/>
+                </ru>
+                <en href="" title="">
+                    <img src=""/>
+                    <img src=""/>
+                </en>
+            </standard>
+        <files ru="Файлы" en="Files" />
+        <others ru="Другое" en="Others" />
+        <aboutus ru="О нас" en="About us" />
+        <search ru="Поиск" en="Search" />
+    </menu>
 </root>

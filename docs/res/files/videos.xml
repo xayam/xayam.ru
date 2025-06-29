@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<videos ru="Видео" en="Videos">
+    <video id="001.mp4"
+           ru=""
+           en="">
+        <ru href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </video>
+</videos>

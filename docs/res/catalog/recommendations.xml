@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<recommendations ru="Рекомендуем" en="Recommendations">
+    <recommendation id="xayam"
+         ru="Рекомендация от xayam"
+         en="Recommendation by xayam">
+        <ru href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </recommendation>
+</recommendations>

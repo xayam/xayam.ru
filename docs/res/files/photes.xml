@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<photes ru="Фотографии" en="Photes">
+    <phote id="001.jpg"
+           ru=""
+           en="">
+        <ru href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </phote>
+</photes>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<texts ru="Тексты" en="Texts">
+    <text id="001.pdf"
+          ru=""
+          en="">
+        <ru href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </text>
+</texts>
