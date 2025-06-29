@@ -10,8 +10,8 @@
     <data>
         <site>
             <favicon href="favicon.ico" />
-            <logo href="res/logo.jpg" />
-            <background href="res/stars.png" />
+            <logo href="res/img/logo.jpg" />
+            <background href="res/img/stars.png" />
             <slogan>
                 <ru>Больше чем одна игра - больше чем одна форма...</ru>
                 <en>More then one game - more than one form...</en>
