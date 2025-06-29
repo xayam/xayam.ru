@@ -11,61 +11,9 @@
     <menu>
         <catalog ru="Каталог" en="Catalog" />
         <standards ru="Стандарты" en="Standards" />
-            <standard id="xall"
-                      ru="Общее"
-                      en="Common">
-                <ru href=""
-                    title="">
-                    <img src=""/>
-                    <img src=""/>
-                </ru>
-                <en href="" title="">
-                    <img src=""/>
-                    <img src=""/>
-                </en>
-            </standard>
-            <standard id="x"
-                      ru="Стандарт КСАЯМ"
-                      en="Standardt XAYAM">
-                <ru href=""
-                    title="">
-                    <img src=""/>
-                    <img src=""/>
-                </ru>
-                <en href="" title="">
-                    <img src=""/>
-                    <img src=""/>
-                </en>
-            </standard>
-            <standard id="xplus"
-                      ru="Стандарт КСАЯМ+"
-                      en="Standardt XAYAM+">
-                <ru href=""
-                    title="">
-                    <img src=""/>
-                    <img src=""/>
-                </ru>
-                <en href="" title="">
-                    <img src=""/>
-                    <img src=""/>
-                </en>
-            </standard>
-            <standard id="xplusplus"
-                      ru="Стандарт КСАЯМ++"
-                      en="Standardt XAYAM++">
-                <ru href=""
-                    title="">
-                    <img src=""/>
-                    <img src=""/>
-                </ru>
-                <en href="" title="">
-                    <img src=""/>
-                    <img src=""/>
-                </en>
-            </standard>
         <files ru="Файлы" en="Files" />
         <others ru="Другое" en="Others" />
-        <aboutus ru="О нас" en="About us" />
+        <aboutus ru="О нас" en="About Us" />
         <search ru="Поиск" en="Search" />
     </menu>
 </root>

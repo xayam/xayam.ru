@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<standards ru="Стандарты" en="Standards">
+    <standard id="xall"
+              ru="Общее"
+              en="Common">
+        <ru href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </standard>
+    <standard id="x"
+              ru="Стандарт КСАЯМ"
+              en="Standardt XAYAM">
+        <ru href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </standard>
+    <standard id="xplus"
+              ru="Стандарт КСАЯМ+"
+              en="Standardt XAYAM+">
+        <ru href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href="" title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </standard>
+    <standard id="xplusplus"
+              ru="Стандарт КСАЯМ++"
+              en="Standardt XAYAM++">
+        <ru href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </standard>
+</standards>
