@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-    <xsl:template match="/index">
+    <xsl:template match="/config">
         <html lang="ru">
             <head>
                 <title>123</title>
@@ -15,8 +15,8 @@
                 <div id="header">
                     <div id="logo">
                         <a href="#">XAYAM.RU</a> ::
-                        <a href="#ru.shop.main">RU</a> |
-                        <a href="#en.shop.main">EN</a>
+                        <a href="#ru.catalog">RU</a> |
+                        <a href="#en.catalog">EN</a>
                     </div>
                     <div id="slogan">
                         <i>Больше чем одна игра - больше чем одна форма...</i>
