@@ -1,0 +1,55 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<!--<?xml-stylesheet type="text/xsl" href="index.xsl"?>-->
+<!--<?xml-stylesheet type="text/css" href="index.css"?>-->
+<!DOCTYPE index SYSTEM "index.dtd">
+<index>
+    <config>
+        <domain>xayam.ru</domain>
+        <languages>
+            <ru>ru</ru>
+            <en>en</en>
+        </languages>
+    </config>
+    <data>
+        <site>
+            <favicon href="favicon.ico" />
+            <logo href="res/logo.jpg" />
+            <background href="res/stars.png" />
+            <slogan>
+                <ru>Больше чем одна игра - больше чем одна форма...</ru>
+                <en>More then one game - more then one form...</en>
+            </slogan>
+        </site>
+        <menu>
+            <catalog ru="Каталог" en="Catalog">
+                <news ru="Новости" en="News">
+                    <id202506010000 ru="Новость от 2025.06.01 00:00" en="News 2025.06.01 00:00">
+                        <ru href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </id202506010000>
+                </news>
+            </catalog>
+            <standards>
+
+            </standards>
+            <files>
+
+            </files>
+            <others>
+
+            </others>
+            <aboutus>
+
+            </aboutus>
+            <search>
+
+            </search>
+        </menu>
+    </data>
+</index>
