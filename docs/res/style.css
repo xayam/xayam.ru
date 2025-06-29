@@ -37,13 +37,13 @@ body {
 	color: white; 
 }
 
-#content {
+#content ul li{
 	margin: 20px;
 	padding: 20px;
     background-color: #eee;
 }
 
-#footer {
+#footer{
 	width: 100%;
 	height: 26px;
 	background: url(stars.png) repeat-x;
