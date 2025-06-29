@@ -1,7 +1,5 @@
-<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="index.xsl"?>
-<!--<?xml-stylesheet type="text/css" href="index.css"?>-->
-<!DOCTYPE index SYSTEM "index.dtd">
 <index>
     <config>
         <domain>xayam.ru</domain>
@@ -97,11 +95,70 @@
                     </shop>
                 </shops>
             </catalog>
-                <standards ru="Стандарты" en="Standards">
-                    <standard
-                            id="xall"
-                            ru="Общее"
-                            en="Common">
+            <standards ru="Стандарты" en="Standards">
+                <standard
+                        id="xall"
+                        ru="Общее"
+                        en="Common">
+                    <ru href=""
+                        title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </ru>
+                    <en href="" title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </en>
+                </standard>
+                <standard
+                        id="x"
+                        ru="Стандарт КСАЯМ"
+                        en="Standardt XAYAM">
+                    <ru href=""
+                        title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </ru>
+                    <en href="" title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </en>
+                </standard>
+                <standard
+                        id="xplus"
+                        ru="Стандарт КСАЯМ+"
+                        en="Standardt XAYAM+">
+                    <ru href=""
+                        title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </ru>
+                    <en href="" title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </en>
+                </standard>
+                <standard
+                        id="xplusplus"
+                        ru="Стандарт КСАЯМ++"
+                        en="Standardt XAYAM++">
+                    <ru href=""
+                        title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </ru>
+                    <en href="" title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </en>
+                </standard>
+            </standards>
+            <files ru="Файлы" en="Files">
+                <texts>
+                    <text
+                            id="001.pdf"
+                            ru=""
+                            en="">
                         <ru href=""
                             title="">
                             <img src=""/>
@@ -111,11 +168,13 @@
                             <img src=""/>
                             <img src=""/>
                         </en>
-                    </standard>
-                    <standard
-                            id="x"
-                            ru="Стандарт КСАЯМ"
-                            en="Standardt XAYAM">
+                    </text>
+                </texts>
+                <photes>
+                    <phote
+                            id="001.jpg"
+                            ru=""
+                            en="">
                         <ru href=""
                             title="">
                             <img src=""/>
@@ -125,11 +184,13 @@
                             <img src=""/>
                             <img src=""/>
                         </en>
-                    </standard>
-                    <standard
-                            id="xplus"
-                            ru="Стандарт КСАЯМ+"
-                            en="Standardt XAYAM+">
+                    </phote>
+                </photes>
+                <audios>
+                    <audio
+                            id="001.mp3"
+                            ru=""
+                            en="">
                         <ru href=""
                             title="">
                             <img src=""/>
@@ -139,11 +200,13 @@
                             <img src=""/>
                             <img src=""/>
                         </en>
-                    </standard>
-                    <standard
-                            id="xplusplus"
-                            ru="Стандарт КСАЯМ++"
-                            en="Standardt XAYAM++">
+                    </audio>
+                </audios>
+                <videos>
+                    <video
+                            id="001.mp4"
+                            ru=""
+                            en="">
                         <ru href=""
                             title="">
                             <img src=""/>
@@ -153,74 +216,9 @@
                             <img src=""/>
                             <img src=""/>
                         </en>
-                    </standard>
-                </standards>
-                <files ru="Файлы" en="Files">
-                    <texts>
-                        <text
-                                id="001.pdf"
-                                ru=""
-                                en="">
-                            <ru href=""
-                                title="">
-                                <img src=""/>
-                                <img src=""/>
-                            </ru>
-                            <en href="" title="">
-                                <img src=""/>
-                                <img src=""/>
-                            </en>
-                        </text>
-                    </texts>
-                    <photes>
-                        <phote
-                                id="001.jpg"
-                                ru=""
-                                en="">
-                            <ru href=""
-                                title="">
-                                <img src=""/>
-                                <img src=""/>
-                            </ru>
-                            <en href="" title="">
-                                <img src=""/>
-                                <img src=""/>
-                            </en>
-                        </phote>
-                    </photes>
-                    <audios>
-                        <audio
-                                id="001.mp3"
-                                ru=""
-                                en="">
-                            <ru href=""
-                                title="">
-                                <img src=""/>
-                                <img src=""/>
-                            </ru>
-                            <en href="" title="">
-                                <img src=""/>
-                                <img src=""/>
-                            </en>
-                        </audio>
-                    </audios>
-                    <videos>
-                        <video
-                                id="001.mp4"
-                                ru=""
-                                en="">
-                            <ru href=""
-                                title="">
-                                <img src=""/>
-                                <img src=""/>
-                            </ru>
-                            <en href="" title="">
-                                <img src=""/>
-                                <img src=""/>
-                            </en>
-                        </video>
-                    </videos>
-                </files>
+                    </video>
+                </videos>
+            </files>
             <others>
 
             </others>

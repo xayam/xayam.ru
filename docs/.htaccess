@@ -9,7 +9,10 @@ AddType 'text/html; charset=UTF-8' html
 AddCharset UTF-8 .xml
 AddType 'text/xml; charset=UTF-8' xml
 
-DirectoryIndex index.xml
+AddCharset UTF-8 .xsl
+AddType 'text/xsl; charset=UTF-8' xsl
+
+DirectoryIndex index.html
 
 #<IfModule mod_rewrite.c>
 #RewriteEngine on
