@@ -1,22 +1,22 @@
-// config.js: файл настроек
+// config.js: файл настроек ресурса
 
-// DOMAIN: домен сайта
+// DOMAIN: домен ресурса
 let DOMAIN = "xayam.ru";
 
 let RU = "ru";
 let EN = "en";
 
-// LANGUAGES: поддерживаемые сайтом языки
+// LANGUAGES: поддерживаемые ресурсом языки
 let LANGUAGES = Array(RU, EN);
 
-// DATA: путь к основному js-файлу данных сайта
-let DATA = "res/data.js";
+// PATH: путь к основному js-файлу данных ресурса
+let PATH = "res/data.js";
 
 // CONFIG: вся конфигурация ресурса в одной переменной
 let CONFIG = Array();
 CONFIG["DOMAIN"] = DOMAIN;
 CONFIG["LANGUAGES"] = LANGUAGES;
-CONFIG["DATA"] = DATA;
+CONFIG["PATH"] = PATH;
 
 // console.log: вывод конфигурации в консоль
 console.log("[INFO] Configuration resource: ");
