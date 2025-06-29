@@ -1,0 +1,8 @@
+
+
+# Портфолио основателя
+TELEGRAM_XPORTFOLIOS_BOT_ID = 7731888457
+TELEGRAM_XPORTFOLIOS_BOT_API_KEY = \
+    str(TELEGRAM_XPORTFOLIOS_BOT_ID) + ":" + "AAHF2R0xyWQvqXpLOkxRcgV74vsq07w1vHs"
+    
+    

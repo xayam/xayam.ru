@@ -33,7 +33,9 @@ chesses["1000010"]["images"] = Array(
 chesses["1000010"][RU] = "русский 1000010";
 chesses["1000010"][EN] = "english 1000010";
 
-CONFIG[menu][menu_shop][section_shop_chess] = Array(chesses, );
+CONFIG[menu][menu_shop][section_shop_chess] = Array(
+    chesses,
+);
 
 
 CONFIG[menu][menu_standards] = Array();
