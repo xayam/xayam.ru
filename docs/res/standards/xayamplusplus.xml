@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xayamplusplus ru="Стандарт КСАЯМ++" en="Standard XAYAM++">
+    <page id="1"
+          ru="Страница 1"
+          en="Page 1">
+        <ru href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </ru>
+        <en href=""
+            title="">
+            <img src=""/>
+            <img src=""/>
+        </en>
+    </page>
+</xayamplusplus>
