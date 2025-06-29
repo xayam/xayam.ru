@@ -37,8 +37,7 @@ body {
 	color: white; 
 }
 
-#content ul li{
-	margin: 20px;
+#content {
 	padding: 20px;
     background-color: #eee;
 }

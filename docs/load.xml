@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<load>
+    <config>
+        <domain>xayam.ru</domain>
+        <languages>
+            <ru>ru</ru>
+            <en>en</en>
+        </languages>
+    </config>
+    <data>
+        <site>
+            <favicon href="favicon.ico" />
+            <logo href="res/logo.jpg" />
+            <background href="res/stars.png" />
+            <slogan>
+                <ru>Больше чем одна игра - больше чем одна форма...</ru>
+                <en>More then one game - more than one form...</en>
+            </slogan>
+        </site>
+        <menu>
+            <catalog ru="Каталог" en="Catalog">
+                <news ru="Новости" en="News">
+                    <new id="202506010000"
+                         ru="Новость от 2025.06.01 00:00"
+                         en="News 2025.06.01 00:00">
+                        <ru href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </new>
+                </news>
+                <main ru="Основной товар" en="Main product">
+                    <product id="1000010"
+                             ru="Продукт 1"
+                             en="Product 1">
+                        <ru href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </product>
+                </main>
+                <shops ru="Магазины" en="Shops">
+                    <shop
+                            id="ozon"
+                            ru="Озон"
+                            en="Ozon">
+                        <ru href="https://www.ozon.ru/seller/xayam-ru-2439849"
+                            title="Магазин КСАЯМ на Озоне">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="Shop XAYAM on Ozon">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </shop>
+                    <shop
+                            id="avito"
+                            ru="Авито"
+                            en="Avito">
+                        <ru href="https://www.avito.ru"
+                            title="Магазин КСАЯМ на Авито">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="Shop XAYAM on Avito">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </shop>
+                    <shop
+                            id="vk"
+                            ru="ВК Озон"
+                            en="VK Ozon">
+                        <ru href="https://vk.com/xayam_ru_ozon"
+                            title="Магазин КСАЯМ в ВК-сообществе">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="Shop XAYAM in VK-community">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </shop>
+                </shops>
+            </catalog>
+            <standards ru="Стандарты" en="Standards">
+                <standard id="xall"
+                          ru="Общее"
+                          en="Common">
+                    <ru href=""
+                        title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </ru>
+                    <en href="" title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </en>
+                </standard>
+                <standard id="x"
+                          ru="Стандарт КСАЯМ"
+                          en="Standardt XAYAM">
+                    <ru href=""
+                        title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </ru>
+                    <en href="" title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </en>
+                </standard>
+                <standard id="xplus"
+                          ru="Стандарт КСАЯМ+"
+                          en="Standardt XAYAM+">
+                    <ru href=""
+                        title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </ru>
+                    <en href="" title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </en>
+                </standard>
+                <standard id="xplusplus"
+                          ru="Стандарт КСАЯМ++"
+                          en="Standardt XAYAM++">
+                    <ru href=""
+                        title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </ru>
+                    <en href="" title="">
+                        <img src=""/>
+                        <img src=""/>
+                    </en>
+                </standard>
+            </standards>
+            <files ru="Файлы" en="Files">
+                <texts>
+                    <text id="001.pdf"
+                           ru=""
+                           en="">
+                        <ru href=""
+                            title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </text>
+                </texts>
+                <photes>
+                    <phote id="001.jpg"
+                           ru=""
+                           en="">
+                        <ru href=""
+                            title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </phote>
+                </photes>
+                <audios>
+                    <audio id="001.mp3"
+                           ru=""
+                           en="">
+                        <ru href=""
+                            title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </audio>
+                </audios>
+                <videos>
+                    <video id="001.mp4"
+                           ru=""
+                           en="">
+                        <ru href=""
+                            title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </ru>
+                        <en href="" title="">
+                            <img src=""/>
+                            <img src=""/>
+                        </en>
+                    </video>
+                </videos>
+            </files>
+            <others>
+
+            </others>
+            <aboutus>
+
+            </aboutus>
+            <search>
+
+            </search>
+        </menu>
+    </data>
+</load>
