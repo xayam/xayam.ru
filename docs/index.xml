@@ -23,7 +23,7 @@
         <menu>
             <catalog ru="Каталог" en="Catalog">
                 <news ru="Новости" en="News">
-                    <id202506010000 ru="Новость от 2025.06.01 00:00" en="News 2025.06.01 00:00">
+                    <new id="202506010000" ru="Новость от 2025.06.01 00:00" en="News 2025.06.01 00:00">
                         <ru href="" title="">
                             <img src=""/>
                             <img src=""/>
@@ -32,7 +32,7 @@
                             <img src=""/>
                             <img src=""/>
                         </en>
-                    </id202506010000>
+                    </new>
                 </news>
             </catalog>
             <standards>

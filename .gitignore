@@ -18,3 +18,5 @@ docs/absolaris/__secret__.py
 *.zip
 *.7z
 *.rar
+
+*admin.php
