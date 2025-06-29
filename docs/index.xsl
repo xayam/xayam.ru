@@ -14,8 +14,8 @@
             <body>
                 <div id="header">
                     <div id="logo">
-                        <a href="#">XAYAM.RU</a> ::
-                        <a href="#ru.catalog">RU</a> |
+                        <a href="#">XAYAM.RU</a>
+                        <a href="#ru.catalog">RU</a>
                         <a href="#en.catalog">EN</a>
                     </div>
                     <div id="slogan">
