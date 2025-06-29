@@ -3,16 +3,16 @@
 let site = "site";
 let menu = "menu";
 
-let section_shop = "shop";
-let section_standards = "standards";
-let section_files = "files";
-let section_others = "others";
-let section_aboutus = "aboutus";
-let section_search = "search";
+let menu_shop = "shop";
+let menu_standards = "standards";
+let menu_files = "files";
+let menu_others = "others";
+let menu_aboutus = "aboutus";
+let menu_search = "search";
 
-let sections = Array(
-    section_shop, section_standards, section_files,
-    section_others, section_aboutus, section_search,
+let menus = Array(
+    menu_shop, menu_standards, menu_files,
+    menu_others, menu_aboutus, menu_search,
 );
 
 CONFIG[site]["slogan"][RU] = "Больше чем одна игра - больше чем одна форма...";
@@ -33,7 +33,7 @@ chesses["1000010"]["images"] = Array(
 chesses["1000010"][RU] = "русский 1000010";
 chesses["1000010"][EN] = "english 1000010";
 
-CONFIG[menu][section_shop][section_shop_chess] = Array(chesses, );
+CONFIG[menu][menu_shop][section_shop_chess] = Array(chesses, );
 
 
-CONFIG[menu][section_standards] = Array();
+CONFIG[menu][menu_standards] = Array();
