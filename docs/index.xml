@@ -36,10 +36,9 @@
                     </new>
                 </news>
                 <main ru="Основной товар" en="Main product">
-                    <product
-                            id="1000010"
-                            ru="Продукт 1"
-                            en="Product 1">
+                    <product id="1000010"
+                             ru="Продукт 1"
+                             en="Product 1">
                         <ru href="" title="">
                             <img src=""/>
                             <img src=""/>
@@ -96,10 +95,9 @@
                 </shops>
             </catalog>
             <standards ru="Стандарты" en="Standards">
-                <standard
-                        id="xall"
-                        ru="Общее"
-                        en="Common">
+                <standard id="xall"
+                          ru="Общее"
+                          en="Common">
                     <ru href=""
                         title="">
                         <img src=""/>
@@ -110,10 +108,9 @@
                         <img src=""/>
                     </en>
                 </standard>
-                <standard
-                        id="x"
-                        ru="Стандарт КСАЯМ"
-                        en="Standardt XAYAM">
+                <standard id="x"
+                          ru="Стандарт КСАЯМ"
+                          en="Standardt XAYAM">
                     <ru href=""
                         title="">
                         <img src=""/>
@@ -124,10 +121,9 @@
                         <img src=""/>
                     </en>
                 </standard>
-                <standard
-                        id="xplus"
-                        ru="Стандарт КСАЯМ+"
-                        en="Standardt XAYAM+">
+                <standard id="xplus"
+                          ru="Стандарт КСАЯМ+"
+                          en="Standardt XAYAM+">
                     <ru href=""
                         title="">
                         <img src=""/>
@@ -138,10 +134,9 @@
                         <img src=""/>
                     </en>
                 </standard>
-                <standard
-                        id="xplusplus"
-                        ru="Стандарт КСАЯМ++"
-                        en="Standardt XAYAM++">
+                <standard id="xplusplus"
+                          ru="Стандарт КСАЯМ++"
+                          en="Standardt XAYAM++">
                     <ru href=""
                         title="">
                         <img src=""/>
@@ -155,10 +150,9 @@
             </standards>
             <files ru="Файлы" en="Files">
                 <texts>
-                    <text
-                            id="001.pdf"
-                            ru=""
-                            en="">
+                    <text id="001.pdf"
+                           ru=""
+                           en="">
                         <ru href=""
                             title="">
                             <img src=""/>
@@ -171,10 +165,9 @@
                     </text>
                 </texts>
                 <photes>
-                    <phote
-                            id="001.jpg"
-                            ru=""
-                            en="">
+                    <phote id="001.jpg"
+                           ru=""
+                           en="">
                         <ru href=""
                             title="">
                             <img src=""/>
@@ -187,10 +180,9 @@
                     </phote>
                 </photes>
                 <audios>
-                    <audio
-                            id="001.mp3"
-                            ru=""
-                            en="">
+                    <audio id="001.mp3"
+                           ru=""
+                           en="">
                         <ru href=""
                             title="">
                             <img src=""/>
@@ -203,10 +195,9 @@
                     </audio>
                 </audios>
                 <videos>
-                    <video
-                            id="001.mp4"
-                            ru=""
-                            en="">
+                    <video id="001.mp4"
+                           ru=""
+                           en="">
                         <ru href=""
                             title="">
                             <img src=""/>
