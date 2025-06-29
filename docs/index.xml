@@ -12,8 +12,8 @@
         <catalog ru="Каталог" en="Catalog" />
         <standards ru="Стандарты" en="Standards" />
         <files ru="Файлы" en="Files" />
-        <others ru="Другое" en="Others" />
         <aboutus ru="О нас" en="About Us" />
+        <!--<others ru="Другое" en="Others" />-->
         <search ru="Поиск" en="Search" />
     </menu>
 </root>
