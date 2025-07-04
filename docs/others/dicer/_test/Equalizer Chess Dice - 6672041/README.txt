@@ -1,4 +1,0 @@
-Equalizer Chess Dice by womble123 on Thingiverse: https://www.thingiverse.com/thing:6672041
-
-Summary:
-Equalizer Chess Dice - They did not ship to my country, so I made my own.https://amchesseq.com/products/equalizer-chess-dice-set-of-2Handicaps a good player against a beginner, great for teaching.  Or both players can use the dice.   You may print a few extra of the die without a king on it, and add another (or more!) to the dice pool, to make it a little less handicapped.Roll the dice, either of the pieces on the dice may be moved.Rolling doubles means the player may move make any legal moveIf no legal move is shown by the dice pieces, roll the dice againYou may castle when a dice shows a king, rook or doubles.If placed in check, you need to roll until there is a legal move to get out of check
