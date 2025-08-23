@@ -1,2 +1,7 @@
 openai
 pyTelegramBotAPI
+
+pyroomacoustics
+shapely
+matplotlib
+numpy
