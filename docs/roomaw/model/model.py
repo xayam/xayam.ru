@@ -60,8 +60,8 @@ speakers = [
 room = pra.ShoeBox(
     room_dim,
     fs=fs,
-    max_order=2,           # число отражений (2 — достаточно для теста)
-    absorption=0.3,        # поглощение стен (низкое — много реверберации)
+    max_order=10,           # число отражений (2 — достаточно для теста)
+    absorption=0.1,        # поглощение стен (низкое — много реверберации)
     sigma2_awgn=None       # без шума
 )
 
@@ -80,11 +80,11 @@ source_signal = [np.sin(2 * np.pi * f * t_signal) for f in freqs]
 
 # Добавляем только те динамики, которые "видны" (прямой путь не перекрыт)
 for i, sp_pos in enumerate(speakers):
-    if is_visible(sp_pos, mic_pos, column_objects):
-        print(f"Динамик {i} в позиции {sp_pos} — ВИДИМ")
-        room.add_source(sp_pos, signal=source_signal[i].copy(), delay=0.0)
-    else:
-        print(f"Динамик {i} в позиции {sp_pos} — ЗАБЛОКИРОВАН")
+#     if is_visible(sp_pos, mic_pos, column_objects):
+#     print(f"Динамик {i} в позиции {sp_pos} — ВИДИМ")
+    room.add_source(sp_pos, signal=source_signal[i].copy(), delay=0.0)
+#     else:
+#         print(f"Динамик {i} в позиции {sp_pos} — ЗАБЛОКИРОВАН")
 
 # ========================================
 # 5. Запуск моделирования
