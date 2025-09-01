@@ -24,7 +24,7 @@
             <en>Shop XAYAM on Avito</en>
         </title>
     </shop>
-    <shop active="false">
+    <shop active="true">
         <id>vk</id>
         <link>https://vk.com/xayam_ru_ozon</link>
         <name>

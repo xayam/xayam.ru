@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+    <rewlis>
+        <id>rewlis</id>
+        <ru>REWLIS</ru>
+        <en>REWLIS</en>
+    </rewlis>
+    <absolaris>
+        <id>absolaris</id>
+        <ru>Абсолярис</ru>
+        <en>Absolaris</en>
+    </absolaris>
+    <pixelart>
+        <id>pixelart</id>
+        <ru>PixelArt</ru>
+        <en>PixelArt</en>
+    </pixelart>
+</menu>
