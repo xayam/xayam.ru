@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shops ru="Магазины" en="Shops">
-    <shop
-            id="ozon"
-            ru="Озон"
-            en="Ozon">
-        <ru href="https://www.ozon.ru/seller/xayam-ru-2439849"
-            title="Магазин КСАЯМ на Озоне">
-            <img src=""/>
-            <img src=""/>
-        </ru>
-        <en href="" title="Shop XAYAM on Ozon">
-            <img src=""/>
-            <img src=""/>
-        </en>
+<menu ru="Магазины" en="Shops">
+    <shop>
+        <id>ozon</id>
+        <link>https://www.ozon.ru/seller/xayam-ru-2439849</link>
+        <name>
+            <ru>Озон</ru>
+            <en>Ozon</en>
+        </name>
+        <title>
+            <ru>Магазин КСАЯМ на Озоне</ru>
+            <en>Shop XAYAM on Ozon</en>
+        </title>
     </shop>
-    <shop
-            id="avito"
-            ru="Авито"
-            en="Avito">
-        <ru href="https://www.avito.ru"
-            title="Магазин КСАЯМ на Авито">
-            <img src=""/>
-            <img src=""/>
-        </ru>
-        <en href="" title="Shop XAYAM on Avito">
-            <img src=""/>
-            <img src=""/>
-        </en>
+    <shop>
+        <id>avito</id>
+        <link>https://www.avito.ru</link>
+        <name>
+            <ru>Авито</ru>
+            <en>Avito</en>
+        </name>
+        <title>
+            <ru>Магазин КСАЯМ на Авито</ru>
+            <en>Shop XAYAM on Avito</en>
+        </title>
     </shop>
-    <shop
-            id="vk"
-            ru="ВК Озон"
-            en="VK Ozon">
-        <ru href="https://vk.com/xayam_ru_ozon"
-            title="Магазин КСАЯМ в ВК-сообществе">
-            <img src=""/>
-            <img src=""/>
-        </ru>
-        <en href="" title="Shop XAYAM in VK-community">
-            <img src=""/>
-            <img src=""/>
-        </en>
+    <shop>
+        <id>vk</id>
+        <link>https://vk.com/xayam_ru_ozon</link>
+        <name>
+            <ru>ВК Озон</ru>
+            <en>VK Ozon</en>
+        </name>
+        <title>
+            <ru>Магазин КСАЯМ в ВК-сообществе</ru>
+            <en>Shop XAYAM in VK-community</en>
+        </title>
     </shop>
-</shops>
+    <shop>
+        <id>wb</id>
+        <link></link>
+        <name>
+            <ru>ВБ</ru>
+            <en>WB</en>
+        </name>
+        <title>
+            <ru>Магазин КСАЯМ в ВБ</ru>
+            <en>Shop XAYAM in WB</en>
+        </title>
+    </shop>
+</menu>

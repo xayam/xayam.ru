@@ -1,1 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<menu>
+    <xgame>
+        <id>xgame</id>
+        <ru>XGame</ru>
+        <en>XGame</en>
+    </xgame>
+    <xform>
+        <id>xform</id>
+        <ru>XForm</ru>
+        <en>XForm</en>
+    </xform>
+</menu>
