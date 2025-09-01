@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu ru="Магазины" en="Shops">
-    <shop>
+    <shop active="true">
         <id>ozon</id>
         <link>https://www.ozon.ru/seller/xayam-ru-2439849</link>
         <name>
@@ -12,7 +12,7 @@
             <en>Shop XAYAM on Ozon</en>
         </title>
     </shop>
-    <shop>
+    <shop active="true">
         <id>avito</id>
         <link>https://www.avito.ru</link>
         <name>
@@ -24,7 +24,7 @@
             <en>Shop XAYAM on Avito</en>
         </title>
     </shop>
-    <shop>
+    <shop active="false">
         <id>vk</id>
         <link>https://vk.com/xayam_ru_ozon</link>
         <name>
@@ -36,7 +36,7 @@
             <en>Shop XAYAM in VK-community</en>
         </title>
     </shop>
-    <shop>
+    <shop active="false">
         <id>wb</id>
         <link>https://www.wildberries.ru/</link>
         <name>
