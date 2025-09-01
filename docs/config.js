@@ -10,7 +10,7 @@ let EN = "en";
 let LANGUAGES = Array(RU, EN);
 
 // PATH: путь к основному js-файлу данных ресурса
-let PATH = "res/data.js";
+let PATH = "x/data.js";
 
 // CONFIG: вся конфигурация ресурса в одной переменной
 let CONFIG = Array();

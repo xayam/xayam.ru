@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="res/transform.xsl"?>
+<?xml-stylesheet type="text/xsl" href="x/index.xsl"?>
 <root>
     <config>
-        <domain>xayam.ru</domain>
+	    <domain>localhost</domain>
         <languages>
             <ru>ru</ru>
             <en>en</en>
         </languages>
     </config>
-    <menu>
-        <catalog ru="Каталог" en="Catalog" />
-        <standards ru="Стандарты" en="Standards" />
-        <files ru="Файлы" en="Files" />
-        <aboutus ru="О нас" en="About Us" />
-        <!--<others ru="Другое" en="Others" />-->
-        <search ru="Поиск" en="Search" />
-    </menu>
 </root>

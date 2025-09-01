@@ -15,7 +15,7 @@
                 <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
                 <meta name="robots" content="INDEX,FOLLOW"/>
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-                <link rel="stylesheet" href="res/img/style.css"/>
+                <link rel="stylesheet" href="x/img/style.css"/>
             </head>
             <body>
                 <script>

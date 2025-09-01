@@ -2,7 +2,7 @@
 User-agent: *
 Sitemap: https://xayam.ru/sitemap.xml
 Allow: /
-Allow: /index.html
+Allow: /index.xml
 Allow: /rewlis/index.html
 Allow: /rewlis/layout.html
 Allow: /others
