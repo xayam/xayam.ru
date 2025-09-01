@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <site>
     <favicon href="favicon.ico" />
-    <logo href="x/img/logo.jpg" />
-    <background href="x/img/stars.png" />
+    <logo href="x/xstyle/resources/logo.jpg" />
+    <background href="x/xstyle/resources/stars.png" />
     <slogan>
         <ru>Больше чем одна игра - больше чем одна форма</ru>
         <en>More than one game - more than one form</en>

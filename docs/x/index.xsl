@@ -3,19 +3,23 @@
     <xsl:template match="/root">
         <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
         <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
+		<xsl:variable name="domain"    select="translate(config/domain,       $lowercase, $uppercase)" />
+        <xsl:variable name="ru"        select="translate(config/languages/ru, $lowercase, $uppercase)" />
+        <xsl:variable name="en"        select="translate(config/languages/en, $lowercase, $uppercase)" />
+        <xsl:variable name="slogan_ru" select="document('site.xml')//slogan/ru" />
+        <xsl:variable name="slogan_en" select="document('site.xml')//slogan/en" />
         <html lang="ru">
             <head>
                 <title>
-                    <xsl:value-of
-                            select="translate(config/domain, $lowercase, $uppercase)" /> ::
-                    <xsl:value-of select="document('site.xml')//slogan/ru" />
+                    <xsl:value-of select="$domain" /> ::
+                    <xsl:value-of select="$slogan_ru" />
                 </title>
                 <meta charset="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
                 <meta name="robots" content="INDEX,FOLLOW"/>
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-                <link rel="stylesheet" href="x/img/style.css"/>
+                <link rel="stylesheet" href="x/xstyle/resources/style.css"/>
             </head>
             <body>
                 <script>
@@ -24,22 +28,19 @@
                 </script>
                 <div id="header">
                     <div id="logo">
-                        <a id="logo_domain" href="#ru.catalog">
-                            <xsl:value-of
-                                    select="translate(config/domain, $lowercase, $uppercase)" />
+                        <a id="logo_domain" href="#ru/catalog">
+                            <xsl:value-of select="$domain" />
                         </a> ::
-                        <a href="#ru.catalog">
-                            <xsl:value-of
-                                    select="translate(config/languages/ru, $lowercase, $uppercase)" />
+                        <a href="#ru/catalog">
+                            <xsl:value-of select="$ru" />
                         </a> |
-                        <a href="#en.catalog">
-                            <xsl:value-of
-                                    select="translate(config/languages/en, $lowercase, $uppercase)" />
+                        <a href="#en/catalog">
+                            <xsl:value-of select="$en" />
                         </a>
                     </div>
                     <div id="slogan">
                         <i>
-                            <xsl:value-of select="document('site.xml')//slogan/ru" />
+                            <xsl:value-of select="$slogan_ru" />
                         </i>
                     </div>
                 </div>
