@@ -9,18 +9,20 @@
     </slogan>
     <header>
         <ru>
-            <subheader href="ru">Главная</subheader>
-            <subheader href="ru/catalog">Каталог</subheader>
-            <subheader href="ru/games">Игры</subheader>
-            <subheader href="ru">RU</subheader>
-            <subheader href="en">EN</subheader>
+            <subheader href="#ru">Главная</subheader>
+            <subheader href="#ru/catalog">Каталог</subheader>
+            <subheader href="#ru/games">Игры</subheader>
+            <subheader href="#ru/map">Карта</subheader>
+            <subheader href="#ru">RU</subheader>
+            <subheader href="#en">EN</subheader>
         </ru>
         <en>
-            <subheader href="en">Main</subheader>
-            <subheader href="en/catalog">Catalog</subheader>
-            <subheader href="en/games">Games</subheader>
-            <subheader href="ru">RU</subheader>
-            <subheader href="en">EN</subheader>
+            <subheader href="#en">Main</subheader>
+            <subheader href="#en/catalog">Catalog</subheader>
+            <subheader href="#en/games">Games</subheader>
+            <subheader href="#en/map">Map</subheader>
+            <subheader href="#ru">RU</subheader>
+            <subheader href="#en">EN</subheader>
         </en>
     </header>
 </site>
