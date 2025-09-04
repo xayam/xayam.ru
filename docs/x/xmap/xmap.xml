@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xmenu>
+<xmap>
     <books>
         <id>books</id>
         <ru>Книги</ru>
@@ -20,4 +20,4 @@
         <ru>Другое</ru>
         <en>Other</en>
     </other>
-</xmenu>
+</xmap>
