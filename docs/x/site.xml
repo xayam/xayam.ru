@@ -7,4 +7,20 @@
         <ru>Больше чем одна игра - больше чем одна форма</ru>
         <en>More than one game - more than one form</en>
     </slogan>
+    <header>
+        <ru>
+            <subheader href="ru">Главная</subheader>
+            <subheader href="ru/catalog">Каталог</subheader>
+            <subheader href="ru/games">Игры</subheader>
+            <subheader href="ru">RU</subheader>
+            <subheader href="en">EN</subheader>
+        </ru>
+        <en>
+            <subheader href="en">Main</subheader>
+            <subheader href="en/catalog">Catalog</subheader>
+            <subheader href="en/games">Games</subheader>
+            <subheader href="ru">RU</subheader>
+            <subheader href="en">EN</subheader>
+        </en>
+    </header>
 </site>

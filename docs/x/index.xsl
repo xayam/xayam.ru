@@ -8,6 +8,8 @@
         <xsl:variable name="en"        select="translate(config/languages/en, $lowercase, $uppercase)" />
         <xsl:variable name="slogan_ru" select="document('site.xml')//slogan/ru" />
         <xsl:variable name="slogan_en" select="document('site.xml')//slogan/en" />
+        <xsl:variable name="header_ru" select="document('site.xml')//header/ru/*" />
+        <xsl:variable name="header_en" select="document('site.xml')//header/en/*" />
         <html lang="ru">
             <head>
                 <title>
@@ -19,30 +21,18 @@
                 <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
                 <meta name="robots" content="INDEX,FOLLOW"/>
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+                <link rel="stylesheet" href="x/xstyle/resources/default.css"/>
                 <link rel="stylesheet" href="x/xstyle/resources/style.css"/>
             </head>
             <body>
-                <script>
-                    let domain = "";
-                    let title = '';
-                </script>
                 <div id="header">
-                    <div id="logo">
-                        <a id="logo_domain" href="#ru/catalog">
-                            <xsl:value-of select="$domain" />
-                        </a> ::
-                        <a href="#ru/catalog">
-                            <xsl:value-of select="$ru" />
-                        </a> |
-                        <a href="#en/catalog">
-                            <xsl:value-of select="$en" />
-                        </a>
-                    </div>
-                    <div id="slogan">
-                        <i>
-                            <xsl:value-of select="$slogan_ru" />
-                        </i>
-                    </div>
+                    <xsl:for-each select="$header_ru">
+                        <span>
+                            <a href="#{@href}">
+                                <xsl:value-of select="." />
+                            </a>
+                        </span>
+                    </xsl:for-each>
                 </div>
                 <div id="content">
                     <ul>
