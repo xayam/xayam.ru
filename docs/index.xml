@@ -2,7 +2,6 @@
 <?xml-stylesheet type="text/xsl" href="x/index.xsl"?>
 <root>
     <config>
-	    <domain>localhost</domain>
         <languages>
             <ru>ru</ru>
             <en>en</en>
