@@ -6,8 +6,8 @@
 
     <xsl:variable name="domain"    select="document('config.xml')/config/domain" />
 
-<!--    <xsl:variable name="ru"        select="translate(document('config.xml')/config/languages/ru, $lowercase, $uppercase)" />-->
-<!--    <xsl:variable name="en"        select="translate(document('config.xml')/config/languages/en, $lowercase, $uppercase)" />-->
+    <xsl:variable name="ru"        select="document('config.xml')/config/languages/ru" />
+    <xsl:variable name="en"        select="document('config.xml')/config/languages/en" />
 
     <xsl:variable name="slogan_ru" select="document('config.xml')/config/slogan/ru" />
     <xsl:variable name="slogan_en" select="document('config.xml')/config/slogan/en" />
