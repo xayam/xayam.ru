@@ -4,15 +4,15 @@
     <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
     <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
 
-    <xsl:variable name="domain"    select="document('site.xml')/site/domain" />
+    <xsl:variable name="domain"    select="document('config.xml')/config/domain" />
 
-<!--    <xsl:variable name="ru"        select="translate(config/languages/ru, $lowercase, $uppercase)" />-->
-<!--    <xsl:variable name="en"        select="translate(config/languages/en, $lowercase, $uppercase)" />-->
+<!--    <xsl:variable name="ru"        select="translate(document('config.xml')/config/languages/ru, $lowercase, $uppercase)" />-->
+<!--    <xsl:variable name="en"        select="translate(document('config.xml')/config/languages/en, $lowercase, $uppercase)" />-->
 
-    <xsl:variable name="slogan_ru" select="document('site.xml')/site/slogan/ru" />
-    <xsl:variable name="slogan_en" select="document('site.xml')/site/slogan/en" />
+    <xsl:variable name="slogan_ru" select="document('config.xml')/config/slogan/ru" />
+    <xsl:variable name="slogan_en" select="document('config.xml')/config/slogan/en" />
 
-    <xsl:variable name="header_ru" select="document('site.xml')/site/header/ru//subheader" />
-    <xsl:variable name="header_en" select="document('site.xml')/site/header/en//subheader" />
+    <xsl:variable name="header_ru" select="document('config.xml')/config/header/ru//subheader" />
+    <xsl:variable name="header_en" select="document('config.xml')/config/header/en//subheader" />
 
 </xsl:stylesheet>
