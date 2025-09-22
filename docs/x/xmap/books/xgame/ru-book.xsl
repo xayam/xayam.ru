@@ -19,10 +19,15 @@
                 <div id="book">
                     <div id="section-00">
                         <xsl:copy-of select="$s00_begin__01_cover_ru" />
+                        <xsl:copy-of select="$s00_begin__02_cover2_ru" />
+                        <xsl:copy-of select="$s00_begin__03_annotation_ru" />
+                        <xsl:copy-of select="$s00_begin__04_table_ru" />
+                        <xsl:copy-of select="$s00_begin__05_intro_ru" />
                     </div>
                     <div id="section-01">
-                        <h1>Классические игры</h1>
-
+                        <h1><xsl:value-of select="$s01_classic_games_ru" /></h1>
+                        <xsl:copy-of select="$s01_classic_games__01_chess_ru" />
+                        <xsl:copy-of select="$s01_classic_games__02_checkers_ru" />
                     </div>
                 </div>
 
