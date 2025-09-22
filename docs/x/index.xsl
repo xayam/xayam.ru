@@ -12,7 +12,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
                 <meta name="robots" content="INDEX,FOLLOW"/>
-                <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+                <link rel="shortcut icon" href="{$favicon}" type="image/x-icon"/>
                 <link rel="stylesheet" href="x/xstyle/resources/default.css"/>
                 <link rel="stylesheet" href="x/xstyle/resources/style.css"/>
             </head>
@@ -30,7 +30,7 @@
                     
                 </div>
                 <div id="footer">
-                    &#169; xayam 2025
+                    <xsl:value-of select="$footer" />
                 </div>
             </body>
         </html>

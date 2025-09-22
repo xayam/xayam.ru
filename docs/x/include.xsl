@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
 
+    <xsl:variable name="favicon" select="document('config.xml')/config/favicon" />
+
     <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
     <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
 
@@ -14,5 +16,7 @@
 
     <xsl:variable name="header_ru" select="document('config.xml')/config/header/ru//subheader" />
     <xsl:variable name="header_en" select="document('config.xml')/config/header/en//subheader" />
+
+    <xsl:variable name="footer" select="document('config.xml')/config/footer" />
 
 </xsl:stylesheet>

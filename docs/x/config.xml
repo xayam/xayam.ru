@@ -17,7 +17,7 @@
             <subheader href="#ru">Главная</subheader>
             <subheader href="#ru/catalog">Каталог</subheader>
             <subheader href="#ru/games">Игры</subheader>
-            <subheader href="#ru/map">Карта</subheader>
+<!--            <subheader href="#ru/map">Карта</subheader>-->
             <subheader href="#ru">RU</subheader>
             <subheader href="#en">EN</subheader>
         </ru>
@@ -25,9 +25,12 @@
             <subheader href="#en">Main</subheader>
             <subheader href="#en/catalog">Catalog</subheader>
             <subheader href="#en/games">Games</subheader>
-            <subheader href="#en/map">Map</subheader>
+<!--            <subheader href="#en/map">Map</subheader>-->
             <subheader href="#ru">RU</subheader>
             <subheader href="#en">EN</subheader>
         </en>
     </header>
+    <footer>
+        &#169; xayam 2025
+    </footer>
 </config>
