@@ -1,0 +1,33 @@
+@page {
+    size: A5 portrait;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+#book {
+    min-width: 300px;
+    max-width: 148mm;
+    margin: 0 auto;
+}
+
+#book div {
+    border: 1px solid black;
+}
+
+.pageA5 {
+    min-width: 148mm;
+    height: 210mm;
+}
