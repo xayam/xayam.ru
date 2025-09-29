@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu>
-    <aboutus>
+    <item>
         <id>aboutus</id>
         <ru>О нас</ru>
         <en>About us</en>
-    </aboutus>
-    <contacts>
+    </item>
+    <item>
         <id>contacts</id>
         <ru>Контакты</ru>
         <en>Contacts</en>
-    </contacts>
-    <search>
-        <id>search</id>
-        <ru>Поиск</ru>
-        <en>Search</en>
-    </search>
+    </item>
+    <item>
+        <id>founder</id>
+        <ru>Основатель</ru>
+        <en>Founder</en>
+    </item>
 </menu>

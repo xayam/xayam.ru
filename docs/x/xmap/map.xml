@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xmap>
-    <books>
-        <id>books</id>
-        <ru>Книги</ru>
-        <en>Books</en>
-    </books>
-    <catalog>
+<map>
+    <item>
         <id>catalog</id>
         <ru>Каталог</ru>
         <en>Catalog</en>
-    </catalog>
-    <about>
+    </item>
+    <item>
+        <id>games</id>
+        <ru>Игры</ru>
+        <en>Games</en>
+    </item>
+<!--    <item>-->
+<!--        <id>forms</id>-->
+<!--        <ru>Формы</ru>-->
+<!--        <en>Forms</en>-->
+<!--    </item>-->
+    <item>
         <id>about</id>
         <ru>О сайте</ru>
         <en>About</en>
-    </about>
-    <other>
+    </item>
+    <item>
         <id>other</id>
         <ru>Другое</ru>
         <en>Other</en>
-    </other>
-</xmap>
+    </item>
+</map>
