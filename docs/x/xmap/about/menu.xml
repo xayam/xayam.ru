@@ -15,4 +15,14 @@
         <ru>Основатель</ru>
         <en>Founder</en>
     </item>
+    <item>
+        <id>ideas</id>
+        <ru>Идеи</ru>
+        <en>Ideas</en>
+    </item>
+    <item>
+        <id>links</id>
+        <ru>Ссылки</ru>
+        <en>Links</en>
+    </item>
 </menu>
