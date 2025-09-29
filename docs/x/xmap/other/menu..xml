@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu>
-    <rewlis>
+<menu id="other">
+    <item>
         <id>rewlis</id>
         <ru>REWLIS</ru>
         <en>REWLIS</en>
-    </rewlis>
-    <absolaris>
+    </item>
+    <item>
         <id>absolaris</id>
         <ru>Абсолярис</ru>
         <en>Absolaris</en>
-    </absolaris>
-    <pixelart>
+    </item>
+    <item>
         <id>pixelart</id>
         <ru>PixelArt</ru>
         <en>PixelArt</en>
-    </pixelart>
+    </item>
 </menu>
