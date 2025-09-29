@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu id="other">
+    <item>
+        <id>rewlis</id>
+        <ru>REWLIS</ru>
+        <en>REWLIS</en>
+    </item>
+    <item>
+        <id>absolaris</id>
+        <ru>Абсолярис</ru>
+        <en>Absolaris</en>
+    </item>
+    <item>
+        <id>pixelart</id>
+        <ru>PixelArt</ru>
+        <en>PixelArt</en>
+    </item>
+</menu>
