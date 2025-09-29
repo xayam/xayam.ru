@@ -3,11 +3,5 @@ User-agent: *
 Sitemap: https://xayam.ru/sitemap.xml
 Allow: /
 Allow: /index.xml
-Allow: /rewlis/index.html
-Allow: /rewlis/layout.html
-Allow: /others
-Allow: /others/*
-Allow: /others/*/*
-Allow: /others/*/*/*
 Crawl-delay: 1
 Host: xayam.ru
