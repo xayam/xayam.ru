@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu id="other">
+<menu>
+    <id>other</id>
     <item>
         <id>absolaris</id>
         <ru>Абсолярис</ru>
@@ -57,7 +58,7 @@
     </item>
     <item>
         <id>schedule</id>
-        <ru>Schedule</ru>
+        <ru>Расписание</ru>
         <en>Schedule</en>
     </item>
     <item>

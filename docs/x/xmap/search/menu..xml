@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu id="other">
+<menu>
+    <id>search</id>
     <item>
-        <id>rewlis</id>
-        <ru>REWLIS</ru>
-        <en>REWLIS</en>
+        <id>filters</id>
+        <ru>Фильтры</ru>
+        <en>Filters</en>
     </item>
     <item>
-        <id>absolaris</id>
-        <ru>Абсолярис</ru>
-        <en>Absolaris</en>
+        <id>fts</id>
+        <ru>Полнотекстовый поиск</ru>
+        <en>Full-Text Search</en>
     </item>
     <item>
-        <id>pixelart</id>
-        <ru>PixelArt</ru>
-        <en>PixelArt</en>
+        <id>simple</id>
+        <ru>Простой поиск</ru>
+        <en>SImple search</en>
     </item>
 </menu>

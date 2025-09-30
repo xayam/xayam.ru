@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu id="other">
+<menu>
+    <id>xayam.org</id>
     <item>
-        <id>rewlis</id>
-        <ru>REWLIS</ru>
-        <en>REWLIS</en>
+        <id>download</id>
+        <ru>Скачать</ru>
+        <en>Download</en>
     </item>
     <item>
-        <id>absolaris</id>
-        <ru>Абсолярис</ru>
-        <en>Absolaris</en>
+        <id>school</id>
+        <ru>Школа "КСАЯМ"</ru>
+        <en>School "XAYAM"</en>
     </item>
     <item>
-        <id>pixelart</id>
-        <ru>PixelArt</ru>
-        <en>PixelArt</en>
+        <id>standards</id>
+        <ru>Стандарты</ru>
+        <en>Standards</en>
     </item>
 </menu>
