@@ -63,6 +63,11 @@
             <en>Chess boards</en>
         </item>
         <item>
+            <id>product-wood</id>
+            <ru>Изделия из дерева&amp;фанеры</ru>
+            <en>Wood</en>
+        </item>
+        <item>
             <id>product-boxes</id>
             <ru>Сумки&amp;Рюкзаки&amp;Коробки</ru>
             <en>Bugs&amp;Boxes</en>

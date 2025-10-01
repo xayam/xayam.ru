@@ -2,6 +2,11 @@
 <menu>
     <id>search</id>
     <item>
+        <id>simple</id>
+        <ru>Простой поиск</ru>
+        <en>Simple search</en>
+    </item>
+    <item>
         <id>filters</id>
         <ru>Фильтры</ru>
         <en>Filters</en>
@@ -10,10 +15,5 @@
         <id>fts</id>
         <ru>Полнотекстовый поиск</ru>
         <en>Full-Text Search</en>
-    </item>
-    <item>
-        <id>simple</id>
-        <ru>Простой поиск</ru>
-        <en>SImple search</en>
     </item>
 </menu>
