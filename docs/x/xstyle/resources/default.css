@@ -19,7 +19,7 @@ body {
 	padding: 10px;
 }
 
-#header span a, #header span a:visited {
+a, a:visited {
 	color: black;
 }
 
@@ -36,6 +36,11 @@ body {
 	min-width: 300px;
 	max-width: 148mm;
 	margin: 0 auto;
+}
+
+#content span {
+	width: 100%;
+	text-align: center;
 }
 
 .menu_level2 {
