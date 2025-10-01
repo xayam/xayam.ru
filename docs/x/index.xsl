@@ -27,7 +27,22 @@
                     </xsl:for-each>
                 </div>
                 <div id="content">
-                    
+                    <xsl:for-each select="$map">
+                        <div class="menu_level1">
+                            <xsl:variable name="outer-id" select="./id" />
+                            <a href="#ru/{$outer-id}">
+                                <xsl:value-of select="./ru" />
+                            </a>
+                            <div class="menu_level2">
+                                <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item">
+                                    <a href="#ru/{$outer-id}/{./id}">
+                                        <xsl:value-of select="./ru" />
+                                    </a>
+                                    <br />
+                                </xsl:for-each>
+                            </div>
+                        </div>
+                    </xsl:for-each>
                 </div>
                 <div id="footer">
                     <xsl:value-of select="$footer" />

@@ -19,4 +19,6 @@
 
     <xsl:variable name="footer" select="document('config.xml')/config/footer" />
 
+    <xsl:variable name="map" select="document('xmap/map.xml')/map//item" />
+
 </xsl:stylesheet>
