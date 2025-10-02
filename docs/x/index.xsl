@@ -30,23 +30,23 @@
                     <span><h2>Карта сайта</h2></span>
                     <br />
                     <xsl:for-each select="$map">
-                        <div class="menu_level1">
-                            <xsl:variable name="outer-id" select="./id" />
-                            <h3>
-                                <a href="x/xmap/{$outer-id}">
+                        <xsl:variable name="outer-id" select="./id" />
+                        <h3>
+                            <a href="x/xmap/{$outer-id}">
+                                <div class="menu_level1">
                                     <xsl:value-of select="./ru" />
+                                </div>
+                            </a>
+                        </h3>
+                        <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item">
+                            <h4>
+                                <a href="#ru/{$outer-id}/{./id}">
+                                    <div class="menu_level2">
+                                        <xsl:value-of select="./ru" />
+                                    </div>
                                 </a>
-                            </h3>
-                            <div class="menu_level2">
-                                <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item">
-                                    <h4>
-                                        <a href="#ru/{$outer-id}/{./id}">
-                                            <xsl:value-of select="./ru" />
-                                        </a>
-                                    </h4>
-                                </xsl:for-each>
-                            </div>
-                        </div>
+                            </h4>
+                        </xsl:for-each>
                     </xsl:for-each>
                 </div>
                 <div id="footer">

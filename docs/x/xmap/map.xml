@@ -25,11 +25,11 @@
         <ru>Другое</ru>
         <en>Other</en>
     </item>
-    <item>
-        <id>search</id>
-        <ru>Поиск</ru>
-        <en>Search</en>
-    </item>
+<!--    <item>-->
+<!--        <id>search</id>-->
+<!--        <ru>Поиск</ru>-->
+<!--        <en>Search</en>-->
+<!--    </item>-->
     <item>
         <id>xayam.org</id>
         <ru>xayam.org</ru>
