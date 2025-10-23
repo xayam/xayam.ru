@@ -31,10 +31,11 @@
                     <br />
                     <xsl:for-each select="$map">
                         <xsl:variable name="outer-id" select="./id" />
+                        <xsl:variable name="title" select="./description/annotation/ru" />
                         <h3>
-                            <a href="x/xmap/{$outer-id}">
+                            <a href="x/xmap/{$outer-id}" title="{$title}">
                                 <div class="menu_level1">
-                                    <xsl:value-of select="./ru" />
+                                    <xsl:value-of select="./description/name/ru" />
                                 </div>
                             </a>
                         </h3>

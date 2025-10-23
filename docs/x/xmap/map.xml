@@ -2,13 +2,29 @@
 <map>
     <item>
         <id>about</id>
-        <ru>О сайте</ru>
-        <en>About</en>
+        <description>
+            <name>
+                <ru>О сайте</ru>
+                <en>About</en>
+            </name>
+            <annotation>
+                <ru>Описаны идеи, которые лежат в основе создания ресурса, контакты основателя и т.д.</ru>
+                <en>Описаны идеи, которые лежат в основе создания ресурса, контакты основателя и т.д.</en>
+            </annotation>
+        </description>
     </item>
     <item>
         <id>catalog</id>
-        <ru>Каталог</ru>
-        <en>Catalog</en>
+        <description>
+            <name>
+                <ru>Каталог</ru>
+                <en>Catalog</en>
+            </name>
+            <annotation>
+                <ru>В данном разделе представлены товары сайта, которые можно купить на внешних площадках</ru>
+                <en>В данном разделе представлены товары сайта, которые можно купить на внешних площадках</en>
+            </annotation>
+        </description>
     </item>
     <!--    <item>-->
     <!--        <id>forms</id>-->
@@ -17,13 +33,29 @@
     <!--    </item>-->
     <item>
         <id>games</id>
-        <ru>Игры</ru>
-        <en>Games</en>
+        <description>
+            <name>
+                <ru>Игры</ru>
+                <en>Games</en>
+            </name>
+            <annotation>
+                <ru>Авторская электронная книга "Больше, чем одна игра"</ru>
+                <en>Авторская электронная книга "Больше, чем одна игра"</en>
+            </annotation>
+        </description>
     </item>
     <item>
         <id>other</id>
-        <ru>Другое</ru>
-        <en>Other</en>
+        <description>
+            <name>
+                <ru>Другое</ru>
+                <en>Other</en>
+            </name>
+            <annotation>
+                <ru>Всё, что не вошло в другие разделы, небольшие проекты</ru>
+                <en>Всё, что не вошло в другие разделы, небольшие проекты</en>
+            </annotation>
+        </description>
     </item>
 <!--    <item>-->
 <!--        <id>search</id>-->
@@ -32,7 +64,15 @@
 <!--    </item>-->
     <item>
         <id>xayam.org</id>
-        <ru>xayam.org</ru>
-        <en>xayam.org</en>
+        <description>
+            <name>
+                <ru>xayam.org</ru>
+                <en>xayam.org</en>
+            </name>
+            <annotation>
+                <ru>Второй сайт проекта КСАЯМ, связан со школой XAYAM и бесплатными курсами (в разработке)</ru>
+                <en>Второй сайт проекта КСАЯМ, связан со школой XAYAM и бесплатными курсами (в разработке)</en>
+            </annotation>
+        </description>
     </item>
 </map>
