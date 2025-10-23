@@ -27,18 +27,15 @@ a, a:visited {
 	font-size: 20px;
 }
 
-#content {
+#map, #content {
 	padding: 20px;
 	background-color: white;
-}
-
-#content {
 	min-width: 300px;
 	max-width: 148mm;
 	margin: 0 auto;
 }
 
-#content span {
+#map span, #content span {
 	width: 100%;
 	text-align: center;
 }
