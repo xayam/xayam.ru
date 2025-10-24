@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="demo.xsl"?>
+<summer>
+    <title>Summer Game :: DEMO-version</title>
+    <modules>
+        <css>
+            <item>style</item>
+        </css>
+        <js>
+            <item>state</item>
+            <item>init</item>
+            <item>load</item>
+        </js>
+    </modules>
+</summer>
