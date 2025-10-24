@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <content>
     <ru>
-        <p><u>E-Mail</u> <a href="mailto:xayam@yandex.ru">xayam@yandex.ru</a></p>
-        <p><u>Телеграм</u> <a href="https://t.me/AlekseyBelyanin">https://t.me/AlekseyBelyanin</a></p>
-        <p><u>ВКонтакте</u> <a href="https://vk.com/xayam_ru">https://vk.com/xayam_ru</a></p>
-        <p><u>ГитХаб</u> <a href="https://github.com/xayam">https://github.com/xayam</a></p>
-        <p><u>Дзен</u> <a href="https://dzen.ru/xayam">https://dzen.ru/xayam</a></p>
-        <p><u>Шедеврум</u> <a href="https://shedevrum.ai/@xayam">https://shedevrum.ai/@xayam</a></p>
-        <p><u>Пикабу</u> <a href="https://pikabu.ru/@xayam">https://pikabu.ru/@xayam</a></p>
-        <p><u>DMSearch</u> <a href="https://delphimaster.net">https://delphimaster.net</a></p>
+        <table id="tcontacts">
+            <tr>
+                <td>E-Mail</td>
+                <td><a href="mailto:xayam@yandex.ru">xayam@yandex.ru</a></td>
+            </tr>
+            <tr>
+                <td>Телеграм</td>
+                <td><a href="https://t.me/AlekseyBelyanin">https://t.me/AlekseyBelyanin</a></td>
+            </tr>
+            <tr>
+                <td>ВКонтакте</td>
+                <td><a href="https://vk.com/xayam_ru">https://vk.com/xayam_ru</a></td>
+            </tr>
+            <tr>
+                <td>ГитХаб</td>
+                <td><a href="https://github.com/xayam">https://github.com/xayam</a></td>
+            </tr>
+            <tr>
+                <td>Дзен</td>
+                <td><a href="https://dzen.ru/xayam">https://dzen.ru/xayam</a></td>
+            </tr>
+            <tr>
+                <td>Шедеврум</td>
+                <td><a href="https://shedevrum.ai/@xayam">https://shedevrum.ai/@xayam</a></td>
+            </tr>
+            <tr>
+                <td>Пикабу</td>
+                <td><a href="https://pikabu.ru/@xayam">https://pikabu.ru/@xayam</a></td>
+            </tr>
+            <tr>
+                <td>DMSearch</td>
+                <td><a href="https://delphimaster.net">https://delphimaster.net</a></td>
+            </tr>
+        </table>
     </ru>
     <en>
         <p>en</p>

@@ -54,26 +54,20 @@
                     <xsl:for-each select="$map">
                         <xsl:variable name="outer-id" select="./id" />
                         <xsl:variable name="title" select="./description/annotation/ru" />
-                        <h3>
-                            <a href="x/xmap/{$outer-id}" title="{$title}">
-                                <div class="menu_level1">
-                                    <xsl:value-of select="./description/name/ru" />
-                                </div>
-                            </a>
-                        </h3>
+                        <h2>
+                            <div class="menu_level1">
+                                <xsl:value-of select="./description/name/ru" />
+                            </div>
+                        </h2>
                         <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item">
-                            <h4>
-                                <a href="#ru/{$outer-id}/{./id}">
-                                    <div class="menu_level2">
-                                        <xsl:value-of select="./ru" />
-                                    </div>
-                                </a>
-                            </h4>
-                            <xsl:variable name="content" select="document(
-                                        concat('xmap/', $outer-id, '/', ./id, '/content.xml'))/content/ru//p" />
-                            <xsl:for-each select="$content">
-                                <p><xsl:value-of  select="." /></p>
-                            </xsl:for-each>
+                            <a name="ru/{$outer-id}/{./id}" />
+                            <h3>
+                                <div class="menu_level2">
+                                    <xsl:value-of select="./ru" />
+                                </div>
+                            </h3>
+                            <xsl:copy-of select="document(
+                                        concat('xmap/', $outer-id, '/', ./id, '/content.xml'))/content/ru/*" />
                         </xsl:for-each>
                     </xsl:for-each>
                 </div>

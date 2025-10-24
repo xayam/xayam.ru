@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <content>
     <ru>
+        <p id="face">
+            <img src="x/xstyle/resources/face.png" />
+        </p>
         <p>
-            <img src="x/xstyle/resources/face.png"/>
             Основатель проекта КСАЯМ, Белянин Алексей Анатольевич.
             Самозанятый, пенсионер-инвалид, 1982 года рождения.
             Основной род деятельности: программирование, продажи.
         </p>
+        <br /><br /><br />
     </ru>
     <en>
         <p>en</p>
