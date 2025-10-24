@@ -33,7 +33,7 @@
                         <xsl:variable name="outer-id" select="./id" />
                         <xsl:variable name="title" select="./description/annotation/ru" />
                         <h3>
-                            <a href="x/xmap/{$outer-id}" title="{$title}">
+                            <a href="#ru/{$outer-id}" title="{$title}">
                                 <div class="menu_level1">
                                     <xsl:value-of select="./description/name/ru" />
                                 </div>
@@ -50,14 +50,18 @@
                         </xsl:for-each>
                     </xsl:for-each>
                 </div>
+                <p class="page_break"> </p>
                 <div id="content">
                     <xsl:for-each select="$map">
                         <xsl:variable name="outer-id" select="./id" />
                         <xsl:variable name="title" select="./description/annotation/ru" />
+                        <a name="ru/{$outer-id}"> </a>
                         <h2>
-                            <div class="menu_level1">
-                                <xsl:value-of select="./description/name/ru" />
-                            </div>
+                            <a href="x/xmap/{$outer-id}" title="{$title}">
+                                <div class="menu_level1">
+                                    <xsl:value-of select="./description/name/ru" />
+                                </div>
+                            </a>
                         </h2>
                         <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item">
                             <a name="ru/{$outer-id}/{./id}" />
@@ -69,6 +73,7 @@
                             <xsl:copy-of select="document(
                                         concat('xmap/', $outer-id, '/', ./id, '/content.xml'))/content/ru/*" />
                         </xsl:for-each>
+                        <p class="page_break"> </p>
                     </xsl:for-each>
                 </div>
                 <div id="footer">
