@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="transform.xsl"?>
+<content>
+    <ru>
+        <p>ru</p>
+    </ru>
+    <en>
+        <p>en</p>
+    </en>
+</content>

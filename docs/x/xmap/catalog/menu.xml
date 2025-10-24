@@ -1,81 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu>
     <id>catalog</id>
-    <shops>
-        <shop active="true">
-            <id>shop-ozon</id>
-            <link>https://www.ozon.ru/seller/xayam-ru-2439849</link>
-            <name>
-                <ru>Озон</ru>
-                <en>Ozon</en>
-            </name>
-            <title>
-                <ru>Магазин КСАЯМ на Озоне</ru>
-                <en>Shop XAYAM on Ozon</en>
-            </title>
-        </shop>
-        <shop active="true">
-            <id>shop-avito</id>
-            <link>https://www.avito.ru</link>
-            <name>
-                <ru>Авито</ru>
-                <en>Avito</en>
-            </name>
-            <title>
-                <ru>Магазин КСАЯМ на Авито</ru>
-                <en>Shop XAYAM on Avito</en>
-            </title>
-        </shop>
-        <shop active="true">
-            <id>shop-vk</id>
-            <link>https://vk.com/xayam_ru_ozon</link>
-            <name>
-                <ru>ВК Озон</ru>
-                <en>VK Ozon</en>
-            </name>
-            <title>
-                <ru>Магазин КСАЯМ в ВК-сообществе</ru>
-                <en>Shop XAYAM in VK-community</en>
-            </title>
-        </shop>
-        <shop active="false">
-            <id>shop-wb</id>
-            <link>https://www.wildberries.ru/</link>
-            <name>
-                <ru>ВБ</ru>
-                <en>WB</en>
-            </name>
-            <title>
-                <ru>Магазин КСАЯМ в ВБ</ru>
-                <en>Shop XAYAM in WB</en>
-            </title>
-        </shop>
-    </shops>
-    <products>
-        <item>
-            <id>product-chess-figures</id>
-            <ru>Шахматные фигуры&amp;Кости</ru>
-            <en>Chess figures&amp;Dices</en>
-        </item>
-        <item>
-            <id>product-chess-boards</id>
-            <ru>Шахматные доски</ru>
-            <en>Chess boards</en>
-        </item>
-        <item>
-            <id>product-wood</id>
-            <ru>Изделия из дерева&amp;фанеры</ru>
-            <en>Wood</en>
-        </item>
-        <item>
-            <id>product-boxes</id>
-            <ru>Сумки&amp;Рюкзаки&amp;Коробки</ru>
-            <en>Bugs&amp;Boxes</en>
-        </item>
-        <item>
-            <id>product-books</id>
-            <ru>Книги</ru>
-            <en>Books</en>
-        </item>
-    </products>
+    <item type="shop" active="true">
+        <id>shop-ozon</id>
+        <ru>Озон</ru>
+        <en>Ozon</en>
+        <link>https://www.ozon.ru/seller/xayam-ru-2439849</link>
+        <title>
+            <ru>Магазин КСАЯМ на Озоне</ru>
+            <en>Shop XAYAM on Ozon</en>
+        </title>
+    </item>
+    <item type="shop" active="true">
+        <id>shop-avito</id>
+        <ru>Авито</ru>
+        <en>Avito</en>
+        <link>https://www.avito.ru</link>
+        <title>
+            <ru>Магазин КСАЯМ на Авито</ru>
+            <en>Shop XAYAM on Avito</en>
+        </title>
+    </item>
+    <item type="shop" active="true">
+        <id>shop-vk</id>
+        <ru>ВК Озон</ru>
+        <en>VK Ozon</en>
+        <link>https://vk.com/xayam_ru_ozon</link>
+        <title>
+            <ru>Магазин КСАЯМ в ВК-сообществе</ru>
+            <en>Shop XAYAM in VK-community</en>
+        </title>
+    </item>
+    <item type="shop" active="false">
+        <id>shop-wb</id>
+        <ru>ВБ</ru>
+        <en>WB</en>
+        <link>https://www.wildberries.ru/</link>
+        <title>
+            <ru>Магазин КСАЯМ в ВБ</ru>
+            <en>Shop XAYAM in WB</en>
+        </title>
+    </item>
+    <item type="product" active="true">
+        <id>product-chess-figures</id>
+        <ru>Шахматные фигуры&amp;Кости</ru>
+        <en>Chess figures&amp;Dices</en>
+    </item>
+    <item type="product" active="true">
+        <id>product-chess-boards</id>
+        <ru>Шахматные доски</ru>
+        <en>Chess boards</en>
+    </item>
+    <item type="product" active="false">
+        <id>product-wood</id>
+        <ru>Изделия из дерева&amp;фанеры</ru>
+        <en>Wood</en>
+    </item>
+    <item type="product" active="true">
+        <id>product-boxes</id>
+        <ru>Сумки&amp;Рюкзаки&amp;Коробки</ru>
+        <en>Bugs&amp;Boxes</en>
+    </item>
+    <item type="product" active="true">
+        <id>product-books</id>
+        <ru>Книги</ru>
+        <en>Books</en>
+    </item>
 </menu>

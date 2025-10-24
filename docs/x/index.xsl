@@ -15,6 +15,7 @@
                 <link rel="shortcut icon" href="{$favicon}" type="image/x-icon"/>
                 <link rel="stylesheet" href="x/xstyle/resources/default.css"/>
                 <link rel="stylesheet" href="x/xstyle/resources/style.css"/>
+                <link rel="stylesheet" href="x/xstyle/resources/slider.css"/>
             </head>
             <body>
                 <div id="header">
