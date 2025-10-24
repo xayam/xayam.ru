@@ -6,11 +6,11 @@
         <ru>Абсолярис</ru>
         <en>Absolaris</en>
     </item>
-<!--    <item>-->
-<!--        <id>download</id>-->
-<!--        <ru>Скачать</ru>-->
-<!--        <en>Download</en>-->
-<!--    </item>-->
+    <item>
+        <id>dmsearch</id>
+        <ru>DMSearch</ru>
+        <en>DMSearch</en>
+    </item>
     <item>
         <id>health</id>
         <ru>Здоровье</ru>
@@ -18,24 +18,24 @@
     </item>
     <item>
         <id>novac</id>
-        <ru>Novac</ru>
+        <ru>Новак</ru>
         <en>Novac</en>
     </item>
     <item>
         <id>pixelart</id>
-        <ru>PixelArt</ru>
+        <ru>Пиксель-Арт</ru>
         <en>PixelArt</en>
     </item>
-    <item>
-        <id>poler</id>
-        <ru>Poler</ru>
-        <en>Poler</en>
-    </item>
-    <item>
-        <id>publish</id>
-        <ru>Публикации</ru>
-        <en>Publish</en>
-    </item>
+<!--    <item>-->
+<!--        <id>poler</id>-->
+<!--        <ru>Poler</ru>-->
+<!--        <en>Poler</en>-->
+<!--    </item>-->
+<!--    <item>-->
+<!--        <id>publish</id>-->
+<!--        <ru>Публикации</ru>-->
+<!--        <en>Publish</en>-->
+<!--    </item>-->
     <item>
         <id>puzzles</id>
         <ru>Пазлы&amp;Задачи</ru>
@@ -46,16 +46,16 @@
         <ru>Ревлис</ru>
         <en>Rewlis</en>
     </item>
-    <item>
-        <id>roomaw</id>
-        <ru>Roomaw</ru>
-        <en>Roomaw</en>
-    </item>
-    <item>
-        <id>schedule</id>
-        <ru>Расписание</ru>
-        <en>Schedule</en>
-    </item>
+<!--    <item>-->
+<!--        <id>roomaw</id>-->
+<!--        <ru>Roomaw</ru>-->
+<!--        <en>Roomaw</en>-->
+<!--    </item>-->
+<!--    <item>-->
+<!--        <id>schedule</id>-->
+<!--        <ru>Расписание</ru>-->
+<!--        <en>Schedule</en>-->
+<!--    </item>-->
     <item>
         <id>summer</id>
         <ru>Summer</ru>
@@ -63,7 +63,7 @@
     </item>
     <item>
         <id>volumlib</id>
-        <ru>VolumLib</ru>
+        <ru>ВолумЛиб</ru>
         <en>VolumLib</en>
     </item>
 </menu>

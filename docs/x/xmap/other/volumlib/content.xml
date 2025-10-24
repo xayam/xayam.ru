@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <content>
     <ru>
-        <p>ru</p>
+        <p>[альфа-версия] <b>VolumLib</b>: библиотека избранного с
+            Либрусека. Только русские книги в формате FB2.
+            Только избранные жанры: компьютеры, программирование, наука,
+            фантастика и т.д. Установлен минимальный размер на книгу -
+            100 KB. Сделано для записи на MicroSD-карту размером от
+            128 GB (на данный момент около 95 GB, оставшееся место
+            может быть использовано ОС или пользователем для других
+            файлов). Формат FB2.ZIP совместим с приложением
+            <a href="https://fbreader.org">FBReader</a> -
+            как с версией для смартфона на
+            <a href="https://fbreader.org/android">Android</a> и
+            <a href="https://fbreader.org/ios">iOS</a>, так и для ПК на
+            <a href="https://fbreader.org/windows">Windows</a>.
+            Также для Windows подойдет добавленная программа
+            <a href="https://cloud.mail.ru/public/xqx3/7xu7Am3UA/VolumLib/MyHomeLib.zip">MyHomeLib</a>.
+            Для других программ-каталогизаторов, возможно, также подойдет
+            <a href="https://cloud.mail.ru/public/xqx3/7xu7Am3UA/VolumLib/volumlib.inpx">inpx-файл</a>
+            для импорта библиотеки.
+            Состояние: 2025.06.18 (94.447 книг, 45.510 авторов, 16.327 серий).
+            <a href="https://cloud.mail.ru/public/xqx3/7xu7Am3UA/VolumLib">Скачать всё</a>.
+        </p>
     </ru>
     <en>
         <p>en</p>

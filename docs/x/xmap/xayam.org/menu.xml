@@ -2,11 +2,6 @@
 <menu>
     <id>xayam.org</id>
     <item>
-        <id>download</id>
-        <ru>Скачать</ru>
-        <en>Download</en>
-    </item>
-    <item>
         <id>school</id>
         <ru>Школа "КСАЯМ"</ru>
         <en>School "XAYAM"</en>

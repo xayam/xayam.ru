@@ -32,15 +32,15 @@
     <!--        <en>Forms</en>-->
     <!--    </item>-->
     <item>
-        <id>games</id>
+        <id>author</id>
         <description>
             <name>
-                <ru>Игры</ru>
-                <en>Games</en>
+                <ru>Авторские книги</ru>
+                <en>Author books</en>
             </name>
             <annotation>
-                <ru>Авторская электронная книга "Больше, чем одна игра"</ru>
-                <en>Авторская электронная книга "Больше, чем одна игра"</en>
+                <ru>Авторские электронные книги</ru>
+                <en>Авторские электронные книги</en>
             </annotation>
         </description>
     </item>
