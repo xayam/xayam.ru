@@ -68,7 +68,7 @@
                             <a name="ru/{$outer-id}/{./id}" />
                             <h3>
                                 <div class="menu_level2">
-                                    <xsl:value-of select="./ru" />
+                                    «<xsl:value-of select="./ru" />»
                                 </div>
                             </h3>
                             <xsl:copy-of select="document(

@@ -31,11 +31,11 @@
 <!--        <ru>Poler</ru>-->
 <!--        <en>Poler</en>-->
 <!--    </item>-->
-<!--    <item>-->
-<!--        <id>publish</id>-->
-<!--        <ru>Публикации</ru>-->
-<!--        <en>Publish</en>-->
-<!--    </item>-->
+    <item>
+        <id>publish</id>
+        <ru>Публикации</ru>
+        <en>Publish</en>
+    </item>
     <item>
         <id>puzzles</id>
         <ru>Пазлы&amp;Задачи</ru>
