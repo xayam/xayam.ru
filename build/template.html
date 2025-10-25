@@ -1,22 +1,27 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <html lang="en">
    <head>
-       <title>Index of {{{CURRENT_CATALOG}}}</title>
+       <title>Index of folder "/{{{CURRENT_CATALOG}}}"</title>
+       <style type="text/css">
+        * {
+            font-family: monospace;
+        }
+        td {
+            border-left: 10px solid white;
+        }
+    </style>
    </head>
 <body>
     <h1>
-        Index of {{{CURRENT_CATALOG}}}
+        Index of folder "/{{{CURRENT_CATALOG}}}"
     </h1>
-    <h2>
-        <a href="{{{PARENT_DIRECTORY}}}" title="Parent Directory">Parent Directory</a>
-    </h2>
+    {{{PARENT_DIRECTORY}}}
     <table>
-        <tr style="border-bottom: 1px solid gray;">
+        <tr style="border-bottom: 1px solid gray; text-align: center;">
             <td>Name</td>
             <td>Last modified</td>
             <td>Size</td>
-        </tr>
-        {{{LIST_OF_FOLDERS_AND_FILES}}}
+        </tr>{{{LIST_OF_FOLDERS_AND_FILES}}}
     </table>
     <hr>
     <address>Apache/?.?.? (???) OpenSSL/?.?.? PHP/?.?.? Server at ? host Port 80</address>
