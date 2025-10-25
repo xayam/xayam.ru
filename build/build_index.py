@@ -1,5 +1,7 @@
 import datetime
 import os
+import winsound
+
 
 def find_files_os_walk(start_dir, filename_pattern):
     found_files = []
@@ -26,7 +28,7 @@ def main():
     files = []
     for current_folder in parent_folders:
         for name in os.listdir("../docs/" + current_folder):
-            if name != ".htaccess":
+            if name not in ["__secret__.py", ".htaccess"]:
                 files.append({
                     "current_folder": current_folder,
                     "isdir": os.path.isdir("../docs/" + current_folder + "/" + name),
