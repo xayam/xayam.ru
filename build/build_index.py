@@ -46,10 +46,8 @@ def main():
             files[index]["size"] = f"{size / 2 ** 20:.2f} MB"
         elif size > 2 ** 10:
             files[index]["size"] = f"{size / 2 ** 10:.2f} KB"
-        elif size > 1:
-            files[index]["size"] = f"{size} Bytes"
         else:
-            files[index]["size"] = f"{size} Byte"
+            files[index]["size"] = f"{size}__B"
         files[index]["size"] = str(files[index]["size"]).rjust(27, "_")
         files[index]["size"] = str(files[index]["size"]).replace("_", "&nbsp;")
 
