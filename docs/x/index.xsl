@@ -76,7 +76,7 @@
                             <xsl:if test="$outer-id='catalog'">
                                 <xsl:variable name="slider" select="document(
                                             concat('xmap/', $outer-id, '/',
-                                            ./id, '/slider.xml'))/slider/ru//item" />
+                                            ./id, '/slider.xml'))/slider/ru//item[@active='true']" />
                                 <xsl:if test="$slider">
                                     <div class="wrapper">
                                         <div class="slider">
