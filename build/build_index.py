@@ -3,7 +3,7 @@ import os
 
 def find_files_os_walk(start_dir, filename_pattern):
     found_files = []
-    with open("template.htaccess", mode="r") as f:
+    with open("htaccess.template", mode="r") as f:
         template_htaccess = f.read()
     for root, _, files in os.walk(start_dir):
         for filename in files:
@@ -51,7 +51,7 @@ def main():
         files[index]["size"] = str(files[index]["size"]).rjust(27, "_")
         files[index]["size"] = str(files[index]["size"]).replace("_", "&nbsp;")
 
-    with open("template.html", mode="r") as f:
+    with open("html.template", mode="r") as f:
         template_html = f.read()
     pred = 0
     current_files = [files[pred]]

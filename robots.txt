@@ -2,6 +2,5 @@
 User-agent: *
 Sitemap: https://xayam.ru/docs/sitemap.xml
 Allow: /docs
-Allow: /docs/index.xml
 Crawl-delay: 1
 Host: xayam.ru
