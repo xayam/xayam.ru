@@ -58,7 +58,7 @@
                         <xsl:variable name="title" select="./description/annotation/ru" />
                         <a name="ru/{$outer-id}"> </a>
                         <h2>
-                            <a href="x/xmap/{$outer-id}" title="{$title}">
+                            <a href="x/xmap/{$outer-id}/index.html" title="Список файлов раздела x/xmap/{$outer-id}/">
                                 <div class="menu_level1">
                                     <xsl:value-of select="./description/name/ru" />
                                 </div>
@@ -67,9 +67,11 @@
                         <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item[@active='true']">
                             <a name="ru/{$outer-id}/{./id}" />
                             <h3>
-                                <div class="menu_level2">
-                                    «<xsl:value-of select="./ru" />»
-                                </div>
+                                <a href="x/xmap/{$outer-id}/{./id}/index.html" title="Список файлов раздела x/xmap/{$outer-id}/{./id}">
+                                    <div class="menu_level2">
+                                        <xsl:value-of select="./ru" />
+                                    </div>
+                                </a>
                             </h3>
                             <xsl:copy-of select="document(
                                         concat('xmap/', $outer-id, '/', ./id, '/content.xml'))/content/ru/*" />
