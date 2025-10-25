@@ -1,6 +1,7 @@
 import datetime
 import os
-import winsound
+
+from dirsize import Size
 
 
 def find_files_os_walk(start_dir, filename_pattern):
@@ -29,15 +30,23 @@ def main():
     for current_folder in parent_folders:
         for name in os.listdir("../docs/" + current_folder):
             if name not in ["__secret__.py", ".htaccess"]:
+                pathname = "../docs/" + current_folder + "/" + name
+                isdir = os.path.isdir(pathname)
+                if isdir:
+                    size = Size().size_recurse(path=pathname)
+                else:
+                    size = os.stat(pathname).st_size
                 files.append({
                     "current_folder": current_folder,
-                    "isdir": os.path.isdir("../docs/" + current_folder + "/" + name),
+                    "isdir": isdir,
                     "name": name,
                     "parent_folder": "/".join(current_folder.split("/")[:-1]),
-                    "size": os.stat("../docs/" + current_folder + "/" + name).st_size,
-                    "modified": str(datetime.datetime.fromtimestamp(os.path.getmtime(
-                        "../docs/" + current_folder + "/" + name
-                    ))).split(".")[0].rjust(27, "_").replace("_", "&nbsp;")
+                    "size": size,
+                    "modified": str(datetime.datetime.fromtimestamp(
+                        os.path.getmtime(pathname))). \
+                        split(".")[0]. \
+                        rjust(27, "_"). \
+                        replace("_", "&nbsp;")
                 })
     files.sort(key=lambda item: (item["current_folder"], -item["isdir"], item["name"]))
     for index in range(len(files)):
@@ -92,6 +101,7 @@ def main():
             with open(create_html, encoding="UTF-8", mode="wt") as f:
                 f.write(index_html)
                 print(create_html)
+            break
             current_files = [files[index]]
 
 
