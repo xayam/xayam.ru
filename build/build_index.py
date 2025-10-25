@@ -26,17 +26,16 @@ def main():
     files = []
     for current_folder in parent_folders:
         for name in os.listdir("../docs/" + current_folder):
-            if name != ".htaccess":
-                files.append({
-                    "current_folder": current_folder,
-                    "isdir": os.path.isdir("../docs/" + current_folder + "/" + name),
-                    "name": name,
-                    "parent_folder": "/".join(current_folder.split("/")[:-1]),
-                    "size": os.stat("../docs/" + current_folder + "/" + name).st_size,
-                    "modified": str(datetime.datetime.fromtimestamp(os.path.getmtime(
-                        "../docs/" + current_folder + "/" + name
-                    ))).split(".")[0].rjust(27, "_").replace("_", "&nbsp;")
-                })
+            files.append({
+                "current_folder": current_folder,
+                "isdir": os.path.isdir("../docs/" + current_folder + "/" + name),
+                "name": name,
+                "parent_folder": "/".join(current_folder.split("/")[:-1]),
+                "size": os.stat("../docs/" + current_folder + "/" + name).st_size,
+                "modified": str(datetime.datetime.fromtimestamp(os.path.getmtime(
+                    "../docs/" + current_folder + "/" + name
+                ))).split(".")[0].rjust(27, "_").replace("_", "&nbsp;")
+            })
     files.sort(key=lambda item: (item["current_folder"], -item["isdir"], item["name"]))
     for index in range(len(files)):
         size = files[index]["size"]
@@ -77,12 +76,7 @@ def main():
             index_html = template_html.replace(
                 "{{{LIST_OF_FOLDERS_AND_FILES}}}", result
             )
-            # parent = ""
-            # if current_files[-1]["parent_folder"]:
-            #     parent = "<h2>\n        <a href=\"/"
-            #     parent += current_files[-1]["parent_folder"]
-            #     parent += "\" title=\"Parent Directory\">Parent Directory</a>\n    </h2>"
-            # index_html = index_html.replace("{{{PARENT_DIRECTORY}}}", parent)
+
             index_html = index_html.replace(
                 "{{{CURRENT_CATALOG}}}", current_files[-1]["current_folder"]
             )
@@ -90,7 +84,6 @@ def main():
             with open(create_html, encoding="UTF-8", mode="wt") as f:
                 f.write(index_html)
                 print(create_html)
-            # break
             current_files = [files[index]]
 
 
