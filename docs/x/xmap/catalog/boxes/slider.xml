@@ -2,39 +2,35 @@
 <slider>
     <ru>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide1</title>
+            <href>https://www.ozon.ru/product/sumka-plyazhnaya-2791259579/</href>
+            <src>x/xmap/catalog/boxes/4000040.webp</src>
+            <title>Сумка пляжная Airport синяя, 53x18x34 см</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide2</title>
+            <href>https://www.ozon.ru/product/ryukzak-turisticheskiy-siniy-21-l-2790801538/</href>
+            <src>x/xmap/catalog/boxes/4000030.webp</src>
+            <title>Рюкзак Airport синий, 21 л</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide3</title>
+            <href>https://www.ozon.ru/product/ryukzak-turisticheskiy-chernyy-36-l-2366978293/</href>
+            <src>x/xmap/catalog/boxes/4000020.webp</src>
+            <title>Водонепроницаемый деловой рюкзак, USB-рюкзак, 15.6-дюймовый рюкзак для ноутбука, унисекс, 36л
+            </title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide4</title>
+            <href>https://www.ozon.ru/product/ryukzak-turisticheskiy-chernyy-21-02-l-2366962729/</href>
+            <src>x/xmap/catalog/boxes/4000010.webp</src>
+            <title>Рюкзак из ткани Оксфорд, унисекс, 21л</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide5</title>
+            <href>https://www.ozon.ru/product/ryukzak-turisticheskiy-chernyy-21-01-l-2366946037/</href>
+            <src>x/xmap/catalog/boxes/4000000.webp</src>
+            <title>Водонепроницаемый женский противоугонный рюкзак, 21л</title>
         </item>
-        <item active="true">
+        <item active="false">
             <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
+            <src>x/xmap/catalog/boxes/.webp</src>
             <title>slide6</title>
-        </item>
-        <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide7</title>
         </item>
     </ru>
     <en>en</en>

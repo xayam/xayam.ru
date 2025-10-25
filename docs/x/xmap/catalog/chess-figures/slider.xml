@@ -2,39 +2,24 @@
 <slider>
     <ru>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide1</title>
+            <href>https://www.ozon.ru/product/nabor-shahmatnyh-kostey-ksayam-5-d12-dodekaedr-6-cherno-belyh-graney-6-belo-chernyh-30-mm-4-sht-2335580348/</href>
+            <src>x/xmap/catalog/chess-figures/3000010_1.webp</src>
+            <title>Набор шахматных костей КСАЯМ №5 (D12 - додекаэдр: 6 черно-белых граней + 6 бело-черных), 30 мм, 4 шт, пластик+стикеры</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide2</title>
+            <href>https://www.ozon.ru/product/nabor-shahmatnyh-kostey-ksayam-5-d12-dodekaedr-6-cherno-belyh-graney-6-belo-chernyh-30-mm-4-sht-2335580348/</href>
+            <src>x/xmap/catalog/chess-figures/3000010_2.webp</src>
+            <title>Набор шахматных костей КСАЯМ №5 (D12 - додекаэдр: 6 черно-белых граней + 6 бело-черных), 30 мм, 4 шт, пластик+стикеры</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide3</title>
+            <href>https://www.ozon.ru/product/nabor-shahmatnyh-kostey-ksayam-5-d12-dodekaedr-6-cherno-belyh-graney-6-belo-chernyh-30-mm-4-sht-2335580348/</href>
+            <src>x/xmap/catalog/chess-figures/3000010_3.webp</src>
+            <title>Набор шахматных костей КСАЯМ №5 (D12 - додекаэдр: 6 черно-белых граней + 6 бело-черных), 30 мм, 4 шт, пластик+стикеры</title>
         </item>
-        <item active="true">
+        <item active="false">
             <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
+            <src>x/xmap/catalog/chess-figures/.</src>
             <title>slide4</title>
-        </item>
-        <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide5</title>
-        </item>
-        <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide6</title>
-        </item>
-        <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide7</title>
         </item>
     </ru>
     <en>en</en>
