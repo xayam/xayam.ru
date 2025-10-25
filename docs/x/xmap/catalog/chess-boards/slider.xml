@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<slider>
+    <ru>
+        <item>
+            <href>https://delphimaster.net</href>
+            <src>x/xmap/catalog/books/stars.png</src>
+            <title>slide1</title>
+        </item>
+        <item>
+            <href>https://delphimaster.net</href>
+            <src>x/xmap/catalog/books/stars.png</src>
+            <title>slide2</title>
+        </item>
+        <item>
+            <href>https://delphimaster.net</href>
+            <src>x/xmap/catalog/books/stars.png</src>
+            <title>slide3</title>
+        </item>
+        <item>
+            <href>https://delphimaster.net</href>
+            <src>x/xmap/catalog/books/stars.png</src>
+            <title>slide4</title>
+        </item>
+        <item>
+            <href>https://delphimaster.net</href>
+            <src>x/xmap/catalog/books/stars.png</src>
+            <title>slide5</title>
+        </item>
+    </ru>
+    <en>en</en>
+</slider>

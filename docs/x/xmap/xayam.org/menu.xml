@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu>
     <id>xayam.org</id>
-    <item>
+    <item active="true">
         <id>school</id>
         <ru>Школа "КСАЯМ"</ru>
         <en>School "XAYAM"</en>
     </item>
-    <item>
+    <item active="true">
         <id>standards</id>
         <ru>Стандарты</ru>
         <en>Standards</en>

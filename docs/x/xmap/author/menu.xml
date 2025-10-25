@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu>
     <id>author</id>
-    <item>
+    <item active="true">
         <id>games</id>
         <ru>Больше, чем одна игра</ru>
         <en>More than one game</en>
     </item>
-    <item>
+    <item active="true">
         <id>forms</id>
         <ru>Больше, чем одна форма</ru>
         <en>More than one form</en>

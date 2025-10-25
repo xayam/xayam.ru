@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <map>
-    <item>
+    <item active="true">
         <id>about</id>
         <description>
             <name>
@@ -13,7 +13,7 @@
             </annotation>
         </description>
     </item>
-    <item>
+    <item active="true">
         <id>catalog</id>
         <description>
             <name>
@@ -26,12 +26,20 @@
             </annotation>
         </description>
     </item>
-    <!--    <item>-->
-    <!--        <id>forms</id>-->
-    <!--        <ru>Формы</ru>-->
-    <!--        <en>Forms</en>-->
-    <!--    </item>-->
-    <item>
+    <item active="false">
+        <id>forms</id>
+        <description>
+            <name>
+                <ru>Формы</ru>
+                <en>Forms</en>
+            </name>
+            <annotation>
+                <ru>Больше, чем одна форма [в разработке]</ru>
+                <en>Больше, чем одна форма [в разработке]</en>
+            </annotation>
+        </description>
+    </item>
+    <item active="true">
         <id>author</id>
         <description>
             <name>
@@ -44,7 +52,7 @@
             </annotation>
         </description>
     </item>
-    <item>
+    <item active="true">
         <id>other</id>
         <description>
             <name>
@@ -57,12 +65,20 @@
             </annotation>
         </description>
     </item>
-<!--    <item>-->
-<!--        <id>search</id>-->
-<!--        <ru>Поиск</ru>-->
-<!--        <en>Search</en>-->
-<!--    </item>-->
-    <item>
+    <item active="false">
+        <id>search</id>
+        <description>
+            <name>
+                <ru>Поиск</ru>
+                <en>Search</en>
+            </name>
+            <annotation>
+                <ru>Несколько видов поиска [в разработке]</ru>
+                <en>Несколько видов поиска [в разработке]</en>
+            </annotation>
+        </description>
+    </item>
+    <item active="true">
         <id>xayam.org</id>
         <description>
             <name>

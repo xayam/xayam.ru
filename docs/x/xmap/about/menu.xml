@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu>
     <id>about</id>
-    <item>
+    <item active="true">
         <id>aboutus</id>
         <ru>О нас</ru>
         <en>About us</en>
     </item>
-    <item>
+    <item active="true">
         <id>contacts</id>
         <ru>Контакты</ru>
         <en>Contacts</en>
     </item>
-    <item>
+    <item active="true">
         <id>founder</id>
         <ru>Основатель</ru>
         <en>Founder</en>
     </item>
-<!--    <item>-->
+<!--    <item active="true">-->
 <!--        <id>ideas</id>-->
 <!--        <ru>Идеи</ru>-->
 <!--        <en>Ideas</en>-->

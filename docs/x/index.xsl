@@ -40,7 +40,7 @@
                                 </div>
                             </a>
                         </h3>
-                        <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item">
+                        <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item[@active='true']">
                             <h4>
                                 <a href="#ru/{$outer-id}/{./id}">
                                     <div class="menu_level2">
@@ -64,7 +64,7 @@
                                 </div>
                             </a>
                         </h2>
-                        <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item">
+                        <xsl:for-each select="document(concat('xmap/', ./id, '/menu.xml'))/menu//item[@active='true']">
                             <a name="ru/{$outer-id}/{./id}" />
                             <h3>
                                 <div class="menu_level2">
@@ -73,24 +73,21 @@
                             </h3>
                             <xsl:copy-of select="document(
                                         concat('xmap/', $outer-id, '/', ./id, '/content.xml'))/content/ru/*" />
-                            <xsl:variable name="slider" select="document(
-                                        concat('xmap/', $outer-id, '/', ./id, '/slider.xml'))/slider/ru//item" />
-                            <xsl:if test="$slider">
-                                <div class="wrapper">
-                                    <xsl:for-each select="$slider">
-                                        <input type="radio" name="point" id="{./id}" />
-                                    </xsl:for-each>
-                                    <div class="slider">
-                                        <xsl:for-each select="$slider">
-                                            <div class="slides {./id}" />
-                                        </xsl:for-each>
+                            <xsl:if test="$outer-id='catalog'">
+                                <xsl:variable name="slider" select="document(
+                                            concat('xmap/', $outer-id, '/',
+                                            ./id, '/slider.xml'))/slider/ru//item" />
+                                <xsl:if test="$slider">
+                                    <div class="wrapper">
+                                        <div class="slider">
+                                            <xsl:for-each select="$slider">
+                                                <a href="{./href}" title="{./title}" target="blank">
+                                                    <img class="slides" src="{./src}" />
+                                                </a>
+                                            </xsl:for-each>
+                                        </div>
                                     </div>
-                                    <div class="controls">
-                                        <xsl:for-each select="$slider">
-                                            <label for="{./id}" />
-                                        </xsl:for-each>
-                                    </div>
-                                </div>
+                                </xsl:if>
                             </xsl:if>
                         </xsl:for-each>
                         <p class="page_break"> </p>
