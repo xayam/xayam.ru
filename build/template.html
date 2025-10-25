@@ -5,6 +5,7 @@
        <style type="text/css">
            * {
                font-family: monospace;
+               white-space: nowrap;
                margin: 0;
                padding: 0;
                border-width: 0;
@@ -30,19 +31,17 @@
     <table>
         <thead>
             <tr>
-                <td>Name</td>
-                <td>Last modified</td>
-                <td>Size</td>
+                <td><b>Name</b></td>
+                <td><b>Last modified</b></td>
+                <td><b>Size</b></td>
             </tr>
             <tr>
-                <td>___________________________</td>
-                <td>___________________________</td>
-                <td>___________________________</td>
+                <td colspan="3">{{{HR}}}</td>
             </tr>
         </thead>
         <tbody>{{{LIST_OF_FOLDERS_AND_FILES}}}</tbody>
     </table>
-    __________________________________________________________________________________
+    {{{HR}}}_
     <br/>
     <br/>
     <address>Apache/?.?.? (???) OpenSSL/?.?.? PHP/?.?.? Server at ? host Port 80</address>

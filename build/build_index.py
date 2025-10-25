@@ -60,6 +60,7 @@ def main():
             current_files.append(files[index])
         else:
             result = "\n"
+            max_name = 0
             for current in current_files:
                 result += "        <tr>\n            <td>"
                 if current["isdir"]:
@@ -68,6 +69,8 @@ def main():
                 else:
                     index_dir = ""
                     result += "[FILE]"
+                if len(current["name"]) > max_name:
+                    max_name = len(current["name"])
                 result += " <a href=\"" + current["name"] + index_dir + \
                           "\">" + current["name"]  + "</a></td>\n            <td>"
                 result += current["modified"] + "</td>\n            <td>"
@@ -77,7 +80,9 @@ def main():
             index_html = template_html.replace(
                 "{{{LIST_OF_FOLDERS_AND_FILES}}}", result
             )
-
+            index_html = index_html.replace(
+                "{{{HR}}}", "_" * (max_name + 61)
+            )
             index_html = index_html.replace(
                 "{{{CURRENT_CATALOG}}}", current_files[-1]["current_folder"]
             )
