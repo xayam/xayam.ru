@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<slider>
+    <ru>
+        <item>
+            <id>slide1</id>
+            <href>slide1</href>
+            <src>slide1</src>
+            <title>slide1</title>
+        </item>
+        <item>
+            <id>slide2</id>
+            <href>slide2</href>
+            <src>slide2</src>
+            <title>slide2</title>
+        </item>
+        <item>
+            <id>slide3</id>
+            <href>slide3</href>
+            <src>slide3</src>
+            <title>slide3</title>
+        </item>
+        <item>
+            <id>slide4</id>
+            <href>slide4</href>
+            <src>slide4</src>
+            <title>slide4</title>
+        </item>
+        <item>
+            <id>slide5</id>
+            <href>slide5</href>
+            <src>slide5</src>
+            <title>slide5</title>
+        </item>
+    </ru>
+    <en>
+        <item>
+            <id>id_en1</id>
+            <href>id_en1</href>
+            <src>id_en1</src>
+            <title>id_en1</title>
+        </item>
+    </en>
+</slider>
