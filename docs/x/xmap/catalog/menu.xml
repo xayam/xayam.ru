@@ -32,8 +32,8 @@
         <en>Avito</en>
     </item>
     <item active="true">
-        <id>vk</id>
-        <ru>ВК-сообщество</ru>
-        <en>VK-community</en>
+        <id>shops</id>
+        <ru>Мои магазины</ru>
+        <en>My shops</en>
     </item>
 </menu>
