@@ -31,7 +31,7 @@
             <src>x/xmap/catalog/books/stars.png</src>
             <title>slide6</title>
         </item>
-        <item active="true">
+        <item active="false">
             <href>/</href>
             <src>x/xmap/catalog/books/stars.png</src>
             <title>slide7</title>
