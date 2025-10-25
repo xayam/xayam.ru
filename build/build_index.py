@@ -90,7 +90,6 @@ def main():
             with open(create_html, encoding="UTF-8", mode="wt") as f:
                 f.write(index_html)
                 print(create_html)
-            break
             current_files = [files[index]]
 
 
