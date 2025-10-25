@@ -26,16 +26,17 @@ def main():
     files = []
     for current_folder in parent_folders:
         for name in os.listdir("../docs/" + current_folder):
-            files.append({
-                "current_folder": current_folder,
-                "isdir": os.path.isdir("../docs/" + current_folder + "/" + name),
-                "name": name,
-                "parent_folder": "/".join(current_folder.split("/")[:-1]),
-                "size": os.stat("../docs/" + current_folder + "/" + name).st_size,
-                "modified": str(datetime.datetime.fromtimestamp(os.path.getmtime(
-                    "../docs/" + current_folder + "/" + name
-                ))).split(".")[0].rjust(27, "_").replace("_", "&nbsp;")
-            })
+            if name != ".htaccess":
+                files.append({
+                    "current_folder": current_folder,
+                    "isdir": os.path.isdir("../docs/" + current_folder + "/" + name),
+                    "name": name,
+                    "parent_folder": "/".join(current_folder.split("/")[:-1]),
+                    "size": os.stat("../docs/" + current_folder + "/" + name).st_size,
+                    "modified": str(datetime.datetime.fromtimestamp(os.path.getmtime(
+                        "../docs/" + current_folder + "/" + name
+                    ))).split(".")[0].rjust(27, "_").replace("_", "&nbsp;")
+                })
     files.sort(key=lambda item: (item["current_folder"], -item["isdir"], item["name"]))
     for index in range(len(files)):
         size = files[index]["size"]
