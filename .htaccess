@@ -1,0 +1,6 @@
+
+RewriteEngine On
+
+<IfModule mod_rewrite.c>
+    RewriteRule ^$ /docs [L]
+</IfModule>
