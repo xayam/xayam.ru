@@ -1,6 +1,7 @@
 
-
 Options +Indexes
 IndexOptions NameWidth=*
 IndexOptions FancyIndexing
-IndexOrderDefault Descending Date
+IndexOrderDefault Ascending Name
+
+DirectoryIndex index.html
