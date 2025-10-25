@@ -11,8 +11,10 @@ AddType 'text/xsl; charset=UTF-8' xsl
 
 DirectoryIndex index.xml
 
-#<IfModule mod_rewrite.c>
-#RewriteEngine on
-#RewriteCond %{HTTPS} off
-#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}
-#</IfModule>
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+	RewriteCond %{REQUEST_URI} -f
+    RewriteRule ^index\.xml$ / [R=301,L]
+    #RewriteCond %{HTTPS} off
+    #RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}
+</IfModule>

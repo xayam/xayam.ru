@@ -35,7 +35,7 @@ def main():
                     "size": os.stat("../docs/" + current_folder + "/" + name).st_size,
                     "modified": str(datetime.datetime.fromtimestamp(os.path.getmtime(
                         "../docs/" + current_folder + "/" + name
-                    ))).split(".")[0]
+                    ))).split(".")[0].rjust(27, "_").replace("_", "&nbsp;")
                 })
     files.sort(key=lambda item: (item["current_folder"], -item["isdir"], item["name"]))
     for index in range(len(files)):
@@ -50,7 +50,7 @@ def main():
             files[index]["size"] = f"{size} Bytes"
         else:
             files[index]["size"] = f"{size} Byte"
-        files[index]["size"] = str(files[index]["size"]).rjust(12, "_")
+        files[index]["size"] = str(files[index]["size"]).rjust(27, "_")
         files[index]["size"] = str(files[index]["size"]).replace("_", "&nbsp;")
 
     with open("template.html", mode="r") as f:
