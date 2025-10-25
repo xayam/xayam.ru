@@ -65,10 +65,12 @@ def main():
             for current in current_files:
                 result += "        <tr>\n            <td>"
                 if current["isdir"]:
+                    index_dir = "/index.html"
                     result += "[DIR ]"
                 else:
+                    index_dir = ""
                     result += "[FILE]"
-                result += " <a href=\"/" + current["current_folder"] + "/"  + current["name"] + \
+                result += " <a href=\"" + current["name"] + index_dir + \
                           "\">" + current["name"]  + "</a></td>\n            <td>"
                 result += current["modified"] + "</td>\n            <td>"
                 result += current["size"] + "</td>\n"
@@ -77,12 +79,12 @@ def main():
             index_html = template_html.replace(
                 "{{{LIST_OF_FOLDERS_AND_FILES}}}", result
             )
-            parent = ""
-            if current_files[-1]["parent_folder"]:
-                parent = "<h2>\n        <a href=\"/"
-                parent += current_files[-1]["parent_folder"]
-                parent += "\" title=\"Parent Directory\">Parent Directory</a>\n    </h2>"
-            index_html = index_html.replace("{{{PARENT_DIRECTORY}}}", parent)
+            # parent = ""
+            # if current_files[-1]["parent_folder"]:
+            #     parent = "<h2>\n        <a href=\"/"
+            #     parent += current_files[-1]["parent_folder"]
+            #     parent += "\" title=\"Parent Directory\">Parent Directory</a>\n    </h2>"
+            # index_html = index_html.replace("{{{PARENT_DIRECTORY}}}", parent)
             index_html = index_html.replace(
                 "{{{CURRENT_CATALOG}}}", current_files[-1]["current_folder"]
             )
@@ -90,6 +92,7 @@ def main():
             with open(create_html, encoding="UTF-8", mode="wt") as f:
                 f.write(index_html)
                 print(create_html)
+            # break
             current_files = [files[index]]
 
 

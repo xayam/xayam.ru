@@ -15,13 +15,18 @@
     <h1>
         Index of folder "/{{{CURRENT_CATALOG}}}"
     </h1>
-    {{{PARENT_DIRECTORY}}}
+    <h2>
+        <a href=".." title="Parent Directory">Parent Directory</a>
+    </h2>
     <table>
-        <tr style="border-bottom: 1px solid gray; text-align: center;">
-            <td>Name</td>
-            <td>Last modified</td>
-            <td>Size</td>
-        </tr>{{{LIST_OF_FOLDERS_AND_FILES}}}
+        <thead style="border-bottom: 1px solid gray; text-align: center;">
+            <tr>
+                <td>Name</td>
+                <td>Last modified</td>
+                <td>Size</td>
+            </tr>
+        </thead>
+        <tbody>{{{LIST_OF_FOLDERS_AND_FILES}}}</tbody>
     </table>
     <hr>
     <address>Apache/?.?.? (???) OpenSSL/?.?.? PHP/?.?.? Server at ? host Port 80</address>
