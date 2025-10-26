@@ -5,6 +5,9 @@ venv/
 __pycache__/
 .run/
 releases/
+docs/x/xmap/other/comics/rus/*
+!docs/x/xmap/other/comics/rus/__init__.py
+!docs/x/xmap/other/comics/rus/.htaccess
 docs/rewlis/data/*
 !docs/rewlis/data/__init__.py
 docs/absolaris/__secret__.py
