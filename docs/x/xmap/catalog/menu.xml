@@ -21,7 +21,7 @@
         <ru>Сумки&amp;Рюкзаки&amp;Коробки</ru>
         <en>Bugs&amp;Boxes</en>
     </item>
-    <item active="true">
+    <item active="false">
         <id>books</id>
         <ru>Книги</ru>
         <en>Books</en>
