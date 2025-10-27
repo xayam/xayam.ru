@@ -2,38 +2,18 @@
 <slider>
     <ru>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide1</title>
+            <href>https://www.ozon.ru/seller/xayam-ru-2439849</href>
+            <src>x/xmap/catalog/shops/xayam.ru.ozon.png</src>
+            <title>Магазин КСАЯМ'а на Озоне</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide2</title>
-        </item>
-        <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide3</title>
-        </item>
-        <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide4</title>
-        </item>
-        <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide5</title>
-        </item>
-        <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide6</title>
+            <href>https://www.avito.ru/user/b2f9a05f65bee934a64135413f302f3f/profile</href>
+            <src>x/xmap/catalog/shops/xayam.ru.avito.png</src>
+            <title>Магазин КСАЯМ'а на Авито</title>
         </item>
         <item active="false">
             <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
+            <src>x/xmap/catalog/shops/stars.png</src>
             <title>slide7</title>
         </item>
     </ru>

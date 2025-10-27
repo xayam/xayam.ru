@@ -2,38 +2,33 @@
 <slider>
     <ru>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide1</title>
+            <href>https://www.avito.ru/moskva/knigi_i_zhurnaly/obmen_kniga_na_knigu_4298533297</href>
+            <src>x/xmap/catalog/avito/4298533297.webp</src>
+            <title>Обмен книга на книгу, бесплатно</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide2</title>
+            <href>https://www.avito.ru/moskva/orgtehnika_i_rashodniki/zaryadnoe_ustr-vo_gp_powerbank_v800c_bez_akkumov_7625741120</href>
+            <src>x/xmap/catalog/avito/7625741120.webp</src>
+            <title>Зарядное устройствово GP PowerBank V800C без аккумуляторов</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide3</title>
+            <href>https://www.avito.ru/moskva/knigi_i_zhurnaly/zhurnal_karavan_istoriy._komplekt_iz_6_shtuk_7433555904</href>
+            <src>x/xmap/catalog/avito/7433555904.webp</src>
+            <title>Журнал "Караван историй". Комплект из 6 штук</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide4</title>
+            <href>https://www.avito.ru/moskva/odezhda_obuv_aksessuary/norkovaya_shuba_48-ogo_razmera_3786394684</href>
+            <src>x/xmap/catalog/avito/3786394684.webp</src>
+            <title>Норковая шуба 48-ого размера</title>
         </item>
         <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide5</title>
-        </item>
-        <item active="true">
-            <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
-            <title>slide6</title>
+            <href>https://www.avito.ru/moskva/odezhda_obuv_aksessuary/dublenka_naturalnaya_muzhskaya_52-ogo_razmera_3785629125</href>
+            <src>x/xmap/catalog/avito/3785629125.webp</src>
+            <title>Дубленка натуральная мужская 52-ого размера</title>
         </item>
         <item active="false">
             <href>/</href>
-            <src>x/xmap/catalog/books/stars.png</src>
+            <src>x/xmap/catalog/avito/stars.png</src>
             <title>slide7</title>
         </item>
     </ru>
