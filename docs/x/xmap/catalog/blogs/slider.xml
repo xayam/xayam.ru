@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<slider>
+    <ru>
+        <item active="true">
+            <href>https://author.today/u/xayam</href>
+            <src>x/xmap/catalog/blogs/xayam.ru.author.today.png</src>
+            <title>Читаю и пишу на Author.Today</title>
+        </item>
+        <item active="true">
+            <href>https://dzen.ru/xayam</href>
+            <src>x/xmap/catalog/blogs/xayam.ru.dzen.png</src>
+            <title>Канал КСАЯМ'а "Разум и Вера" на Дзене</title>
+        </item>
+        <item active="true">
+            <href>https://pikabu.ru/@xayam</href>
+            <src>x/xmap/catalog/blogs/xayam.ru.pikabu.png</src>
+            <title>Я на Пикабу</title>
+        </item>
+        <item active="false">
+            <href>/</href>
+            <src>x/xmap/catalog/blogs/stars.png</src>
+            <title>slide7</title>
+        </item>
+    </ru>
+    <en>en</en>
+</slider>

@@ -36,4 +36,9 @@
         <ru>Мои магазины</ru>
         <en>My shops</en>
     </item>
+    <item active="true">
+        <id>blogs</id>
+        <ru>Мои блоги</ru>
+        <en>my blogs</en>
+    </item>
 </menu>
