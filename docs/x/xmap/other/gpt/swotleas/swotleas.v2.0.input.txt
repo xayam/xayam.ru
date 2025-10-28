@@ -1,0 +1,11 @@
+https://vheer.com/ai-image-to-video
+
+ВВОД-> swotleas.v2.1.input.png
+
+два ученых-мужчины обсуждают интерактивную модель мироздания, пока женщина-куратор, наблюдая за ними, показывает рукой на недочеты структуры найденной модели.
+
+ВВОД-> Two male scientists discuss an interactive model of the universe while a female curator, watching them, points out the flaws in the structure of the discovered model.
+
+камера движется по кругу
+
+ВВОД-> the camera moves in a circle
