@@ -13,9 +13,8 @@ docs/rewlis/data/*
 docs/absolaris/__secret__.py
 docs/xportfolios/__secret__.py
 *to.dgt.from.xayam.txt
-*.gif
-*.mp4
 *.avi
+*.mp4
 *.mkv
 *.mp3
 *.zip
