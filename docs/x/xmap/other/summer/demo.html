@@ -13,8 +13,7 @@
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            align-items: left;
-            background-color: #f0f8ff;
+            background-color: white;
             padding: 20px;
 			transform: scale(0.6, 0.6);
         }
@@ -39,7 +38,7 @@
         .square-cell {
             width: 60px;
             height: 60px;
-            border: 0px solid #333;
+            border-width: 0;
         }
         .white-cell {
             background-color: brown;
@@ -56,7 +55,7 @@
             justify-content: center;
             align-items: center;
             position: absolute;
-            border: 0px solid #333;
+            border-width: 0;
         }
         .chip {
             width: 80%;
@@ -103,8 +102,11 @@
             margin-bottom: 15px;
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: left;
+        }
+        #controls button{
+            word-wrap: anywhere;
         }
         button {
             padding: 8px 16px;
@@ -288,12 +290,12 @@
 <body>
     <div id="game-info">Ход игрока 1</div>
     <div id="thinking">ИИ думает...</div>
-    <div id="board"></div>
-    <div id="controls">
-        <button id="rules-btn">Правила игры</button>
-        <button id="new-game-btn">Новая игра</button>
-        <button id="restart">Начать сначала</button>
-    </div>
+	<div id="board"></div>
+	<div id="controls">
+		<button id="rules-btn">Правила игры</button>
+		<button id="new-game-btn">Новая игра</button>
+		<button id="restart">Начать сначала</button>
+	</div>
     <!-- Модальное окно с правилами -->
     <div id="rules-modal">
         <div id="rules-content">
@@ -323,11 +325,11 @@
             <h2>Выберите параметры доски</h2>
             <p>Тип доски:</p>
             <select id="board-type">
-                <option value="square">Клетчатая (квадратная)</option>
-                <option value="hex">Шестиугольная</option>
+                <option value="square">Квадрат</option>
+                <option value="hex">Шестиугольник</option>
             </select>
-            <p id="size-label">Размер доски (4-12):</p>
-            <input type="number" id="board-size" min="4" max="12" value="8">
+            <p id="size-label">Размер доски (3-11):</p>
+            <input type="number" id="board-size" min="3" max="11" value="7">
             <br>
             <button id="confirm-size">Далее</button>
             <button id="cancel-size">Отмена</button>
@@ -362,7 +364,7 @@
     </div>
 
     <script>
-        let BOARD_SIZE = 8;
+        let BOARD_SIZE = 7;
         let BOARD_TYPE = 'square'; // 'square' or 'hex'
         let currentPlayer = 1;
         let board = [];
@@ -382,10 +384,10 @@
                 sizeInput.max = '11';
                 sizeInput.value = '7'; // Устанавливаем нечетное значение по умолчанию
             } else {
-                sizeLabel.textContent = 'Размер доски (4-12):';
-                sizeInput.min = '4';
-                sizeInput.max = '12';
-                sizeInput.value = '8';
+                sizeLabel.textContent = 'Размер доски (3-11):';
+                sizeInput.min = '3';
+                sizeInput.max = '11';
+                sizeInput.value = '7';
             }
         });
 
@@ -547,19 +549,23 @@
         // Отображение доски
         function renderBoard() {
             const boardElement = document.getElementById('board');
-            
+            const controlElement = document.getElementById('controls');
+            let width;
             if (BOARD_TYPE === 'hex') {
                 boardElement.style.position = 'relative';
-                const width = BOARD_SIZE * 90 + 45;
+                width = BOARD_SIZE * 90 + 45;
                 const height = BOARD_SIZE * 52 + 17;
                 boardElement.style.width = `${width}px`;
                 boardElement.style.height = `${height}px`;
             } else {
+			    width = BOARD_SIZE * 60;
                 boardElement.style.position = 'relative';
-                boardElement.style.width = `${BOARD_SIZE * 60}px`;
-                boardElement.style.height = `${BOARD_SIZE * 60}px`;
+                boardElement.style.width = `${width}px`;
+                boardElement.style.height = `${width}px`;
             }
-
+            // alert(controlElement.width);
+            controlElement.style.width = width + 'px';
+			
             for (let row = 0; row < BOARD_SIZE; row++) {
                 const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
                 for (let col = 0; col < colsInRow; col++) {
@@ -1262,7 +1268,7 @@
                     return;
                 }
             } else {
-                if (newSize < 4 || newSize > 12) {
+                if (newSize < 3 || newSize > 11) {
                     alert('Размер квадратной доски должен быть от 4 до 12!');
                     return;
                 }
