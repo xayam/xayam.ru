@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summer</title>
     <style>
+	    * {
+		    margin: 0;
+            padding: 0;
+		}
         body {
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: left;
             background-color: #f0f8ff;
-            margin: 0;
             padding: 20px;
+			transform: scale(0.6, 0.6);
         }
         #game-info {
             margin-bottom: 15px;
@@ -21,7 +25,6 @@
             color: #333;
         }
         #board {
-            position: relative;
             margin-bottom: 15px;
             display: inline-block;
         }
@@ -36,24 +39,24 @@
         .square-cell {
             width: 60px;
             height: 60px;
-            border: 1px solid #333;
+            border: 0px solid #333;
         }
         .white-cell {
-            background-color: #f0d9b5;
+            background-color: brown;
         }
         .black-cell {
-            background-color: #b58863;
+            background-color: brown;
         }
         .hex-cell {
-            width: 60px;
-            height: 69.28px; /* height = width * sqrt(3) */
+            width: 89px;
+            height: 68px;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background-color: #f0d9b5;
+            background-color: brown;
             display: flex;
             justify-content: center;
             align-items: center;
             position: absolute;
-            border: 1px solid #333;
+            border: 0px solid #333;
         }
         .chip {
             width: 80%;
@@ -66,26 +69,28 @@
             font-weight: bold;
             font-size: 16px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            opacity: 0.85;
+            opacity: 0.9;
         }
         .player1 {
-            background-color: #e74c3c;
+            background-color: white;
+			color: black;
+			font-size: 32px;
         }
         .player2 {
-            background-color: #3498db;
+            background-color: black;
+			font-size: 32px;
         }
-        .plus::before {
-            content: "+";
-            position: absolute;
-            top: 0;
-            right: 0;
-            color: green;
-            font-weight: bold;
-            font-size: 36px;
-            line-height: 1;
+        .plus {
+            background-color: green;
         }
-        .minus::before {
-            content: "-";
+        .minus {
+            background-color: blue;
+        }
+        .highlight {
+			opacity: 0.75;
+        }
+		.highlight:before {
+            content: "●";
             position: absolute;
             top: 0;
             right: 0;
@@ -94,15 +99,12 @@
             font-size: 36px;
             line-height: 1;
         }
-        .highlight {
-            background-color: #a8d5a2 !important;
-        }
         #controls {
             margin-bottom: 15px;
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: left;
         }
         button {
             padding: 8px 16px;
@@ -276,9 +278,10 @@
             color: white;
         }
         #thinking {
-            color: #e74c3c;
+            color: white;
+			font-size: 20px;
+            font-weight: bold;
             font-style: italic;
-            display: none;
         }
     </style>
 </head>
@@ -291,14 +294,13 @@
         <button id="new-game-btn">Новая игра</button>
         <button id="restart">Начать сначала</button>
     </div>
-
     <!-- Модальное окно с правилами -->
     <div id="rules-modal">
         <div id="rules-content">
             <h2>Правила игры "Summer"</h2>
             <p>Игра для двоих на клетчатом или шестиугольном поле. Игроки поочередно передвигают свои фишки.</p>
-            <p><strong>Начальная позиция:</strong> ФИшки Игрока 1 находятся на первой горизонтали (снизу), Игрока 2 — на последней горизонтали (сверху). Начальный вес каждой фишки — случайное число от 1 до 6. Позиция фишек одинакова для обеих сторон — по одной фишке на каждой клетке стартовой линии.</p>
-            <p><strong>Поля доски:</strong> Каждая клетка (кроме стартовых линий) имеет атрибут «плюс» или «минус». При попадании фишки на такую клетку её вес увеличивается (+1) или уменьшается (-1) соответственно.</p>
+            <p><strong>Начальная позиция:</strong> Фишки Игрока 1 находятся на первой горизонтали (снизу), Игрока 2 — на последней горизонтали (сверху). Начальный вес каждой фишки — случайное число от 1 до 6. Позиция фишек одинакова для обеих сторон — по одной фишке на каждой клетке стартовой линии.</p>
+            <p><strong>Поля доски:</strong> Каждая клетка (кроме стартовых линий) имеет атрибут «плюс»(зеленый фон) или «минус»(синий фон). При попадании фишки на такую клетку её вес увеличивается (+1) или уменьшается (-1) соответственно.</p>
             <p><strong>Ходы:</strong></p>
             <ul>
                 <li>Можно двигаться на одну клетку вперёд (по направлению к оппоненту), вперёд-влево или вперёд-вправо по диагонали, влево или вправо на соседнюю клетку</li>
@@ -337,7 +339,7 @@
         <div id="ai-content">
             <h2>Настройки игроков</h2>
             <div class="player-setting">
-                <label>Игрок 1 (красные фишки):</label><br>
+                <label>Игрок 1 (белые фишки):</label><br>
                 <select id="player1-type">
                     <option value="human">Человек</option>
                     <option value="ai">ИИ (уровень 1)</option>
@@ -346,7 +348,7 @@
                 </select>
             </div>
             <div class="player-setting">
-                <label>Игрок 2 (синие фишки):</label><br>
+                <label>Игрок 2 (черные фишки):</label><br>
                 <select id="player2-type">
                     <option value="human">Человек</option>
                     <option value="ai">ИИ (уровень 1)</option>
@@ -949,11 +951,11 @@
             const playerType = currentPlayer === 1 ? player1Type : player2Type;
             if (playerType === 'human') return;
             
-            document.getElementById('thinking').style.display = 'block';
+            document.getElementById('thinking').style.color = 'red';
             
             setTimeout(() => {
                 const bestMove = getBestMoveAdvanced(currentPlayer, playerType);
-                document.getElementById('thinking').style.display = 'none';
+                document.getElementById('thinking').style.color = 'white';
                 
                 if (bestMove) {
                     moveChip(bestMove.from.row, bestMove.from.col, bestMove.to.row, bestMove.to.col);
@@ -1196,7 +1198,7 @@
             currentPlayer = 1;
             gameActive = true;
             document.getElementById('game-info').textContent = 'Ход игрока 1';
-            document.getElementById('thinking').style.display = 'none';
+            document.getElementById('thinking').style.color = 'white';
             initBoard();
             const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
             if (nextPlayerType !== 'human') {
@@ -1210,7 +1212,7 @@
             currentPlayer = 1;
             gameActive = true;
             document.getElementById('game-info').textContent = 'Ход игрока 1';
-            document.getElementById('thinking').style.display = 'none';
+            document.getElementById('thinking').style.color = 'white';
             const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
             if (nextPlayerType !== 'human') {
                 makeAIMove();
