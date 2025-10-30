@@ -327,7 +327,7 @@
                 <option value="hex">Шестиугольник</option>
             </select>
             <br />
-            <label for="board-size" id="size-label">Размер доски (3-11):</label>
+            <label for="board-size" id="size-label">Размер от 3 до 11:</label>
             <input type="number" id="board-size" min="3" max="11" value="7">
             <br>
             <button id="confirm-size">Далее</button>
@@ -340,21 +340,23 @@
         <div id="ai-content">
             <h2>Настройки игроков</h2>
             <div class="player-setting">
-                <label for="player1-type">Игрок 1 (белые фишки):</label>
+                <label for="player1-type">Игрок 1. Белые:</label>
                 <select id="player1-type">
-                    <option value="human">Человек</option>
-                    <option value="ai">ИИ (уровень 1)</option>
-                    <option value="ai2">ИИ (уровень 2)</option>
-                    <option value="ai3">ИИ (уровень 3)</option>
+                    <option value="human">Пользователь</option>
+                    <option value="ai" >ИИ Уровень 1. Новичок</option>
+                    <option value="ai2">ИИ Уровень 2. Оптимус</option>
+                    <option value="ai3">ИИ Уровень 3. Тугодум</option>
+                    <option value="ai4">ИИ Уровень 4. Мастер-танк</option>
                 </select>
             </div>
             <div class="player-setting">
-                <label for="player2-type">Игрок 2 (черные фишки):</label>
+                <label for="player2-type">Игрок 2. Черные:</label>
                 <select id="player2-type">
-                    <option value="human">Человек</option>
-                    <option value="ai">ИИ (уровень 1)</option>
-                    <option value="ai2">ИИ (уровень 2)</option>
-                    <option value="ai3">ИИ (уровень 3)</option>
+                    <option value="human">Пользователь</option>
+                    <option value="ai" >ИИ Уровень 1. Новичок</option>
+                    <option value="ai2">ИИ Уровень 2. Оптимус</option>
+                    <option value="ai3">ИИ Уровень 3. Тугодум</option>
+                    <option value="ai4">ИИ Уровень 4. Мастер-танк</option>
                 </select>
             </div>
             <button id="confirm-ai">Начать игру</button>
@@ -378,12 +380,12 @@
             const sizeInput = document.getElementById('board-size');
             const sizeLabel = document.getElementById('size-label');
             if (this.value === 'hex') {
-                sizeLabel.textContent = 'Размер доски (нечетное 3-11):';
+                sizeLabel.textContent = 'Размер нечетное от 3 до 11:';
                 sizeInput.min = '3';
                 sizeInput.max = '11';
                 sizeInput.value = '7'; // Устанавливаем нечетное значение по умолчанию
             } else {
-                sizeLabel.textContent = 'Размер доски (3-11):';
+                sizeLabel.textContent = 'Размер от 3 до 11:';
                 sizeInput.min = '3';
                 sizeInput.max = '11';
                 sizeInput.value = '7';
