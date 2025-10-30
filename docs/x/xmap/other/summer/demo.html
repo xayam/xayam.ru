@@ -319,7 +319,14 @@
                 вперёд-вправо по диагонали, влево или вправо на соседнюю клетку
             </li>
             <li>Если на поле, куда ставится фишка, стоит своя фишка —
-                в этом случае веса суммируются, и остаётся одна фишка.
+                применяются следующие правила:
+                <ul>
+                    <li>Если вес перемещаемой фишки <strong>меньше</strong> веса фишки на целевом поле,
+                        то веса <strong>суммируются</strong>, и остаётся одна фишка с суммарным весом.</li>
+                    <li>Если вес перемещаемой фишки <strong>больше</strong> веса фишки на целевом поле,
+                        то остаётся одна фишка с весом, равным <strong>разнице</strong> (больший минус меньший).</li>
+                    <li>Если веса <strong>равны</strong>, то обе фишки <strong>уничтожаются</strong>, независимо от атрибута поля.</li>
+                </ul>
             </li>
             <li>Если на поле, куда ставится фишка, стоит чужая фишка —
                 в этом случае веса вычитаются, и остаётся одна фишка,
@@ -343,17 +350,20 @@
                 <ul>
                     <li>При атрибуте поля плюс - побеждает всегда тот кто ходит,
                         его вес суммируется с весом оппонента.</li>
-                    <li>При атрибуте поля минус - побеждает в сталкновении фишка с большим весом</li>
+                    <li>При атрибуте поля минус - побеждает в сталкновении фишка с большим весом,
+                        её вес уменьшается на вес уничтоженной фишки.</li>
                     <li>При атрибуте поля минус, если вес одинаковые - обе фишки уничтожаются</li>
                 </ul>
             </li>
         </ul>
         <p><strong>Победа:</strong> Игра заканчивается,
-            когда все фишки белых достигают стартовой линии черных.
-            После этого черным даётся один последний ход (если у
-            них остались фишки), после которого подсчитывается
-            сумма весов фишек на стартовых линиях. Побеждает игрок
-            с большей суммой. При равенстве — ничья.
+            когда все фишки одного из игроков достигают стартовой линии противника.
+            Если все белые фишки достигли верхней линии (линии черных),
+            то черным даётся один последний ход (если у них остались фишки).
+            Если все черные фишки достигли нижней линии (линии белых),
+            игра завершается немедленно.
+            После этого подсчитывается сумма весов фишек на стартовых линиях.
+            Побеждает игрок с большей суммой. При равенстве — ничья.
         </p>
         <button id="close-rules">Закрыть</button>
     </div>
@@ -417,34 +427,34 @@
             <label for="player1-type">Игрок 1. Белые:</label>
             <select id="player1-type">
                 <option value="human">Пользователь</option>
-                <option value="ai" >ИИ Уровень&nbsp;&nbsp;&nbsp;1. Джет</option>
-                <option value="ai2">ИИ Уровень&nbsp;&nbsp;&nbsp;2. Оптимус</option>
-                <option value="ai3">ИИ Уровень&nbsp;&nbsp;&nbsp;3. Тугодум</option>
-                <option value="ai4">ИИ Уровень&nbsp;&nbsp;&nbsp;4. Марк I</option>
-                <option value="ai5">ИИ Уровень&nbsp;&nbsp;&nbsp;5. T-34</option>
-                <option value="ai6">ИИ Уровень&nbsp;&nbsp;&nbsp;6. Призрак</option>
-                <option value="ai7">ИИ Уровень&nbsp;&nbsp;&nbsp;7. Маг</option>
-                <option value="ai8">ИИ Уровень&nbsp;&nbsp;&nbsp;8. Метаморф</option>
-                <option value="ai9">ИИ Уровень&nbsp;&nbsp;&nbsp;9. Знание</option>
-                <option value="ai10">ИИ Уровень 10. Абсолярис&nbsp;</option>
-                <option value="ai11">ИИ Уровень 11. Секрет</option>
+                <option value="ai" >ИИ Стратегия&nbsp;&nbsp;&nbsp;1. Джет</option>
+                <option value="ai2">ИИ Стратегия&nbsp;&nbsp;&nbsp;2. Оптимус</option>
+                <option value="ai3">ИИ Стратегия&nbsp;&nbsp;&nbsp;3. Тугодум</option>
+                <option value="ai4">ИИ Стратегия&nbsp;&nbsp;&nbsp;4. Марк I</option>
+                <option value="ai5">ИИ Стратегия&nbsp;&nbsp;&nbsp;5. T-34</option>
+                <option value="ai6">ИИ Стратегия&nbsp;&nbsp;&nbsp;6. Призрак</option>
+                <option value="ai7">ИИ Стратегия&nbsp;&nbsp;&nbsp;7. Маг</option>
+                <option value="ai8">ИИ Стратегия&nbsp;&nbsp;&nbsp;8. Метаморф</option>
+                <option value="ai9">ИИ Стратегия&nbsp;&nbsp;&nbsp;9. Знание</option>
+                <option value="ai10">ИИ Стратегия 10. Абсолярис&nbsp;</option>
+                <option value="ai11">ИИ Стратегия 11. Секрет</option>
             </select>
         </div>
         <div class="player-setting">
             <label for="player2-type">Игрок 2. Черные:</label>
             <select id="player2-type">
                 <option value="human">Пользователь</option>
-                <option value="ai" >ИИ Уровень&nbsp;&nbsp;&nbsp;1. Джет</option>
-                <option value="ai2">ИИ Уровень&nbsp;&nbsp;&nbsp;2. Оптимус</option>
-                <option value="ai3">ИИ Уровень&nbsp;&nbsp;&nbsp;3. Тугодум</option>
-                <option value="ai4">ИИ Уровень&nbsp;&nbsp;&nbsp;4. Марк I</option>
-                <option value="ai5">ИИ Уровень&nbsp;&nbsp;&nbsp;5. T-34</option>
-                <option value="ai6">ИИ Уровень&nbsp;&nbsp;&nbsp;6. Призрак</option>
-                <option value="ai7">ИИ Уровень&nbsp;&nbsp;&nbsp;7. Маг</option>
-                <option value="ai8">ИИ Уровень&nbsp;&nbsp;&nbsp;8. Метаморф</option>
-                <option value="ai9">ИИ Уровень&nbsp;&nbsp;&nbsp;9. Знание</option>
-                <option value="ai10">ИИ Уровень 10. Абсолярис&nbsp;</option>
-                <option value="ai11">ИИ Уровень 11. Секрет</option>
+                <option value="ai" >ИИ Стратегия&nbsp;&nbsp;&nbsp;1. Джет</option>
+                <option value="ai2">ИИ Стратегия&nbsp;&nbsp;&nbsp;2. Оптимус</option>
+                <option value="ai3">ИИ Стратегия&nbsp;&nbsp;&nbsp;3. Тугодум</option>
+                <option value="ai4">ИИ Стратегия&nbsp;&nbsp;&nbsp;4. Марк I</option>
+                <option value="ai5">ИИ Стратегия&nbsp;&nbsp;&nbsp;5. T-34</option>
+                <option value="ai6">ИИ Стратегия&nbsp;&nbsp;&nbsp;6. Призрак</option>
+                <option value="ai7">ИИ Стратегия&nbsp;&nbsp;&nbsp;7. Маг</option>
+                <option value="ai8">ИИ Стратегия&nbsp;&nbsp;&nbsp;8. Метаморф</option>
+                <option value="ai9">ИИ Стратегия&nbsp;&nbsp;&nbsp;9. Знание</option>
+                <option value="ai10">ИИ Стратегия 10. Абсолярис&nbsp;</option>
+                <option value="ai11">ИИ Стратегия 11. Секрет</option>
             </select>
         </div>
         <button id="confirm-ai">Начать игру</button>
@@ -463,6 +473,9 @@
     let player1Type = 'human';
     let player2Type = 'human';
     let whiteReached = false; // Флаг: все белые достигли цели
+    let blackReached = false; // Флаг: все черные достигли цели
+    let lastBlackMoveDone = false; // Флаг: черные уже сделали последний ход
+
     // Обновление диапазона размера в зависимости от типа доски
     document.getElementById('board-type').addEventListener('change', function() {
         const sizeInput = document.getElementById('board-size');
@@ -471,7 +484,7 @@
             sizeLabel.textContent = 'Размер нечетное от 3 до 11:';
             sizeInput.min = '3';
             sizeInput.max = '11';
-            sizeInput.value = '7'; // Устанавливаем нечетное значение по умолчанию
+            sizeInput.value = '7';
         } else {
             sizeLabel.innerHTML = 'Размер любое&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;от 3 до 11:';
             sizeInput.min = '3';
@@ -479,6 +492,7 @@
             sizeInput.value = '7';
         }
     });
+
     // Сохранение начального состояния доски
     function saveInitialBoardState() {
         initialBoardState = {
@@ -488,7 +502,6 @@
             boardSize: BOARD_SIZE,
             collisionMode: COLLISION_MODE
         };
-        // Сохраняем атрибуты клеток
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
@@ -501,6 +514,7 @@
             }
         }
     }
+
     // Восстановление начального состояния доски
     function restoreInitialBoardState() {
         if (!initialBoardState) return;
@@ -508,25 +522,28 @@
         BOARD_SIZE = initialBoardState.boardSize;
         COLLISION_MODE = initialBoardState.collisionMode;
         whiteReached = false;
-        // Очистка доски
+        blackReached = false;
+        lastBlackMoveDone = false;
+
         board = [];
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             board[row] = Array(colsInRow).fill(null);
         }
+
         const cells = document.querySelectorAll('.cell');
         cells.forEach(cell => {
             cell.classList.remove('plus', 'minus', 'highlight');
             cell.innerHTML = '';
         });
-        // Восстановление атрибутов
+
         for (const {row, col, attr} of initialBoardState.attributes) {
             const cellElement = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
             if (cellElement) {
                 cellElement.classList.add(attr);
             }
         }
-        // Восстановление фишек
+
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
@@ -537,13 +554,12 @@
         }
         renderBoard();
     }
-    // Получение направлений ходов в зависимости от типа доски
+
+    // Получение направлений ходов
     function getMoveDirections() {
         if (BOARD_TYPE === 'hex') {
-            // Для шестиугольной доски используем 6 направлений
             return [[-1, -1], [-1, 0], [0, -1], [0, 1], [1, -1], [1, 0]];
         } else {
-            // Для квадратной доски используем 8 направлений
             return [
                 [-1, -1], [-1, 0], [-1, 1],
                 [0, -1], [0, 1],
@@ -551,6 +567,7 @@
             ];
         }
     }
+
     // Проверка валидности хода для шестиугольной доски
     function isValidHexMove(fromRow, fromCol, toRow, toCol, player) {
         if (toRow < 0 || toRow >= BOARD_SIZE) return false;
@@ -558,7 +575,6 @@
         if (toCol < 0 || toCol >= colsInToRow) return false;
         const dRow = toRow - fromRow;
         const dCol = toCol - fromCol;
-        // Проверка, что ход на соседнюю клетку
         const isValidDirection = fromRow % 2 === 0 ?
             (dRow === -1 && (dCol === -1 || dCol === 0)) ||
             (dRow === 0 && (dCol === -1 || dCol === 1)) ||
@@ -567,31 +583,31 @@
             (dRow === 0 && (dCol === -1 || dCol === 1)) ||
             (dRow === 1 && (dCol === 0 || dCol === 1));
         if (!isValidDirection) return false;
-        // Проверка направления движения для игроков при движении к противнику
         if (!(board[toRow][toCol] && board[toRow][toCol].player === player)) {
-            if (player === 1 && dRow > 0) return false; // Игрок 1 не может идти вниз к противнику
-            if (player === 2 && dRow < 0) return false; // Игрок 2 не может идти вверх к противнику
+            if (player === 1 && dRow > 0) return false;
+            if (player === 2 && dRow < 0) return false;
         }
         return true;
     }
+
     // Инициализация доски
     function initBoard() {
-        // Инициализация пустой доски с правильным количеством столбцов в каждой строке
         board = [];
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             board[row] = Array(colsInRow).fill(null);
         }
+
         const cells = document.querySelectorAll('.cell');
         cells.forEach(cell => {
             cell.classList.remove('plus', 'minus', 'highlight');
             cell.innerHTML = '';
         });
-        // Генерация случайных атрибутов для клеток (кроме стартовых линий)
+
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
-                if (row === 0 || row === BOARD_SIZE - 1) continue; // Стартовые линии без атрибутов
+                if (row === 0 || row === BOARD_SIZE - 1) continue;
                 const attr = Math.random() > 0.5 ? 'plus' : 'minus';
                 const cellElement = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
                 if (cellElement) {
@@ -599,22 +615,20 @@
                 }
             }
         }
-        // Установка фишек игроков со случайным весом от 1 до BOARD_SIZE
+
         const firstRowCols = BOARD_TYPE === 'hex' ? (0 % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
         const lastRowCols = BOARD_TYPE === 'hex' ? ((BOARD_SIZE - 1) % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
-        // Генерация весов для белых (игрок 1)
+
         const weights1 = [];
         for (let col = 0; col < lastRowCols; col++) {
             weights1.push(Math.floor(Math.random() * BOARD_SIZE) + 1);
         }
-        // Копирование и перемешивание весов для черных (игрок 2)
         const weights2 = [...weights1];
-        // Перемешиваем массив weights2
         for (let i = weights2.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [weights2[i], weights2[j]] = [weights2[j], weights2[i]];
         }
-        // Расстановка фишек
+
         for (let col = 0; col < firstRowCols; col++) {
             board[0][col] = { player: 2, weight: weights2[col] };
         }
@@ -624,6 +638,7 @@
         renderBoard();
         saveInitialBoardState();
     }
+
     // Отображение доски
     function renderBoard() {
         const boardElement = document.getElementById('board');
@@ -663,12 +678,12 @@
             }
         }
     }
+
     // Создание доски
     function createBoard() {
         const boardElement = document.getElementById('board');
         boardElement.innerHTML = '';
         if (BOARD_TYPE === 'hex') {
-            // Создаем шестиугольную доску с правильным расположением
             for (let row = 0; row < BOARD_SIZE; row++) {
                 const colsInRow = row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1;
                 for (let col = 0; col < colsInRow; col++) {
@@ -676,7 +691,6 @@
                     cell.className = `cell hex-cell`;
                     cell.setAttribute('data-row', row.toString());
                     cell.setAttribute('data-col', col.toString());
-                    // Расчет позиции шестиугольника
                     const x = col * 90 + (row % 2 === 0 ? 0 : 45);
                     const y = row * 52;
                     cell.style.left = `${x}px`;
@@ -686,14 +700,12 @@
                 }
             }
         } else {
-            // Создаем квадратную доску
             for (let row = 0; row < BOARD_SIZE; row++) {
                 for (let col = 0; col < BOARD_SIZE; col++) {
                     const cell = document.createElement('div');
                     cell.className = `cell square-cell ${(row + col) % 2 === 0 ? 'white-cell' : 'black-cell'}`;
                     cell.setAttribute('data-row', row.toString());
                     cell.setAttribute('data-col', col.toString());
-                    // Позиционирование для абсолютного позиционирования
                     cell.style.left = `${col * 60}px`;
                     cell.style.top = `${row * 60}px`;
                     cell.style.position = 'absolute';
@@ -703,6 +715,7 @@
             }
         }
     }
+
     // Проверка, достигли ли все белые фишки цели (0-я строка)
     function checkWhiteReached() {
         for (let row = 0; row < BOARD_SIZE; row++) {
@@ -715,6 +728,20 @@
         }
         return true;
     }
+
+    // Проверка, достигли ли все черные фишки цели (последняя строка)
+    function checkBlackReached() {
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (board[row][col] && board[row][col].player === 2 && row !== BOARD_SIZE - 1) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     // Проверка, есть ли у черных фишки
     function hasBlackChips() {
         for (let row = 0; row < BOARD_SIZE; row++) {
@@ -727,19 +754,18 @@
         }
         return false;
     }
+
     // Подсчет суммы весов на стартовых линиях
     function calculateFinalScores() {
         let player1Sum = 0;
         let player2Sum = 0;
         const firstRowCols = BOARD_TYPE === 'hex' ? (0 % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
         const lastRowCols = BOARD_TYPE === 'hex' ? ((BOARD_SIZE - 1) % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
-        // Белые должны быть на первой строке (индекс 0)
         for (let col = 0; col < firstRowCols; col++) {
             if (board[0][col] && board[0][col].player === 1) {
                 player1Sum += board[0][col].weight;
             }
         }
-        // Черные должны быть на последней строке (индекс BOARD_SIZE - 1)
         for (let col = 0; col < lastRowCols; col++) {
             if (board[BOARD_SIZE - 1][col] && board[BOARD_SIZE - 1][col].player === 2) {
                 player2Sum += board[BOARD_SIZE - 1][col].weight;
@@ -747,6 +773,7 @@
         }
         return { player1Sum, player2Sum };
     }
+
     // Завершение игры и вывод результата
     function endGame() {
         const { player1Sum, player2Sum } = calculateFinalScores();
@@ -761,6 +788,7 @@
         }
         document.getElementById('game-info').textContent = message;
     }
+
     // Получение всех возможных ходов для игрока
     function getAllValidMoves(player) {
         const moves = [];
@@ -781,6 +809,7 @@
         }
         return moves;
     }
+
     // Копирование доски
     function copyBoard() {
         const copy = [];
@@ -795,17 +824,26 @@
         }
         return copy;
     }
-    // Применение хода к копии доски
+
+    // Применение хода к копии доски с учетом новых правил объединения
     function applyMoveToBoard(boardCopy, move, player) {
         const {from, to} = move;
         const chip = {...boardCopy[from.row][from.col]};
         boardCopy[from.row][from.col] = null;
-        // Ход к своей фишке на соседней клетке
-        if (boardCopy[to.row][to.col] && boardCopy[to.row][to.col].player === player)
-            if (chip) {
-                boardCopy[to.row][to.col].weight += chip.weight;
-                return boardCopy;
+
+        // Ход к своей фишке
+        if (boardCopy[to.row][to.col] && boardCopy[to.row][to.col].player === player) {
+            const targetChip = boardCopy[to.row][to.col];
+            if (chip.weight < targetChip.weight) {
+                boardCopy[to.row][to.col].weight = chip.weight + targetChip.weight;
+            } else if (chip.weight > targetChip.weight) {
+                boardCopy[to.row][to.col].weight = chip.weight - targetChip.weight;
+            } else {
+                boardCopy[to.row][to.col] = null;
             }
+            return boardCopy;
+        }
+
         // Проверка атрибута клетки
         const cellElement = document.querySelector(`.cell[data-row="${to.row}"][data-col="${to.col}"]`);
         let hasPlus = false;
@@ -814,33 +852,25 @@
             hasPlus = cellElement.classList.contains('plus');
             hasMinus = cellElement.classList.contains('minus');
         }
-        if (hasPlus) {
-            chip.weight += 1;
-        } else if (hasMinus) {
-            chip.weight -= 1;
-            if (chip.weight <= 0) {
-                return boardCopy;
-            }
-        }
-        // Проверка столкновения с фишкой противника
+
+        // Столкновение с фишкой противника
         if (boardCopy[to.row][to.col]) {
             const enemyChip = boardCopy[to.row][to.col];
             if (COLLISION_MODE === 'field-effect') {
                 if (hasPlus) {
-                    // Сложение весов, выживает ходивший
                     chip.weight += enemyChip.weight;
                     boardCopy[to.row][to.col] = chip;
                 } else if (hasMinus) {
-                    // Вычитание весов, выживает тот, у кого больше
                     if (chip.weight > enemyChip.weight) {
+                        chip.weight -= enemyChip.weight;
                         boardCopy[to.row][to.col] = chip;
                     } else if (enemyChip.weight > chip.weight) {
+                        enemyChip.weight -= chip.weight;
                         boardCopy[to.row][to.col] = enemyChip;
                     } else {
                         boardCopy[to.row][to.col] = null;
                     }
                 } else {
-                    // Поле без атрибута — классическое столкновение
                     if (chip.weight > enemyChip.weight) {
                         chip.weight -= enemyChip.weight;
                         boardCopy[to.row][to.col] = chip;
@@ -852,7 +882,6 @@
                     }
                 }
             } else {
-                // Классический режим
                 if (chip.weight > enemyChip.weight) {
                     chip.weight -= enemyChip.weight;
                     boardCopy[to.row][to.col] = chip;
@@ -864,16 +893,26 @@
                 }
             }
         } else {
+            // Применяем эффект поля только при ходе на пустую клетку
+            if (hasPlus) {
+                chip.weight += 1;
+            } else if (hasMinus) {
+                chip.weight -= 1;
+                if (chip.weight <= 0) {
+                    return boardCopy;
+                }
+            }
             boardCopy[to.row][to.col] = chip;
         }
         return boardCopy;
     }
-    // Расширенная оценка позиции с учетом продвижения, безопасности и контроля центра
+
+    // Расширенная оценка позиции с учетом новых правил
     function evaluateBoardAdvanced(boardCopy, player) {
         let score = 0;
         let player1AllReached = true;
         let player2AllReached = true;
-        // Проверка достижения целевой линии и подсчет очков
+
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
@@ -881,21 +920,17 @@
                     const chip = boardCopy[row][col];
                     if (chip.player === 1) {
                         if (row !== 0) player1AllReached = false;
-                        // Бонус за продвижение вперед (экспоненциальный)
                         score += Math.pow(2, BOARD_SIZE - 1 - row) * chip.weight;
-                        // Бонус за безопасность (фишки в тылу)
                         if (row > BOARD_SIZE - 3) score += chip.weight * 0.5;
                     } else {
                         if (row !== BOARD_SIZE - 1) player2AllReached = false;
-                        // Бонус за продвижение вперед (экспоненциальный)
                         score -= Math.pow(2, row) * chip.weight;
-                        // Бонус за безопасность (фишки в тылу)
                         if (row < 2) score -= chip.weight * 0.5;
                     }
                 }
             }
         }
-        // Если игра завершена
+
         if (player1AllReached || player2AllReached) {
             let player1Sum = 0;
             let player2Sum = 0;
@@ -915,7 +950,7 @@
             if (player2Sum > player1Sum) return player === 2 ? 100000 : -100000;
             return 0;
         }
-        // Бонус за контроль центральных клеток
+
         const centerRow = Math.floor(BOARD_SIZE / 2);
         const centerCol = Math.floor(BOARD_SIZE / 2);
         for (let row = Math.max(0, centerRow - 1); row <= Math.min(BOARD_SIZE - 1, centerRow + 1); row++) {
@@ -930,7 +965,7 @@
                 }
             }
         }
-        // Бонус за количество фишек
+
         let player1Count = 0;
         let player2Count = 0;
         let player1Weight = 0;
@@ -949,11 +984,36 @@
                 }
             }
         }
-        // Бонус за разницу в количестве фишек и общем весе
+
+        // Учет новых правил объединения: избегаем создания фишек с равными весами
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (boardCopy[row][col] && boardCopy[row][col].player === player) {
+                    // Проверяем соседние клетки на наличие фишек с таким же весом
+                    const directions = getMoveDirections();
+                    for (const [dRow, dCol] of directions) {
+                        const checkRow = row + dRow;
+                        const checkCol = col + dCol;
+                        const colsInCheckRow = BOARD_TYPE === 'hex' ? (checkRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                        if (checkRow >= 0 && checkRow < BOARD_SIZE && checkCol >= 0 && checkCol < colsInCheckRow) {
+                            if (boardCopy[checkRow][checkCol] &&
+                                boardCopy[checkRow][checkCol].player === player &&
+                                boardCopy[checkRow][checkCol].weight === boardCopy[row][col].weight) {
+                                // Штраф за возможность уничтожения при объединении
+                                score += (player === 1 ? -10 : 10);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         score += (player1Count - player2Count) * 2;
         score += (player1Weight - player2Weight) * 1.5;
         return player === 1 ? score : -score;
     }
+
     // Минимакс с альфа-бета отсечением и углубленной оценкой
     function minimaxAdvanced(boardCopy, depth, alpha, beta, maximizingPlayer, player, originalPlayer) {
         if (depth === 0) {
@@ -963,13 +1023,13 @@
         if (moves.length === 0) {
             return evaluateBoardAdvanced(boardCopy, originalPlayer);
         }
-        // Сортировка ходов для лучшего отсечения (жадная эвристика)
+
         moves.sort((a, b) => {
-            // Приоритет ходам, которые продвигают вперед
             const aForward = (player === 1 ? a.from.row - a.to.row : a.to.row - a.from.row);
             const bForward = (player === 1 ? b.from.row - b.to.row : b.to.row - b.from.row);
             return bForward - aForward;
         });
+
         if (maximizingPlayer) {
             let maxEval = -Infinity;
             for (const move of moves) {
@@ -994,6 +1054,7 @@
             return minEval;
         }
     }
+
     // Копирование доски из заданного состояния
     function copyBoardFromState(boardState) {
         const copy = [];
@@ -1008,6 +1069,7 @@
         }
         return copy;
     }
+
     // Получение всех ходов для заданной доски
     function getAllValidMovesForBoard(boardCopy, player) {
         const moves = [];
@@ -1019,11 +1081,9 @@
                     for (const [dRow, dCol] of directions) {
                         const newRow = row + dRow;
                         const newCol = col + dCol;
-                        // Проверка границ
                         if (newRow < 0 || newRow >= BOARD_SIZE) continue;
                         const toCols = BOARD_TYPE === 'hex' ? (newRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
                         if (newCol < 0 || newCol >= toCols) continue;
-                        // Проверка направления движения для игроков при движении к противнику
                         if (!(boardCopy[newRow][newCol] && boardCopy[newRow][newCol].player === player)) {
                             if (player === 1 && dRow > 0) continue;
                             if (player === 2 && dRow < 0) continue;
@@ -1035,44 +1095,44 @@
         }
         return moves;
     }
-    // Стратегия "Мастер-танк" для уровня 4
+
+    // Стратегия "Мастер-танк" для уровня 4 - обновлена под новые правила
     function getTankMove(player) {
-        // Этап 1: Сбор всех фишек в одну на стартовой линии
         const startRow = player === 1 ? BOARD_SIZE - 1 : 0;
         let ownChips = [];
         let colsInStartRow = BOARD_TYPE === 'hex' ? (startRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
-        // Собираем все фишки игрока на стартовой линии
+
         for (let col = 0; col < colsInStartRow; col++) {
             if (board[startRow][col] && board[startRow][col].player === player) {
                 ownChips.push({row: startRow, col: col, weight: board[startRow][col].weight});
             }
         }
-        // Если есть более одной фишки на стартовой линии — собираем их
+
         if (ownChips.length > 1) {
-            // Находим самую левую и самую правую фишки
             ownChips.sort((a, b) => a.col - b.col);
             const leftmost = ownChips[0];
             const rightmost = ownChips[ownChips.length - 1];
-            // Двигаем правую фишку влево к левой
+
             if (rightmost.col > leftmost.col) {
                 const targetCol = leftmost.col;
-                // Проверяем, можно ли двигаться влево
                 for (let col = rightmost.col - 1; col >= targetCol; col--) {
                     if (board[startRow][col] && board[startRow][col].player === player) {
-                        // Нашли фишку для объединения
-                        return {from: {row: startRow, col: col + 1}, to: {row: startRow, col: col}};
+                        // Проверяем, что объединение не приведет к уничтожению
+                        const movingWeight = board[startRow][col + 1].weight;
+                        const targetWeight = board[startRow][col].weight;
+                        if (movingWeight !== targetWeight) {
+                            return {from: {row: startRow, col: col + 1}, to: {row: startRow, col: col}};
+                        }
                     }
                 }
-                // Если нет фишек между ними, просто двигаемся влево
                 if (isValidMove(startRow, rightmost.col, startRow, rightmost.col - 1)) {
                     return {from: {row: startRow, col: rightmost.col}, to: {row: startRow, col: rightmost.col - 1}};
                 }
             }
         }
-        // Этап 2: Если осталась одна фишка на стартовой линии — начинаем продвижение
+
         if (ownChips.length === 1) {
             const tank = ownChips[0];
-            // Ищем безопасный путь вперед через плюсы и избегая минусов и вражеских фишек
             const directions = player === 1 ?
                 [[-1, -1], [-1, 0], [-1, 1]] :
                 [[1, -1], [1, 0], [1, 1]];
@@ -1082,22 +1142,17 @@
                 const newRow = tank.row + dRow;
                 const newCol = tank.col + dCol;
                 if (!isValidMove(tank.row, tank.col, newRow, newCol)) continue;
-                // Оценка хода
                 let score = 0;
                 const cellElement = document.querySelector(`.cell[data-row="${newRow}"][data-col="${newCol}"]`);
-                // Бонус за плюс
                 if (cellElement && cellElement.classList.contains('plus')) {
                     score += 10;
                 }
-                // Штраф за минус
                 if (cellElement && cellElement.classList.contains('minus')) {
                     score -= 5;
                 }
-                // Штраф за вражескую фишку
                 if (board[newRow][newCol] && board[newRow][newCol].player !== player) {
                     score -= 20;
                 }
-                // Бонус за продвижение
                 score += player === 1 ? 5 : 5;
                 if (score > bestScore) {
                     bestScore = score;
@@ -1106,12 +1161,11 @@
             }
             if (bestMove) return bestMove;
         }
-        // Если не получилось применить стратегию танка — используем обычный ИИ уровня 3
         return getBestMoveAdvanced(player, 'ai3');
     }
+
     // Расчет максимального возможного веса танка оппонента
     function calculateOpponentMaxTankWeight(opponent, playerStartRow) {
-        // Суммируем все фишки оппонента на его стартовой линии
         let totalWeight = 0;
         let colsInStartRow = BOARD_TYPE === 'hex' ? (playerStartRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
         for (let col = 0; col < colsInStartRow; col++) {
@@ -1119,12 +1173,11 @@
                 totalWeight += board[playerStartRow][col].weight;
             }
         }
-        // Добавляем потенциальные бонусы от полей "+"
-        // Оцениваем максимальный путь до встречи (примерно BOARD_SIZE/2 ходов)
         const potentialBonus = Math.floor(BOARD_SIZE / 2);
         return totalWeight + potentialBonus;
     }
-    // Определение стороны сборки оппонента (левая/правая)
+
+    // Определение стороны сборки оппонента
     function getOpponentAssemblySide(opponent, playerStartRow) {
         let colsInStartRow = BOARD_TYPE === 'hex' ? (playerStartRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
         let leftWeight = 0;
@@ -1141,24 +1194,22 @@
         }
         return leftWeight > rightWeight ? 'left' : 'right';
     }
-    // Поиск безопасного пути к цели (без контакта с противником)
+
+    // Поиск безопасного пути к цели
     function findSafePathToGoal(player, startRow, startCol) {
         const opponent = player === 1 ? 2 : 1;
         const targetRow = player === 1 ? 0 : BOARD_SIZE - 1;
         const directions = player === 1 ? [[-1, -1], [-1, 0], [-1, 1]] : [[1, -1], [1, 0], [1, 1]];
-        // Простой жадный алгоритм: выбираем путь с минимальным риском
         let bestMove = null;
         let minRisk = Infinity;
         for (const [dRow, dCol] of directions) {
             const newRow = startRow + dRow;
             const newCol = startCol + dCol;
             if (!isValidMove(startRow, startCol, newRow, newCol)) continue;
-            // Оценка риска
             let risk = 0;
             if (board[newRow][newCol] && board[newRow][newCol].player === opponent) {
-                risk += 100; // Избегаем контакта
+                risk += 100;
             }
-            // Проверяем соседние клетки на угрозы
             const threatDirections = getMoveDirections();
             for (const [tdRow, tdCol] of threatDirections) {
                 const threatRow = newRow + tdRow;
@@ -1179,18 +1230,19 @@
         }
         return bestMove;
     }
-    // Стратегия "Анти-танк" для уровня 5 (модифицированная)
+
+    // Стратегия "Анти-танк" для уровня 5 - обновлена под новые правила
     function getAntiTankMove(player) {
         const opponent = player === 1 ? 2 : 1;
         const opponentStartRow = opponent === 1 ? BOARD_SIZE - 1 : 0;
         const ownStartRow = player === 1 ? BOARD_SIZE - 1 : 0;
-        // Анализ доски: проверяем, собирает ли оппонент танк
+
         let opponentChipsOnStart = [];
         let ownChipsOnStart = [];
         let ownChips = [];
         const colsInOpponentStart = BOARD_TYPE === 'hex' ? (opponentStartRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
         const colsInOwnStart = BOARD_TYPE === 'hex' ? (ownStartRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
-        // Собираем фишки на стартовых линиях
+
         for (let col = 0; col < colsInOpponentStart; col++) {
             if (board[opponentStartRow][col] && board[opponentStartRow][col].player === opponent) {
                 opponentChipsOnStart.push({col, weight: board[opponentStartRow][col].weight});
@@ -1201,7 +1253,6 @@
                 ownChipsOnStart.push({col, weight: board[ownStartRow][col].weight});
             }
         }
-        // Собираем все свои фишки
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
@@ -1210,26 +1261,26 @@
                 }
             }
         }
-        // Если оппонент уже собрал танк или собирает
+
         if (opponentChipsOnStart.length > 0) {
             const opponentMaxWeight = calculateOpponentMaxTankWeight(opponent, opponentStartRow);
             const ownTotalWeight = ownChipsOnStart.reduce((sum, chip) => sum + chip.weight, 0);
-            // Если наш максимальный вес недостаточен для победы — собираем камикадзе для ничьи
             if (ownTotalWeight < opponentMaxWeight) {
-                // Собираем все фишки в одну на стартовой линии (камикадзе)
                 if (ownChipsOnStart.length > 1) {
-                    // Сортируем по колонкам
                     ownChipsOnStart.sort((a, b) => a.col - b.col);
-                    // Двигаем самую правую фишку влево
                     for (let i = ownChipsOnStart.length - 1; i > 0; i--) {
                         const fromCol = ownChipsOnStart[i].col;
                         const toCol = ownChipsOnStart[i-1].col;
                         if (fromCol > toCol && isValidMove(ownStartRow, fromCol, ownStartRow, fromCol - 1)) {
-                            return {from: {row: ownStartRow, col: fromCol}, to: {row: ownStartRow, col: fromCol - 1}};
+                            // Проверяем, что объединение не приведет к уничтожению
+                            const movingWeight = board[ownStartRow][fromCol].weight;
+                            const targetWeight = board[ownStartRow][toCol].weight;
+                            if (movingWeight !== targetWeight) {
+                                return {from: {row: ownStartRow, col: fromCol}, to: {row: ownStartRow, col: toCol}};
+                            }
                         }
                     }
                 } else if (ownChipsOnStart.length === 1) {
-                    // Отправляем камикадзе на перехват
                     const tankCol = ownChipsOnStart[0].col;
                     const directions = player === 1 ? [[-1, -1], [-1, 0], [-1, 1]] : [[1, -1], [1, 0], [1, 1]];
                     for (const [dRow, dCol] of directions) {
@@ -1241,47 +1292,49 @@
                     }
                 }
             } else {
-                // У нас достаточно веса — строим мобильный танк и идем к цели, избегая контакта
-                // Определяем сторону сборки оппонента
                 const opponentSide = getOpponentAssemblySide(opponent, opponentStartRow);
                 const ownAssemblySide = opponentSide === 'left' ? 'right' : 'left';
-                // Собираем фишки с противоположной стороны
                 if (ownChipsOnStart.length > 1) {
                     ownChipsOnStart.sort((a, b) => ownAssemblySide === 'left' ? a.col - b.col : b.col - a.col);
-                    // Собираем в направлении противоположной стороны
                     for (let i = 1; i < ownChipsOnStart.length; i++) {
                         const targetCol = ownChipsOnStart[0].col;
                         const currentCol = ownChipsOnStart[i].col;
                         if (ownAssemblySide === 'left' && currentCol > targetCol) {
                             if (isValidMove(ownStartRow, currentCol, ownStartRow, currentCol - 1)) {
-                                return {from: {row: ownStartRow, col: currentCol}, to: {row: ownStartRow, col: currentCol - 1}};
+                                const movingWeight = board[ownStartRow][currentCol].weight;
+                                const targetWeight = board[ownStartRow][targetCol].weight;
+                                if (movingWeight !== targetWeight) {
+                                    return {from: {row: ownStartRow, col: currentCol}, to: {row: ownStartRow, col: targetCol}};
+                                }
                             }
                         } else if (ownAssemblySide === 'right' && currentCol < targetCol) {
                             if (isValidMove(ownStartRow, currentCol, ownStartRow, currentCol + 1)) {
-                                return {from: {row: ownStartRow, col: currentCol}, to: {row: ownStartRow, col: currentCol + 1}};
+                                const movingWeight = board[ownStartRow][currentCol].weight;
+                                const targetWeight = board[ownStartRow][targetCol].weight;
+                                if (movingWeight !== targetWeight) {
+                                    return {from: {row: ownStartRow, col: currentCol}, to: {row: ownStartRow, col: targetCol}};
+                                }
                             }
                         }
                     }
                 }
-                // Если сборка завершена — идем к цели безопасным путем
                 if (ownChipsOnStart.length === 1) {
                     const tankCol = ownChipsOnStart[0].col;
                     const safeMove = findSafePathToGoal(player, ownStartRow, tankCol);
                     if (safeMove) return safeMove;
                 }
-                // Если не получилось — играем как Мастер-танк
                 return getTankMove(player);
             }
         }
-        // Если угрозы нет — играем как Мастер-танк
         return getTankMove(player);
     }
-    // Стратегия "Призрак" для уровня 6
+
+    // Стратегия "Призрак" для уровня 6 - обновлена под новые правила
     function getGhostMove(player) {
         const opponent = player === 1 ? 2 : 1;
         const startRow = player === 1 ? BOARD_SIZE - 1 : 0;
         const targetRow = player === 1 ? 0 : BOARD_SIZE - 1;
-        // Собираем все фишки игрока
+
         let ownChips = [];
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
@@ -1291,24 +1344,24 @@
                 }
             }
         }
-        // Если есть несколько фишек на стартовой линии — не объединяем их полностью
-        // Вместо этого создаем 2-3 мобильные фишки среднего веса
+
         let startRowChips = ownChips.filter(chip => chip.row === startRow);
         if (startRowChips.length > 2) {
-            // Сортируем по колонкам и объединяем только соседние фишки попарно
             startRowChips.sort((a, b) => a.col - b.col);
             for (let i = 0; i < startRowChips.length - 1; i += 2) {
                 const chip1 = startRowChips[i];
                 const chip2 = startRowChips[i + 1];
-                // Если они соседние — объединяем
                 if (Math.abs(chip1.col - chip2.col) === 1) {
-                    if (isValidMove(chip2.row, chip2.col, chip1.row, chip1.col)) {
-                        return {from: {row: chip2.row, col: chip2.col}, to: {row: chip1.row, col: chip1.col}};
+                    // Проверяем, что объединение не приведет к уничтожению
+                    if (chip1.weight !== chip2.weight) {
+                        if (isValidMove(chip2.row, chip2.col, chip1.row, chip1.col)) {
+                            return {from: {row: chip2.row, col: chip2.col}, to: {row: chip1.row, col: chip1.col}};
+                        }
                     }
                 }
             }
         }
-        // Для каждой фишки оцениваем путь к цели
+
         let bestMove = null;
         let bestScore = -Infinity;
         for (const chip of ownChips) {
@@ -1317,25 +1370,19 @@
                 const newRow = chip.row + dRow;
                 const newCol = chip.col + dCol;
                 if (!isValidMove(chip.row, chip.col, newRow, newCol)) continue;
-                // Оценка хода по стратегии Призрака
                 let score = 0;
-                // Бонус за продвижение (чем ближе к цели — тем выше бонус)
                 const distanceToGoal = player === 1 ? newRow : (BOARD_SIZE - 1 - newRow);
                 score += (BOARD_SIZE - distanceToGoal) * 10;
-                // Бонус за плюс
                 const cellElement = document.querySelector(`.cell[data-row="${newRow}"][data-col="${newCol}"]`);
                 if (cellElement && cellElement.classList.contains('plus')) {
                     score += 8;
                 }
-                // Штраф за минус
                 if (cellElement && cellElement.classList.contains('minus')) {
                     score -= 3;
                 }
-                // Сильный штраф за контакт с противником
                 if (board[newRow][newCol] && board[newRow][newCol].player === opponent) {
                     score -= 100;
                 }
-                // Штраф за близость к вражеским фишкам
                 const threatDirections = getMoveDirections();
                 for (const [tdRow, tdCol] of threatDirections) {
                     const threatRow = newRow + tdRow;
@@ -1343,7 +1390,6 @@
                     const colsInThreatRow = BOARD_TYPE === 'hex' ? (threatRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
                     if (threatRow >= 0 && threatRow < BOARD_SIZE && threatCol >= 0 && threatCol < colsInThreatRow) {
                         if (board[threatRow][threatCol] && board[threatRow][threatCol].player === opponent) {
-                            // Расстояние до угрозы
                             const dist = Math.abs(threatRow - newRow) + Math.abs(threatCol - newCol);
                             if (dist <= 2) {
                                 score -= (3 - dist) * 15;
@@ -1351,7 +1397,6 @@
                         }
                     }
                 }
-                // Бонус за сохранение мобильности (не создавать слишком тяжелую фишку)
                 if (chip.weight < 8) {
                     score += 5;
                 } else if (chip.weight > 12) {
@@ -1364,24 +1409,22 @@
             }
         }
         if (bestMove) return bestMove;
-        // Если не нашли хороший ход — используем обычный ИИ
         return getBestMoveAdvanced(player, 'ai3');
     }
-    // Стратегия "Маг" для уровня 7 - истребитель Призраков
+
+    // Стратегия "Маг" для уровня 7 - обновлена под новые правила
     function getMageMove(player) {
         const opponent = player === 1 ? 2 : 1;
         const startRow = player === 1 ? BOARD_SIZE - 1 : 0;
         const targetRow = player === 1 ? 0 : BOARD_SIZE - 1;
-        // Анализ доски: идентификация Призраков (фишки противника с низким весом и высокой мобильностью)
+
         let ghostThreats = [];
         let ownChips = [];
-        // Собираем все фишки
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
                 if (board[row][col]) {
                     if (board[row][col].player === opponent) {
-                        // Определяем Призраков: вес <= 8 и находятся не на стартовой линии
                         if (board[row][col].weight <= 8 && row !== (opponent === 1 ? BOARD_SIZE - 1 : 0)) {
                             ghostThreats.push({row, col, weight: board[row][col].weight});
                         }
@@ -1391,30 +1434,23 @@
                 }
             }
         }
-        // Если есть Призраки — приоритетное уничтожение
+
         if (ghostThreats.length > 0) {
-            // Находим самого опасного Призрака (ближайшего к нашей цели)
             ghostThreats.sort((a, b) => {
                 const distA = player === 1 ? a.row : (BOARD_SIZE - 1 - a.row);
                 const distB = player === 1 ? b.row : (BOARD_SIZE - 1 - b.row);
-                return distA - distB; // Ближайший к цели Призрак первым
+                return distA - distB;
             });
             const targetGhost = ghostThreats[0];
-            // Ищем нашу фишку, которая может атаковать Призрака
             for (const chip of ownChips) {
-                // Проверяем, может ли фишка достичь Призрака за 1-2 хода
                 const rowDiff = Math.abs(targetGhost.row - chip.row);
                 const colDiff = Math.abs(targetGhost.col - chip.col);
                 if (rowDiff <= 2 && colDiff <= 2) {
-                    // Генерируем все возможные ходы для этой фишки
                     const moves = getAllValidMovesForChip(chip.row, chip.col, player);
                     for (const move of moves) {
-                        // Проверяем, ведет ли ход к атаке Призрака или перекрытию его пути
                         if (move.to.row === targetGhost.row && move.to.col === targetGhost.col) {
-                            // Прямая атака
                             return move;
                         }
-                        // Проверяем, блокирует ли ход путь Призрака
                         if (isBlockingGhostPath(move.to, targetGhost, player)) {
                             return move;
                         }
@@ -1422,23 +1458,23 @@
                 }
             }
         }
-        // Если нет Призраков или не можем их атаковать — играем как Призрак, но агрессивнее.
-        // Создаем 2-3 средние фишки и быстро идем к цели
+
         let startRowChips = ownChips.filter(chip => chip.row === startRow);
         if (startRowChips.length > 2) {
-            // Объединяем фишки стратегически для создания 2-3 боеспособных единиц
             startRowChips.sort((a, b) => a.col - b.col);
             for (let i = 0; i < startRowChips.length - 1; i += 2) {
                 const chip1 = startRowChips[i];
                 const chip2 = startRowChips[i + 1];
                 if (Math.abs(chip1.col - chip2.col) === 1) {
-                    if (isValidMove(chip2.row, chip2.col, chip1.row, chip1.col)) {
-                        return {from: {row: chip2.row, col: chip2.col}, to: {row: chip1.row, col: chip1.col}};
+                    if (chip1.weight !== chip2.weight) {
+                        if (isValidMove(chip2.row, chip2.col, chip1.row, chip1.col)) {
+                            return {from: {row: chip2.row, col: chip2.col}, to: {row: chip1.row, col: chip1.col}};
+                        }
                     }
                 }
             }
         }
-        // Выбираем лучший ход для продвижения к цели с учетом угроз
+
         let bestMove = null;
         let bestScore = -Infinity;
         for (const chip of ownChips) {
@@ -1448,34 +1484,27 @@
                 const newCol = chip.col + dCol;
                 if (!isValidMove(chip.row, chip.col, newRow, newCol)) continue;
                 let score = 0;
-                // Очень высокий приоритет продвижения к цели
                 const distanceToGoal = player === 1 ? newRow : (BOARD_SIZE - 1 - newRow);
                 score += (BOARD_SIZE - distanceToGoal) * 15;
-                // Бонус за плюс
                 const cellElement = document.querySelector(`.cell[data-row="${newRow}"][data-col="${newCol}"]`);
                 if (cellElement && cellElement.classList.contains('plus')) {
                     score += 10;
                 }
-                // Штраф за минус
                 if (cellElement && cellElement.classList.contains('minus')) {
                     score -= 5;
                 }
-                // Штраф за контакт с противником (кроме Призраков)
                 if (board[newRow][newCol] && board[newRow][newCol].player === opponent) {
-                    // Если это не Призрак (вес > 8), то сильный штраф
                     if (board[newRow][newCol].weight > 8) {
                         score -= 80;
                     } else {
-                        // Это Призрак — бонус за уничтожение
                         score += 50;
                     }
                 }
-                // Бонус за создание фишек среднего веса (6-12)
                 const newWeight = chip.weight + (board[newRow][newCol] && board[newRow][newCol].player === player ? board[newRow][newCol].weight : 0);
                 if (newWeight >= 6 && newWeight <= 12) {
                     score += 20;
                 } else if (newWeight > 12) {
-                    score -= 10; // Слишком тяжелая фишка теряет мобильность
+                    score -= 10;
                 }
                 if (score > bestScore) {
                     bestScore = score;
@@ -1484,9 +1513,9 @@
             }
         }
         if (bestMove) return bestMove;
-        // Резервный вариант
         return getBestMoveAdvanced(player, 'ai3');
     }
+
     // Получение всех ходов для конкретной фишки
     function getAllValidMovesForChip(row, col, player) {
         const moves = [];
@@ -1500,6 +1529,7 @@
         }
         return moves;
     }
+
     // Проверка, блокирует ли позиция путь Призрака
     function isBlockingGhostPath(pos, ghost, player) {
         const directions = player === 1 ? [[-1, -1], [-1, 0], [-1, 1]] : [[1, -1], [1, 0], [1, 1]];
@@ -1512,12 +1542,11 @@
         }
         return false;
     }
-    // Стратегия "Метаморф" для уровня 8 - адаптивный убийца всех стратегий
+
+    // Стратегия "Метаморф" для уровня 8 - обновлена под новые правила
     function getMetamorphMove(player) {
         const opponent = player === 1 ? 2 : 1;
-        // Анализ стратегии противника
         const opponentStrategy = detectOpponentStrategy(opponent);
-        // Адаптация под стратегию противника
         switch(opponentStrategy) {
             case 'tank':
                 return getAntiTankMove(player);
@@ -1531,13 +1560,12 @@
             case 'knowledge':
             case 'absolyaris':
             case 'secret':
-                // Против сложных стратегий используем гибридный подход
                 return getHybridMove(player);
             default:
-                // По умолчанию используем сбалансированную стратегию
                 return getBalancedMove(player);
         }
     }
+
     // Обнаружение стратегии противника
     function detectOpponentStrategy(opponent) {
         const startRow = opponent === 1 ? BOARD_SIZE - 1 : 0;
@@ -1545,7 +1573,6 @@
         let totalWeight = 0;
         let maxWeight = 0;
         let mobileChips = 0;
-        // Собираем информацию о фишках противника
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
@@ -1554,14 +1581,12 @@
                     opponentChips.push({row, col, weight: chip.weight});
                     totalWeight += chip.weight;
                     maxWeight = Math.max(maxWeight, chip.weight);
-                    // Считаем мобильные фишки (вес <= 8)
                     if (chip.weight <= 8 && row !== startRow) {
                         mobileChips++;
                     }
                 }
             }
         }
-        // Анализ стратегии
         if (opponentChips.length === 1 && maxWeight > 15) {
             return 'tank';
         } else if (opponentChips.length === 1 && maxWeight > 10) {
@@ -1581,30 +1606,34 @@
         }
         return 'unknown';
     }
-    // Гибридный ход для Метаморфа
+
+    // Гибридный ход для Метаморфа - обновлен под новые правила
     function getHybridMove(player) {
-        // Комбинируем элементы разных стратегий
         const moves = getAllValidMoves(player);
         if (moves.length === 0) return null;
         let bestMove = moves[0];
         let bestScore = -Infinity;
         for (const move of moves) {
             let score = 0;
-            // Бонус за продвижение
             score += (player === 1 ? move.from.row - move.to.row : move.to.row - move.from.row) * 8;
-            // Бонус за объединение фишек
             if (board[move.to.row][move.to.col] && board[move.to.row][move.to.col].player === player) {
-                score += 15;
+                const moving = board[move.from.row][move.from.col].weight;
+                const target = board[move.to.row][move.to.col].weight;
+                if (moving < target) {
+                    score += (moving + target) * 2;
+                } else if (moving > target) {
+                    score += (moving - target) * 1.5;
+                } else {
+                    score -= 50;
+                }
             }
-            // Штраф за контакт с сильным противником
             if (board[move.to.row][move.to.col] && board[move.to.row][move.to.col].player !== player) {
                 if (board[move.to.row][move.to.col].weight > 10) {
                     score -= 50;
                 } else {
-                    score += 10; // Слабого противника можно атаковать
+                    score += 10;
                 }
             }
-            // Бонус за плюс
             const cellElement = document.querySelector(`.cell[data-row="${move.to.row}"][data-col="${move.to.col}"]`);
             if (cellElement && cellElement.classList.contains('plus')) {
                 score += 7;
@@ -1616,40 +1645,46 @@
         }
         return bestMove;
     }
+
     // Сбалансированный ход
     function getBalancedMove(player) {
         return getBestMoveAdvanced(player, 'ai3');
     }
-    // Стратегия "Знание" для уровня 9 - прагматичный гроссмейстер
+
+    // Стратегия "Знание" для уровня 9 - обновлена под новые правила
     function getKnowledgeMove(player) {
         const opponent = player === 1 ? 2 : 1;
-        // Многокритериальная оптимизация
         let bestMove = null;
         let bestScore = -Infinity;
         const moves = getAllValidMoves(player);
         for (const move of moves) {
             let score = 0;
-            // Критерий 1: Скорость достижения цели
             const distanceGain = player === 1 ? (move.from.row - move.to.row) : (move.to.row - move.from.row);
             score += distanceGain * 12;
-            // Критерий 2: Максимизация веса
             let weightChange = 0;
             if (board[move.to.row][move.to.col] && board[move.to.row][move.to.col].player === player) {
-                weightChange = board[move.to.row][move.to.col].weight;
-            }
-            const cellElement = document.querySelector(`.cell[data-row="${move.to.row}"][data-col="${move.to.col}"]`);
-            if (cellElement && cellElement.classList.contains('plus')) {
-                weightChange += 1;
-            } else if (cellElement && cellElement.classList.contains('minus')) {
-                weightChange -= 1;
+                const moving = board[move.from.row][move.from.col].weight;
+                const target = board[move.to.row][move.to.col].weight;
+                if (moving < target) {
+                    weightChange = moving + target;
+                } else if (moving > target) {
+                    weightChange = moving - target;
+                } else {
+                    weightChange = -100;
+                }
+            } else {
+                const cellElement = document.querySelector(`.cell[data-row="${move.to.row}"][data-col="${move.to.col}"]`);
+                if (cellElement && cellElement.classList.contains('plus')) {
+                    weightChange = 1;
+                } else if (cellElement && cellElement.classList.contains('minus')) {
+                    weightChange = -1;
+                }
             }
             score += weightChange * 8;
-            // Критерий 3: Контроль над противником
             const opponentThreat = assessOpponentThreat(move.to.row, move.to.col, opponent);
             score -= opponentThreat * 10;
-            // Критерий 4: Использование отстающих солдат
             if (move.from.row === (player === 1 ? BOARD_SIZE - 1 : 0)) {
-                score += 5; // Активация солдата с тыла
+                score += 5;
             }
             if (score > bestScore) {
                 bestScore = score;
@@ -1658,6 +1693,7 @@
         }
         return bestMove || getBestMoveAdvanced(player, 'ai3');
     }
+
     // Оценка угрозы от противника
     function assessOpponentThreat(row, col, opponent) {
         let threat = 0;
@@ -1674,13 +1710,11 @@
         }
         return threat;
     }
-    // Стратегия "Абсолярис" для уровня 10 - поле, в котором звучит стратегия
+
+    // Стратегия "Абсолярис" для уровня 10 - обновлена под новые правила
     function getAbsolyarisMove(player) {
-        // Абсолярис не выбирает ходы — он создает условия, в которых любой его ход ведет к победе.
-        // Реализуем это через глубокий анализ и создание доминирующей позиции
         const moves = getAllValidMoves(player);
         if (moves.length === 0) return null;
-        // Сортируем ходы по потенциальному влиянию на игру
         moves.sort((a, b) => {
             const impactA = calculateMoveImpact(a, player);
             const impactB = calculateMoveImpact(b, player);
@@ -1688,17 +1722,16 @@
         });
         return moves[0];
     }
+
     // Расчет влияния хода
     function calculateMoveImpact(move, player) {
         let impact = 0;
-        // Влияние на контроль пространства
         impact += calculateSpaceControl(move.to.row, move.to.col, player);
-        // Влияние на гибкость позиции
         impact += calculatePositionalFlexibility(move.to.row, move.to.col, player);
-        // Влияние на инициативу
         impact += calculateInitiativeGain(move, player);
         return impact;
     }
+
     // Контроль пространства
     function calculateSpaceControl(row, col, player) {
         let control = 0;
@@ -1715,6 +1748,7 @@
         }
         return control;
     }
+
     // Позиционная гибкость
     function calculatePositionalFlexibility(row, col, player) {
         let flexibility = 0;
@@ -1722,6 +1756,7 @@
         flexibility = futureMoves.length;
         return flexibility;
     }
+
     // Получение возможных ходов из позиции
     function getAllValidMovesFromPosition(row, col, player) {
         const moves = [];
@@ -1730,7 +1765,6 @@
             const newRow = row + dRow;
             const newCol = col + dCol;
             const fakeBoard = copyBoard();
-            // Временно помещаем фишку в позицию
             fakeBoard[row][col] = {player: player, weight: 1};
             if (isValidMove(row, col, newRow, newCol)) {
                 moves.push({from: {row, col}, to: {row: newRow, col: newCol}});
@@ -1738,10 +1772,10 @@
         }
         return moves;
     }
+
     // Прирост инициативы
     function calculateInitiativeGain(move, player) {
         let initiative = 0;
-        // Если ход ведет к продвижению — бонус
         if (player === 1 && move.to.row < move.from.row) {
             initiative += 5;
         } else if (player === 2 && move.to.row > move.from.row) {
@@ -1749,10 +1783,9 @@
         }
         return initiative;
     }
-    // Стратегия "Секрет" для уровня 11 - универсальное оружие
+
+    // Стратегия "Секрет" для уровня 11 - обновлена под новые правила
     function getSecretMove(player) {
-        // Секрет использует все предыдущие стратегии в оптимальной комбинации
-        // с элементами случайности и непредсказуемости
         const strategies = [
             getTankMove,
             getAntiTankMove,
@@ -1762,14 +1795,11 @@
             getKnowledgeMove,
             getAbsolyarisMove
         ];
-        // Выбираем случайную стратегию из доступных
         const randomStrategy = strategies[Math.floor(Math.random() * strategies.length)];
         const move = randomStrategy(player);
-        // Если выбранная стратегия не дала результата — используем резерв
         if (!move) {
             return getBestMoveAdvanced(player, 'ai3');
         }
-        // Добавляем элемент непредсказуемости: иногда делаем неоптимальный ход
         if (Math.random() < 0.1) {
             const allMoves = getAllValidMoves(player);
             if (allMoves.length > 1) {
@@ -1781,29 +1811,41 @@
         }
         return move;
     }
-    // Выбор лучшего хода ИИ с улучшенной логикой
+
+    // Выбор лучшего хода ИИ с улучшенной логикой - обновлен под новые правила
     function getBestMoveAdvanced(player, level) {
         const moves = getAllValidMoves(player);
         if (moves.length === 0) return null;
         if (moves.length === 1) return moves[0];
-        // Увеличенная глубина поиска для более сильной игры
         const depth = level === 'ai3' ? 5 : (level === 'ai2' ? 4 : 3);
         let bestMove = moves[0];
         let bestValue = -Infinity;
-        // Сортировка ходов для лучшего отсечения
         moves.sort((a, b) => {
-            // Приоритет ходам, которые продвигают вперед или объединяют фишки
             let aScore = 0;
             let bScore = 0;
-            // Бонус за продвижение
             aScore += (player === 1 ? a.from.row - a.to.row : a.to.row - a.from.row) * 10;
             bScore += (player === 1 ? b.from.row - b.to.row : b.to.row - b.from.row) * 10;
-            // Бонус за объединение с фишкой
             if (board[a.to.row][a.to.col] && board[a.to.row][a.to.col].player === player) {
-                aScore += board[a.to.row][a.to.col].weight * 5;
+                const moving = board[a.from.row][a.from.col].weight;
+                const target = board[a.to.row][a.to.col].weight;
+                if (moving < target) {
+                    aScore += (moving + target) * 5;
+                } else if (moving > target) {
+                    aScore += (moving - target) * 3;
+                } else {
+                    aScore -= 100;
+                }
             }
             if (board[b.to.row][b.to.col] && board[b.to.row][b.to.col].player === player) {
-                bScore += board[b.to.row][b.to.col].weight * 5;
+                const moving = board[b.from.row][b.from.col].weight;
+                const target = board[b.to.row][b.to.col].weight;
+                if (moving < target) {
+                    bScore += (moving + target) * 5;
+                } else if (moving > target) {
+                    bScore += (moving - target) * 3;
+                } else {
+                    bScore -= 100;
+                }
             }
             return bScore - aScore;
         });
@@ -1818,6 +1860,7 @@
         }
         return bestMove;
     }
+
     // Выполнение хода ИИ
     function makeAIMove() {
         if (!gameActive) return;
@@ -1857,45 +1900,11 @@
             document.getElementById('thinking').style.color = 'white';
             if (bestMove) {
                 moveChip(bestMove.from.row, bestMove.from.col, bestMove.to.row, bestMove.to.col);
-                // После хода проверяем условия завершения
-                if (whiteReached) {
-                    // Это был последний ход черных
-                    endGame();
-                } else {
-                    // Проверяем, достигли ли белые цели после своего хода
-                    if (currentPlayer === 1 && checkWhiteReached()) {
-                        whiteReached = true;
-                        // Проверяем, есть ли у черных фишки для последнего хода
-                        if (hasBlackChips()) {
-                            // Передаем ход черным для последнего хода
-                            currentPlayer = 2;
-                            document.getElementById('game-info').textContent = `Последний ход игрока 2`;
-                            const nextPlayerType = player2Type;
-                            if (nextPlayerType !== 'human') {
-                                makeAIMove();
-                            }
-                        } else {
-                            // У черных нет фишек — игра завершается сразу
-                            endGame();
-                        }
-                    } else {
-                        // Обычный переход хода
-                        currentPlayer = currentPlayer === 1 ? 2 : 1;
-                        document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
-                        const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
-                        if (nextPlayerType !== 'human') {
-                            makeAIMove();
-                        }
-                    }
-                }
-            } else {
-                // У текущего игрока нет ходов
-                if (whiteReached) {
-                    endGame();
-                } else if (currentPlayer === 1 && checkWhiteReached()) {
+                if (checkWhiteReached()) {
                     whiteReached = true;
-                    if (hasBlackChips()) {
+                    if (hasBlackChips() && !lastBlackMoveDone) {
                         currentPlayer = 2;
+                        lastBlackMoveDone = true;
                         document.getElementById('game-info').textContent = `Последний ход игрока 2`;
                         const nextPlayerType = player2Type;
                         if (nextPlayerType !== 'human') {
@@ -1904,8 +1913,36 @@
                     } else {
                         endGame();
                     }
+                } else if (checkBlackReached()) {
+                    blackReached = true;
+                    endGame();
                 } else {
-                    // Переход хода при отсутствии ходов
+                    currentPlayer = currentPlayer === 1 ? 2 : 1;
+                    document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
+                    const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+                    if (nextPlayerType !== 'human') {
+                        makeAIMove();
+                    }
+                }
+            } else {
+                if (whiteReached) {
+                    if (hasBlackChips() && !lastBlackMoveDone) {
+                        currentPlayer = 2;
+                        lastBlackMoveDone = true;
+                        document.getElementById('game-info').textContent = `Последний ход игрока 2`;
+                        const nextPlayerType = player2Type;
+                        if (nextPlayerType !== 'human') {
+                            makeAIMove();
+                        } else {
+                            endGame();
+                        }
+                    } else {
+                        endGame();
+                    }
+                } else if (checkBlackReached()) {
+                    blackReached = true;
+                    endGame();
+                } else {
                     currentPlayer = currentPlayer === 1 ? 2 : 1;
                     document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
                     const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
@@ -1916,74 +1953,64 @@
             }
         }, 100);
     }
+
     // Обработка клика по клетке
     function handleCellClick(row, col) {
         if (!gameActive) return;
         const currentPlayerType = currentPlayer === 1 ? player1Type : player2Type;
         if (currentPlayerType !== 'human') return;
         const cell = board[row][col];
-        // Если клик по своей фишке и она не выбрана
         if (cell && cell.player === currentPlayer && selectedChip === null) {
             selectedChip = { row, col };
             highlightValidMoves(row, col);
             return;
         }
-        // Если уже выбрана фишка
         if (selectedChip !== null) {
             const fromRow = selectedChip.row;
             const fromCol = selectedChip.col;
             const toRow = row;
             const toCol = col;
-            // Проверка валидности хода
             if (isValidMove(fromRow, fromCol, toRow, toCol)) {
                 moveChip(fromRow, fromCol, toRow, toCol);
                 selectedChip = null;
                 clearHighlights();
-                // После хода проверяем условия завершения
-                if (whiteReached) {
-                    // Это был последний ход черных
-                    endGame();
-                } else {
-                    // Проверяем, достигли ли белые цели после своего хода
-                    if (currentPlayer === 1 && checkWhiteReached()) {
-                        whiteReached = true;
-                        // Проверяем, есть ли у черных фишки для последнего хода
-                        if (hasBlackChips()) {
-                            // Передаем ход черным для последнего хода
-                            currentPlayer = 2;
-                            document.getElementById('game-info').textContent = `Последний ход игрока 2`;
-                            const nextPlayerType = player2Type;
-                            if (nextPlayerType !== 'human') {
-                                makeAIMove();
-                            }
-                        } else {
-                            // У черных нет фишек — игра завершается сразу
-                            endGame();
-                        }
-                    } else {
-                        // Обычный переход хода
-                        currentPlayer = currentPlayer === 1 ? 2 : 1;
-                        document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
-                        const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+                if (checkWhiteReached()) {
+                    whiteReached = true;
+                    if (hasBlackChips() && !lastBlackMoveDone) {
+                        currentPlayer = 2;
+                        lastBlackMoveDone = true;
+                        document.getElementById('game-info').textContent = `Последний ход игрока 2`;
+                        const nextPlayerType = player2Type;
                         if (nextPlayerType !== 'human') {
                             makeAIMove();
                         }
+                    } else {
+                        endGame();
+                    }
+                } else if (checkBlackReached()) {
+                    blackReached = true;
+                    endGame();
+                } else {
+                    currentPlayer = currentPlayer === 1 ? 2 : 1;
+                    document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
+                    const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+                    if (nextPlayerType !== 'human') {
+                        makeAIMove();
                     }
                 }
             } else {
-                // Если клик по другой своей фишке - выбрать её
                 if (cell && cell.player === currentPlayer) {
                     clearHighlights();
                     selectedChip = { row, col };
                     highlightValidMoves(row, col);
                 } else {
-                    // Снять выделение
                     clearHighlights();
                     selectedChip = null;
                 }
             }
         }
     }
+
     // Подсветка допустимых ходов
     function highlightValidMoves(row, col) {
         const directions = getMoveDirections();
@@ -1996,49 +2023,53 @@
             }
         }
     }
+
     // Очистка подсветки
     function clearHighlights() {
         document.querySelectorAll('.cell').forEach(cell => {
             cell.classList.remove('highlight');
         });
     }
+
     // Проверка валидности хода
     function isValidMove(fromRow, fromCol, toRow, toCol) {
         if (fromRow === toRow && fromCol === toCol) return false;
         if (BOARD_TYPE === 'hex') {
             return isValidHexMove(fromRow, fromCol, toRow, toCol, currentPlayer);
         }
-        // Проверка границ для квадратной доски
         if (toRow < 0 || toRow >= BOARD_SIZE || toCol < 0 || toCol >= BOARD_SIZE) return false;
         const dRow = toRow - fromRow;
         const dCol = toCol - fromCol;
-        // Проверка, что ход на соседнюю клетку (максимум 1 клетка в любом направлении)
         if (Math.abs(dRow) > 1 || Math.abs(dCol) > 1) return false;
-        // Ход к своей фишке на соседней клетке
         if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
             return true;
         }
-        // Ход к противнику или пустой клетке
         if (Math.abs(dRow) <= 1 && Math.abs(dCol) <= 1) {
-            // Проверка направления движения
-            if (currentPlayer === 1 && dRow > 0) return false; // Игрок 1 не может идти вниз
-            if (currentPlayer === 2 && dRow < 0) return false; // Игрок 2 не может идти вверх
+            if (currentPlayer === 1 && dRow > 0) return false;
+            if (currentPlayer === 2 && dRow < 0) return false;
             return true;
         }
         return false;
     }
-    // Перемещение фишки
+
+    // Перемещение фишки с учетом новых правил
     function moveChip(fromRow, fromCol, toRow, toCol) {
         const chip = board[fromRow][fromCol];
         board[fromRow][fromCol] = null;
-        // Ход к своей фишке на соседней клетке
-        if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer)
-            if (chip) {
-                board[toRow][toCol].weight += chip.weight;
-                renderBoard();
-                return;
+
+        if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
+            const targetChip = board[toRow][toCol];
+            if (chip.weight < targetChip.weight) {
+                board[toRow][toCol].weight = chip.weight + targetChip.weight;
+            } else if (chip.weight > targetChip.weight) {
+                board[toRow][toCol].weight = chip.weight - targetChip.weight;
+            } else {
+                board[toRow][toCol] = null;
             }
-        // Проверка атрибута клетки
+            renderBoard();
+            return;
+        }
+
         const cellElement = document.querySelector(`.cell[data-row="${toRow}"][data-col="${toCol}"]`);
         let hasPlus = false;
         let hasMinus = false;
@@ -2046,25 +2077,14 @@
             hasPlus = cellElement.classList.contains('plus');
             hasMinus = cellElement.classList.contains('minus');
         }
-        if (hasPlus) {
-            chip.weight += 1;
-        } else if (hasMinus) {
-            chip.weight -= 1;
-            if (chip.weight <= 0) {
-                renderBoard();
-                return;
-            }
-        }
-        // Проверка столкновения с фишкой противника
+
         if (board[toRow][toCol]) {
             const enemyChip = board[toRow][toCol];
             if (COLLISION_MODE === 'field-effect') {
                 if (hasPlus) {
-                    // Сложение весов, выживает ходивший
                     chip.weight += enemyChip.weight;
                     board[toRow][toCol] = chip;
                 } else if (hasMinus) {
-                    // Вычитание весов, выживает тот, у кого больше
                     if (chip.weight > enemyChip.weight) {
                         chip.weight -= enemyChip.weight;
                         board[toRow][toCol] = chip;
@@ -2075,7 +2095,6 @@
                         board[toRow][toCol] = null;
                     }
                 } else {
-                    // Поле без атрибута — классическое столкновение
                     if (chip.weight > enemyChip.weight) {
                         chip.weight -= enemyChip.weight;
                         board[toRow][toCol] = chip;
@@ -2087,7 +2106,6 @@
                     }
                 }
             } else {
-                // Классический режим
                 if (chip.weight > enemyChip.weight) {
                     chip.weight -= enemyChip.weight;
                     board[toRow][toCol] = chip;
@@ -2099,14 +2117,26 @@
                 }
             }
         } else {
+            if (hasPlus) {
+                chip.weight += 1;
+            } else if (hasMinus) {
+                chip.weight -= 1;
+                if (chip.weight <= 0) {
+                    renderBoard();
+                    return;
+                }
+            }
             board[toRow][toCol] = chip;
         }
         renderBoard();
     }
-    // Начало новой игры (с новой случайной расстановкой)
+
+    // Начало новой игры
     function startNewGame() {
         currentPlayer = 1;
         whiteReached = false;
+        blackReached = false;
+        lastBlackMoveDone = false;
         gameActive = true;
         document.getElementById('game-info').textContent = 'Ход игрока 1';
         document.getElementById('thinking').style.color = 'white';
@@ -2116,11 +2146,14 @@
             makeAIMove();
         }
     }
-    // Начать сначала (с сохраненной расстановкой)
+
+    // Начать сначала
     function restartSameGame() {
         restoreInitialBoardState();
         currentPlayer = 1;
         whiteReached = false;
+        blackReached = false;
+        lastBlackMoveDone = false;
         gameActive = true;
         document.getElementById('game-info').textContent = 'Ход игрока 1';
         document.getElementById('thinking').style.color = 'white';
@@ -2129,6 +2162,7 @@
             makeAIMove();
         }
     }
+
     // Валидация размера шестиугольной доски
     function validateBoardSize() {
         const sizeInput = document.getElementById('board-size');
@@ -2137,7 +2171,6 @@
             let size = parseInt(sizeInput.value.toString());
             if (size < 3) size = 3;
             if (size > 11) size = 11;
-            // Приводим к нечетному числу
             if (size % 2 === 0) {
                 size = size - 1;
                 if (size < 3) size = 3;
@@ -2145,6 +2178,7 @@
             sizeInput.value = size;
         }
     }
+
     // Обработчики кнопок
     document.getElementById('restart').addEventListener('click', restartSameGame);
     document.getElementById('rules-btn').addEventListener('click', () => {
@@ -2191,6 +2225,7 @@
         createBoard();
         startNewGame();
     });
+
     // Инициализация игры
     createBoard();
     initBoard();
