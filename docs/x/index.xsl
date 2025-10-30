@@ -12,6 +12,8 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
                 <meta name="robots" content="INDEX,FOLLOW"/>
+                <meta name="zen-verification"
+                      content="iJPmmxXlF90pWT2kSvlOGdg0aRLgyGgFv97HotfCksTnFoqT9pn6hgvoxwGbH60K" />
                 <link rel="shortcut icon" href="{$favicon}" type="image/x-icon"/>
                 <link rel="stylesheet" href="x/xstyle/resources/default.css"/>
                 <link rel="stylesheet" href="x/xstyle/resources/style.css"/>
