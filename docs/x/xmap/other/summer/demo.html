@@ -150,14 +150,12 @@
         #ai-content {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 0;
+            width: 100%;
+            transform: translate(0, -50%);
             background-color: white;
             padding: 20px;
-            border-radius: 10px;
             text-align: center;
-            max-width: 500px;
-            width: 90%;
         }
         #ai-content h2 {
             margin-top: 0;
@@ -205,7 +203,6 @@
             left: 0;
             background-color: white;
             padding: 20px;
-            border-radius: 10px;
             overflow-y: auto;
         }
         #rules-content h2 {
@@ -238,12 +235,12 @@
         #size-content {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 0;
+            width: 100%;
+            transform: translate(0, -50%);
             background-color: white;
             padding: 20px;
-            border-radius: 10px;
-            text-align: center;
+            text-align: left;
         }
         #size-content h2 {
             margin-top: 0;
@@ -319,20 +316,43 @@
 
     <!-- Модальное окно выбора размера доски -->
     <div id="size-selector">
-        <div id="size-content">
-            <h2>Выберите параметры доски</h2>
-            <label for="board-type">Тип доски:</label>
-            <select id="board-type">
-                <option value="square">Квадрат</option>
-                <option value="hex">Шестиугольник</option>
-            </select>
-            <br />
-            <label for="board-size" id="size-label">Размер от 3 до 11:</label>
-            <input type="number" id="board-size" min="3" max="11" value="7">
-            <br>
-            <button id="confirm-size">Далее</button>
-            <button id="cancel-size">Отмена</button>
-        </div>
+        <table id="size-content">
+            <thead>
+                <tr>
+                    <td colspan="2"><h2>Выберите параметры доски</h2></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="board-type">Тип доски:</label>
+                    </td>
+                    <td>
+                        <select id="board-type">
+                            <option value="square">Квадрат</option>
+                            <option value="hex">Шестиугольник</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="board-size" id="size-label">
+                            Размер любое&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;от 3 до 11:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="board-size" min="3" max="11" value="7">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="confirm-size">Далее</button>
+                    </td>
+                    <td>
+                        <button id="cancel-size">Отмена</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <!-- Модальное окно настройки ИИ -->
@@ -385,7 +405,7 @@
                 sizeInput.max = '11';
                 sizeInput.value = '7'; // Устанавливаем нечетное значение по умолчанию
             } else {
-                sizeLabel.textContent = 'Размер от 3 до 11:';
+                sizeLabel.innerHTML = 'Размер любое&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;от 3 до 11:';
                 sizeInput.min = '3';
                 sizeInput.max = '11';
                 sizeInput.value = '7';
