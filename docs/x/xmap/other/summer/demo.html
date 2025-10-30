@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Summer</title>
     <style>
         * {
@@ -10,6 +10,7 @@
             padding: 0;
             align-items: center;
         }
+
         body {
             vertical-align: top;
             font-family: Arial, sans-serif;
@@ -19,16 +20,19 @@
             padding: 20px;
             transform: scale(0.6, 0.6);
         }
+
         #game-info {
             margin-bottom: 15px;
             font-size: 20px;
             font-weight: bold;
             color: #333;
         }
+
         #board {
             margin-bottom: 15px;
             display: inline-block;
         }
+
         .cell {
             display: flex;
             justify-content: center;
@@ -37,17 +41,21 @@
             cursor: pointer;
             font-weight: bold;
         }
+
         .square-cell {
             width: 60px;
             height: 60px;
             border: 1px solid white;
         }
+
         .white-cell {
             background-color: brown;
         }
+
         .black-cell {
             background-color: brown;
         }
+
         .hex-cell {
             width: 89px;
             height: 68px;
@@ -59,6 +67,7 @@
             position: absolute;
             border-width: 0;
         }
+
         .chip {
             width: 80%;
             height: 80%;
@@ -69,36 +78,44 @@
             color: white;
             font-weight: bold;
             font-size: 16px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             opacity: 0.9;
         }
+
         .player1 {
             background-color: white;
             color: black;
             font-size: 32px;
         }
+
         .player2 {
             background-color: black;
             font-size: 32px;
         }
+
         .plus {
             background-color: green;
         }
+
         .minus {
             background-color: blue;
         }
+
         .highlight {
             opacity: 0.55;
         }
+
         #controls {
             display: flex;
             gap: 1px;
             flex-wrap: nowrap;
             justify-content: left;
         }
-        #controls button{
+
+        #controls button {
             overflow: hidden;
         }
+
         button {
             padding: 8px 0;
             font-size: 16px;
@@ -106,27 +123,34 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         #restart {
             background-color: #2ecc71;
             color: white;
         }
+
         #restart:hover {
             background-color: #27ae60;
         }
+
         #rules-btn {
             background-color: #9b59b6;
             color: white;
         }
+
         #rules-btn:hover {
             background-color: #8e44ad;
         }
+
         #new-game-btn {
             background-color: #f39c12;
             color: white;
         }
+
         #new-game-btn:hover {
             background-color: #d35400;
         }
+
         #ai-settings {
             display: none;
             position: fixed;
@@ -134,9 +158,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
         }
+
         #ai-content {
             position: absolute;
             top: 50%;
@@ -147,13 +172,16 @@
             padding: 20px;
             text-align: center;
         }
+
         #ai-content h2 {
             margin-top: 0;
             color: #333;
         }
+
         .player-setting {
             margin: 15px 0;
         }
+
         select {
             padding: 8px;
             font-size: 16px;
@@ -161,6 +189,7 @@
             border-radius: 5px;
             border: 1px solid #ccc;
         }
+
         #confirm-ai, #cancel-ai {
             padding: 8px 16px;
             margin: 5px;
@@ -169,14 +198,17 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         #confirm-ai {
             background-color: #2ecc71;
             color: white;
         }
+
         #cancel-ai {
             background-color: #e74c3c;
             color: white;
         }
+
         #rules-modal {
             display: none;
             position: fixed;
@@ -184,9 +216,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
         }
+
         #rules-content {
             position: absolute;
             top: 0;
@@ -195,14 +228,17 @@
             padding: 20px;
             overflow-y: auto;
         }
+
         #rules-content h2 {
             margin-top: 0;
             color: #333;
         }
+
         #rules-content p {
             margin-bottom: 10px;
             line-height: 1.4;
         }
+
         #close-rules {
             margin-top: 15px;
             padding: 8px 16px;
@@ -212,6 +248,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         #size-selector {
             display: none;
             position: fixed;
@@ -219,9 +256,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
         }
+
         #size-content {
             position: absolute;
             top: 50%;
@@ -232,34 +270,41 @@
             padding: 20px;
             text-align: left;
         }
-        #size-content tbody tr td:first-child{
+
+        #size-content tbody tr td:first-child {
             text-align: right;
         }
-        #size-content thead tr td{
+
+        #size-content thead tr td {
             text-align: center;
         }
+
         #size-content h2 {
             margin-top: 0;
             color: #333;
         }
+
         #board-size {
             padding: 8px;
             font-size: 16px;
             margin: 10px;
             width: 100px;
         }
+
         #board-type {
             padding: 8px;
             font-size: 16px;
             margin: 10px;
             width: 150px;
         }
+
         #collision-mode {
             padding: 8px;
             font-size: 16px;
             margin: 10px;
             width: 250px;
         }
+
         #confirm-size, #cancel-size {
             padding: 8px 16px;
             margin: 5px;
@@ -268,14 +313,17 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         #confirm-size {
             background-color: #2ecc71;
             color: white;
         }
+
         #cancel-size {
             background-color: #e74c3c;
             color: white;
         }
+
         #thinking {
             color: white;
             font-size: 20px;
@@ -322,15 +370,20 @@
                 применяются следующие правила:
                 <ul>
                     <li>Если вес перемещаемой фишки <strong>меньше</strong> веса фишки на целевом поле,
-                        то веса <strong>суммируются</strong>, и остаётся одна фишка с суммарным весом.</li>
+                        то веса <strong>суммируются</strong>, и остаётся одна фишка с суммарным весом.
+                    </li>
                     <li>Если вес перемещаемой фишки <strong>больше</strong> веса фишки на целевом поле,
-                        то остаётся одна фишка с весом, равным <strong>разнице</strong> (больший минус меньший).</li>
-                    <li>Если веса <strong>равны</strong>, то обе фишки <strong>уничтожаются</strong>, независимо от атрибута поля.</li>
+                        то остаётся одна фишка с весом, равным <strong>разнице</strong> (больший минус меньший).
+                    </li>
+                    <li>Если веса <strong>равны</strong>, то обе фишки <strong>уничтожаются</strong>, независимо от
+                        атрибута поля.
+                    </li>
                 </ul>
             </li>
             <li>Если на поле, куда ставится фишка, стоит чужая фишка —
                 в этом случае веса вычитаются, и остаётся одна фишка,
-                у которой был больший вес.</li>
+                у которой был больший вес.
+            </li>
         </ul>
         <p><strong>Столкновение:</strong> Если фишка попадает на
             клетку с фишкой противника:
@@ -349,9 +402,11 @@
                 <strong>Режим с влиянием поля.</strong>
                 <ul>
                     <li>При атрибуте поля плюс - побеждает всегда тот кто ходит,
-                        его вес суммируется с весом оппонента.</li>
-                    <li>При атрибуте поля минус - побеждает в сталкновении фишка с большим весом,
-                        её вес уменьшается на вес уничтоженной фишки.</li>
+                        его вес суммируется с весом оппонента.
+                    </li>
+                    <li>При атрибуте поля минус - побеждает в столкновении фишка с большим весом,
+                        её вес уменьшается на вес уничтоженной фишки.
+                    </li>
                     <li>При атрибуте поля минус, если вес одинаковые - обе фишки уничтожаются</li>
                 </ul>
             </li>
@@ -394,7 +449,7 @@
                     Размер любое&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;от 3 до 11:</label>
             </td>
             <td>
-                <input type="number" id="board-size" min="3" max="11" value="7">
+                <input id="board-size" max="11" min="3" type="number" value="7">
             </td>
         </tr>
         <tr>
@@ -427,7 +482,7 @@
             <label for="player1-type">Игрок 1. Белые:</label>
             <select id="player1-type">
                 <option value="human">Пользователь</option>
-                <option value="ai" >ИИ Стратегия&nbsp;&nbsp;&nbsp;1. Джет</option>
+                <option value="ai">ИИ Стратегия&nbsp;&nbsp;&nbsp;1. Джет</option>
                 <option value="ai2">ИИ Стратегия&nbsp;&nbsp;&nbsp;2. Оптимус</option>
                 <option value="ai3">ИИ Стратегия&nbsp;&nbsp;&nbsp;3. Тугодум</option>
                 <option value="ai4">ИИ Стратегия&nbsp;&nbsp;&nbsp;4. Марк I</option>
@@ -444,7 +499,7 @@
             <label for="player2-type">Игрок 2. Черные:</label>
             <select id="player2-type">
                 <option value="human">Пользователь</option>
-                <option value="ai" >ИИ Стратегия&nbsp;&nbsp;&nbsp;1. Джет</option>
+                <option value="ai">ИИ Стратегия&nbsp;&nbsp;&nbsp;1. Джет</option>
                 <option value="ai2">ИИ Стратегия&nbsp;&nbsp;&nbsp;2. Оптимус</option>
                 <option value="ai3">ИИ Стратегия&nbsp;&nbsp;&nbsp;3. Тугодум</option>
                 <option value="ai4">ИИ Стратегия&nbsp;&nbsp;&nbsp;4. Марк I</option>
@@ -477,7 +532,7 @@
     let lastBlackMoveDone = false; // Флаг: черные уже сделали последний ход
 
     // Обновление диапазона размера в зависимости от типа доски
-    document.getElementById('board-type').addEventListener('change', function() {
+    document.getElementById('board-type').addEventListener('change', function () {
         const sizeInput = document.getElementById('board-size');
         const sizeLabel = document.getElementById('size-label');
         if (this.value === 'hex') {
@@ -630,10 +685,10 @@
         }
 
         for (let col = 0; col < firstRowCols; col++) {
-            board[0][col] = { player: 2, weight: weights2[col] };
+            board[0][col] = {player: 2, weight: weights2[col]};
         }
         for (let col = 0; col < lastRowCols; col++) {
-            board[BOARD_SIZE - 1][col] = { player: 1, weight: weights1[col] };
+            board[BOARD_SIZE - 1][col] = {player: 1, weight: weights1[col]};
         }
         renderBoard();
         saveInitialBoardState();
@@ -771,12 +826,12 @@
                 player2Sum += board[BOARD_SIZE - 1][col].weight;
             }
         }
-        return { player1Sum, player2Sum };
+        return {player1Sum, player2Sum};
     }
 
     // Завершение игры и вывод результата
     function endGame() {
-        const { player1Sum, player2Sum } = calculateFinalScores();
+        const {player1Sum, player2Sum} = calculateFinalScores();
         gameActive = false;
         let message;
         if (player1Sum > player2Sum) {
@@ -942,8 +997,8 @@
                 }
             }
             for (let col = 0; col < lastRowCols; col++) {
-                if (boardCopy[BOARD_SIZE-1][col] && boardCopy[BOARD_SIZE-1][col].player === 2) {
-                    player2Sum += boardCopy[BOARD_SIZE-1][col].weight;
+                if (boardCopy[BOARD_SIZE - 1][col] && boardCopy[BOARD_SIZE - 1][col].player === 2) {
+                    player2Sum += boardCopy[BOARD_SIZE - 1][col].weight;
                 }
             }
             if (player1Sum > player2Sum) return player === 1 ? 100000 : -100000;
@@ -1270,7 +1325,7 @@
                     ownChipsOnStart.sort((a, b) => a.col - b.col);
                     for (let i = ownChipsOnStart.length - 1; i > 0; i--) {
                         const fromCol = ownChipsOnStart[i].col;
-                        const toCol = ownChipsOnStart[i-1].col;
+                        const toCol = ownChipsOnStart[i - 1].col;
                         if (fromCol > toCol && isValidMove(ownStartRow, fromCol, ownStartRow, fromCol - 1)) {
                             // Проверяем, что объединение не приведет к уничтожению
                             const movingWeight = board[ownStartRow][fromCol].weight;
@@ -1304,7 +1359,10 @@
                                 const movingWeight = board[ownStartRow][currentCol].weight;
                                 const targetWeight = board[ownStartRow][targetCol].weight;
                                 if (movingWeight !== targetWeight) {
-                                    return {from: {row: ownStartRow, col: currentCol}, to: {row: ownStartRow, col: targetCol}};
+                                    return {
+                                        from: {row: ownStartRow, col: currentCol},
+                                        to: {row: ownStartRow, col: targetCol}
+                                    };
                                 }
                             }
                         } else if (ownAssemblySide === 'right' && currentCol < targetCol) {
@@ -1312,7 +1370,10 @@
                                 const movingWeight = board[ownStartRow][currentCol].weight;
                                 const targetWeight = board[ownStartRow][targetCol].weight;
                                 if (movingWeight !== targetWeight) {
-                                    return {from: {row: ownStartRow, col: currentCol}, to: {row: ownStartRow, col: targetCol}};
+                                    return {
+                                        from: {row: ownStartRow, col: currentCol},
+                                        to: {row: ownStartRow, col: targetCol}
+                                    };
                                 }
                             }
                         }
@@ -1547,7 +1608,7 @@
     function getMetamorphMove(player) {
         const opponent = player === 1 ? 2 : 1;
         const opponentStrategy = detectOpponentStrategy(opponent);
-        switch(opponentStrategy) {
+        switch (opponentStrategy) {
             case 'tank':
                 return getAntiTankMove(player);
             case 'anti_tank':
@@ -1751,7 +1812,7 @@
 
     // Позиционная гибкость
     function calculatePositionalFlexibility(row, col, player) {
-        let flexibility = 0;
+        let flexibility;
         const futureMoves = getAllValidMovesFromPosition(row, col, player);
         flexibility = futureMoves.length;
         return flexibility;
@@ -1869,7 +1930,7 @@
         document.getElementById('thinking').style.color = 'red';
         setTimeout(() => {
             let bestMove;
-            switch(playerType) {
+            switch (playerType) {
                 case 'ai11':
                     bestMove = getSecretMove(currentPlayer);
                     break;
@@ -1906,8 +1967,7 @@
                         currentPlayer = 2;
                         lastBlackMoveDone = true;
                         document.getElementById('game-info').textContent = `Последний ход игрока 2`;
-                        const nextPlayerType = player2Type;
-                        if (nextPlayerType !== 'human') {
+                        if (player2Type !== 'human') {
                             makeAIMove();
                         }
                     } else {
@@ -1930,8 +1990,7 @@
                         currentPlayer = 2;
                         lastBlackMoveDone = true;
                         document.getElementById('game-info').textContent = `Последний ход игрока 2`;
-                        const nextPlayerType = player2Type;
-                        if (nextPlayerType !== 'human') {
+                        if (player2Type !== 'human') {
                             makeAIMove();
                         } else {
                             endGame();
@@ -1961,7 +2020,7 @@
         if (currentPlayerType !== 'human') return;
         const cell = board[row][col];
         if (cell && cell.player === currentPlayer && selectedChip === null) {
-            selectedChip = { row, col };
+            selectedChip = {row, col};
             highlightValidMoves(row, col);
             return;
         }
@@ -1980,8 +2039,7 @@
                         currentPlayer = 2;
                         lastBlackMoveDone = true;
                         document.getElementById('game-info').textContent = `Последний ход игрока 2`;
-                        const nextPlayerType = player2Type;
-                        if (nextPlayerType !== 'human') {
+                        if (player2Type !== 'human') {
                             makeAIMove();
                         }
                     } else {
@@ -2001,7 +2059,7 @@
             } else {
                 if (cell && cell.player === currentPlayer) {
                     clearHighlights();
-                    selectedChip = { row, col };
+                    selectedChip = {row, col};
                     highlightValidMoves(row, col);
                 } else {
                     clearHighlights();
@@ -2046,8 +2104,8 @@
         }
         if (Math.abs(dRow) <= 1 && Math.abs(dCol) <= 1) {
             if (currentPlayer === 1 && dRow > 0) return false;
-            if (currentPlayer === 2 && dRow < 0) return false;
-            return true;
+            return !(currentPlayer === 2 && dRow < 0);
+
         }
         return false;
     }
