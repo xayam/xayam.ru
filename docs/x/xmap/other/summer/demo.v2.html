@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer</title>
+    <style>
+	    * {
+		    margin: 0;
+            padding: 0;
+            align-items: center;
+		}
+        body {
+            vertical-align: top;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 20px;
+			transform: scale(0.6, 0.6);
+        }
+        #game-info {
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        #board {
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .square-cell {
+            width: 60px;
+            height: 60px;
+            border: 1px solid white;
+        }
+        .white-cell {
+            background-color: brown;
+        }
+        .black-cell {
+            background-color: brown;
+        }
+        .hex-cell {
+            width: 89px;
+            height: 68px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background-color: brown;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            border-width: 0;
+        }
+        .chip {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            opacity: 0.9;
+        }
+        .player1 {
+            background-color: white;
+			color: black;
+			font-size: 32px;
+        }
+        .player2 {
+            background-color: black;
+			font-size: 32px;
+        }
+        .plus {
+            background-color: green;
+        }
+        .minus {
+            background-color: blue;
+        }
+        .highlight {
+			opacity: 0.75;
+        }
+		.highlight:before {
+            content: "●";
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: red;
+            font-weight: bold;
+            font-size: 36px;
+            line-height: 1;
+        }
+        #controls {
+            display: flex;
+            gap: 1px;
+            flex-wrap: nowrap;
+            justify-content: left;
+        }
+        #controls button{
+            overflow: hidden;
+        }
+        button {
+            padding: 8px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #restart {
+            background-color: #2ecc71;
+            color: white;
+        }
+        #restart:hover {
+            background-color: #27ae60;
+        }
+        #rules-btn {
+            background-color: #9b59b6;
+            color: white;
+        }
+        #rules-btn:hover {
+            background-color: #8e44ad;
+        }
+        #new-game-btn {
+            background-color: #f39c12;
+            color: white;
+        }
+        #new-game-btn:hover {
+            background-color: #d35400;
+        }
+        #ai-settings {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+        #ai-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translate(0, -50%);
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        #ai-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .player-setting {
+            margin: 15px 0;
+        }
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #confirm-ai, #cancel-ai {
+            padding: 8px 16px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #confirm-ai {
+            background-color: #2ecc71;
+            color: white;
+        }
+        #cancel-ai {
+            background-color: #e74c3c;
+            color: white;
+        }
+        #rules-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+        #rules-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        #rules-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        #rules-content p {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        #close-rules {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #size-selector {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+        #size-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translate(0, -50%);
+            background-color: white;
+            padding: 20px;
+            text-align: left;
+        }
+        #size-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        #board-size {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px;
+            width: 100px;
+        }
+        #board-type {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px;
+            width: 150px;
+        }
+        #confirm-size, #cancel-size {
+            padding: 8px 16px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #confirm-size {
+            background-color: #2ecc71;
+            color: white;
+        }
+        #cancel-size {
+            background-color: #e74c3c;
+            color: white;
+        }
+        #thinking {
+            color: white;
+			font-size: 20px;
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-info">Ход игрока 1</div>
+    <div id="thinking">ИИ думает...</div>
+	<div id="board"></div>
+	<div id="controls">
+		<button id="rules-btn" title="Правила игры">ПРАВИЛА</button>
+        <button id="new-game-btn" title="Новая игра">НОВАЯ</button>
+        <button id="restart" title="Начать сначала">СНАЧАЛА</button>
+	</div>
+    <!-- Модальное окно с правилами -->
+    <div id="rules-modal">
+        <div id="rules-content">
+            <h2>Правила игры "Summer"</h2>
+            <p>Игра для двоих на клетчатом или шестиугольном поле. Игроки поочередно передвигают свои фишки.</p>
+            <p><strong>Начальная позиция:</strong> Фишки Игрока 1 находятся на первой горизонтали (снизу), Игрока 2 — на последней горизонтали (сверху). Начальный вес каждой фишки — случайное число от 1 до 6. Позиция фишек одинакова для обеих сторон — по одной фишке на каждой клетке стартовой линии.</p>
+            <p><strong>Поля доски:</strong> Каждая клетка (кроме стартовых линий) имеет атрибут «плюс»(зеленый фон) или «минус»(синий фон). При попадании фишки на такую клетку её вес увеличивается (+1) или уменьшается (-1) соответственно.</p>
+            <p><strong>Ходы:</strong></p>
+            <ul>
+                <li>Можно двигаться на одну клетку вперёд (по направлению к оппоненту), вперёд-влево или вперёд-вправо по диагонали, влево или вправо на соседнюю клетку</li>
+                <li>Если на поле, куда ставится фишка, стоит своя фишка — в этом случае веса суммируются, и остаётся одна фишка.</li>
+                <li>Если на поле, куда ставится фишка, стоит чужая фишка — в этом случае веса вычитаются, и остаётся одна фишка, у которой был больший вес.</li>
+            </ul>
+            <p><strong>Столкновение:</strong> Если фишка попадает на клетку с фишкой противника:</p>
+            <ul>
+                <li>Остаётся фишка с большим весом, её вес уменьшается на вес уничтоженной фишки.</li>
+                <li>Если веса равны — обе фишки уничтожаются.</li>
+            </ul>
+            <p><strong>Победа:</strong> Игра заканчивается, когда все фишки одного из игроков достигают стартовой линии оппонента. Побеждает игрок с большей суммой весов своих фишек на этой линии. При равенстве или отсутствии фишек — ничья.</p>
+            <button id="close-rules">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно выбора размера доски -->
+    <div id="size-selector">
+        <table id="size-content">
+            <thead>
+                <tr>
+                    <td colspan="2"><h2>Выберите параметры доски</h2></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="board-type">Тип доски:</label>
+                    </td>
+                    <td>
+                        <select id="board-type">
+                            <option value="square">Квадрат</option>
+                            <option value="hex">Шестиугольник</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="board-size" id="size-label">
+                            Размер любое&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;от 3 до 11:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="board-size" min="3" max="11" value="7">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="confirm-size">Далее</button>
+                    </td>
+                    <td>
+                        <button id="cancel-size">Отмена</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Модальное окно настройки ИИ -->
+    <div id="ai-settings">
+        <div id="ai-content">
+            <h2>Настройки игроков</h2>
+            <div class="player-setting">
+                <label for="player1-type">Игрок 1. Белые:</label>
+                <select id="player1-type">
+                    <option value="human">Пользователь</option>
+                    <option value="ai" >ИИ Уровень 1. Новичок</option>
+                    <option value="ai2">ИИ Уровень 2. Оптимус</option>
+                    <option value="ai3">ИИ Уровень 3. Тугодум</option>
+                    <option value="ai4">ИИ Уровень 4. Мастер-танк</option>
+                </select>
+            </div>
+            <div class="player-setting">
+                <label for="player2-type">Игрок 2. Черные:</label>
+                <select id="player2-type">
+                    <option value="human">Пользователь</option>
+                    <option value="ai" >ИИ Уровень 1. Новичок</option>
+                    <option value="ai2">ИИ Уровень 2. Оптимус</option>
+                    <option value="ai3">ИИ Уровень 3. Тугодум</option>
+                    <option value="ai4">ИИ Уровень 4. Мастер-танк</option>
+                </select>
+            </div>
+            <button id="confirm-ai">Начать игру</button>
+            <button id="cancel-ai">Отмена</button>
+        </div>
+    </div>
+
+    <script>
+        let BOARD_SIZE = 7;
+        let BOARD_TYPE = 'square'; // 'square' or 'hex'
+        let currentPlayer = 1;
+        let board = [];
+        let selectedChip = null;
+        let gameActive = true;
+        let initialBoardState = null;
+        let player1Type = 'human';
+        let player2Type = 'human';
+
+        // Обновление диапазона размера в зависимости от типа доски
+        document.getElementById('board-type').addEventListener('change', function() {
+            const sizeInput = document.getElementById('board-size');
+            const sizeLabel = document.getElementById('size-label');
+            if (this.value === 'hex') {
+                sizeLabel.textContent = 'Размер нечетное от 3 до 11:';
+                sizeInput.min = '3';
+                sizeInput.max = '11';
+                sizeInput.value = '7'; // Устанавливаем нечетное значение по умолчанию
+            } else {
+                sizeLabel.innerHTML = 'Размер любое&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;от 3 до 11:';
+                sizeInput.min = '3';
+                sizeInput.max = '11';
+                sizeInput.value = '7';
+            }
+        });
+
+        // Сохранение начального состояния доски
+        function saveInitialBoardState() {
+            initialBoardState = {
+                board: board.map(row => row.map(cell => cell ? {...cell} : null)),
+                attributes: [],
+                boardType: BOARD_TYPE,
+                boardSize: BOARD_SIZE
+            };
+            
+            // Сохраняем атрибуты клеток
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    const cellElement = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                    if (cellElement && cellElement.classList.contains('plus')) {
+                        initialBoardState.attributes.push({row, col, attr: 'plus'});
+                    } else if (cellElement && cellElement.classList.contains('minus')) {
+                        initialBoardState.attributes.push({row, col, attr: 'minus'});
+                    }
+                }
+            }
+        }
+
+        // Восстановление начального состояния доски
+        function restoreInitialBoardState() {
+            if (!initialBoardState) return;
+            
+            BOARD_TYPE = initialBoardState.boardType;
+            BOARD_SIZE = initialBoardState.boardSize;
+            
+            // Очистка доски
+            board = [];
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                board[row] = Array(colsInRow).fill(null);
+            }
+            
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                cell.classList.remove('plus', 'minus', 'highlight');
+                cell.innerHTML = '';
+            });
+            
+            // Восстановление атрибутов
+            for (const {row, col, attr} of initialBoardState.attributes) {
+                const cellElement = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                if (cellElement) {
+                    cellElement.classList.add(attr);
+                }
+            }
+            
+            // Восстановление фишек
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    if (initialBoardState.board[row] && initialBoardState.board[row][col]) {
+                        board[row][col] = {...initialBoardState.board[row][col]};
+                    }
+                }
+            }
+            
+            renderBoard();
+        }
+
+        // Получение направлений ходов в зависимости от типа доски
+        function getMoveDirections() {
+            if (BOARD_TYPE === 'hex') {
+                // Для шестиугольной доски используем 6 направлений
+                return [[-1, -1], [-1, 0], [0, -1], [0, 1], [1, -1], [1, 0]];
+            } else {
+                // Для квадратной доски используем 8 направлений
+                return [
+                    [-1, -1], [-1, 0], [-1, 1],
+                    [0, -1], [0, 1],
+                    [1, -1], [1, 0], [1, 1]
+                ];
+            }
+        }
+
+        // Проверка валидности хода для шестиугольной доски
+        function isValidHexMove(fromRow, fromCol, toRow, toCol, player) {
+            if (toRow < 0 || toRow >= BOARD_SIZE) return false;
+            
+            const colsInToRow = toRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1;
+            if (toCol < 0 || toCol >= colsInToRow) return false;
+            
+            const dRow = toRow - fromRow;
+            const dCol = toCol - fromCol;
+            
+            // Проверка, что ход на соседнюю клетку
+            const isValidDirection = fromRow % 2 === 0 ? 
+                (dRow === -1 && (dCol === -1 || dCol === 0)) ||
+                (dRow === 0 && (dCol === -1 || dCol === 1)) ||
+                (dRow === 1 && (dCol === -1 || dCol === 0)) :
+                (dRow === -1 && (dCol === 0 || dCol === 1)) ||
+                (dRow === 0 && (dCol === -1 || dCol === 1)) ||
+                (dRow === 1 && (dCol === 0 || dCol === 1));
+                
+            if (!isValidDirection) return false;
+            
+            // Проверка направления движения для игроков при движении к противнику
+            if (!(board[toRow][toCol] && board[toRow][toCol].player === player)) {
+                if (player === 1 && dRow > 0) return false; // Игрок 1 не может идти вниз к противнику
+                if (player === 2 && dRow < 0) return false; // Игрок 2 не может идти вверх к противнику
+            }
+            
+            return true;
+        }
+
+        // Инициализация доски
+        function initBoard() {
+            // Инициализация пустой доски с правильным количеством столбцов в каждой строке
+            board = [];
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                board[row] = Array(colsInRow).fill(null);
+            }
+            
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                cell.classList.remove('plus', 'minus', 'highlight');
+                cell.innerHTML = '';
+            });
+
+            // Генерация случайных атрибутов для клеток (кроме стартовых линий)
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    if (row === 0 || row === BOARD_SIZE - 1) continue; // Стартовые линии без атрибутов
+                    const attr = Math.random() > 0.5 ? 'plus' : 'minus';
+                    const cellElement = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                    if (cellElement) {
+                        cellElement.classList.add(attr);
+                    }
+                }
+            }
+
+            // Установка фишек игроков со случайным весом от 1 до 6
+            const firstRowCols = BOARD_TYPE === 'hex' ? (0 % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            const lastRowCols = BOARD_TYPE === 'hex' ? ((BOARD_SIZE - 1) % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            
+            for (let col = 0; col < firstRowCols; col++) {
+                const weight2 = Math.floor(Math.random() * 6) + 1;
+                board[0][col] = { player: 2, weight: weight2 };
+            }
+            
+            for (let col = 0; col < lastRowCols; col++) {
+                const weight1 = Math.floor(Math.random() * 6) + 1;
+                board[BOARD_SIZE - 1][col] = { player: 1, weight: weight1 };
+            }
+
+            renderBoard();
+            saveInitialBoardState();
+        }
+
+        // Отображение доски
+        function renderBoard() {
+            const boardElement = document.getElementById('board');
+            const rulesbtnElement = document.getElementById('rules-btn');
+            const newgamebtnElement = document.getElementById('new-game-btn');
+            const restartbtnElement = document.getElementById('restart');
+            let width;
+            if (BOARD_TYPE === 'hex') {
+                boardElement.style.position = 'relative';
+                width = BOARD_SIZE * 90 + 45;
+                const height = BOARD_SIZE * 52 + 17;
+                boardElement.style.width = `${width}px`;
+                boardElement.style.height = `${height}px`;
+            } else {
+			    width = BOARD_SIZE * 60;
+                boardElement.style.position = 'relative';
+                boardElement.style.width = `${width}px`;
+                boardElement.style.height = `${width}px`;
+            }
+            let new_width = Math.floor(width / 3).toString() + 'px';
+            rulesbtnElement.style.width = new_width;
+            newgamebtnElement.style.width = new_width;
+            restartbtnElement.style.width = new_width;
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                    if (cell) {
+                        cell.innerHTML = '';
+                        if (board[row][col]) {
+                            const chip = document.createElement('div');
+                            chip.className = `chip player${board[row][col].player}`;
+                            chip.textContent = board[row][col].weight;
+                            cell.appendChild(chip);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Создание доски
+        function createBoard() {
+            const boardElement = document.getElementById('board');
+            boardElement.innerHTML = '';
+            
+            if (BOARD_TYPE === 'hex') {
+                // Создаем шестиугольную доску с правильным расположением
+                for (let row = 0; row < BOARD_SIZE; row++) {
+                    const colsInRow = row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1;
+                    for (let col = 0; col < colsInRow; col++) {
+                        const cell = document.createElement('div');
+                        cell.className = `cell hex-cell`;
+                        cell.setAttribute('data-row', row.toString());
+                        cell.setAttribute('data-col', col.toString());
+                        
+                        // Расчет позиции шестиугольника
+                        const x = col * 90 + (row % 2 === 0 ? 0 : 45);
+                        const y = row * 52;
+                        cell.style.left = `${x}px`;
+                        cell.style.top = `${y}px`;
+                        
+                        cell.addEventListener('click', () => handleCellClick(row, col));
+                        boardElement.appendChild(cell);
+                    }
+                }
+            } else {
+                // Создаем квадратную доску
+                for (let row = 0; row < BOARD_SIZE; row++) {
+                    for (let col = 0; col < BOARD_SIZE; col++) {
+                        const cell = document.createElement('div');
+                        cell.className = `cell square-cell ${(row + col) % 2 === 0 ? 'white-cell' : 'black-cell'}`;
+                        cell.setAttribute('data-row', row.toString());
+                        cell.setAttribute('data-col', col.toString());
+                        
+                        // Позиционирование для абсолютного позиционирования
+                        cell.style.left = `${col * 60}px`;
+                        cell.style.top = `${row * 60}px`;
+                        cell.style.position = 'absolute';
+                        
+                        cell.addEventListener('click', () => handleCellClick(row, col));
+                        boardElement.appendChild(cell);
+                    }
+                }
+            }
+        }
+
+        // Получение всех возможных ходов для игрока
+        function getAllValidMoves(player) {
+            const moves = [];
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    if (board[row][col] && board[row][col].player === player) {
+                        const directions = getMoveDirections();
+                        for (const [dRow, dCol] of directions) {
+                            const newRow = row + dRow;
+                            const newCol = col + dCol;
+                            
+                            if (isValidMove(row, col, newRow, newCol)) {
+                                moves.push({from: {row, col}, to: {row: newRow, col: newCol}});
+                            }
+                        }
+                    }
+                }
+            }
+            return moves;
+        }
+
+        // Копирование доски
+        function copyBoard() {
+            const copy = [];
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                copy[row] = Array(colsInRow).fill(null);
+                for (let col = 0; col < colsInRow; col++) {
+                    if (board[row][col]) {
+                        copy[row][col] = {...board[row][col]};
+                    }
+                }
+            }
+            return copy;
+        }
+
+        // Применение хода к копии доски
+        function applyMoveToBoard(boardCopy, move, player) {
+            const {from, to} = move;
+            const chip = {...boardCopy[from.row][from.col]};
+            boardCopy[from.row][from.col] = null;
+            
+            // Ход к своей фишке на соседней клетке
+            if (boardCopy[to.row][to.col] && boardCopy[to.row][to.col].player === player) {
+                boardCopy[to.row][to.col].weight += chip.weight;
+                return boardCopy;
+            }
+            
+            // Проверка атрибута клетки
+            const cellElement = document.querySelector(`.cell[data-row="${to.row}"][data-col="${to.col}"]`);
+            let hasPlus = false;
+            let hasMinus = false;
+            if (cellElement) {
+                hasPlus = cellElement.classList.contains('plus');
+                hasMinus = cellElement.classList.contains('minus');
+            }
+            
+            if (hasPlus) {
+                chip.weight += 1;
+            } else if (hasMinus) {
+                chip.weight -= 1;
+                if (chip.weight <= 0) {
+                    return boardCopy;
+                }
+            }
+            
+            // Проверка столкновения с фишкой противника
+            if (boardCopy[to.row][to.col]) {
+                const enemyChip = boardCopy[to.row][to.col];
+                if (chip.weight > enemyChip.weight) {
+                    chip.weight -= enemyChip.weight;
+                    boardCopy[to.row][to.col] = chip;
+                } else if (enemyChip.weight > chip.weight) {
+                    enemyChip.weight -= chip.weight;
+                    boardCopy[to.row][to.col] = enemyChip;
+                } else {
+                    boardCopy[to.row][to.col] = null;
+                }
+            } else {
+                boardCopy[to.row][to.col] = chip;
+            }
+            
+            return boardCopy;
+        }
+
+        // Расширенная оценка позиции с учетом продвижения, безопасности и контроля центра
+        function evaluateBoardAdvanced(boardCopy, player) {
+            let score = 0;
+            let player1AllReached = true;
+            let player2AllReached = true;
+            
+            // Проверка достижения целевой линии и подсчет очков
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    if (boardCopy[row][col]) {
+                        const chip = boardCopy[row][col];
+                        if (chip.player === 1) {
+                            if (row !== 0) player1AllReached = false;
+                            // Бонус за продвижение вперед (экспоненциальный)
+                            score += Math.pow(2, BOARD_SIZE - 1 - row) * chip.weight;
+                            // Бонус за безопасность (фишки в тылу)
+                            if (row > BOARD_SIZE - 3) score += chip.weight * 0.5;
+                        } else {
+                            if (row !== BOARD_SIZE - 1) player2AllReached = false;
+                            // Бонус за продвижение вперед (экспоненциальный)
+                            score -= Math.pow(2, row) * chip.weight;
+                            // Бонус за безопасность (фишки в тылу)
+                            if (row < 2) score -= chip.weight * 0.5;
+                        }
+                    }
+                }
+            }
+            
+            // Если игра завершена
+            if (player1AllReached || player2AllReached) {
+                let player1Sum = 0;
+                let player2Sum = 0;
+                
+                const firstRowCols = BOARD_TYPE === 'hex' ? (0 % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                const lastRowCols = BOARD_TYPE === 'hex' ? ((BOARD_SIZE - 1) % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                
+                for (let col = 0; col < firstRowCols; col++) {
+                    if (boardCopy[0][col] && boardCopy[0][col].player === 1) {
+                        player1Sum += boardCopy[0][col].weight;
+                    }
+                }
+                for (let col = 0; col < lastRowCols; col++) {
+                    if (boardCopy[BOARD_SIZE-1][col] && boardCopy[BOARD_SIZE-1][col].player === 2) {
+                        player2Sum += boardCopy[BOARD_SIZE-1][col].weight;
+                    }
+                }
+                
+                if (player1Sum > player2Sum) return player === 1 ? 100000 : -100000;
+                if (player2Sum > player1Sum) return player === 2 ? 100000 : -100000;
+                return 0;
+            }
+            
+            // Бонус за контроль центральных клеток
+            const centerRow = Math.floor(BOARD_SIZE / 2);
+            const centerCol = Math.floor(BOARD_SIZE / 2);
+            for (let row = Math.max(0, centerRow - 1); row <= Math.min(BOARD_SIZE - 1, centerRow + 1); row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = Math.max(0, centerCol - 1); col <= Math.min(colsInRow - 1, centerCol + 1); col++) {
+                    if (boardCopy[row][col]) {
+                        if (boardCopy[row][col].player === 1) {
+                            score += 3;
+                        } else {
+                            score -= 3;
+                        }
+                    }
+                }
+            }
+            
+            // Бонус за количество фишек
+            let player1Count = 0;
+            let player2Count = 0;
+            let player1Weight = 0;
+            let player2Weight = 0;
+            
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    if (boardCopy[row][col]) {
+                        if (boardCopy[row][col].player === 1) {
+                            player1Count++;
+                            player1Weight += boardCopy[row][col].weight;
+                        } else {
+                            player2Count++;
+                            player2Weight += boardCopy[row][col].weight;
+                        }
+                    }
+                }
+            }
+            
+            // Бонус за разницу в количестве фишек и общем весе
+            score += (player1Count - player2Count) * 2;
+            score += (player1Weight - player2Weight) * 1.5;
+            
+            return player === 1 ? score : -score;
+        }
+
+        // Минимакс с альфа-бета отсечением и углубленной оценкой
+        function minimaxAdvanced(boardCopy, depth, alpha, beta, maximizingPlayer, player, originalPlayer) {
+            if (depth === 0) {
+                return evaluateBoardAdvanced(boardCopy, originalPlayer);
+            }
+            
+            const moves = getAllValidMovesForBoard(boardCopy, player);
+            if (moves.length === 0) {
+                return evaluateBoardAdvanced(boardCopy, originalPlayer);
+            }
+            
+            // Сортировка ходов для лучшего отсечения (жадная эвристика)
+            moves.sort((a, b) => {
+                // Приоритет ходам, которые продвигают вперед
+                const aForward = (player === 1 ? a.from.row - a.to.row : a.to.row - a.from.row);
+                const bForward = (player === 1 ? b.from.row - b.to.row : b.to.row - b.from.row);
+                return bForward - aForward;
+            });
+            
+            if (maximizingPlayer) {
+                let maxEval = -Infinity;
+                for (const move of moves) {
+                    const newBoard = copyBoardFromState(boardCopy);
+                    applyMoveToBoard(newBoard, move, player);
+                    const eval = minimaxAdvanced(newBoard, depth - 1, alpha, beta, false, player === 1 ? 2 : 1, originalPlayer);
+                    maxEval = Math.max(maxEval, eval);
+                    alpha = Math.max(alpha, eval);
+                    if (beta <= alpha) break;
+                }
+                return maxEval;
+            } else {
+                let minEval = Infinity;
+                for (const move of moves) {
+                    const newBoard = copyBoardFromState(boardCopy);
+                    applyMoveToBoard(newBoard, move, player);
+                    const eval = minimaxAdvanced(newBoard, depth - 1, alpha, beta, true, player === 1 ? 2 : 1, originalPlayer);
+                    minEval = Math.min(minEval, eval);
+                    beta = Math.min(beta, eval);
+                    if (beta <= alpha) break;
+                }
+                return minEval;
+            }
+        }
+
+        // Копирование доски из заданного состояния
+        function copyBoardFromState(boardState) {
+            const copy = [];
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                copy[row] = Array(colsInRow).fill(null);
+                for (let col = 0; col < colsInRow; col++) {
+                    if (boardState[row][col]) {
+                        copy[row][col] = {...boardState[row][col]};
+                    }
+                }
+            }
+            return copy;
+        }
+
+        // Получение всех ходов для заданной доски
+        function getAllValidMovesForBoard(boardCopy, player) {
+            const moves = [];
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    if (boardCopy[row][col] && boardCopy[row][col].player === player) {
+                        const directions = getMoveDirections();
+                        for (const [dRow, dCol] of directions) {
+                            const newRow = row + dRow;
+                            const newCol = col + dCol;
+                            
+                            // Проверка границ
+                            if (newRow < 0 || newRow >= BOARD_SIZE) continue;
+                            const toCols = BOARD_TYPE === 'hex' ? (newRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                            if (newCol < 0 || newCol >= toCols) continue;
+                            
+                            // Проверка направления движения для игроков при движении к противнику
+                            if (!(boardCopy[newRow][newCol] && boardCopy[newRow][newCol].player === player)) {
+                                if (player === 1 && dRow > 0) continue;
+                                if (player === 2 && dRow < 0) continue;
+                            }
+                            
+                            moves.push({from: {row, col}, to: {row: newRow, col: newCol}});
+                        }
+                    }
+                }
+            }
+            return moves;
+        }
+
+        // Выбор лучшего хода ИИ с улучшенной логикой
+        function getBestMoveAdvanced(player, level) {
+            const moves = getAllValidMoves(player);
+            if (moves.length === 0) return null;
+            
+            if (moves.length === 1) return moves[0];
+            
+            // Увеличенная глубина поиска для более сильной игры
+            const depth = level === 'ai3' ? 5 : (level === 'ai2' ? 4 : 3);
+            
+            let bestMove = moves[0];
+            let bestValue = -Infinity;
+            
+            // Сортировка ходов для лучшего отсечения
+            moves.sort((a, b) => {
+                // Приоритет ходам, которые продвигают вперед или объединяют фишки
+                let aScore = 0;
+                let bScore = 0;
+                
+                // Бонус за продвижение
+                aScore += (player === 1 ? a.from.row - a.to.row : a.to.row - a.from.row) * 10;
+                bScore += (player === 1 ? b.from.row - b.to.row : b.to.row - b.from.row) * 10;
+                
+                // Бонус за объединение с фишкой
+                if (board[a.to.row][a.to.col] && board[a.to.row][a.to.col].player === player) {
+                    aScore += board[a.to.row][a.to.col].weight * 5;
+                }
+                if (board[b.to.row][b.to.col] && board[b.to.row][b.to.col].player === player) {
+                    bScore += board[b.to.row][b.to.col].weight * 5;
+                }
+                
+                return bScore - aScore;
+            });
+            
+            for (const move of moves) {
+                const boardCopy = copyBoard();
+                applyMoveToBoard(boardCopy, move, player);
+                const moveValue = minimaxAdvanced(boardCopy, depth, -Infinity, Infinity, false, player === 1 ? 2 : 1, player);
+                
+                if (moveValue > bestValue) {
+                    bestValue = moveValue;
+                    bestMove = move;
+                }
+            }
+            
+            return bestMove;
+        }
+
+        // Выполнение хода ИИ
+        function makeAIMove() {
+            if (!gameActive) return;
+            
+            const playerType = currentPlayer === 1 ? player1Type : player2Type;
+            if (playerType === 'human') return;
+            
+            document.getElementById('thinking').style.color = 'red';
+            
+            setTimeout(() => {
+                const bestMove = getBestMoveAdvanced(currentPlayer, playerType);
+                document.getElementById('thinking').style.color = 'white';
+                
+                if (bestMove) {
+                    moveChip(bestMove.from.row, bestMove.from.col, bestMove.to.row, bestMove.to.col);
+                    checkWinCondition();
+                    if (gameActive) {
+                        currentPlayer = currentPlayer === 1 ? 2 : 1;
+                        document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
+                        makeAIMove(); // Рекурсивный вызов для следующего ИИ
+                    }
+                }
+            }, 100);
+        }
+
+        // Обработка клика по клетке
+        function handleCellClick(row, col) {
+            if (!gameActive) return;
+            
+            const currentPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+            if (currentPlayerType !== 'human') return;
+
+            const cell = board[row][col];
+
+            // Если клик по своей фишке и она не выбрана
+            if (cell && cell.player === currentPlayer && selectedChip === null) {
+                selectedChip = { row, col };
+                highlightValidMoves(row, col);
+                return;
+            }
+
+            // Если уже выбрана фишка
+            if (selectedChip !== null) {
+                const fromRow = selectedChip.row;
+                const fromCol = selectedChip.col;
+                const toRow = row;
+                const toCol = col;
+
+                // Проверка валидности хода
+                if (isValidMove(fromRow, fromCol, toRow, toCol)) {
+                    moveChip(fromRow, fromCol, toRow, toCol);
+                    selectedChip = null;
+                    clearHighlights();
+                    checkWinCondition();
+                    if (gameActive) {
+                        currentPlayer = currentPlayer === 1 ? 2 : 1;
+                        document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
+                        // Проверяем, не ходит ли следующий игрок ИИ
+                        const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+                        if (nextPlayerType !== 'human') {
+                            makeAIMove();
+                        }
+                    }
+                } else {
+                    // Если клик по другой своей фишке - выбрать её
+                    if (cell && cell.player === currentPlayer) {
+                        clearHighlights();
+                        selectedChip = { row, col };
+                        highlightValidMoves(row, col);
+                    } else {
+                        // Снять выделение
+                        clearHighlights();
+                        selectedChip = null;
+                    }
+                }
+            }
+        }
+
+        // Подсветка допустимых ходов
+        function highlightValidMoves(row, col) {
+            const directions = getMoveDirections();
+            
+            for (const [dRow, dCol] of directions) {
+                const newRow = row + dRow;
+                const newCol = col + dCol;
+                
+                if (isValidMove(row, col, newRow, newCol)) {
+                    const cell = document.querySelector(`.cell[data-row="${newRow}"][data-col="${newCol}"]`);
+                    if (cell) cell.classList.add('highlight');
+                }
+            }
+        }
+
+        // Очистка подсветки
+        function clearHighlights() {
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.classList.remove('highlight');
+            });
+        }
+
+        // Проверка валидности хода
+        function isValidMove(fromRow, fromCol, toRow, toCol) {
+            if (fromRow === toRow && fromCol === toCol) return false;
+            
+            if (BOARD_TYPE === 'hex') {
+                return isValidHexMove(fromRow, fromCol, toRow, toCol, currentPlayer);
+            }
+
+            // Проверка границ для квадратной доски
+            if (toRow < 0 || toRow >= BOARD_SIZE || toCol < 0 || toCol >= BOARD_SIZE) return false;
+
+            const dRow = toRow - fromRow;
+            const dCol = toCol - fromCol;
+
+            // Проверка, что ход на соседнюю клетку (максимум 1 клетка в любом направлении)
+            if (Math.abs(dRow) > 1 || Math.abs(dCol) > 1) return false;
+
+            // Ход к своей фишке на соседней клетке
+            if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
+                return true;
+            }
+
+            // Ход к противнику или пустой клетке
+            if (Math.abs(dRow) <= 1 && Math.abs(dCol) <= 1) {
+                // Проверка направления движения
+                if (currentPlayer === 1 && dRow > 0) return false; // Игрок 1 не может идти вниз
+                if (currentPlayer === 2 && dRow < 0) return false; // Игрок 2 не может идти вверх
+                return true;
+            }
+
+            return false;
+        }
+
+        // Перемещение фишки
+        function moveChip(fromRow, fromCol, toRow, toCol) {
+            const chip = board[fromRow][fromCol];
+            board[fromRow][fromCol] = null;
+
+            // Ход к своей фишке на соседней клетке
+            if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
+                board[toRow][toCol].weight += chip.weight;
+                renderBoard();
+                return;
+            }
+
+            // Проверка атрибута клетки
+            const cellElement = document.querySelector(`.cell[data-row="${toRow}"][data-col="${toCol}"]`);
+            if (cellElement && cellElement.classList.contains('plus')) {
+                chip.weight += 1;
+            } else if (cellElement && cellElement.classList.contains('minus')) {
+                chip.weight -= 1;
+                if (chip.weight <= 0) {
+                    renderBoard();
+                    return;
+                }
+            }
+
+            // Проверка столкновения с фишкой противника
+            if (board[toRow][toCol]) {
+                const enemyChip = board[toRow][toCol];
+                if (chip.weight > enemyChip.weight) {
+                    chip.weight -= enemyChip.weight;
+                    board[toRow][toCol] = chip;
+                } else if (enemyChip.weight > chip.weight) {
+                    enemyChip.weight -= chip.weight;
+                    board[toRow][toCol] = enemyChip;
+                } else {
+                    board[toRow][toCol] = null;
+                }
+            } else {
+                board[toRow][toCol] = chip;
+            }
+
+            renderBoard();
+        }
+
+        // Проверка условия победы
+        function checkWinCondition() {
+            // Проверяем, все ли фишки игрока 1 достигли 0-й строки
+            let player1AllReached = true;
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    if (board[row][col] && board[row][col].player === 1 && row !== 0) {
+                        player1AllReached = false;
+                        break;
+                    }
+                }
+                if (!player1AllReached) break;
+            }
+
+            // Проверяем, все ли фишки игрока 2 достигли последней строки
+            let player2AllReached = true;
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                for (let col = 0; col < colsInRow; col++) {
+                    if (board[row][col] && board[row][col].player === 2 && row !== BOARD_SIZE - 1) {
+                        player2AllReached = false;
+                        break;
+                    }
+                }
+                if (!player2AllReached) break;
+            }
+
+            if (player1AllReached || player2AllReached) {
+                // Подсчет суммы весов на целевой линии
+                let player1Sum = 0;
+                let player2Sum = 0;
+                
+                const firstRowCols = BOARD_TYPE === 'hex' ? (0 % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                const lastRowCols = BOARD_TYPE === 'hex' ? ((BOARD_SIZE - 1) % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                
+                for (let col = 0; col < firstRowCols; col++) {
+                    if (board[0][col] && board[0][col].player === 1) {
+                        player1Sum += board[0][col].weight;
+                    }
+                }
+                for (let col = 0; col < lastRowCols; col++) {
+                    if (board[BOARD_SIZE-1][col] && board[BOARD_SIZE-1][col].player === 2) {
+                        player2Sum += board[BOARD_SIZE-1][col].weight;
+                    }
+                }
+
+                gameActive = false;
+                let message;
+                if (player1Sum > player2Sum) {
+                    message = `Победил игрок 1! Сумма: ${player1Sum} vs ${player2Sum}`;
+                } else if (player2Sum > player1Sum) {
+                    message = `Победил игрок 2! Сумма: ${player2Sum} vs ${player1Sum}`;
+                } else {
+                    message = `Ничья! Суммы равны: ${player1Sum}. Переигровка.`;
+                    setTimeout(() => {
+                        restoreInitialBoardState();
+                        currentPlayer = 1;
+                        gameActive = true;
+                        document.getElementById('game-info').textContent = 'Ход игрока 1';
+                        const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+                        if (nextPlayerType !== 'human') {
+                            makeAIMove();
+                        }
+                    }, 2000);
+                    document.getElementById('game-info').textContent = message;
+                    return;
+                }
+
+                document.getElementById('game-info').textContent = message;
+            }
+        }
+
+        // Начало новой игры (с новой случайной расстановкой)
+        function startNewGame() {
+            currentPlayer = 1;
+            gameActive = true;
+            document.getElementById('game-info').textContent = 'Ход игрока 1';
+            document.getElementById('thinking').style.color = 'white';
+            initBoard();
+            const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+            if (nextPlayerType !== 'human') {
+                makeAIMove();
+            }
+        }
+
+        // Начать сначала (с сохраненной расстановкой)
+        function restartSameGame() {
+            restoreInitialBoardState();
+            currentPlayer = 1;
+            gameActive = true;
+            document.getElementById('game-info').textContent = 'Ход игрока 1';
+            document.getElementById('thinking').style.color = 'white';
+            const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+            if (nextPlayerType !== 'human') {
+                makeAIMove();
+            }
+        }
+
+        // Валидация размера шестиугольной доски
+        function validateBoardSize() {
+            const sizeInput = document.getElementById('board-size');
+            const boardType = document.getElementById('board-type').value;
+            
+            if (boardType === 'hex') {
+                let size = parseInt(sizeInput.value.toString());
+                if (size < 3) size = 3;
+                if (size > 11) size = 11;
+                // Приводим к нечетному числу
+                if (size % 2 === 0) {
+                    size = size - 1;
+                    if (size < 3) size = 3;
+                }
+                sizeInput.value = size;
+            }
+        }
+
+        // Обработчики кнопок
+        document.getElementById('restart').addEventListener('click', restartSameGame);
+        document.getElementById('rules-btn').addEventListener('click', () => {
+            document.getElementById('rules-modal').style.display = 'block';
+        });
+        document.getElementById('close-rules').addEventListener('click', () => {
+            document.getElementById('rules-modal').style.display = 'none';
+        });
+        document.getElementById('new-game-btn').addEventListener('click', () => {
+            document.getElementById('size-selector').style.display = 'block';
+        });
+        document.getElementById('cancel-size').addEventListener('click', () => {
+            document.getElementById('size-selector').style.display = 'none';
+        });
+        document.getElementById('confirm-size').addEventListener('click', () => {
+            validateBoardSize();
+            const newSize = parseInt(document.getElementById('board-size').value);
+            const newType = document.getElementById('board-type').value;
+            
+            if (newType === 'hex') {
+                if (newSize < 3 || newSize > 11 || newSize % 2 === 0) {
+                    alert('Размер шестиугольной доски должен быть нечетным числом от 3 до 11!');
+                    return;
+                }
+            } else {
+                if (newSize < 3 || newSize > 11) {
+                    alert('Размер квадратной доски должен быть от 4 до 12!');
+                    return;
+                }
+            }
+            
+            BOARD_SIZE = newSize;
+            BOARD_TYPE = newType;
+            document.getElementById('size-selector').style.display = 'none';
+            document.getElementById('ai-settings').style.display = 'block';
+        });
+        document.getElementById('cancel-ai').addEventListener('click', () => {
+            document.getElementById('ai-settings').style.display = 'none';
+        });
+        document.getElementById('confirm-ai').addEventListener('click', () => {
+            player1Type = document.getElementById('player1-type').value;
+            player2Type = document.getElementById('player2-type').value;
+            document.getElementById('ai-settings').style.display = 'none';
+            createBoard();
+            startNewGame();
+        });
+
+        // Инициализация игры
+        createBoard();
+        initBoard();
+    </script>
+</body>
+</html>
+
