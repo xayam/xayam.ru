@@ -106,7 +106,7 @@
             justify-content: left;
         }
         #controls button{
-            word-wrap: anywhere;
+            overflow: hidden;
         }
         button {
             padding: 8px 16px;
@@ -289,9 +289,9 @@
     <div id="thinking">ИИ думает...</div>
 	<div id="board"></div>
 	<div id="controls">
-		<button id="rules-btn">ПРАВИЛА</button>
-		<button id="new-game-btn">НОВАЯ</button>
-		<button id="restart">СНАЧАЛА</button>
+		<button id="rules-btn" title="Правила игры">ПРАВИЛА</button>
+		<button id="new-game-btn" title="Новая игра">НОВАЯ</button>
+		<button id="restart" title="Начать сначала">СНАЧАЛА</button>
 	</div>
     <!-- Модальное окно с правилами -->
     <div id="rules-modal">
@@ -547,7 +547,9 @@
         // Отображение доски
         function renderBoard() {
             const boardElement = document.getElementById('board');
-            const controlElement = document.getElementById('controls');
+            const rulesbtnElement = document.getElementById('rules-btn');
+            const newgamebtnElement = document.getElementById('new-game-btn');
+            const restartbtnElement = document.getElementById('restart');
             let width;
             if (BOARD_TYPE === 'hex') {
                 boardElement.style.position = 'relative';
@@ -561,9 +563,10 @@
                 boardElement.style.width = `${width}px`;
                 boardElement.style.height = `${width}px`;
             }
-            // alert(controlElement.width);
-            controlElement.style.width = width + 'px';
-			
+            let new_width = Math.floor(width / 3).toString() + 'px';
+            rulesbtnElement.style.width = new_width;
+            newgamebtnElement.style.width = new_width;
+            restartbtnElement.style.width = new_width;
             for (let row = 0; row < BOARD_SIZE; row++) {
                 const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
                 for (let col = 0; col < colsInRow; col++) {
