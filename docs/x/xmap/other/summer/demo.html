@@ -10,7 +10,6 @@
             padding: 0;
             align-items: center;
         }
-
         body {
             vertical-align: top;
             font-family: Arial, sans-serif;
@@ -20,19 +19,16 @@
             padding: 20px;
             transform: scale(0.6, 0.6);
         }
-
         #game-info {
             margin-bottom: 15px;
             font-size: 20px;
             font-weight: bold;
             color: #333;
         }
-
         #board {
             margin-bottom: 15px;
             display: inline-block;
         }
-
         .cell {
             display: flex;
             justify-content: center;
@@ -41,21 +37,17 @@
             cursor: pointer;
             font-weight: bold;
         }
-
         .square-cell {
             width: 60px;
             height: 60px;
             border: 1px solid white;
         }
-
         .white-cell {
             background-color: brown;
         }
-
         .black-cell {
             background-color: brown;
         }
-
         .hex-cell {
             width: 89px;
             height: 68px;
@@ -67,7 +59,6 @@
             position: absolute;
             border-width: 0;
         }
-
         .chip {
             width: 80%;
             height: 80%;
@@ -81,41 +72,33 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             opacity: 0.9;
         }
-
         .player1 {
             background-color: white;
             color: black;
             font-size: 32px;
         }
-
         .player2 {
             background-color: black;
             font-size: 32px;
         }
-
         .plus {
             background-color: green;
         }
-
         .minus {
             background-color: blue;
         }
-
         .highlight {
             opacity: 0.55;
         }
-
         #controls {
             display: flex;
             gap: 1px;
             flex-wrap: nowrap;
             justify-content: left;
         }
-
         #controls button {
             overflow: hidden;
         }
-
         button {
             padding: 8px 0;
             font-size: 16px;
@@ -123,34 +106,27 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         #restart {
             background-color: #2ecc71;
             color: white;
         }
-
         #restart:hover {
             background-color: #27ae60;
         }
-
         #rules-btn {
             background-color: #9b59b6;
             color: white;
         }
-
         #rules-btn:hover {
             background-color: #8e44ad;
         }
-
         #new-game-btn {
             background-color: #f39c12;
             color: white;
         }
-
         #new-game-btn:hover {
             background-color: #d35400;
         }
-
         #ai-settings {
             display: none;
             position: fixed;
@@ -161,7 +137,6 @@
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
         }
-
         #ai-content {
             position: absolute;
             top: 50%;
@@ -172,16 +147,13 @@
             padding: 20px;
             text-align: center;
         }
-
         #ai-content h2 {
             margin-top: 0;
             color: #333;
         }
-
         .player-setting {
             margin: 15px 0;
         }
-
         select {
             padding: 8px;
             font-size: 16px;
@@ -189,7 +161,6 @@
             border-radius: 5px;
             border: 1px solid #ccc;
         }
-
         #confirm-ai, #cancel-ai {
             padding: 8px 16px;
             margin: 5px;
@@ -198,17 +169,14 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         #confirm-ai {
             background-color: #2ecc71;
             color: white;
         }
-
         #cancel-ai {
             background-color: #e74c3c;
             color: white;
         }
-
         #rules-modal {
             display: none;
             position: fixed;
@@ -219,7 +187,6 @@
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
         }
-
         #rules-content {
             position: absolute;
             top: 0;
@@ -228,17 +195,14 @@
             padding: 20px;
             overflow-y: auto;
         }
-
         #rules-content h2 {
             margin-top: 0;
             color: #333;
         }
-
         #rules-content p {
             margin-bottom: 10px;
             line-height: 1.4;
         }
-
         #close-rules {
             margin-top: 15px;
             padding: 8px 16px;
@@ -248,7 +212,6 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         #size-selector {
             display: none;
             position: fixed;
@@ -259,7 +222,6 @@
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
         }
-
         #size-content {
             position: absolute;
             top: 50%;
@@ -270,41 +232,34 @@
             padding: 20px;
             text-align: left;
         }
-
         #size-content tbody tr td:first-child {
             text-align: right;
         }
-
         #size-content thead tr td {
             text-align: center;
         }
-
         #size-content h2 {
             margin-top: 0;
             color: #333;
         }
-
         #board-size {
             padding: 8px;
             font-size: 16px;
             margin: 10px;
             width: 100px;
         }
-
         #board-type {
             padding: 8px;
             font-size: 16px;
             margin: 10px;
             width: 150px;
         }
-
         #collision-mode {
             padding: 8px;
             font-size: 16px;
             margin: 10px;
             width: 250px;
         }
-
         #confirm-size, #cancel-size {
             padding: 8px 16px;
             margin: 5px;
@@ -313,17 +268,14 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         #confirm-size {
             background-color: #2ecc71;
             color: white;
         }
-
         #cancel-size {
             background-color: #e74c3c;
             color: white;
         }
-
         #thinking {
             color: white;
             font-size: 20px;
@@ -579,26 +531,22 @@
         whiteReached = false;
         blackReached = false;
         lastBlackMoveDone = false;
-
         board = [];
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             board[row] = Array(colsInRow).fill(null);
         }
-
         const cells = document.querySelectorAll('.cell');
         cells.forEach(cell => {
             cell.classList.remove('plus', 'minus', 'highlight');
             cell.innerHTML = '';
         });
-
         for (const {row, col, attr} of initialBoardState.attributes) {
             const cellElement = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
             if (cellElement) {
                 cellElement.classList.add(attr);
             }
         }
-
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
@@ -638,6 +586,12 @@
             (dRow === 0 && (dCol === -1 || dCol === 1)) ||
             (dRow === 1 && (dCol === 0 || dCol === 1));
         if (!isValidDirection) return false;
+
+        // Движение вбок разрешено только на клетку со своей фишкой
+        if (dRow === 0) {
+            return board[toRow][toCol] && board[toRow][toCol].player === player;
+        }
+
         if (!(board[toRow][toCol] && board[toRow][toCol].player === player)) {
             if (player === 1 && dRow > 0) return false;
             if (player === 2 && dRow < 0) return false;
@@ -652,13 +606,11 @@
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             board[row] = Array(colsInRow).fill(null);
         }
-
         const cells = document.querySelectorAll('.cell');
         cells.forEach(cell => {
             cell.classList.remove('plus', 'minus', 'highlight');
             cell.innerHTML = '';
         });
-
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
@@ -670,10 +622,8 @@
                 }
             }
         }
-
         const firstRowCols = BOARD_TYPE === 'hex' ? (0 % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
         const lastRowCols = BOARD_TYPE === 'hex' ? ((BOARD_SIZE - 1) % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
-
         const weights1 = [];
         for (let col = 0; col < lastRowCols; col++) {
             weights1.push(Math.floor(Math.random() * BOARD_SIZE) + 1);
@@ -683,7 +633,6 @@
             const j = Math.floor(Math.random() * (i + 1));
             [weights2[i], weights2[j]] = [weights2[j], weights2[i]];
         }
-
         for (let col = 0; col < firstRowCols; col++) {
             board[0][col] = {player: 2, weight: weights2[col]};
         }
@@ -896,6 +845,24 @@
             } else {
                 boardCopy[to.row][to.col] = null;
             }
+            // Применяем эффект поля после объединения
+            const cellElement = document.querySelector(`.cell[data-row="${to.row}"][data-col="${to.col}"]`);
+            let hasPlus = false;
+            let hasMinus = false;
+            if (cellElement) {
+                hasPlus = cellElement.classList.contains('plus');
+                hasMinus = cellElement.classList.contains('minus');
+            }
+            if (boardCopy[to.row][to.col]) {
+                if (hasPlus) {
+                    boardCopy[to.row][to.col].weight += 1;
+                } else if (hasMinus) {
+                    boardCopy[to.row][to.col].weight -= 1;
+                    if (boardCopy[to.row][to.col].weight <= 0) {
+                        boardCopy[to.row][to.col] = null;
+                    }
+                }
+            }
             return boardCopy;
         }
 
@@ -962,12 +929,11 @@
         return boardCopy;
     }
 
-    // Расширенная оценка позиции с учетом новых правил
-    function evaluateBoardAdvanced(boardCopy, player) {
+    // Унифицированная оценочная функция
+    function evaluatePosition(boardCopy, player) {
         let score = 0;
         let player1AllReached = true;
         let player2AllReached = true;
-
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
             for (let col = 0; col < colsInRow; col++) {
@@ -985,7 +951,6 @@
                 }
             }
         }
-
         if (player1AllReached || player2AllReached) {
             let player1Sum = 0;
             let player2Sum = 0;
@@ -1005,7 +970,6 @@
             if (player2Sum > player1Sum) return player === 2 ? 100000 : -100000;
             return 0;
         }
-
         const centerRow = Math.floor(BOARD_SIZE / 2);
         const centerCol = Math.floor(BOARD_SIZE / 2);
         for (let row = Math.max(0, centerRow - 1); row <= Math.min(BOARD_SIZE - 1, centerRow + 1); row++) {
@@ -1020,7 +984,6 @@
                 }
             }
         }
-
         let player1Count = 0;
         let player2Count = 0;
         let player1Weight = 0;
@@ -1039,7 +1002,6 @@
                 }
             }
         }
-
         // Учет новых правил объединения: избегаем создания фишек с равными весами
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
@@ -1063,7 +1025,6 @@
                 }
             }
         }
-
         score += (player1Count - player2Count) * 2;
         score += (player1Weight - player2Weight) * 1.5;
         return player === 1 ? score : -score;
@@ -1072,19 +1033,17 @@
     // Минимакс с альфа-бета отсечением и углубленной оценкой
     function minimaxAdvanced(boardCopy, depth, alpha, beta, maximizingPlayer, player, originalPlayer) {
         if (depth === 0) {
-            return evaluateBoardAdvanced(boardCopy, originalPlayer);
+            return evaluatePosition(boardCopy, originalPlayer);
         }
         const moves = getAllValidMovesForBoard(boardCopy, player);
         if (moves.length === 0) {
-            return evaluateBoardAdvanced(boardCopy, originalPlayer);
+            return evaluatePosition(boardCopy, originalPlayer);
         }
-
         moves.sort((a, b) => {
             const aForward = (player === 1 ? a.from.row - a.to.row : a.to.row - a.from.row);
             const bForward = (player === 1 ? b.from.row - b.to.row : b.to.row - b.from.row);
             return bForward - aForward;
         });
-
         if (maximizingPlayer) {
             let maxEval = -Infinity;
             for (const move of moves) {
@@ -1139,11 +1098,9 @@
                         if (newRow < 0 || newRow >= BOARD_SIZE) continue;
                         const toCols = BOARD_TYPE === 'hex' ? (newRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
                         if (newCol < 0 || newCol >= toCols) continue;
-                        if (!(boardCopy[newRow][newCol] && boardCopy[newRow][newCol].player === player)) {
-                            if (player === 1 && dRow > 0) continue;
-                            if (player === 2 && dRow < 0) continue;
+                        if (isValidMoveForBoard(boardCopy, row, col, newRow, newCol, player)) {
+                            moves.push({from: {row, col}, to: {row: newRow, col: newCol}});
                         }
-                        moves.push({from: {row, col}, to: {row: newRow, col: newCol}});
                     }
                 }
             }
@@ -1151,23 +1108,181 @@
         return moves;
     }
 
+    // Проверка валидности хода для заданной доски
+    function isValidMoveForBoard(boardCopy, fromRow, fromCol, toRow, toCol, player) {
+        if (fromRow === toRow && fromCol === toCol) return false;
+        if (BOARD_TYPE === 'hex') {
+            if (toRow < 0 || toRow >= BOARD_SIZE) return false;
+            const colsInToRow = toRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1;
+            if (toCol < 0 || toCol >= colsInToRow) return false;
+            const dRow = toRow - fromRow;
+            const dCol = toCol - fromCol;
+            const isValidDirection = fromRow % 2 === 0 ?
+                (dRow === -1 && (dCol === -1 || dCol === 0)) ||
+                (dRow === 0 && (dCol === -1 || dCol === 1)) ||
+                (dRow === 1 && (dCol === -1 || dCol === 0)) :
+                (dRow === -1 && (dCol === 0 || dCol === 1)) ||
+                (dRow === 0 && (dCol === -1 || dCol === 1)) ||
+                (dRow === 1 && (dCol === 0 || dCol === 1));
+            if (!isValidDirection) return false;
+            // Движение вбок разрешено только на клетку со своей фишкой
+            if (dRow === 0) {
+                return boardCopy[toRow][toCol] && boardCopy[toRow][toCol].player === player;
+            }
+            if (!(boardCopy[toRow][toCol] && boardCopy[toRow][toCol].player === player)) {
+                if (player === 1 && dRow > 0) return false;
+                if (player === 2 && dRow < 0) return false;
+            }
+            return true;
+        } else {
+            if (toRow < 0 || toRow >= BOARD_SIZE || toCol < 0 || toCol >= BOARD_SIZE) return false;
+            const dRow = toRow - fromRow;
+            const dCol = toCol - fromCol;
+            if (Math.abs(dRow) > 1 || Math.abs(dCol) > 1) return false;
+            if (boardCopy[toRow][toCol] && boardCopy[toRow][toCol].player === player) {
+                return true;
+            }
+            // Движение вбок разрешено только на клетку со своей фишкой
+            if (dRow === 0) {
+                return false;
+            }
+            if (currentPlayer === 1 && dRow > 0) return false;
+            return !(currentPlayer === 2 && dRow < 0);
+        }
+    }
+
+    // Проверка валидности хода
+    function isValidMove(fromRow, fromCol, toRow, toCol) {
+        if (fromRow === toRow && fromCol === toCol) return false;
+        if (BOARD_TYPE === 'hex') {
+            return isValidHexMove(fromRow, fromCol, toRow, toCol, currentPlayer);
+        }
+        if (toRow < 0 || toRow >= BOARD_SIZE || toCol < 0 || toCol >= BOARD_SIZE) return false;
+        const dRow = toRow - fromRow;
+        const dCol = toCol - fromCol;
+        if (Math.abs(dRow) > 1 || Math.abs(dCol) > 1) return false;
+        if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
+            return true;
+        }
+        // Движение вбок разрешено только на клетку со своей фишкой
+        if (dRow === 0) {
+            return false;
+        }
+        if (currentPlayer === 1 && dRow > 0) return false;
+        return !(currentPlayer === 2 && dRow < 0);
+    }
+
+    // Перемещение фишки с учетом новых правил
+    function moveChip(fromRow, fromCol, toRow, toCol) {
+        const chip = board[fromRow][fromCol];
+        board[fromRow][fromCol] = null;
+
+        if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
+            const targetChip = board[toRow][toCol];
+            if (chip.weight < targetChip.weight) {
+                board[toRow][toCol].weight = chip.weight + targetChip.weight;
+            } else if (chip.weight > targetChip.weight) {
+                board[toRow][toCol].weight = chip.weight - targetChip.weight;
+            } else {
+                board[toRow][toCol] = null;
+            }
+            // Применяем эффект поля после объединения
+            const cellElement = document.querySelector(`.cell[data-row="${toRow}"][data-col="${toCol}"]`);
+            let hasPlus = false;
+            let hasMinus = false;
+            if (cellElement) {
+                hasPlus = cellElement.classList.contains('plus');
+                hasMinus = cellElement.classList.contains('minus');
+            }
+            if (board[toRow][toCol]) {
+                if (hasPlus) {
+                    board[toRow][toCol].weight += 1;
+                } else if (hasMinus) {
+                    board[toRow][toCol].weight -= 1;
+                    if (board[toRow][toCol].weight <= 0) {
+                        board[toRow][toCol] = null;
+                    }
+                }
+            }
+            renderBoard();
+            return;
+        }
+
+        const cellElement = document.querySelector(`.cell[data-row="${toRow}"][data-col="${toCol}"]`);
+        let hasPlus = false;
+        let hasMinus = false;
+        if (cellElement) {
+            hasPlus = cellElement.classList.contains('plus');
+            hasMinus = cellElement.classList.contains('minus');
+        }
+
+        if (board[toRow][toCol]) {
+            const enemyChip = board[toRow][toCol];
+            if (COLLISION_MODE === 'field-effect') {
+                if (hasPlus) {
+                    chip.weight += enemyChip.weight;
+                    board[toRow][toCol] = chip;
+                } else if (hasMinus) {
+                    if (chip.weight > enemyChip.weight) {
+                        chip.weight -= enemyChip.weight;
+                        board[toRow][toCol] = chip;
+                    } else if (enemyChip.weight > chip.weight) {
+                        enemyChip.weight -= chip.weight;
+                        board[toRow][toCol] = enemyChip;
+                    } else {
+                        board[toRow][toCol] = null;
+                    }
+                } else {
+                    if (chip.weight > enemyChip.weight) {
+                        chip.weight -= enemyChip.weight;
+                        board[toRow][toCol] = chip;
+                    } else if (enemyChip.weight > chip.weight) {
+                        enemyChip.weight -= chip.weight;
+                        board[toRow][toCol] = enemyChip;
+                    } else {
+                        board[toRow][toCol] = null;
+                    }
+                }
+            } else {
+                if (chip.weight > enemyChip.weight) {
+                    chip.weight -= enemyChip.weight;
+                    board[toRow][toCol] = chip;
+                } else if (enemyChip.weight > chip.weight) {
+                    enemyChip.weight -= chip.weight;
+                    board[toRow][toCol] = enemyChip;
+                } else {
+                    board[toRow][toCol] = null;
+                }
+            }
+        } else {
+            if (hasPlus) {
+                chip.weight += 1;
+            } else if (hasMinus) {
+                chip.weight -= 1;
+                if (chip.weight <= 0) {
+                    renderBoard();
+                    return;
+                }
+            }
+            board[toRow][toCol] = chip;
+        }
+        renderBoard();
+    }
+
     // Стратегия "Мастер-танк" для уровня 4 - обновлена под новые правила
     function getTankMove(player) {
         const startRow = player === 1 ? BOARD_SIZE - 1 : 0;
         let ownChips = [];
         let colsInStartRow = BOARD_TYPE === 'hex' ? (startRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
-
         for (let col = 0; col < colsInStartRow; col++) {
             if (board[startRow][col] && board[startRow][col].player === player) {
                 ownChips.push({row: startRow, col: col, weight: board[startRow][col].weight});
             }
         }
-
         if (ownChips.length > 1) {
             ownChips.sort((a, b) => a.col - b.col);
             const leftmost = ownChips[0];
             const rightmost = ownChips[ownChips.length - 1];
-
             if (rightmost.col > leftmost.col) {
                 const targetCol = leftmost.col;
                 for (let col = rightmost.col - 1; col >= targetCol; col--) {
@@ -1185,7 +1300,6 @@
                 }
             }
         }
-
         if (ownChips.length === 1) {
             const tank = ownChips[0];
             const directions = player === 1 ?
@@ -1291,13 +1405,11 @@
         const opponent = player === 1 ? 2 : 1;
         const opponentStartRow = opponent === 1 ? BOARD_SIZE - 1 : 0;
         const ownStartRow = player === 1 ? BOARD_SIZE - 1 : 0;
-
         let opponentChipsOnStart = [];
         let ownChipsOnStart = [];
         let ownChips = [];
         const colsInOpponentStart = BOARD_TYPE === 'hex' ? (opponentStartRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
         const colsInOwnStart = BOARD_TYPE === 'hex' ? (ownStartRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
-
         for (let col = 0; col < colsInOpponentStart; col++) {
             if (board[opponentStartRow][col] && board[opponentStartRow][col].player === opponent) {
                 opponentChipsOnStart.push({col, weight: board[opponentStartRow][col].weight});
@@ -1316,7 +1428,6 @@
                 }
             }
         }
-
         if (opponentChipsOnStart.length > 0) {
             const opponentMaxWeight = calculateOpponentMaxTankWeight(opponent, opponentStartRow);
             const ownTotalWeight = ownChipsOnStart.reduce((sum, chip) => sum + chip.weight, 0);
@@ -1395,7 +1506,6 @@
         const opponent = player === 1 ? 2 : 1;
         const startRow = player === 1 ? BOARD_SIZE - 1 : 0;
         const targetRow = player === 1 ? 0 : BOARD_SIZE - 1;
-
         let ownChips = [];
         for (let row = 0; row < BOARD_SIZE; row++) {
             const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
@@ -1405,7 +1515,6 @@
                 }
             }
         }
-
         let startRowChips = ownChips.filter(chip => chip.row === startRow);
         if (startRowChips.length > 2) {
             startRowChips.sort((a, b) => a.col - b.col);
@@ -1422,7 +1531,6 @@
                 }
             }
         }
-
         let bestMove = null;
         let bestScore = -Infinity;
         for (const chip of ownChips) {
@@ -1478,7 +1586,6 @@
         const opponent = player === 1 ? 2 : 1;
         const startRow = player === 1 ? BOARD_SIZE - 1 : 0;
         const targetRow = player === 1 ? 0 : BOARD_SIZE - 1;
-
         let ghostThreats = [];
         let ownChips = [];
         for (let row = 0; row < BOARD_SIZE; row++) {
@@ -1495,7 +1602,6 @@
                 }
             }
         }
-
         if (ghostThreats.length > 0) {
             ghostThreats.sort((a, b) => {
                 const distA = player === 1 ? a.row : (BOARD_SIZE - 1 - a.row);
@@ -1519,7 +1625,6 @@
                 }
             }
         }
-
         let startRowChips = ownChips.filter(chip => chip.row === startRow);
         if (startRowChips.length > 2) {
             startRowChips.sort((a, b) => a.col - b.col);
@@ -1535,7 +1640,6 @@
                 }
             }
         }
-
         let bestMove = null;
         let bestScore = -Infinity;
         for (const chip of ownChips) {
@@ -1776,73 +1880,18 @@
     function getAbsolyarisMove(player) {
         const moves = getAllValidMoves(player);
         if (moves.length === 0) return null;
-        moves.sort((a, b) => {
-            const impactA = calculateMoveImpact(a, player);
-            const impactB = calculateMoveImpact(b, player);
-            return impactB - impactA;
-        });
-        return moves[0];
-    }
-
-    // Расчет влияния хода
-    function calculateMoveImpact(move, player) {
-        let impact = 0;
-        impact += calculateSpaceControl(move.to.row, move.to.col, player);
-        impact += calculatePositionalFlexibility(move.to.row, move.to.col, player);
-        impact += calculateInitiativeGain(move, player);
-        return impact;
-    }
-
-    // Контроль пространства
-    function calculateSpaceControl(row, col, player) {
-        let control = 0;
-        const directions = getMoveDirections();
-        for (const [dRow, dCol] of directions) {
-            const checkRow = row + dRow;
-            const checkCol = col + dCol;
-            const colsInRow = BOARD_TYPE === 'hex' ? (checkRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
-            if (checkRow >= 0 && checkRow < BOARD_SIZE && checkCol >= 0 && checkCol < colsInRow) {
-                if (!board[checkRow][checkCol]) {
-                    control += 1;
-                }
+        let bestMove = null;
+        let bestValue = -Infinity;
+        for (const move of moves) {
+            const boardCopy = copyBoard();
+            applyMoveToBoard(boardCopy, move, player);
+            const moveValue = evaluatePosition(boardCopy, player);
+            if (moveValue > bestValue) {
+                bestValue = moveValue;
+                bestMove = move;
             }
         }
-        return control;
-    }
-
-    // Позиционная гибкость
-    function calculatePositionalFlexibility(row, col, player) {
-        let flexibility;
-        const futureMoves = getAllValidMovesFromPosition(row, col, player);
-        flexibility = futureMoves.length;
-        return flexibility;
-    }
-
-    // Получение возможных ходов из позиции
-    function getAllValidMovesFromPosition(row, col, player) {
-        const moves = [];
-        const directions = getMoveDirections();
-        for (const [dRow, dCol] of directions) {
-            const newRow = row + dRow;
-            const newCol = col + dCol;
-            const fakeBoard = copyBoard();
-            fakeBoard[row][col] = {player: player, weight: 1};
-            if (isValidMove(row, col, newRow, newCol)) {
-                moves.push({from: {row, col}, to: {row: newRow, col: newCol}});
-            }
-        }
-        return moves;
-    }
-
-    // Прирост инициативы
-    function calculateInitiativeGain(move, player) {
-        let initiative = 0;
-        if (player === 1 && move.to.row < move.from.row) {
-            initiative += 5;
-        } else if (player === 2 && move.to.row > move.from.row) {
-            initiative += 5;
-        }
-        return initiative;
+        return bestMove;
     }
 
     // Стратегия "Секрет" для уровня 11 - обновлена под новые правила
@@ -1856,21 +1905,21 @@
             getKnowledgeMove,
             getAbsolyarisMove
         ];
-        const randomStrategy = strategies[Math.floor(Math.random() * strategies.length)];
-        const move = randomStrategy(player);
-        if (!move) {
-            return getBestMoveAdvanced(player, 'ai3');
-        }
-        if (Math.random() < 0.1) {
-            const allMoves = getAllValidMoves(player);
-            if (allMoves.length > 1) {
-                const randomMove = allMoves[Math.floor(Math.random() * allMoves.length)];
-                if (randomMove !== move) {
-                    return randomMove;
+        let bestMove = null;
+        let bestValue = -Infinity;
+        for (const strategy of strategies) {
+            const move = strategy(player);
+            if (move) {
+                const boardCopy = copyBoard();
+                applyMoveToBoard(boardCopy, move, player);
+                const moveValue = evaluatePosition(boardCopy, player);
+                if (moveValue > bestValue) {
+                    bestValue = moveValue;
+                    bestMove = move;
                 }
             }
         }
-        return move;
+        return bestMove || getBestMoveAdvanced(player, 'ai3');
     }
 
     // Выбор лучшего хода ИИ с улучшенной логикой - обновлен под новые правила
@@ -2089,106 +2138,6 @@
         });
     }
 
-    // Проверка валидности хода
-    function isValidMove(fromRow, fromCol, toRow, toCol) {
-        if (fromRow === toRow && fromCol === toCol) return false;
-        if (BOARD_TYPE === 'hex') {
-            return isValidHexMove(fromRow, fromCol, toRow, toCol, currentPlayer);
-        }
-        if (toRow < 0 || toRow >= BOARD_SIZE || toCol < 0 || toCol >= BOARD_SIZE) return false;
-        const dRow = toRow - fromRow;
-        const dCol = toCol - fromCol;
-        if (Math.abs(dRow) > 1 || Math.abs(dCol) > 1) return false;
-        if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
-            return true;
-        }
-        if (Math.abs(dRow) <= 1 && Math.abs(dCol) <= 1) {
-            if (currentPlayer === 1 && dRow > 0) return false;
-            return !(currentPlayer === 2 && dRow < 0);
-
-        }
-        return false;
-    }
-
-    // Перемещение фишки с учетом новых правил
-    function moveChip(fromRow, fromCol, toRow, toCol) {
-        const chip = board[fromRow][fromCol];
-        board[fromRow][fromCol] = null;
-
-        if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
-            const targetChip = board[toRow][toCol];
-            if (chip.weight < targetChip.weight) {
-                board[toRow][toCol].weight = chip.weight + targetChip.weight;
-            } else if (chip.weight > targetChip.weight) {
-                board[toRow][toCol].weight = chip.weight - targetChip.weight;
-            } else {
-                board[toRow][toCol] = null;
-            }
-            renderBoard();
-            return;
-        }
-
-        const cellElement = document.querySelector(`.cell[data-row="${toRow}"][data-col="${toCol}"]`);
-        let hasPlus = false;
-        let hasMinus = false;
-        if (cellElement) {
-            hasPlus = cellElement.classList.contains('plus');
-            hasMinus = cellElement.classList.contains('minus');
-        }
-
-        if (board[toRow][toCol]) {
-            const enemyChip = board[toRow][toCol];
-            if (COLLISION_MODE === 'field-effect') {
-                if (hasPlus) {
-                    chip.weight += enemyChip.weight;
-                    board[toRow][toCol] = chip;
-                } else if (hasMinus) {
-                    if (chip.weight > enemyChip.weight) {
-                        chip.weight -= enemyChip.weight;
-                        board[toRow][toCol] = chip;
-                    } else if (enemyChip.weight > chip.weight) {
-                        enemyChip.weight -= chip.weight;
-                        board[toRow][toCol] = enemyChip;
-                    } else {
-                        board[toRow][toCol] = null;
-                    }
-                } else {
-                    if (chip.weight > enemyChip.weight) {
-                        chip.weight -= enemyChip.weight;
-                        board[toRow][toCol] = chip;
-                    } else if (enemyChip.weight > chip.weight) {
-                        enemyChip.weight -= chip.weight;
-                        board[toRow][toCol] = enemyChip;
-                    } else {
-                        board[toRow][toCol] = null;
-                    }
-                }
-            } else {
-                if (chip.weight > enemyChip.weight) {
-                    chip.weight -= enemyChip.weight;
-                    board[toRow][toCol] = chip;
-                } else if (enemyChip.weight > chip.weight) {
-                    enemyChip.weight -= chip.weight;
-                    board[toRow][toCol] = enemyChip;
-                } else {
-                    board[toRow][toCol] = null;
-                }
-            }
-        } else {
-            if (hasPlus) {
-                chip.weight += 1;
-            } else if (hasMinus) {
-                chip.weight -= 1;
-                if (chip.weight <= 0) {
-                    renderBoard();
-                    return;
-                }
-            }
-            board[toRow][toCol] = chip;
-        }
-        renderBoard();
-    }
-
     // Начало новой игры
     function startNewGame() {
         currentPlayer = 1;
@@ -2290,3 +2239,4 @@
 </script>
 </body>
 </html>
+
