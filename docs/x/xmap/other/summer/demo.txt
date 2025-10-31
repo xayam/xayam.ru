@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Summer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+        body {
+            vertical-align: top;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 20px;
+            transform: scale(0.6, 0.6);
+        }
+        #game-info {
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        #board {
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .square-cell {
+            width: 60px;
+            height: 60px;
+            border: 1px solid white;
+        }
+        .white-cell {
+            background-color: brown;
+        }
+        .black-cell {
+            background-color: brown;
+        }
+        .hex-cell {
+            width: 89px;
+            height: 68px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background-color: brown;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            border-width: 0;
+        }
+        .chip {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            opacity: 0.9;
+        }
+        .player1 {
+            background-color: white;
+            color: black;
+            font-size: 32px;
+        }
+        .player2 {
+            background-color: black;
+            font-size: 32px;
+        }
+        .plus {
+            background-color: green;
+        }
+        .minus {
+            background-color: blue;
+        }
+        .highlight {
+            opacity: 0.55;
+        }
+        #controls {
+            display: flex;
+            gap: 1px;
+            flex-wrap: nowrap;
+            justify-content: left;
+        }
+        #controls button {
+            overflow: hidden;
+        }
+        button {
+            padding: 8px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #restart {
+            background-color: #2ecc71;
+            color: white;
+        }
+        #restart:hover {
+            background-color: #27ae60;
+        }
+        #rules-btn {
+            background-color: #9b59b6;
+            color: white;
+        }
+        #rules-btn:hover {
+            background-color: #8e44ad;
+        }
+        #new-game-btn {
+            background-color: #f39c12;
+            color: white;
+        }
+        #new-game-btn:hover {
+            background-color: #d35400;
+        }
+        #ai-settings {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+        #ai-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translate(0, -50%);
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        #ai-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .player-setting {
+            margin: 15px 0;
+        }
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #confirm-ai, #cancel-ai {
+            padding: 8px 16px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #confirm-ai {
+            background-color: #2ecc71;
+            color: white;
+        }
+        #cancel-ai {
+            background-color: #e74c3c;
+            color: white;
+        }
+        #rules-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+        #rules-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        #rules-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        #rules-content p {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        #close-rules {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #size-selector {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+        #size-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translate(0, -50%);
+            background-color: white;
+            padding: 20px;
+            text-align: left;
+        }
+        #size-content tbody tr td:first-child {
+            text-align: right;
+        }
+        #size-content thead tr td {
+            text-align: center;
+        }
+        #size-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        #board-size {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px;
+            width: 100px;
+        }
+        #board-type {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px;
+            width: 150px;
+        }
+        #collision-mode {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px;
+            width: 250px;
+        }
+        #confirm-size, #cancel-size {
+            padding: 8px 16px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #confirm-size {
+            background-color: #2ecc71;
+            color: white;
+        }
+        #cancel-size {
+            background-color: #e74c3c;
+            color: white;
+        }
+        #thinking {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div id="game-info">Ход игрока 1</div>
+<div id="thinking">ИИ думает...</div>
+<div id="board"></div>
+<div id="controls">
+    <button id="rules-btn" title="Правила игры">ПРАВИЛА</button>
+    <button id="new-game-btn" title="Новая игра">НОВАЯ</button>
+    <button id="restart" title="Начать сначала">СНАЧАЛА</button>
+</div>
+<!-- Модальное окно с правилами -->
+<div id="rules-modal">
+    <div id="rules-content">
+        <h2>Правила игры "Summer"</h2>
+        <p>Игра для двоих на клетчатом или шестиугольном поле.
+            Игроки поочередно передвигают свои фишки.</p>
+        <p><strong>Начальная позиция:</strong> Фишки Игрока 1
+            находятся на первой горизонтали (снизу), Игрока 2 —
+            на последней горизонтали (сверху). Начальный вес каждой фишки —
+            случайное число от 1 до размера доски. Позиция фишек
+            одинакова для обеих сторон — по одной фишке на каждой
+            клетке стартовой линии, но черные фишки — это случайная
+            перестановка весов белых.
+        </p>
+        <p><strong>Поля доски:</strong> Каждая клетка (кроме стартовых линий)
+            имеет атрибут «плюс»(зеленый фон) или «минус»(синий фон).
+            При попадании фишки на такую клетку её вес увеличивается
+            (+1) или уменьшается (-1) соответственно.
+        </p>
+        <p><strong>Ходы:</strong></p>
+        <ul>
+            <li>Можно двигаться на одну клетку вперёд
+                (по направлению к оппоненту), вперёд-влево или
+                вперёд-вправо по диагонали, влево или вправо на соседнюю клетку
+            </li>
+            <li>Если на поле, куда ставится фишка, стоит своя фишка —
+                применяются следующие правила:
+                <ul>
+                    <li>Если вес перемещаемой фишки <strong>меньше</strong> веса фишки на целевом поле,
+                        то веса <strong>суммируются</strong>, и остаётся одна фишка с суммарным весом.
+                    </li>
+                    <li>Если вес перемещаемой фишки <strong>больше</strong> веса фишки на целевом поле,
+                        то остаётся одна фишка с весом, равным <strong>разнице</strong> (больший минус меньший).
+                    </li>
+                    <li>Если веса <strong>равны</strong>, то обе фишки <strong>уничтожаются</strong>, независимо от
+                        атрибута поля.
+                    </li>
+                </ul>
+            </li>
+            <li>Если на поле, куда ставится фишка, стоит чужая фишка —
+                в этом случае веса вычитаются, и остаётся одна фишка,
+                у которой был больший вес.
+            </li>
+        </ul>
+        <p><strong>Столкновение:</strong> Если фишка попадает на
+            клетку с фишкой противника:
+        </p>
+        <ul>
+            <li>
+                <strong>Классический режим.</strong>
+                <ul>
+                    <li>Остаётся фишка с большим весом, её вес уменьшается
+                        на вес уничтоженной фишки.
+                    </li>
+                    <li>Если веса равны — обе фишки уничтожаются.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Режим с влиянием поля.</strong>
+                <ul>
+                    <li>При атрибуте поля плюс - побеждает всегда тот кто ходит,
+                        его вес суммируется с весом оппонента.
+                    </li>
+                    <li>При атрибуте поля минус - побеждает в столкновении фишка с большим весом,
+                        её вес уменьшается на вес уничтоженной фишки.
+                    </li>
+                    <li>При атрибуте поля минус, если вес одинаковые - обе фишки уничтожаются</li>
+                </ul>
+            </li>
+        </ul>
+        <p><strong>Победа:</strong> Игра заканчивается,
+            когда все фишки одного из игроков достигают стартовой линии противника.
+            Если все белые фишки достигли верхней линии (линии черных),
+            то черным даётся один последний ход (если у них остались фишки).
+            Если все черные фишки достигли нижней линии (линии белых),
+            игра завершается немедленно.
+            После этого подсчитывается сумма весов фишек на стартовых линиях.
+            Побеждает игрок с большей суммой. При равенстве — ничья.
+        </p>
+        <button id="close-rules">Закрыть</button>
+    </div>
+</div>
+<!-- Модальное окно выбора размера доски -->
+<div id="size-selector">
+    <table id="size-content">
+        <thead>
+        <tr>
+            <td colspan="2"><h2>Выберите параметры доски</h2></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <label for="board-type">Тип доски:</label>
+            </td>
+            <td>
+                <select id="board-type">
+                    <option value="square">Квадрат</option>
+                    <option value="hex">Шестиугольник</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="board-size" id="size-label">
+                    Размер любое&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;от 3 до 11:</label>
+            </td>
+            <td>
+                <input id="board-size" max="11" min="3" type="number" value="7">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="collision-mode">Режим столкновений:</label>
+            </td>
+            <td>
+                <select id="collision-mode">
+                    <option value="classic">Классический</option>
+                    <option value="field-effect">С влиянием поля</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="confirm-size">Далее</button>
+            </td>
+            <td>
+                <button id="cancel-size">Отмена</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Модальное окно настройки ИИ -->
+<div id="ai-settings">
+    <div id="ai-content">
+        <h2>Настройки игроков</h2>
+        <div class="player-setting">
+            <label for="player1-type">Игрок 1. Белые:</label>
+            <select id="player1-type">
+                <option value="human">Пользователь</option>
+                <option value="ai">ИИ Стратегия&nbsp;&nbsp;&nbsp;1. Джет - имя при рождении</option>
+                <option value="ai2">ИИ Стратегия&nbsp;&nbsp;&nbsp;2. Оптимус - позывной на войне</option>
+                <option value="ai3">ИИ Стратегия&nbsp;&nbsp;&nbsp;3. Тугодум - склонность к глубоким мыслям</option>
+                <option value="ai4">ИИ Стратегия&nbsp;&nbsp;&nbsp;4. Марк I - первый танк</option>
+                <option value="ai5">ИИ Стратегия&nbsp;&nbsp;&nbsp;5. T-34 - новый танк</option>
+                <option value="ai6">ИИ Стратегия&nbsp;&nbsp;&nbsp;6. Призрак - военный дрон</option>
+                <option value="ai7">ИИ Стратегия&nbsp;&nbsp;&nbsp;7. Маг - антидроновая пушка</option>
+                <option value="ai8">ИИ Стратегия&nbsp;&nbsp;&nbsp;8. Метаморф - универсальный боевой вертолет</option>
+                <option value="ai9">ИИ Стратегия&nbsp;&nbsp;&nbsp;9. Знание - авианосец с несущей авиагруппой</option>
+                <option value="ai10">ИИ Стратегия 10. Абсолярис - дух Земли</option>
+                <option value="ai11">ИИ Стратегия 11. Секрет - душа Земли</option>
+            </select>
+        </div>
+        <div class="player-setting">
+            <label for="player2-type">Игрок 2. Черные:</label>
+            <select id="player2-type">
+                <option value="human">Пользователь</option>
+                <option value="ai">ИИ Стратегия&nbsp;&nbsp;&nbsp;1. Джет - имя при рождении</option>
+                <option value="ai2">ИИ Стратегия&nbsp;&nbsp;&nbsp;2. Оптимус - позывной на войне</option>
+                <option value="ai3">ИИ Стратегия&nbsp;&nbsp;&nbsp;3. Тугодум - склонность к глубоким мыслям</option>
+                <option value="ai4">ИИ Стратегия&nbsp;&nbsp;&nbsp;4. Марк I - первый танк</option>
+                <option value="ai5">ИИ Стратегия&nbsp;&nbsp;&nbsp;5. T-34 - новый танк</option>
+                <option value="ai6">ИИ Стратегия&nbsp;&nbsp;&nbsp;6. Призрак - военный дрон</option>
+                <option value="ai7">ИИ Стратегия&nbsp;&nbsp;&nbsp;7. Маг - антидроновая пушка</option>
+                <option value="ai8">ИИ Стратегия&nbsp;&nbsp;&nbsp;8. Метаморф - универсальный боевой вертолет</option>
+                <option value="ai9">ИИ Стратегия&nbsp;&nbsp;&nbsp;9. Знание - авианосец с несущей авиагруппой</option>
+                <option value="ai10">ИИ Стратегия 10. Абсолярис - дух Земли</option>
+                <option value="ai11">ИИ Стратегия 11. Секрет - душа Земли</option>
+            </select>
+        </div>
+        <button id="confirm-ai">Начать игру</button>
+        <button id="cancel-ai">Отмена</button>
+    </div>
+</div>
+<script>
+    let BOARD_SIZE = 7;
+    let BOARD_TYPE = 'square'; // 'square' or 'hex'
+    let COLLISION_MODE = 'classic'; // 'classic' or 'field-effect'
+    let currentPlayer = 1;
+    let board = [];
+    let selectedChip = null;
+    let gameActive = true;
+    let initialBoardState = null;
+    let player1Type = 'human';
+    let player2Type = 'human';
+    let whiteReached = false;
+    let blackReached = false;
+    let lastBlackMoveDone = false;
+
+    // === ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ===
+    function getMoveDirections() {
+        if (BOARD_TYPE === 'hex') return [[-1,-1],[-1,0],[0,-1],[0,1],[1,-1],[1,0]];
+        return [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+    }
+
+    function copyBoard() {
+        const copy = [];
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            copy[row] = Array(colsInRow).fill(null);
+            for (let col = 0; col < colsInRow; col++) {
+                if (board[row][col]) copy[row][col] = {...board[row][col]};
+            }
+        }
+        return copy;
+    }
+
+    function getAllValidMoves(player) {
+        const moves = [];
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (board[row][col] && board[row][col].player === player) {
+                    const directions = getMoveDirections();
+                    for (const [dRow, dCol] of directions) {
+                        const newRow = row + dRow;
+                        const newCol = col + dCol;
+                        if (isValidMove(row, col, newRow, newCol)) {
+                            moves.push({from: {row, col}, to: {row: newRow, col: newCol}});
+                        }
+                    }
+                }
+            }
+        }
+        return moves;
+    }
+
+    function isValidMove(fromRow, fromCol, toRow, toCol) {
+        if (fromRow === toRow && fromCol === toCol) return false;
+        if (BOARD_TYPE === 'hex') {
+            if (toRow < 0 || toRow >= BOARD_SIZE) return false;
+            const colsInToRow = toRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1;
+            if (toCol < 0 || toCol >= colsInToRow) return false;
+            const dRow = toRow - fromRow;
+            const dCol = toCol - fromCol;
+            const isValidDirection = fromRow % 2 === 0 ?
+                (dRow === -1 && (dCol === -1 || dCol === 0)) ||
+                (dRow === 0 && (dCol === -1 || dCol === 1)) ||
+                (dRow === 1 && (dCol === -1 || dCol === 0)) :
+                (dRow === -1 && (dCol === 0 || dCol === 1)) ||
+                (dRow === 0 && (dCol === -1 || dCol === 1)) ||
+                (dRow === 1 && (dCol === 0 || dCol === 1));
+            if (!isValidDirection) return false;
+            if (dRow === 0) return board[toRow][toCol] && board[toRow][toCol].player === currentPlayer;
+            if (!(board[toRow][toCol] && board[toRow][toCol].player === currentPlayer)) {
+                if (currentPlayer === 1 && dRow > 0) return false;
+                if (currentPlayer === 2 && dRow < 0) return false;
+            }
+            return true;
+        } else {
+            if (toRow < 0 || toRow >= BOARD_SIZE || toCol < 0 || toCol >= BOARD_SIZE) return false;
+            const dRow = toRow - fromRow;
+            const dCol = toCol - fromCol;
+            if (Math.abs(dRow) > 1 || Math.abs(dCol) > 1) return false;
+            if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) return true;
+            if (dRow === 0) return false;
+            if (currentPlayer === 1 && dRow > 0) return false;
+            return !(currentPlayer === 2 && dRow < 0);
+        }
+    }
+
+    function applyMoveToBoard(boardCopy, move, player) {
+        const {from, to} = move;
+        const chip = {...boardCopy[from.row][from.col]};
+        boardCopy[from.row][from.col] = null;
+        const cellElement = document.querySelector(`.cell[data-row="${to.row}"][data-col="${to.col}"]`);
+        const hasPlus = cellElement?.classList.contains('plus') || false;
+        const hasMinus = cellElement?.classList.contains('minus') || false;
+
+        if (boardCopy[to.row]?.[to.col] && boardCopy[to.row][to.col].player === player) {
+            const targetChip = boardCopy[to.row][to.col];
+            if (chip.weight < targetChip.weight) {
+                boardCopy[to.row][to.col].weight = chip.weight + targetChip.weight;
+            } else if (chip.weight > targetChip.weight) {
+                boardCopy[to.row][to.col].weight = chip.weight - targetChip.weight;
+            } else {
+                boardCopy[to.row][to.col] = null;
+            }
+            if (boardCopy[to.row][to.col]) {
+                if (hasPlus) boardCopy[to.row][to.col].weight += 1;
+                else if (hasMinus) {
+                    boardCopy[to.row][to.col].weight -= 1;
+                    if (boardCopy[to.row][to.col].weight <= 0) boardCopy[to.row][to.col] = null;
+                }
+            }
+            return boardCopy;
+        }
+
+        if (boardCopy[to.row]?.[to.col]) {
+            const enemyChip = boardCopy[to.row][to.col];
+            if (COLLISION_MODE === 'field-effect') {
+                if (hasPlus) {
+                    chip.weight += enemyChip.weight;
+                    boardCopy[to.row][to.col] = chip;
+                } else if (hasMinus) {
+                    if (chip.weight > enemyChip.weight) {
+                        chip.weight -= enemyChip.weight;
+                        boardCopy[to.row][to.col] = chip;
+                    } else if (enemyChip.weight > chip.weight) {
+                        enemyChip.weight -= chip.weight;
+                        boardCopy[to.row][to.col] = enemyChip;
+                    } else {
+                        boardCopy[to.row][to.col] = null;
+                    }
+                } else {
+                    if (chip.weight > enemyChip.weight) {
+                        chip.weight -= enemyChip.weight;
+                        boardCopy[to.row][to.col] = chip;
+                    } else if (enemyChip.weight > chip.weight) {
+                        enemyChip.weight -= chip.weight;
+                        boardCopy[to.row][to.col] = enemyChip;
+                    } else {
+                        boardCopy[to.row][to.col] = null;
+                    }
+                }
+            } else {
+                if (chip.weight > enemyChip.weight) {
+                    chip.weight -= enemyChip.weight;
+                    boardCopy[to.row][to.col] = chip;
+                } else if (enemyChip.weight > chip.weight) {
+                    enemyChip.weight -= chip.weight;
+                    boardCopy[to.row][to.col] = enemyChip;
+                } else {
+                    boardCopy[to.row][to.col] = null;
+                }
+            }
+        } else {
+            if (hasPlus) chip.weight += 1;
+            else if (hasMinus) {
+                chip.weight -= 1;
+                if (chip.weight <= 0) return boardCopy;
+            }
+            boardCopy[to.row][to.col] = chip;
+        }
+        return boardCopy;
+    }
+
+    function evaluatePosition(boardCopy, player) {
+        let score = 0;
+        let player1AllReached = true;
+        let player2AllReached = true;
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (boardCopy[row][col]) {
+                    const chip = boardCopy[row][col];
+                    if (chip.player === 1) {
+                        if (row !== 0) player1AllReached = false;
+                        score += Math.pow(2, BOARD_SIZE - 1 - row) * chip.weight;
+                        if (row > BOARD_SIZE - 3) score += chip.weight * 0.5;
+                    } else {
+                        if (row !== BOARD_SIZE - 1) player2AllReached = false;
+                        score -= Math.pow(2, row) * chip.weight;
+                        if (row < 2) score -= chip.weight * 0.5;
+                    }
+                }
+            }
+        }
+        if (player1AllReached || player2AllReached) {
+            let player1Sum = 0, player2Sum = 0;
+            const firstRowCols = BOARD_TYPE === 'hex' ? (0 % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            const lastRowCols = BOARD_TYPE === 'hex' ? ((BOARD_SIZE - 1) % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < firstRowCols; col++) if (boardCopy[0][col]?.player === 1) player1Sum += boardCopy[0][col].weight;
+            for (let col = 0; col < lastRowCols; col++) if (boardCopy[BOARD_SIZE - 1][col]?.player === 2) player2Sum += boardCopy[BOARD_SIZE - 1][col].weight;
+            if (player1Sum > player2Sum) return player === 1 ? 100000 : -100000;
+            if (player2Sum > player1Sum) return player === 2 ? 100000 : -100000;
+            return 0;
+        }
+        const centerRow = Math.floor(BOARD_SIZE / 2);
+        const centerCol = Math.floor(BOARD_SIZE / 2);
+        for (let row = Math.max(0, centerRow - 1); row <= Math.min(BOARD_SIZE - 1, centerRow + 1); row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = Math.max(0, centerCol - 1); col <= Math.min(colsInRow - 1, centerCol + 1); col++) {
+                if (boardCopy[row][col]) score += (boardCopy[row][col].player === 1 ? 3 : -3);
+            }
+        }
+        let player1Count = 0, player2Count = 0, player1Weight = 0, player2Weight = 0;
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (boardCopy[row][col]) {
+                    if (boardCopy[row][col].player === 1) {
+                        player1Count++;
+                        player1Weight += boardCopy[row][col].weight;
+                    } else {
+                        player2Count++;
+                        player2Weight += boardCopy[row][col].weight;
+                    }
+                }
+            }
+        }
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (boardCopy[row][col] && boardCopy[row][col].player === player) {
+                    const directions = getMoveDirections();
+                    for (const [dRow, dCol] of directions) {
+                        const checkRow = row + dRow;
+                        const checkCol = col + dCol;
+                        const colsInCheckRow = BOARD_TYPE === 'hex' ? (checkRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                        if (checkRow >= 0 && checkRow < BOARD_SIZE && checkCol >= 0 && checkCol < colsInCheckRow) {
+                            if (boardCopy[checkRow][checkCol]?.player === player && boardCopy[checkRow][checkCol].weight === boardCopy[row][col].weight) {
+                                score += (player === 1 ? -10 : 10);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        score += (player1Count - player2Count) * 2;
+        score += (player1Weight - player2Weight) * 1.5;
+        return player === 1 ? score : -score;
+    }
+
+    // === СТРАТЕГИИ ===
+
+    // 1. Джет — инстинкт
+    function getJetMove(player) {
+        const moves = getAllValidMoves(player).filter(m => {
+            const dRow = m.to.row - m.from.row;
+            return player === 1 ? dRow <= 0 : dRow >= 0;
+        });
+        if (moves.length === 0) return null;
+        const plusMoves = moves.filter(m => {
+            const el = document.querySelector(`.cell[data-row="${m.to.row}"][data-col="${m.to.col}"]`);
+            return el?.classList.contains('plus');
+        });
+        let candidates = plusMoves.length > 0 ? plusMoves : moves;
+        if (Math.random() < 0.05) {
+            const sideMoves = getAllValidMoves(player).filter(m => m.to.row === m.from.row);
+            if (sideMoves.length > 0) candidates = sideMoves;
+        }
+        return candidates[Math.floor(Math.random() * candidates.length)];
+    }
+
+    // 2. Оптимус — эффективность
+    function getOptimusMove(player) {
+        const moves = getAllValidMoves(player).filter(m => {
+            const dRow = m.to.row - m.from.row;
+            return dRow !== 0 && (player === 1 ? dRow < 0 : dRow > 0);
+        });
+        if (moves.length === 0) return null;
+        return moves.reduce((best, move) => {
+            const dRow = player === 1 ? move.from.row - move.to.row : move.to.row - move.from.row;
+            return dRow > (best ? (player === 1 ? best.from.row - best.to.row : best.to.row - best.from.row) : -1) ? move : best;
+        }, null);
+    }
+
+    // 3. Тугодум — разум
+    function getDeepThinkerMove(player) {
+        const depth = 5;
+        let bestMove = null;
+        let bestValue = -Infinity;
+        const moves = getAllValidMoves(player);
+        for (const move of moves) {
+            const boardCopy = copyBoard();
+            applyMoveToBoard(boardCopy, move, player);
+            const value = minimax(boardCopy, depth - 1, -Infinity, Infinity, false, player === 1 ? 2 : 1, player);
+            if (value > bestValue) {
+                bestValue = value;
+                bestMove = move;
+            }
+        }
+        return bestMove;
+    }
+
+    function minimax(boardCopy, depth, alpha, beta, maximizingPlayer, currentPlayer, originalPlayer) {
+        if (depth === 0) return evaluatePosition(boardCopy, originalPlayer);
+        const moves = getAllValidMovesForBoard(boardCopy, currentPlayer);
+        if (moves.length === 0) return evaluatePosition(boardCopy, originalPlayer);
+        if (maximizingPlayer) {
+            let maxEval = -Infinity;
+            for (const move of moves) {
+                const newBoard = copyBoardFromState(boardCopy);
+                applyMoveToBoard(newBoard, move, currentPlayer);
+                const eval = minimax(newBoard, depth - 1, alpha, beta, false, currentPlayer === 1 ? 2 : 1, originalPlayer);
+                maxEval = Math.max(maxEval, eval);
+                alpha = Math.max(alpha, eval);
+                if (beta <= alpha) break;
+            }
+            return maxEval;
+        } else {
+            let minEval = Infinity;
+            for (const move of moves) {
+                const newBoard = copyBoardFromState(boardCopy);
+                applyMoveToBoard(newBoard, move, currentPlayer);
+                const eval = minimax(newBoard, depth - 1, alpha, beta, true, currentPlayer === 1 ? 2 : 1, originalPlayer);
+                minEval = Math.min(minEval, eval);
+                beta = Math.min(beta, eval);
+                if (beta <= alpha) break;
+            }
+            return minEval;
+        }
+    }
+
+    function getAllValidMovesForBoard(boardCopy, player) {
+        const moves = [];
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (boardCopy[row][col] && boardCopy[row][col].player === player) {
+                    const directions = getMoveDirections();
+                    for (const [dRow, dCol] of directions) {
+                        const newRow = row + dRow;
+                        const newCol = col + dCol;
+                        if (newRow < 0 || newRow >= BOARD_SIZE) continue;
+                        const toCols = BOARD_TYPE === 'hex' ? (newRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+                        if (newCol < 0 || newCol >= toCols) continue;
+                        if (isValidMoveForBoard(boardCopy, row, col, newRow, newCol, player)) {
+                            moves.push({from: {row, col}, to: {row: newRow, col: newCol}});
+                        }
+                    }
+                }
+            }
+        }
+        return moves;
+    }
+
+    function isValidMoveForBoard(boardCopy, fromRow, fromCol, toRow, toCol, player) {
+        if (fromRow === toRow && fromCol === toCol) return false;
+        if (BOARD_TYPE === 'hex') {
+            if (toRow < 0 || toRow >= BOARD_SIZE) return false;
+            const colsInToRow = toRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1;
+            if (toCol < 0 || toCol >= colsInToRow) return false;
+            const dRow = toRow - fromRow;
+            const dCol = toCol - fromCol;
+            const isValidDirection = fromRow % 2 === 0 ?
+                (dRow === -1 && (dCol === -1 || dCol === 0)) ||
+                (dRow === 0 && (dCol === -1 || dCol === 1)) ||
+                (dRow === 1 && (dCol === -1 || dCol === 0)) :
+                (dRow === -1 && (dCol === 0 || dCol === 1)) ||
+                (dRow === 0 && (dCol === -1 || dCol === 1)) ||
+                (dRow === 1 && (dCol === 0 || dCol === 1));
+            if (!isValidDirection) return false;
+            if (dRow === 0) return boardCopy[toRow][toCol] && boardCopy[toRow][toCol].player === player;
+            if (!(boardCopy[toRow][toCol] && boardCopy[toRow][toCol].player === player)) {
+                if (player === 1 && dRow > 0) return false;
+                if (player === 2 && dRow < 0) return false;
+            }
+            return true;
+        } else {
+            if (toRow < 0 || toRow >= BOARD_SIZE || toCol < 0 || toCol >= BOARD_SIZE) return false;
+            const dRow = toRow - fromRow;
+            const dCol = toCol - fromCol;
+            if (Math.abs(dRow) > 1 || Math.abs(dCol) > 1) return false;
+            if (boardCopy[toRow][toCol] && boardCopy[toRow][toCol].player === player) return true;
+            if (dRow === 0) return false;
+            if (player === 1 && dRow > 0) return false;
+            return !(player === 2 && dRow < 0);
+        }
+    }
+
+    function copyBoardFromState(boardState) {
+        const copy = [];
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            copy[row] = Array(colsInRow).fill(null);
+            for (let col = 0; col < colsInRow; col++) {
+                if (boardState[row][col]) copy[row][col] = {...boardState[row][col]};
+            }
+        }
+        return copy;
+    }
+
+    // 4. Марк I — танк
+    function getTankMove(player) {
+        const startRow = player === 1 ? BOARD_SIZE - 1 : 0;
+        const colsInStartRow = BOARD_TYPE === 'hex' ? (startRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+        const ownChips = [];
+        for (let col = 0; col < colsInStartRow; col++) {
+            if (board[startRow][col] && board[startRow][col].player === player) {
+                ownChips.push({col, weight: board[startRow][col].weight});
+            }
+        }
+        if (ownChips.length > 1) {
+            ownChips.sort((a, b) => a.col - b.col);
+            for (let i = ownChips.length - 1; i > 0; i--) {
+                const fromCol = ownChips[i].col;
+                const toCol = ownChips[i - 1].col;
+                if (fromCol > toCol && isValidMove(startRow, fromCol, startRow, fromCol - 1)) {
+                    const w1 = board[startRow][fromCol].weight;
+                    const w2 = board[startRow][toCol].weight;
+                    if (w1 !== w2) return {from: {row: startRow, col: fromCol}, to: {row: startRow, col: toCol}};
+                }
+            }
+        }
+        const moves = getAllValidMoves(player).filter(m => m.from.row === startRow);
+        if (moves.length > 0) return moves[0];
+        return getDeepThinkerMove(player);
+    }
+
+    // 5. T-34 — адаптивный танк
+    function getAntiTankMove(player) {
+        const opponent = player === 1 ? 2 : 1;
+        const oppStartRow = opponent === 1 ? BOARD_SIZE - 1 : 0;
+        const ownStartRow = player === 1 ? BOARD_SIZE - 1 : 0;
+        let oppWeight = 0, ownWeight = 0;
+        const colsOpp = BOARD_TYPE === 'hex' ? (oppStartRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+        const colsOwn = BOARD_TYPE === 'hex' ? (ownStartRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+        for (let col = 0; col < colsOpp; col++) if (board[oppStartRow][col]?.player === opponent) oppWeight += board[oppStartRow][col].weight;
+        for (let col = 0; col < colsOwn; col++) if (board[ownStartRow][col]?.player === player) ownWeight += board[ownStartRow][col].weight;
+        if (ownWeight < oppWeight) return getTankMove(player);
+        const moves = getAllValidMoves(player);
+        return moves.length ? moves[0] : null;
+    }
+
+    // 6. Призрак — невидимость
+    function getGhostMove(player) {
+        const moves = getAllValidMoves(player).filter(m => {
+            if (board[m.to.row]?.[m.to.col]?.player !== player && board[m.to.row]?.[m.to.col]) return false;
+            const w = board[m.from.row][m.from.col].weight + (board[m.to.row]?.[m.to.col]?.weight || 0);
+            return w <= 12;
+        });
+        if (moves.length === 0) return null;
+        const plusMoves = moves.filter(m => {
+            const el = document.querySelector(`.cell[data-row="${m.to.row}"][data-col="${m.to.col}"]`);
+            return el?.classList.contains('plus');
+        });
+        return plusMoves.length ? plusMoves[0] : moves[0];
+    }
+
+    // 7. Маг — охотник за Призраками
+    function getMageMove(player) {
+        const opponent = player === 1 ? 2 : 1;
+        let ghostThreats = [];
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (board[row][col]?.player === opponent && board[row][col].weight <= 8 && row !== (opponent === 1 ? BOARD_SIZE - 1 : 0)) {
+                    ghostThreats.push({row, col});
+                }
+            }
+        }
+        if (ghostThreats.length > 0) {
+            const moves = getAllValidMoves(player);
+            const blocking = moves.find(m => ghostThreats.some(g => m.to.row === g.row && m.to.col === g.col));
+            if (blocking) return blocking;
+        }
+        return getDeepThinkerMove(player);
+    }
+
+    // 8. Метаморф — адаптация
+    function getMetamorphMove(player) {
+        const opponent = player === 1 ? 2 : 1;
+        const startRow = opponent === 1 ? BOARD_SIZE - 1 : 0;
+        let heavy = 0, light = 0;
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (board[row][col]?.player === opponent) {
+                    if (board[row][col].weight > 10) heavy++;
+                    else light++;
+                }
+            }
+        }
+        if (heavy >= light) return getAntiTankMove(player);
+        return getGhostMove(player);
+    }
+
+    // 9. Знание — системность
+    function getKnowledgeMove(player) {
+        return getDeepThinkerMove(player);
+    }
+
+    // 10. Абсолярис — поле
+    function getAbsolyarisMove(player) {
+        const moves = getAllValidMoves(player);
+        if (moves.length === 0) return null;
+        let bestMove = null;
+        let bestValue = -Infinity;
+        for (const move of moves) {
+            const boardCopy = copyBoard();
+            applyMoveToBoard(boardCopy, move, player);
+            const value = evaluatePosition(boardCopy, player);
+            if (value > bestValue) {
+                bestValue = value;
+                bestMove = move;
+            }
+        }
+        return bestMove;
+    }
+
+    // 11. Секрет — вместимость
+    function getSecretMove(player) {
+        const strategies = [
+            getJetMove,
+            getOptimusMove,
+            getDeepThinkerMove,
+            getTankMove,
+            getAntiTankMove,
+            getGhostMove,
+            getMageMove,
+            getMetamorphMove,
+            getKnowledgeMove,
+            getAbsolyarisMove
+        ];
+        let bestMove = null;
+        let bestValue = -Infinity;
+        for (const strategy of strategies) {
+            const move = strategy(player);
+            if (move) {
+                const boardCopy = copyBoard();
+                applyMoveToBoard(boardCopy, move, player);
+                const value = evaluatePosition(boardCopy, player);
+                if (value > bestValue) {
+                    bestValue = value;
+                    bestMove = move;
+                }
+            }
+        }
+        return bestMove;
+    }
+
+    // === ОСТАЛЬНОЙ КОД БЕЗ ИЗМЕНЕНИЙ ===
+    function saveInitialBoardState() {
+        initialBoardState = {
+            board: board.map(row => row.map(cell => cell ? {...cell} : null)),
+            attributes: [],
+            boardType: BOARD_TYPE,
+            boardSize: BOARD_SIZE,
+            collisionMode: COLLISION_MODE
+        };
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                const cellElement = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                if (cellElement && cellElement.classList.contains('plus')) {
+                    initialBoardState.attributes.push({row, col, attr: 'plus'});
+                } else if (cellElement && cellElement.classList.contains('minus')) {
+                    initialBoardState.attributes.push({row, col, attr: 'minus'});
+                }
+            }
+        }
+    }
+
+    function restoreInitialBoardState() {
+        if (!initialBoardState) return;
+        BOARD_TYPE = initialBoardState.boardType;
+        BOARD_SIZE = initialBoardState.boardSize;
+        COLLISION_MODE = initialBoardState.collisionMode;
+        whiteReached = false;
+        blackReached = false;
+        lastBlackMoveDone = false;
+        board = [];
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            board[row] = Array(colsInRow).fill(null);
+        }
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => {
+            cell.classList.remove('plus', 'minus', 'highlight');
+            cell.innerHTML = '';
+        });
+        for (const {row, col, attr} of initialBoardState.attributes) {
+            const cellElement = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+            if (cellElement) {
+                cellElement.classList.add(attr);
+            }
+        }
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (initialBoardState.board[row] && initialBoardState.board[row][col]) {
+                    board[row][col] = {...initialBoardState.board[row][col]};
+                }
+            }
+        }
+        renderBoard();
+    }
+
+    function initBoard() {
+        board = [];
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            board[row] = Array(colsInRow).fill(null);
+        }
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => {
+            cell.classList.remove('plus', 'minus', 'highlight');
+            cell.innerHTML = '';
+        });
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (row === 0 || row === BOARD_SIZE - 1) continue;
+                const attr = Math.random() > 0.5 ? 'plus' : 'minus';
+                const cellElement = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                if (cellElement) {
+                    cellElement.classList.add(attr);
+                }
+            }
+        }
+        const firstRowCols = BOARD_TYPE === 'hex' ? (0 % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+        const lastRowCols = BOARD_TYPE === 'hex' ? ((BOARD_SIZE - 1) % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+        const weights1 = [];
+        for (let col = 0; col < lastRowCols; col++) {
+            weights1.push(Math.floor(Math.random() * BOARD_SIZE) + 1);
+        }
+        const weights2 = [...weights1];
+        for (let i = weights2.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [weights2[i], weights2[j]] = [weights2[j], weights2[i]];
+        }
+        for (let col = 0; col < firstRowCols; col++) {
+            board[0][col] = {player: 2, weight: weights2[col]};
+        }
+        for (let col = 0; col < lastRowCols; col++) {
+            board[BOARD_SIZE - 1][col] = {player: 1, weight: weights1[col]};
+        }
+        renderBoard();
+        saveInitialBoardState();
+    }
+
+    function renderBoard() {
+        const boardElement = document.getElementById('board');
+        const rulesbtnElement = document.getElementById('rules-btn');
+        const newgamebtnElement = document.getElementById('new-game-btn');
+        const restartbtnElement = document.getElementById('restart');
+        let width;
+        if (BOARD_TYPE === 'hex') {
+            boardElement.style.position = 'relative';
+            width = BOARD_SIZE * 90 + 45;
+            const height = BOARD_SIZE * 52 + 17;
+            boardElement.style.width = `${width}px`;
+            boardElement.style.height = `${height}px`;
+        } else {
+            width = BOARD_SIZE * 60;
+            boardElement.style.position = 'relative';
+            boardElement.style.width = `${width}px`;
+            boardElement.style.height = `${width}px`;
+        }
+        let new_width = Math.floor(width / 3).toString() + 'px';
+        rulesbtnElement.style.width = new_width;
+        newgamebtnElement.style.width = new_width;
+        restartbtnElement.style.width = new_width;
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                if (cell) {
+                    cell.innerHTML = '';
+                    if (board[row][col]) {
+                        const chip = document.createElement('div');
+                        chip.className = `chip player${board[row][col].player}`;
+                        chip.textContent = board[row][col].weight;
+                        cell.appendChild(chip);
+                    }
+                }
+            }
+        }
+    }
+
+    function createBoard() {
+        const boardElement = document.getElementById('board');
+        boardElement.innerHTML = '';
+        if (BOARD_TYPE === 'hex') {
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                const colsInRow = row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1;
+                for (let col = 0; col < colsInRow; col++) {
+                    const cell = document.createElement('div');
+                    cell.className = `cell hex-cell`;
+                    cell.setAttribute('data-row', row.toString());
+                    cell.setAttribute('data-col', col.toString());
+                    const x = col * 90 + (row % 2 === 0 ? 0 : 45);
+                    const y = row * 52;
+                    cell.style.left = `${x}px`;
+                    cell.style.top = `${y}px`;
+                    cell.addEventListener('click', () => handleCellClick(row, col));
+                    boardElement.appendChild(cell);
+                }
+            }
+        } else {
+            for (let row = 0; row < BOARD_SIZE; row++) {
+                for (let col = 0; col < BOARD_SIZE; col++) {
+                    const cell = document.createElement('div');
+                    cell.className = `cell square-cell ${(row + col) % 2 === 0 ? 'white-cell' : 'black-cell'}`;
+                    cell.setAttribute('data-row', row.toString());
+                    cell.setAttribute('data-col', col.toString());
+                    cell.style.left = `${col * 60}px`;
+                    cell.style.top = `${row * 60}px`;
+                    cell.style.position = 'absolute';
+                    cell.addEventListener('click', () => handleCellClick(row, col));
+                    boardElement.appendChild(cell);
+                }
+            }
+        }
+    }
+
+    function checkWhiteReached() {
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (board[row][col] && board[row][col].player === 1 && row !== 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    function checkBlackReached() {
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (board[row][col] && board[row][col].player === 2 && row !== BOARD_SIZE - 1) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    function hasBlackChips() {
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const colsInRow = BOARD_TYPE === 'hex' ? (row % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+            for (let col = 0; col < colsInRow; col++) {
+                if (board[row][col] && board[row][col].player === 2) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    function calculateFinalScores() {
+        let player1Sum = 0;
+        let player2Sum = 0;
+        const firstRowCols = BOARD_TYPE === 'hex' ? (0 % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+        const lastRowCols = BOARD_TYPE === 'hex' ? ((BOARD_SIZE - 1) % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
+        for (let col = 0; col < firstRowCols; col++) {
+            if (board[0][col] && board[0][col].player === 1) {
+                player1Sum += board[0][col].weight;
+            }
+        }
+        for (let col = 0; col < lastRowCols; col++) {
+            if (board[BOARD_SIZE - 1][col] && board[BOARD_SIZE - 1][col].player === 2) {
+                player2Sum += board[BOARD_SIZE - 1][col].weight;
+            }
+        }
+        return {player1Sum, player2Sum};
+    }
+
+    function endGame() {
+        const {player1Sum, player2Sum} = calculateFinalScores();
+        gameActive = false;
+        let message;
+        if (player1Sum > player2Sum) {
+            message = `Победил игрок 1! Сумма: ${player1Sum} vs ${player2Sum}`;
+        } else if (player2Sum > player1Sum) {
+            message = `Победил игрок 2! Сумма: ${player2Sum} vs ${player1Sum}`;
+        } else {
+            message = `Ничья! Суммы равны: ${player1Sum}`;
+        }
+        document.getElementById('game-info').textContent = message;
+    }
+
+    function moveChip(fromRow, fromCol, toRow, toCol) {
+        const chip = board[fromRow][fromCol];
+        board[fromRow][fromCol] = null;
+        const cellElement = document.querySelector(`.cell[data-row="${toRow}"][data-col="${toCol}"]`);
+        let hasPlus = false;
+        let hasMinus = false;
+        if (cellElement) {
+            hasPlus = cellElement.classList.contains('plus');
+            hasMinus = cellElement.classList.contains('minus');
+        }
+        if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
+            const targetChip = board[toRow][toCol];
+            if (chip.weight < targetChip.weight) {
+                board[toRow][toCol].weight = chip.weight + targetChip.weight;
+            } else if (chip.weight > targetChip.weight) {
+                board[toRow][toCol].weight = chip.weight - targetChip.weight;
+            } else {
+                board[toRow][toCol] = null;
+            }
+            if (board[toRow][toCol]) {
+                if (hasPlus) {
+                    board[toRow][toCol].weight += 1;
+                } else if (hasMinus) {
+                    board[toRow][toCol].weight -= 1;
+                    if (board[toRow][toCol].weight <= 0) {
+                        board[toRow][toCol] = null;
+                    }
+                }
+            }
+            renderBoard();
+            return;
+        }
+        if (board[toRow][toCol]) {
+            const enemyChip = board[toRow][toCol];
+            if (COLLISION_MODE === 'field-effect') {
+                if (hasPlus) {
+                    chip.weight += enemyChip.weight;
+                    board[toRow][toCol] = chip;
+                } else if (hasMinus) {
+                    if (chip.weight > enemyChip.weight) {
+                        chip.weight -= enemyChip.weight;
+                        board[toRow][toCol] = chip;
+                    } else if (enemyChip.weight > chip.weight) {
+                        enemyChip.weight -= chip.weight;
+                        board[toRow][toCol] = enemyChip;
+                    } else {
+                        board[toRow][toCol] = null;
+                    }
+                } else {
+                    if (chip.weight > enemyChip.weight) {
+                        chip.weight -= enemyChip.weight;
+                        board[toRow][toCol] = chip;
+                    } else if (enemyChip.weight > chip.weight) {
+                        enemyChip.weight -= chip.weight;
+                        board[toRow][toCol] = enemyChip;
+                    } else {
+                        board[toRow][toCol] = null;
+                    }
+                }
+            } else {
+                if (chip.weight > enemyChip.weight) {
+                    chip.weight -= enemyChip.weight;
+                    board[toRow][toCol] = chip;
+                } else if (enemyChip.weight > chip.weight) {
+                    enemyChip.weight -= chip.weight;
+                    board[toRow][toCol] = enemyChip;
+                } else {
+                    board[toRow][toCol] = null;
+                }
+            }
+        } else {
+            if (hasPlus) {
+                chip.weight += 1;
+            } else if (hasMinus) {
+                chip.weight -= 1;
+                if (chip.weight <= 0) {
+                    renderBoard();
+                    return;
+                }
+            }
+            board[toRow][toCol] = chip;
+        }
+        renderBoard();
+    }
+
+    function makeAIMove() {
+        if (!gameActive) return;
+        const playerType = currentPlayer === 1 ? player1Type : player2Type;
+        if (playerType === 'human') return;
+        document.getElementById('thinking').style.color = 'red';
+        setTimeout(() => {
+            let bestMove;
+            switch (playerType) {
+                case 'ai11': bestMove = getSecretMove(currentPlayer); break;
+                case 'ai10': bestMove = getAbsolyarisMove(currentPlayer); break;
+                case 'ai9': bestMove = getKnowledgeMove(currentPlayer); break;
+                case 'ai8': bestMove = getMetamorphMove(currentPlayer); break;
+                case 'ai7': bestMove = getMageMove(currentPlayer); break;
+                case 'ai6': bestMove = getGhostMove(currentPlayer); break;
+                case 'ai5': bestMove = getAntiTankMove(currentPlayer); break;
+                case 'ai4': bestMove = getTankMove(currentPlayer); break;
+                case 'ai3': bestMove = getDeepThinkerMove(currentPlayer); break;
+                case 'ai2': bestMove = getOptimusMove(currentPlayer); break;
+                case 'ai': bestMove = getJetMove(currentPlayer); break;
+                default: bestMove = getDeepThinkerMove(currentPlayer);
+            }
+            document.getElementById('thinking').style.color = 'white';
+            if (bestMove) {
+                moveChip(bestMove.from.row, bestMove.from.col, bestMove.to.row, bestMove.to.col);
+                if (checkWhiteReached()) {
+                    whiteReached = true;
+                    if (hasBlackChips() && !lastBlackMoveDone) {
+                        currentPlayer = 2;
+                        lastBlackMoveDone = true;
+                        document.getElementById('game-info').textContent = `Последний ход игрока 2`;
+                        if (player2Type !== 'human') makeAIMove();
+                    } else {
+                        endGame();
+                    }
+                } else if (checkBlackReached()) {
+                    blackReached = true;
+                    endGame();
+                } else {
+                    currentPlayer = currentPlayer === 1 ? 2 : 1;
+                    document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
+                    const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+                    if (nextPlayerType !== 'human') makeAIMove();
+                }
+            } else {
+                if (whiteReached) {
+                    if (hasBlackChips() && !lastBlackMoveDone) {
+                        currentPlayer = 2;
+                        lastBlackMoveDone = true;
+                        document.getElementById('game-info').textContent = `Последний ход игрока 2`;
+                        if (player2Type !== 'human') makeAIMove();
+                        else endGame();
+                    } else {
+                        endGame();
+                    }
+                } else if (checkBlackReached()) {
+                    blackReached = true;
+                    endGame();
+                } else {
+                    currentPlayer = currentPlayer === 1 ? 2 : 1;
+                    document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
+                    const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+                    if (nextPlayerType !== 'human') makeAIMove();
+                }
+            }
+        }, 100);
+    }
+
+    function handleCellClick(row, col) {
+        if (!gameActive) return;
+        const currentPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+        if (currentPlayerType !== 'human') return;
+        const cell = board[row][col];
+        if (cell && cell.player === currentPlayer && selectedChip === null) {
+            selectedChip = {row, col};
+            highlightValidMoves(row, col);
+            return;
+        }
+        if (selectedChip !== null) {
+            const fromRow = selectedChip.row;
+            const fromCol = selectedChip.col;
+            const toRow = row;
+            const toCol = col;
+            if (isValidMove(fromRow, fromCol, toRow, toCol)) {
+                moveChip(fromRow, fromCol, toRow, toCol);
+                selectedChip = null;
+                clearHighlights();
+                if (checkWhiteReached()) {
+                    whiteReached = true;
+                    if (hasBlackChips() && !lastBlackMoveDone) {
+                        currentPlayer = 2;
+                        lastBlackMoveDone = true;
+                        document.getElementById('game-info').textContent = `Последний ход игрока 2`;
+                        if (player2Type !== 'human') makeAIMove();
+                    } else {
+                        endGame();
+                    }
+                } else if (checkBlackReached()) {
+                    blackReached = true;
+                    endGame();
+                } else {
+                    currentPlayer = currentPlayer === 1 ? 2 : 1;
+                    document.getElementById('game-info').textContent = `Ход игрока ${currentPlayer}`;
+                    const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+                    if (nextPlayerType !== 'human') makeAIMove();
+                }
+            } else {
+                if (cell && cell.player === currentPlayer) {
+                    clearHighlights();
+                    selectedChip = {row, col};
+                    highlightValidMoves(row, col);
+                } else {
+                    clearHighlights();
+                    selectedChip = null;
+                }
+            }
+        }
+    }
+
+    function highlightValidMoves(row, col) {
+        const directions = getMoveDirections();
+        for (const [dRow, dCol] of directions) {
+            const newRow = row + dRow;
+            const newCol = col + dCol;
+            if (isValidMove(row, col, newRow, newCol)) {
+                const cell = document.querySelector(`.cell[data-row="${newRow}"][data-col="${newCol}"]`);
+                if (cell) cell.classList.add('highlight');
+            }
+        }
+    }
+
+    function clearHighlights() {
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.classList.remove('highlight');
+        });
+    }
+
+    function startNewGame() {
+        currentPlayer = 1;
+        whiteReached = false;
+        blackReached = false;
+        lastBlackMoveDone = false;
+        gameActive = true;
+        document.getElementById('game-info').textContent = 'Ход игрока 1';
+        document.getElementById('thinking').style.color = 'white';
+        initBoard();
+        const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+        if (nextPlayerType !== 'human') makeAIMove();
+    }
+
+    function restartSameGame() {
+        restoreInitialBoardState();
+        currentPlayer = 1;
+        whiteReached = false;
+        blackReached = false;
+        lastBlackMoveDone = false;
+        gameActive = true;
+        document.getElementById('game-info').textContent = 'Ход игрока 1';
+        document.getElementById('thinking').style.color = 'white';
+        const nextPlayerType = currentPlayer === 1 ? player1Type : player2Type;
+        if (nextPlayerType !== 'human') makeAIMove();
+    }
+
+    function validateBoardSize() {
+        const sizeInput = document.getElementById('board-size');
+        const boardType = document.getElementById('board-type').value;
+        if (boardType === 'hex') {
+            let size = parseInt(sizeInput.value.toString());
+            if (size < 3) size = 3;
+            if (size > 11) size = 11;
+            if (size % 2 === 0) {
+                size = size - 1;
+                if (size < 3) size = 3;
+            }
+            sizeInput.value = size;
+        }
+    }
+
+    document.getElementById('restart').addEventListener('click', restartSameGame);
+    document.getElementById('rules-btn').addEventListener('click', () => {
+        document.getElementById('rules-modal').style.display = 'block';
+    });
+    document.getElementById('close-rules').addEventListener('click', () => {
+        document.getElementById('rules-modal').style.display = 'none';
+    });
+    document.getElementById('new-game-btn').addEventListener('click', () => {
+        document.getElementById('size-selector').style.display = 'block';
+    });
+    document.getElementById('cancel-size').addEventListener('click', () => {
+        document.getElementById('size-selector').style.display = 'none';
+    });
+    document.getElementById('confirm-size').addEventListener('click', () => {
+        validateBoardSize();
+        const newSize = parseInt(document.getElementById('board-size').value);
+        const newType = document.getElementById('board-type').value;
+        const collisionMode = document.getElementById('collision-mode').value;
+        if (newType === 'hex') {
+            if (newSize < 3 || newSize > 11 || newSize % 2 === 0) {
+                alert('Размер шестиугольной доски должен быть нечетным числом от 3 до 11!');
+                return;
+            }
+        } else {
+            if (newSize < 3 || newSize > 11) {
+                alert('Размер квадратной доски должен быть от 3 до 11!');
+                return;
+            }
+        }
+        BOARD_SIZE = newSize;
+        BOARD_TYPE = newType;
+        COLLISION_MODE = collisionMode;
+        document.getElementById('size-selector').style.display = 'none';
+        document.getElementById('ai-settings').style.display = 'block';
+    });
+    document.getElementById('cancel-ai').addEventListener('click', () => {
+        document.getElementById('ai-settings').style.display = 'none';
+    });
+    document.getElementById('confirm-ai').addEventListener('click', () => {
+        player1Type = document.getElementById('player1-type').value;
+        player2Type = document.getElementById('player2-type').value;
+        document.getElementById('ai-settings').style.display = 'none';
+        createBoard();
+        startNewGame();
+    });
+
+    createBoard();
+    initBoard();
+</script>
+</body>
+</html>
+
