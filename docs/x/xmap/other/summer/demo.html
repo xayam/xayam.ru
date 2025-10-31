@@ -482,7 +482,6 @@
     let whiteReached = false; // Флаг: все белые достигли цели
     let blackReached = false; // Флаг: все черные достигли цели
     let lastBlackMoveDone = false; // Флаг: черные уже сделали последний ход
-
     // Обновление диапазона размера в зависимости от типа доски
     document.getElementById('board-type').addEventListener('change', function () {
         const sizeInput = document.getElementById('board-size');
@@ -499,7 +498,6 @@
             sizeInput.value = '7';
         }
     });
-
     // Сохранение начального состояния доски
     function saveInitialBoardState() {
         initialBoardState = {
@@ -521,7 +519,6 @@
             }
         }
     }
-
     // Восстановление начального состояния доски
     function restoreInitialBoardState() {
         if (!initialBoardState) return;
@@ -557,7 +554,6 @@
         }
         renderBoard();
     }
-
     // Получение направлений ходов
     function getMoveDirections() {
         if (BOARD_TYPE === 'hex') {
@@ -570,7 +566,6 @@
             ];
         }
     }
-
     // Проверка валидности хода для шестиугольной доски
     function isValidHexMove(fromRow, fromCol, toRow, toCol, player) {
         if (toRow < 0 || toRow >= BOARD_SIZE) return false;
@@ -586,19 +581,16 @@
             (dRow === 0 && (dCol === -1 || dCol === 1)) ||
             (dRow === 1 && (dCol === 0 || dCol === 1));
         if (!isValidDirection) return false;
-
         // Движение вбок разрешено только на клетку со своей фишкой
         if (dRow === 0) {
             return board[toRow][toCol] && board[toRow][toCol].player === player;
         }
-
         if (!(board[toRow][toCol] && board[toRow][toCol].player === player)) {
             if (player === 1 && dRow > 0) return false;
             if (player === 2 && dRow < 0) return false;
         }
         return true;
     }
-
     // Инициализация доски
     function initBoard() {
         board = [];
@@ -642,7 +634,6 @@
         renderBoard();
         saveInitialBoardState();
     }
-
     // Отображение доски
     function renderBoard() {
         const boardElement = document.getElementById('board');
@@ -682,7 +673,6 @@
             }
         }
     }
-
     // Создание доски
     function createBoard() {
         const boardElement = document.getElementById('board');
@@ -719,7 +709,6 @@
             }
         }
     }
-
     // Проверка, достигли ли все белые фишки цели (0-я строка)
     function checkWhiteReached() {
         for (let row = 0; row < BOARD_SIZE; row++) {
@@ -732,7 +721,6 @@
         }
         return true;
     }
-
     // Проверка, достигли ли все черные фишки цели (последняя строка)
     function checkBlackReached() {
         for (let row = 0; row < BOARD_SIZE; row++) {
@@ -745,7 +733,6 @@
         }
         return true;
     }
-
     // Проверка, есть ли у черных фишки
     function hasBlackChips() {
         for (let row = 0; row < BOARD_SIZE; row++) {
@@ -758,7 +745,6 @@
         }
         return false;
     }
-
     // Подсчет суммы весов на стартовых линиях
     function calculateFinalScores() {
         let player1Sum = 0;
@@ -777,7 +763,6 @@
         }
         return {player1Sum, player2Sum};
     }
-
     // Завершение игры и вывод результата
     function endGame() {
         const {player1Sum, player2Sum} = calculateFinalScores();
@@ -792,7 +777,6 @@
         }
         document.getElementById('game-info').textContent = message;
     }
-
     // Получение всех возможных ходов для игрока
     function getAllValidMoves(player) {
         const moves = [];
@@ -813,7 +797,6 @@
         }
         return moves;
     }
-
     // Копирование доски
     function copyBoard() {
         const copy = [];
@@ -828,13 +811,11 @@
         }
         return copy;
     }
-
     // Применение хода к копии доски с учетом новых правил объединения
     function applyMoveToBoard(boardCopy, move, player) {
         const {from, to} = move;
         const chip = {...boardCopy[from.row][from.col]};
         boardCopy[from.row][from.col] = null;
-
         // Ход к своей фишке
         if (boardCopy[to.row][to.col] && boardCopy[to.row][to.col].player === player) {
             const targetChip = boardCopy[to.row][to.col];
@@ -865,7 +846,6 @@
             }
             return boardCopy;
         }
-
         // Проверка атрибута клетки
         const cellElement = document.querySelector(`.cell[data-row="${to.row}"][data-col="${to.col}"]`);
         let hasPlus = false;
@@ -874,7 +854,6 @@
             hasPlus = cellElement.classList.contains('plus');
             hasMinus = cellElement.classList.contains('minus');
         }
-
         // Столкновение с фишкой противника
         if (boardCopy[to.row][to.col]) {
             const enemyChip = boardCopy[to.row][to.col];
@@ -928,7 +907,6 @@
         }
         return boardCopy;
     }
-
     // Унифицированная оценочная функция
     function evaluatePosition(boardCopy, player) {
         let score = 0;
@@ -1029,7 +1007,6 @@
         score += (player1Weight - player2Weight) * 1.5;
         return player === 1 ? score : -score;
     }
-
     // Минимакс с альфа-бета отсечением и углубленной оценкой
     function minimaxAdvanced(boardCopy, depth, alpha, beta, maximizingPlayer, player, originalPlayer) {
         if (depth === 0) {
@@ -1068,7 +1045,6 @@
             return minEval;
         }
     }
-
     // Копирование доски из заданного состояния
     function copyBoardFromState(boardState) {
         const copy = [];
@@ -1083,7 +1059,6 @@
         }
         return copy;
     }
-
     // Получение всех ходов для заданной доски
     function getAllValidMovesForBoard(boardCopy, player) {
         const moves = [];
@@ -1107,7 +1082,6 @@
         }
         return moves;
     }
-
     // Проверка валидности хода для заданной доски
     function isValidMoveForBoard(boardCopy, fromRow, fromCol, toRow, toCol, player) {
         if (fromRow === toRow && fromCol === toCol) return false;
@@ -1150,7 +1124,6 @@
             return !(currentPlayer === 2 && dRow < 0);
         }
     }
-
     // Проверка валидности хода
     function isValidMove(fromRow, fromCol, toRow, toCol) {
         if (fromRow === toRow && fromCol === toCol) return false;
@@ -1171,12 +1144,10 @@
         if (currentPlayer === 1 && dRow > 0) return false;
         return !(currentPlayer === 2 && dRow < 0);
     }
-
     // Перемещение фишки с учетом новых правил
     function moveChip(fromRow, fromCol, toRow, toCol) {
         const chip = board[fromRow][fromCol];
         board[fromRow][fromCol] = null;
-
         if (board[toRow][toCol] && board[toRow][toCol].player === currentPlayer) {
             const targetChip = board[toRow][toCol];
             if (chip.weight < targetChip.weight) {
@@ -1207,7 +1178,6 @@
             renderBoard();
             return;
         }
-
         const cellElement = document.querySelector(`.cell[data-row="${toRow}"][data-col="${toCol}"]`);
         let hasPlus = false;
         let hasMinus = false;
@@ -1215,7 +1185,6 @@
             hasPlus = cellElement.classList.contains('plus');
             hasMinus = cellElement.classList.contains('minus');
         }
-
         if (board[toRow][toCol]) {
             const enemyChip = board[toRow][toCol];
             if (COLLISION_MODE === 'field-effect') {
@@ -1268,8 +1237,7 @@
         }
         renderBoard();
     }
-
-    // Стратегия "Мастер-танк" для уровня 4 - обновлена под новые правила
+    // Стратегия "Мастер-танк" для уровня 4 - исправлена ошибка доступа к null
     function getTankMove(player) {
         const startRow = player === 1 ? BOARD_SIZE - 1 : 0;
         let ownChips = [];
@@ -1286,8 +1254,9 @@
             if (rightmost.col > leftmost.col) {
                 const targetCol = leftmost.col;
                 for (let col = rightmost.col - 1; col >= targetCol; col--) {
-                    if (board[startRow][col] && board[startRow][col].player === player) {
-                        // Проверяем, что объединение не приведет к уничтожению
+                    // Проверка на существование фишек перед доступом к weight
+                    if (board[startRow][col] && board[startRow][col].player === player &&
+                        board[startRow][col + 1] && board[startRow][col + 1].player === player) {
                         const movingWeight = board[startRow][col + 1].weight;
                         const targetWeight = board[startRow][col].weight;
                         if (movingWeight !== targetWeight) {
@@ -1332,7 +1301,6 @@
         }
         return getBestMoveAdvanced(player, 'ai3');
     }
-
     // Расчет максимального возможного веса танка оппонента
     function calculateOpponentMaxTankWeight(opponent, playerStartRow) {
         let totalWeight = 0;
@@ -1345,7 +1313,6 @@
         const potentialBonus = Math.floor(BOARD_SIZE / 2);
         return totalWeight + potentialBonus;
     }
-
     // Определение стороны сборки оппонента
     function getOpponentAssemblySide(opponent, playerStartRow) {
         let colsInStartRow = BOARD_TYPE === 'hex' ? (playerStartRow % 2 === 0 ? BOARD_SIZE : BOARD_SIZE - 1) : BOARD_SIZE;
@@ -1363,7 +1330,6 @@
         }
         return leftWeight > rightWeight ? 'left' : 'right';
     }
-
     // Поиск безопасного пути к цели
     function findSafePathToGoal(player, startRow, startCol) {
         const opponent = player === 1 ? 2 : 1;
@@ -1399,7 +1365,6 @@
         }
         return bestMove;
     }
-
     // Стратегия "Анти-танк" для уровня 5 - обновлена под новые правила
     function getAntiTankMove(player) {
         const opponent = player === 1 ? 2 : 1;
@@ -1500,7 +1465,6 @@
         }
         return getTankMove(player);
     }
-
     // Стратегия "Призрак" для уровня 6 - обновлена под новые правила
     function getGhostMove(player) {
         const opponent = player === 1 ? 2 : 1;
@@ -1580,7 +1544,6 @@
         if (bestMove) return bestMove;
         return getBestMoveAdvanced(player, 'ai3');
     }
-
     // Стратегия "Маг" для уровня 7 - обновлена под новые правила
     function getMageMove(player) {
         const opponent = player === 1 ? 2 : 1;
@@ -1680,7 +1643,6 @@
         if (bestMove) return bestMove;
         return getBestMoveAdvanced(player, 'ai3');
     }
-
     // Получение всех ходов для конкретной фишки
     function getAllValidMovesForChip(row, col, player) {
         const moves = [];
@@ -1694,7 +1656,6 @@
         }
         return moves;
     }
-
     // Проверка, блокирует ли позиция путь Призрака
     function isBlockingGhostPath(pos, ghost, player) {
         const directions = player === 1 ? [[-1, -1], [-1, 0], [-1, 1]] : [[1, -1], [1, 0], [1, 1]];
@@ -1707,7 +1668,6 @@
         }
         return false;
     }
-
     // Стратегия "Метаморф" для уровня 8 - обновлена под новые правила
     function getMetamorphMove(player) {
         const opponent = player === 1 ? 2 : 1;
@@ -1730,7 +1690,6 @@
                 return getBalancedMove(player);
         }
     }
-
     // Обнаружение стратегии противника
     function detectOpponentStrategy(opponent) {
         const startRow = opponent === 1 ? BOARD_SIZE - 1 : 0;
@@ -1771,7 +1730,6 @@
         }
         return 'unknown';
     }
-
     // Гибридный ход для Метаморфа - обновлен под новые правила
     function getHybridMove(player) {
         const moves = getAllValidMoves(player);
@@ -1810,12 +1768,10 @@
         }
         return bestMove;
     }
-
     // Сбалансированный ход
     function getBalancedMove(player) {
         return getBestMoveAdvanced(player, 'ai3');
     }
-
     // Стратегия "Знание" для уровня 9 - обновлена под новые правила
     function getKnowledgeMove(player) {
         const opponent = player === 1 ? 2 : 1;
@@ -1858,7 +1814,6 @@
         }
         return bestMove || getBestMoveAdvanced(player, 'ai3');
     }
-
     // Оценка угрозы от противника
     function assessOpponentThreat(row, col, opponent) {
         let threat = 0;
@@ -1875,7 +1830,6 @@
         }
         return threat;
     }
-
     // Стратегия "Абсолярис" для уровня 10 - обновлена под новые правила
     function getAbsolyarisMove(player) {
         const moves = getAllValidMoves(player);
@@ -1893,7 +1847,6 @@
         }
         return bestMove;
     }
-
     // Стратегия "Секрет" для уровня 11 - обновлена под новые правила
     function getSecretMove(player) {
         const strategies = [
@@ -1921,7 +1874,6 @@
         }
         return bestMove || getBestMoveAdvanced(player, 'ai3');
     }
-
     // Выбор лучшего хода ИИ с улучшенной логикой - обновлен под новые правила
     function getBestMoveAdvanced(player, level) {
         const moves = getAllValidMoves(player);
@@ -1970,7 +1922,6 @@
         }
         return bestMove;
     }
-
     // Выполнение хода ИИ
     function makeAIMove() {
         if (!gameActive) return;
@@ -2061,7 +2012,6 @@
             }
         }, 100);
     }
-
     // Обработка клика по клетке
     function handleCellClick(row, col) {
         if (!gameActive) return;
@@ -2117,7 +2067,6 @@
             }
         }
     }
-
     // Подсветка допустимых ходов
     function highlightValidMoves(row, col) {
         const directions = getMoveDirections();
@@ -2130,14 +2079,12 @@
             }
         }
     }
-
     // Очистка подсветки
     function clearHighlights() {
         document.querySelectorAll('.cell').forEach(cell => {
             cell.classList.remove('highlight');
         });
     }
-
     // Начало новой игры
     function startNewGame() {
         currentPlayer = 1;
@@ -2153,7 +2100,6 @@
             makeAIMove();
         }
     }
-
     // Начать сначала
     function restartSameGame() {
         restoreInitialBoardState();
@@ -2169,7 +2115,6 @@
             makeAIMove();
         }
     }
-
     // Валидация размера шестиугольной доски
     function validateBoardSize() {
         const sizeInput = document.getElementById('board-size');
@@ -2185,7 +2130,6 @@
             sizeInput.value = size;
         }
     }
-
     // Обработчики кнопок
     document.getElementById('restart').addEventListener('click', restartSameGame);
     document.getElementById('rules-btn').addEventListener('click', () => {
@@ -2232,7 +2176,6 @@
         createBoard();
         startNewGame();
     });
-
     // Инициализация игры
     createBoard();
     initBoard();
