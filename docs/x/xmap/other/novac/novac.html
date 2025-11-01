@@ -37,7 +37,6 @@
             margin: 0;
             box-sizing: border-box;
         }
-        /* Фоны с прозрачностью, заголовки — контрастные */
         .winter { background-color: rgba(0, 0, 0, 0.85); color: #ffffff; }
         .spring { background-color: rgba(255, 204, 0, 0.85); color: #000000; }
         .summer { background-color: rgba(204, 0, 0, 0.85); color: #ffffff; }
@@ -80,18 +79,47 @@
         }
         .day-cell {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: calc(100% - 4px); /* Максимальный размер с небольшим отступом */
-            background-color: rgba(255,255,255,0.9);
-            color: #000000;
-            overflow: hidden;
             padding: 0;
+            background-color: rgba(255,255,255,0.9);
+            position: relative;
+            overflow: hidden;
+        }
+        .cell-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .number-zone {
+            font-size: 7mm;
+            font-weight: bold;
+            z-index: 3;
             line-height: 1;
         }
+        .type-zone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        /* Исправленные штриховки: альфа — вертикальная, дельта — горизонтальная */
+        .type-zone.alpha { background: repeating-linear-gradient(0deg, #000000, #000000 1px, transparent 1px, transparent 3px); }   /* вертикальная → 0deg */
+        .type-zone.beta { background: repeating-linear-gradient(135deg, #000000, #000000 1px, transparent 1px, transparent 3px); } /* диагональ убывающая */
+        .type-zone.gamma { background: repeating-linear-gradient(45deg, #000000, #000000 1px, transparent 1px, transparent 3px); }  /* диагональ возрастающая */
+        .type-zone.delta { background: repeating-linear-gradient(90deg, #000000, #000000 1px, transparent 1px, transparent 3px); }  /* горизонтальная → 90deg */
+
         .empty {
             background-color: transparent;
         }
+
         @media print {
             body {
                 background-color: #ffffff;
@@ -115,7 +143,6 @@
             }
             .day-cell {
                 background-color: #ffffff;
-                color: #000000;
             }
         }
     </style>
@@ -132,11 +159,43 @@
     ];
     const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
-    function getQuarter(monthIndex) {
-        if (monthIndex === 11 || monthIndex <= 1) return 'winter';
-        if (monthIndex >= 2 && monthIndex <= 4) return 'spring';
-        if (monthIndex >= 5 && monthIndex <= 7) return 'summer';
-        if (monthIndex >= 8 && monthIndex <= 10) return 'autumn';
+    // Праздничные дни (пример для РФ)
+    const holidays = new Set([
+        '01-01', '01-02', '01-03', '01-04', '01-05', '01-06', '01-07', '01-08',
+        '02-23',
+        '03-08',
+        '05-01', '05-09',
+        '06-12',
+        '11-04'
+    ]);
+
+    function isHoliday(date) {
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        return holidays.has(`${mm}-${dd}`);
+    }
+
+    function isWeekend(date) {
+        const day = date.getDay();
+        return day === 0 || day === 6; // Воскресенье или суббота
+    }
+
+    function isNonWorkingDay(date) {
+        return isWeekend(date) || isHoliday(date);
+    }
+
+    // Начало отсчёта: 1 декабря 2023 → "beta"
+    const baseDate = new Date(2023, 11, 1); // декабрь = 11
+    const sequence = ['beta', 'gamma', 'delta', 'alpha']; // цикл после beta
+
+    function getDateType(date) {
+        const diffTime = date.getTime() - baseDate.getTime();
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays < 0) {
+            return 'beta';
+        }
+        const index = diffDays % 4;
+        return sequence[index];
     }
 
     function renderMonth(year, month) {
@@ -151,7 +210,19 @@
             daysGrid.push('<div class="day-cell empty"></div>');
         }
         for (let day = 1; day <= daysInMonth; day++) {
-            daysGrid.push(`<div class="day-cell">${day}</div>`);
+            const date = new Date(year, month, day);
+            const type = getDateType(date);
+            const isNonWorking = isNonWorkingDay(date);
+            const numberColor = isNonWorking ? '#000000' : '#ffffff';
+
+            daysGrid.push(`
+                    <div class="day-cell">
+                        <div class="cell-content">
+                            <div class="number-zone" style="color:${numberColor};">${day}</div>
+                            <div class="type-zone ${type}"></div>
+                        </div>
+                    </div>
+                `);
         }
         while (daysGrid.length < 42) {
             daysGrid.push('<div class="day-cell empty"></div>');
@@ -165,6 +236,13 @@
                 <div class="days-grid">${daysGrid.join('')}</div>
             `;
         return monthDiv;
+    }
+
+    function getQuarter(monthIndex) {
+        if (monthIndex === 11 || monthIndex <= 1) return 'winter';
+        if (monthIndex >= 2 && monthIndex <= 4) return 'spring';
+        if (monthIndex >= 5 && monthIndex <= 7) return 'summer';
+        if (monthIndex >= 8 && monthIndex <= 10) return 'autumn';
     }
 
     // Генерация всех месяцев от декабря 2023 до ноября 2051
@@ -188,7 +266,7 @@
         quarters.push(months.slice(i, i + 3));
     }
 
-    // Рендеринг каждого квартала как отдельного блока
+    // Рендеринг
     quarters.forEach(q => {
         const quarterDiv = document.createElement('div');
         const quarterType = getQuarter(q[0].month);
