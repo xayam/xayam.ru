@@ -48,15 +48,17 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 2px solid #ffffff; /* Белая рамка вокруг каждого месяца */
             border-radius: 0;
             overflow: hidden;
+            background-color: transparent;
         }
         .month-header {
             padding: 6px 0;
             text-align: center;
             font-weight: bold;
             font-size: 14px;
+            background-color: inherit;
         }
         .week-days {
             display: grid;
@@ -64,6 +66,7 @@
             font-size: 11px;
             text-align: center;
             font-weight: bold;
+            background-color: transparent;
         }
         .week-days div {
             padding: 4px 0;
@@ -73,6 +76,7 @@
             grid-template-columns: repeat(7, 1fr);
             gap: 1px;
             flex: 1;
+            background-color: transparent;
         }
         .day-cell {
             display: flex;
@@ -99,17 +103,17 @@
                 break-inside: avoid;
                 page-break-inside: avoid;
             }
-            /* При печати — сплошные фоны */
+            /* При печати — сплошные фоны и белые рамки заменяются на чёрные для видимости */
             .winter { background-color: #000000; color: #ffffff; }
             .spring { background-color: #ffcc00; color: #000000; }
             .summer { background-color: #cc0000; color: #ffffff; }
             .autumn { background-color: #666666; color: #ffffff; }
+            .month {
+                border: 2px solid #000000; /* На печати — чёрная рамка */
+            }
             .day-cell {
                 background-color: #ffffff;
                 color: #000000;
-            }
-            .week-days div {
-                background-color: rgba(0,0,0,0.05);
             }
         }
     </style>
