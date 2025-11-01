@@ -1,77 +1,230 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Novac, как второй календарь</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="init.js"></script>
-    <script type="text/javascript" src="load.js"></script>
-    <script type="text/javascript" src="novac.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вечный квартальный календарь (2024–2052)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .year-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            page-break-after: always;
+        }
+
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            display: flex;
+            flex-direction: column;
+            margin: 0 10px;
+            background: white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        .half-year {
+            display: flex;
+            flex: 1;
+        }
+
+        .quarter-column {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .month {
+            flex: 1;
+            box-sizing: border-box;
+            padding: 2px;
+            page-break-inside: avoid;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .month-header {
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 2px;
+            background-color: #e8e8e8;
+            padding: 2px;
+            border-radius: 2px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: auto repeat(6, 1fr);
+            gap: 1px;
+            flex: 1;
+            font-size: 9px;
+        }
+
+        .calendar-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            aspect-ratio: 1 / 1;
+        }
+
+        .week-day-header {
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .a4-page {
+                box-shadow: none;
+                margin: 0;
+            }
+            .year-container {
+                break-inside: avoid;
+            }
+        }
+    </style>
 </head>
 <body>
-<div>
-    <h1>Введение</h1><br>
-    <p><a href="newcalendar.html" title="Novac - новый календарь">Novac</a>
-        - это новый календарь, содержащий четырехдневную неделю и
-        13 месяцев в году. Предполагается что для такого календаря будет
-        использовано три варианта графиков работы - два через два (две смены),
-        четыре через четыре (две смены) по 8/10/12 часов работы в день
-        и сутки трое дома (четыре смены).
-        Дополнительный нулевой месяц "новий" имеет 6 дней в високосные годы и 5 дней
-        в невисокосные. Эти дни все выходные и отмечаются, как "новый год".
-        Январь имеет 28 дней, февраль 32, март 28, апрель 32 ... декабрь 32 дня.
-        Всего получается в високосные годы 6 + 6 * (28 + 32) = 366 дней и в
-        невисокосные 5 + 6 * (28 + 32) = 365 дней.
-    </p>
-    <br><h1>Novac: Революция времени или утопическая реформа?</h1><br>
-    <p>Годовая структура: 13 месяцев - нулевой месяц "Новий" (5–6 дней),
-        6 месяцев по 28 дней (нечетные) и 6 по 32 дня (четные). Преимущества:
-        равномерное распределение дней (28/32), упрощающее расчеты. "Новий" —
-        праздник вне времени: 5–6 дней в году — всеобщие выходные, символизирующие
-        переход между годами.
-    </p>
-    <br><h1>Рабочие графики: Эффективность vs. Здоровье</h1><br>
-    <p>Два через два: 2 рабочих дня (8/10/12 часов) → 2 выходных. Подходит для
-        сменной работы, но высок риск переутомления из-за долгих смен. Четыре
-        через четыре: 4 дня работы → 4 отдыха. Длинные выходные улучшают
-        work-life balance, но 12-часовые смены могут снизить продуктивность.
-        Медработник по графику "4 через 4" с 10-часовыми сменами будет работать
-        40 часов в неделю, что соответствует стандартным 40 часов.
-    </p>
-    <br><h1>Культурный шок и традиции</h1><br>
-    <p>Религиозные конфликты: Иудеи и мусульмане, чьи обряды привязаны
-        к 7-дневному циклу, столкнутся с диссонансом. Переименование дней:
-        4-дневная неделя потребует новых названий, например,
-        Альфа, Бета, Гамма, Дельта. Международное принятие: переход на
-        Novac возможен только при глобальном консенсусе,
-        что маловероятно без чрезвычайных причин
-        (например, климатический кризис, требующий синхронизации усилий).
-    </p>
-    <br><br><h1>Технические и экономические барьеры</h1><br>
-    <p>Перепрограммирование систем: все ПО, связанное с датами
-        (банкинг, логистика и т.д.), потребует дорогостоящих изменений.
-        Финансовый год: корпорациям и государствам придется пересчитывать
-        кварталы, налоговые периоды, отчетность. Образование: школы и вузы
-        должны реформировать расписания, учебные планы.
-    </p>
-    <br><h1>Альтернативы и компромиссы</h1><br>
-    <p>Пилотные проекты: внедрение Novac в отдельных отраслях
-        (космическая индустрия, цифровые компании) для тестирования эффективности.
-        Гибридные модели: сохранение 7-дневной недели для культурных нужд,
-        но введение 4-дневной — для рабочих графиков.
-    </p>
-    <br><h1>Выводы</h1><br>
-    <p>Novac — это не просто новый календарь, а вызов многовековым традициям.
-        Его потенциальные плюсы (упрощение планирования, гибкие графики)
-        перевешиваются колоссальными затратами на адаптацию и рисками
-        социального неприятия. Для успеха нужны: поэтапное внедрение;
-        глобальная координация; учет культурно-религиозных особенностей;
-        научные исследования влияния на здоровье и продуктивность. Без этого
-        Novac останется утопией, красивой на бумаге, но неприменимой в реальности.
-    </p>
-</div>
+
+<script>
+    function getDaysInMonth(year, month) {
+        return new Date(year, month + 1, 0).getDate();
+    }
+
+    // Возвращает день недели, где Пн = 0, ..., Вс = 6
+    function getFirstDayOfMonthISO(year, month) {
+        const firstDay = new Date(year, month, 1).getDay();
+        return (firstDay + 6) % 7;
+    }
+
+    function renderMonth(year, monthIndex, container) {
+        const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+            'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+        const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+        const monthDiv = document.createElement('div');
+        monthDiv.className = 'month';
+
+        const header = document.createElement('div');
+        header.className = 'month-header';
+        header.textContent = `${monthNames[monthIndex]} ${year}`;
+        monthDiv.appendChild(header);
+
+        const grid = document.createElement('div');
+        grid.className = 'calendar-grid';
+
+        // Заголовки дней недели
+        weekDays.forEach(day => {
+            const cell = document.createElement('div');
+            cell.className = 'calendar-cell week-day-header';
+            cell.textContent = day;
+            grid.appendChild(cell);
+        });
+
+        const daysInMonth = getDaysInMonth(year, monthIndex);
+        const firstDayISO = getFirstDayOfMonthISO(year, monthIndex);
+
+        // Пустые ячейки до первого дня
+        for (let i = 0; i < firstDayISO; i++) {
+            const empty = document.createElement('div');
+            empty.className = 'calendar-cell';
+            grid.appendChild(empty);
+        }
+
+        // Дни месяца
+        for (let day = 1; day <= daysInMonth; day++) {
+            const cell = document.createElement('div');
+            cell.className = 'calendar-cell';
+            cell.textContent = day;
+            grid.appendChild(cell);
+        }
+
+        // Заполнение до 42 ячеек (6 недель × 7 дней)
+        const totalCells = 42;
+        const usedCells = firstDayISO + daysInMonth;
+        for (let i = usedCells; i < totalCells; i++) {
+            const empty = document.createElement('div');
+            empty.className = 'calendar-cell';
+            grid.appendChild(empty);
+        }
+
+        monthDiv.appendChild(grid);
+        container.appendChild(monthDiv);
+    }
+
+    function renderYear(year) {
+        const yearContainer = document.createElement('div');
+        yearContainer.className = 'year-container';
+
+        // Первая страница А4: 1-й и 2-й кварталы
+        const page1 = document.createElement('div');
+        page1.className = 'a4-page';
+
+        const firstHalf = document.createElement('div');
+        firstHalf.className = 'half-year';
+
+        const q1 = document.createElement('div');
+        q1.className = 'quarter-column';
+        renderMonth(year, 0, q1); // Январь
+        renderMonth(year, 1, q1); // Февраль
+        renderMonth(year, 2, q1); // Март
+
+        const q2 = document.createElement('div');
+        q2.className = 'quarter-column';
+        renderMonth(year, 3, q2); // Апрель
+        renderMonth(year, 4, q2); // Май
+        renderMonth(year, 5, q2); // Июнь
+
+        firstHalf.appendChild(q1);
+        firstHalf.appendChild(q2);
+        page1.appendChild(firstHalf);
+        yearContainer.appendChild(page1);
+
+        // Вторая страница А4: 3-й и 4-й кварталы
+        const page2 = document.createElement('div');
+        page2.className = 'a4-page';
+
+        const secondHalf = document.createElement('div');
+        secondHalf.className = 'half-year';
+
+        const q3 = document.createElement('div');
+        q3.className = 'quarter-column';
+        renderMonth(year, 6, q3); // Июль
+        renderMonth(year, 7, q3); // Август
+        renderMonth(year, 8, q3); // Сентябрь
+
+        const q4 = document.createElement('div');
+        q4.className = 'quarter-column';
+        renderMonth(year, 9, q4); // Октябрь
+        renderMonth(year, 10, q4); // Ноябрь
+        renderMonth(year, 11, q4); // Декабрь
+
+        secondHalf.appendChild(q3);
+        secondHalf.appendChild(q4);
+        page2.appendChild(secondHalf);
+        yearContainer.appendChild(page2);
+
+        document.body.appendChild(yearContainer);
+    }
+
+    // Генерация календаря с 2024 по 2052 включительно
+    for (let year = 2024; year <= 2052; year++) {
+        renderYear(year);
+    }
+</script>
+
 </body>
 </html>
+
