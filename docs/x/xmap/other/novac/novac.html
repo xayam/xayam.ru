@@ -48,7 +48,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            border: 2px solid #ffffff; /* Белая рамка вокруг каждого месяца */
+            border: 2px solid #ffffff;
             border-radius: 0;
             overflow: hidden;
             background-color: transparent;
@@ -82,9 +82,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: calc(100% - 4px); /* Максимальный размер с небольшим отступом */
             background-color: rgba(255,255,255,0.9);
-            color: #000000; /* Чёрный текст дат */
+            color: #000000;
+            overflow: hidden;
+            padding: 0;
+            line-height: 1;
         }
         .empty {
             background-color: transparent;
@@ -103,13 +106,12 @@
                 break-inside: avoid;
                 page-break-inside: avoid;
             }
-            /* При печати — сплошные фоны и белые рамки заменяются на чёрные для видимости */
             .winter { background-color: #000000; color: #ffffff; }
             .spring { background-color: #ffcc00; color: #000000; }
             .summer { background-color: #cc0000; color: #ffffff; }
             .autumn { background-color: #666666; color: #ffffff; }
             .month {
-                border: 2px solid #000000; /* На печати — чёрная рамка */
+                border: 2px solid #000000;
             }
             .day-cell {
                 background-color: #ffffff;
