@@ -9,6 +9,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            border-color: white !important;
         }
         body {
             font-family: Arial, sans-serif;
@@ -98,7 +99,7 @@
             position: relative;
         }
         .number-zone {
-            font-size: 7mm;
+            font-size: 9mm;
             font-weight: bold;
             z-index: 3;
             line-height: 1;
@@ -111,11 +112,11 @@
             height: 100%;
             z-index: 2;
         }
-        /* Исправленные штриховки: альфа — вертикальная, дельта — горизонтальная */
-        .type-zone.alpha { background: repeating-linear-gradient(0deg, #000000, #000000 1px, transparent 1px, transparent 3px); }
-        .type-zone.beta { background: repeating-linear-gradient(135deg, #000000, #000000 1px, transparent 1px, transparent 3px); }
-        .type-zone.gamma { background: repeating-linear-gradient(45deg, #000000, #000000 1px, transparent 1px, transparent 3px); }
-        .type-zone.delta { background: repeating-linear-gradient(90deg, #000000, #000000 1px, transparent 1px, transparent 3px); }
+
+        .type-zone.alpha { background: repeating-linear-gradient(  0deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
+        .type-zone.beta  { background: repeating-linear-gradient( 45deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
+        .type-zone.gamma { background: repeating-linear-gradient( 90deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
+        .type-zone.delta { background: repeating-linear-gradient(135deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
 
         .empty {
             background-color: transparent;
