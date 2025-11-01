@@ -12,84 +12,80 @@
         }
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            padding: 20px 0;
+            background-color: #ffffff;
+            padding: 0;
             color: #000;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
         }
         .calendar-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(105mm, 1fr));
             gap: 0;
+            justify-content: center;
             max-width: 100%;
-            padding: 0 10px;
+            padding: 10px;
         }
         .quarter {
-            width: 105mm;
-            height: 297mm;
             display: flex;
             flex-direction: column;
             gap: 0;
             padding: 0;
-            margin: 0;
+            border-radius: 0;
+            width: 105mm; /* A4 width (210mm) / 2 */
+            height: 297mm; /* A4 height */
             box-sizing: border-box;
         }
-        /* Фоны с прозрачностью, заголовки — контрастные */
-        .winter { background-color: rgba(0, 0, 0, 0.85); color: #ffffff; }
-        .spring { background-color: rgba(255, 204, 0, 0.85); color: #000000; }
-        .summer { background-color: rgba(204, 0, 0, 0.85); color: #ffffff; }
-        .autumn { background-color: rgba(102, 102, 102, 0.85); color: #ffffff; }
+        /* Контрастные цвета */
+        .winter { background-color: #000000; color: #ffffff; }
+        .spring { background-color: #ffcc00; color: #000000; }
+        .summer { background-color: #cc0000; color: #ffffff; }
+        .autumn { background-color: #666666; color: #ffffff; }
 
         .month {
             width: 100%;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
             flex: 1;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 0;
-            overflow: hidden;
+            border: 0.5px solid rgba(255,255,255,0.3);
         }
         .month-header {
-            padding: 6px 0;
+            padding: 3px 0;
             text-align: center;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 10px;
         }
         .week-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            font-size: 11px;
+            font-size: 7px;
             text-align: center;
-            font-weight: bold;
         }
         .week-days div {
-            padding: 4px 0;
+            padding: 2px 0;
+            font-weight: bold;
         }
         .days-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 1px;
+            gap: 0;
             flex: 1;
         }
         .day-cell {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            background-color: rgba(255,255,255,0.9);
-            color: #000000; /* Чёрный текст дат */
+            font-size: 8px;
+            border: 0.5px solid rgba(255,255,255,0.3);
         }
         .empty {
             background-color: transparent;
+            border: none;
         }
         @media print {
             body {
-                background-color: #ffffff;
                 padding: 0;
-                justify-content: flex-start;
             }
             .calendar-container {
                 gap: 0;
@@ -98,18 +94,6 @@
             .quarter {
                 break-inside: avoid;
                 page-break-inside: avoid;
-            }
-            /* При печати — сплошные фоны */
-            .winter { background-color: #000000; color: #ffffff; }
-            .spring { background-color: #ffcc00; color: #000000; }
-            .summer { background-color: #cc0000; color: #ffffff; }
-            .autumn { background-color: #666666; color: #ffffff; }
-            .day-cell {
-                background-color: #ffffff;
-                color: #000000;
-            }
-            .week-days div {
-                background-color: rgba(0,0,0,0.05);
             }
         }
     </style>
