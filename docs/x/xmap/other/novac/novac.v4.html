@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novac - Вечный квартальный календарь (декабрь 2023 — ноябрь 2051)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .calendar-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+        .quarter {
+            width: 105mm;
+            height: 297mm;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .winter { background-color: rgba(0, 0, 0, 0.85); color: #ffffff; }
+        .spring { background-color: rgba(255, 204, 0, 0.85); color: #000000; }
+        .summer { background-color: rgba(204, 0, 0, 0.85); color: #ffffff; }
+        .autumn { background-color: rgba(102, 102, 102, 0.85); color: #ffffff; }
+
+        .month {
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #ffffff;
+            border-radius: 0;
+            overflow: hidden;
+            background-color: transparent;
+        }
+        .month-header {
+            padding: 6px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            background-color: inherit;
+        }
+        .week-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            font-size: 11px;
+            text-align: center;
+            font-weight: bold;
+            background-color: transparent;
+        }
+        .week-days div {
+            padding: 4px 0;
+        }
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(6, 1fr); /* Всегда 6 строк */
+            gap: 1px;
+            flex: 1;
+            background-color: transparent;
+        }
+        .day-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background-color: rgba(255,255,255,0.9);
+            position: relative;
+            overflow: hidden;
+        }
+        .cell-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .number-zone {
+            font-size: 7mm;
+            font-weight: bold;
+            z-index: 3;
+            line-height: 1;
+        }
+        .type-zone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        /* Исправленные штриховки: альфа — вертикальная, дельта — горизонтальная */
+        .type-zone.alpha { background: repeating-linear-gradient(0deg, #000000, #000000 1px, transparent 1px, transparent 3px); }
+        .type-zone.beta { background: repeating-linear-gradient(135deg, #000000, #000000 1px, transparent 1px, transparent 3px); }
+        .type-zone.gamma { background: repeating-linear-gradient(45deg, #000000, #000000 1px, transparent 1px, transparent 3px); }
+        .type-zone.delta { background: repeating-linear-gradient(90deg, #000000, #000000 1px, transparent 1px, transparent 3px); }
+
+        .empty {
+            background-color: transparent;
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+                justify-content: flex-start;
+            }
+            .calendar-container {
+                gap: 0;
+                padding: 0;
+            }
+            .quarter {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .winter { background-color: #000000; color: #ffffff; }
+            .spring { background-color: #ffcc00; color: #000000; }
+            .summer { background-color: #cc0000; color: #ffffff; }
+            .autumn { background-color: #666666; color: #ffffff; }
+            .month {
+                border: 2px solid #000000;
+            }
+            .day-cell {
+                background-color: #ffffff;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="calendar-container" id="calendarContainer"></div>
+
+<script>
+    const container = document.getElementById('calendarContainer');
+
+    const monthNames = [
+        'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+    ];
+    const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+    // Праздничные дни (пример для РФ)
+    const holidays = new Set([
+        '01-01', '01-02', '01-03', '01-04', '01-05', '01-06', '01-07', '01-08',
+        '02-23',
+        '03-08',
+        '05-01', '05-09',
+        '06-12',
+        '11-04'
+    ]);
+
+    function isHoliday(date) {
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        return holidays.has(`${mm}-${dd}`);
+    }
+
+    function isWeekend(date) {
+        const day = date.getDay();
+        return day === 0 || day === 6; // Воскресенье или суббота
+    }
+
+    function isNonWorkingDay(date) {
+        return isWeekend(date) || isHoliday(date);
+    }
+
+    // Начало отсчёта: 1 декабря 2023 → "beta"
+    const baseDate = new Date(2023, 11, 1); // декабрь = 11
+    const sequence = ['beta', 'gamma', 'delta', 'alpha']; // цикл после beta
+
+    function getDateType(date) {
+        const diffTime = date.getTime() - baseDate.getTime();
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays < 0) {
+            return 'beta';
+        }
+        const index = diffDays % 4;
+        return sequence[index];
+    }
+
+    function renderMonth(year, month) {
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const daysInMonth = lastDay.getDate();
+        const startDay = firstDay.getDay();
+        const startOffset = startDay === 0 ? 6 : startDay - 1;
+
+        const daysGrid = [];
+        // Всегда 6 недель × 7 дней = 42 ячейки
+        for (let i = 0; i < 42; i++) {
+            if (i < startOffset || i >= startOffset + daysInMonth) {
+                daysGrid.push('<div class="day-cell empty"></div>');
+            } else {
+                const day = i - startOffset + 1;
+                const date = new Date(year, month, day);
+                const type = getDateType(date);
+                const isNonWorking = isNonWorkingDay(date);
+                const numberColor = isNonWorking ? '#000000' : '#ffffff';
+
+                daysGrid.push(`
+                        <div class="day-cell">
+                            <div class="cell-content">
+                                <div class="number-zone" style="color:${numberColor};">${day}</div>
+                                <div class="type-zone ${type}"></div>
+                            </div>
+                        </div>
+                    `);
+            }
+        }
+
+        const monthDiv = document.createElement('div');
+        monthDiv.className = 'month';
+        monthDiv.innerHTML = `
+                <div class="month-header">${monthNames[month]} ${year}</div>
+                <div class="week-days">${dayNames.map(d => `<div>${d}</div>`).join('')}</div>
+                <div class="days-grid">${daysGrid.join('')}</div>
+            `;
+        return monthDiv;
+    }
+
+    function getQuarter(monthIndex) {
+        if (monthIndex === 11 || monthIndex <= 1) return 'winter';
+        if (monthIndex >= 2 && monthIndex <= 4) return 'spring';
+        if (monthIndex >= 5 && monthIndex <= 7) return 'summer';
+        if (monthIndex >= 8 && monthIndex <= 10) return 'autumn';
+    }
+
+    // Генерация всех месяцев от декабря 2023 до ноября 2051
+    const totalMonths = 28 * 12;
+    let months = [];
+    let currentYear = 2023;
+    let currentMonth = 11;
+
+    for (let i = 0; i < totalMonths; i++) {
+        months.push({ year: currentYear, month: currentMonth });
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+    }
+
+    // Группировка по кварталам (по 3 месяца)
+    const quarters = [];
+    for (let i = 0; i < months.length; i += 3) {
+        quarters.push(months.slice(i, i + 3));
+    }
+
+    // Рендеринг
+    quarters.forEach(q => {
+        const quarterDiv = document.createElement('div');
+        const quarterType = getQuarter(q[0].month);
+        quarterDiv.className = `quarter ${quarterType}`;
+
+        q.forEach(m => {
+            quarterDiv.appendChild(renderMonth(m.year, m.month));
+        });
+
+        container.appendChild(quarterDiv);
+    });
+</script>
+</body>
+</html>
+
