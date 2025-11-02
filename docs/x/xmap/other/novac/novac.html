@@ -56,20 +56,20 @@
         .month-header {
             padding: 6px 0;
             text-align: center;
-            font-weight: bold;
-            font-size: 14px;
+            font-weight: bolder;
+            font-size: 7mm;
             background-color: inherit;
         }
         .week-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            font-size: 11px;
+            font-size: 5mm;
             text-align: center;
-            font-weight: bold;
+            font-weight: bolder;
             background-color: transparent;
         }
         .week-days div {
-            padding: 4px 0;
+            padding: 0 0 4px 0;
         }
         .days-grid {
             display: grid;
@@ -103,8 +103,8 @@
             font-weight: bolder;
             z-index: 3;
             line-height: 1;
-            -webkit-text-stroke: 2px white;
-            -webkit-text-width: 2px;
+            -webkit-text-stroke: 3px white;
+            -webkit-text-width: 3px;
             -webkit-text-color: white;
         }
         .type-zone {
@@ -159,10 +159,10 @@
     const container = document.getElementById('calendarContainer');
 
     const monthNames = [
-        'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+        'ЯНВАРЬ', 'ФЕВРАЛЬ', 'МАРТ', 'АПРЕЛЬ', 'МАЙ', 'ИЮНЬ',
+        'ИЮЛЬ', 'АВГУСТ', 'СЕНТЯБРЬ', 'ОКТЯБРЬ', 'НОЯБРЬ', 'ДЕКАБРЬ'
     ];
-    const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+    const dayNames = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
 
     // Праздничные дни (пример для РФ)
     const holidays = new Set([
