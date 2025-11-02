@@ -35,6 +35,7 @@
             gap: 0;
             padding: 0;
             margin: 0;
+            border: 3px solid white;
             box-sizing: border-box;
         }
         .winter { background-color: white; color: black; }
@@ -83,6 +84,7 @@
             flex-direction: column;
             padding: 0;
             background-color: white;
+            border: 1px solid white;
             position: relative;
             overflow: hidden;
             font-weight: bolder;
@@ -98,11 +100,12 @@
             font-size: 9mm;
             font-weight: bolder;
             z-index: 3;
-            line-height: 1;
             color: black !important;
-            justify-content: left;
-            -webkit-text-stroke: 3px white;
-            -webkit-text-width: 3px;
+            text-align: center;
+            top: 0;
+            left: 0;
+            -webkit-text-stroke: 2px white;
+            -webkit-text-width: 2px;
             -webkit-text-color: white;
         }
         .type-zone {
@@ -114,10 +117,10 @@
             z-index: 2;
         }
 
-        .type-zone.alpha { background: repeating-linear-gradient(  0deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
-        .type-zone.beta  { background: repeating-linear-gradient( 45deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
-        .type-zone.gamma { background: repeating-linear-gradient( 90deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
-        .type-zone.delta { background: repeating-linear-gradient(135deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
+        .type-zone.alpha { background: repeating-linear-gradient(  0deg, #000000, #000000 4px, transparent 4px, transparent 8px); }
+        .type-zone.beta  { background: repeating-linear-gradient( 45deg, #000000, #000000 4px, transparent 4px, transparent 8px); }
+        .type-zone.gamma { background: repeating-linear-gradient( 90deg, #000000, #000000 4px, transparent 4px, transparent 8px); }
+        .type-zone.delta { background: repeating-linear-gradient(135deg, #000000, #000000 4px, transparent 4px, transparent 8px); }
 
         .empty {
             background-color: transparent;
@@ -136,6 +139,7 @@
             .quarter {
                 break-inside: avoid;
                 page-break-inside: avoid;
+                border: 2px solid white;
             }
             .winter { background-color: white; color: black; }
             .spring { background-color: white; color: black; }
