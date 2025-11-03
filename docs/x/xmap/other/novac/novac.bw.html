@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: Arial, sans-serif;
             background-color: white;
@@ -19,6 +20,7 @@
             justify-content: center;
             min-height: 100vh;
         }
+
         .calendar-container {
             display: flex;
             flex-wrap: wrap;
@@ -27,6 +29,7 @@
             max-width: 100%;
             padding: 0 10px;
         }
+
         .quarter {
             width: 105mm;
             height: 297mm;
@@ -38,10 +41,26 @@
             border: 3px solid white;
             box-sizing: border-box;
         }
-        .winter { background-color: white; color: black; }
-        .spring { background-color: white; color: black; }
-        .summer { background-color: white; color: black; }
-        .autumn { background-color: white; color: black; }
+
+        .winter {
+            background-color: white;
+            color: black;
+        }
+
+        .spring {
+            background-color: white;
+            color: black;
+        }
+
+        .summer {
+            background-color: white;
+            color: black;
+        }
+
+        .autumn {
+            background-color: white;
+            color: black;
+        }
 
         .month {
             width: 100%;
@@ -53,6 +72,7 @@
             overflow: hidden;
             background-color: transparent;
         }
+
         .month-header {
             padding: 0 0 6px 0;
             text-align: center;
@@ -60,17 +80,20 @@
             font-size: 7mm;
             background-color: inherit;
         }
+
         .week-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            font-size: 5mm;
+            font-size: 7mm;
             text-align: center;
             font-weight: bolder;
             background-color: transparent;
         }
+
         .week-days div {
             padding: 2px 0;
         }
+
         .days-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -79,16 +102,20 @@
             flex: 1;
             background-color: transparent;
         }
+
         .day-cell {
             display: flex;
             flex-direction: column;
+            margin: 1px;
             padding: 0;
+            height: 12.3mm;
             background-color: white;
-            border: 1px solid white;
+            border: 1px solid black;
             position: relative;
             overflow: hidden;
             font-weight: bolder;
         }
+
         .cell-content {
             display: flex;
             flex-direction: column;
@@ -96,18 +123,30 @@
             height: 100%;
             position: relative;
         }
+
         .number-zone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 9mm;
             font-weight: bolder;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 0.1mm;
             z-index: 3;
-            color: black !important;
-            text-align: center;
-            top: 0;
-            left: 0;
-            -webkit-text-stroke: 2px white;
-            -webkit-text-width: 2px;
+            color: white;
+            -webkit-text-stroke: 3px black;
+            -webkit-text-width: 3px;
             -webkit-text-color: white;
         }
+
+        .isNonWorking {
+            color: black;
+            -webkit-text-stroke: 3px white;
+            -webkit-text-width: 3px;
+            -webkit-text-color: black;
+        }
+
         .type-zone {
             position: absolute;
             top: 0;
@@ -117,10 +156,21 @@
             z-index: 2;
         }
 
-        .type-zone.alpha { background: repeating-linear-gradient(  0deg, #000000, #000000 4px, transparent 4px, transparent 8px); }
-        .type-zone.beta  { background: repeating-linear-gradient( 45deg, #000000, #000000 4px, transparent 4px, transparent 8px); }
-        .type-zone.gamma { background: repeating-linear-gradient( 90deg, #000000, #000000 4px, transparent 4px, transparent 8px); }
-        .type-zone.delta { background: repeating-linear-gradient(135deg, #000000, #000000 4px, transparent 4px, transparent 8px); }
+        .type-zone.alpha {
+            background: repeating-linear-gradient(0deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+        }
+
+        .type-zone.beta {
+            background: repeating-linear-gradient(45deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+        }
+
+        .type-zone.gamma {
+            background: repeating-linear-gradient(90deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+        }
+
+        .type-zone.delta {
+            background: repeating-linear-gradient(135deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+        }
 
         .empty {
             background-color: transparent;
@@ -132,22 +182,42 @@
                 padding: 0;
                 justify-content: flex-start;
             }
+
             .calendar-container {
                 gap: 0;
                 padding: 0;
             }
+
             .quarter {
                 break-inside: avoid;
                 page-break-inside: avoid;
                 border: 2px solid white;
             }
-            .winter { background-color: white; color: black; }
-            .spring { background-color: white; color: black; }
-            .summer { background-color: white; color: black; }
-            .autumn { background-color: white; color: black; }
+
+            .winter {
+                background-color: white;
+                color: black;
+            }
+
+            .spring {
+                background-color: white;
+                color: black;
+            }
+
+            .summer {
+                background-color: white;
+                color: black;
+            }
+
+            .autumn {
+                background-color: white;
+                color: black;
+            }
+
             .month {
                 border: 2px solid white;
             }
+
             .day-cell {
                 background-color: white;
             }
@@ -222,13 +292,12 @@
                 const date = new Date(year, month, day);
                 const type = getDateType(date);
                 const isNonWorking = isNonWorkingDay(date);
-                const numberStyle = isNonWorking ?
-                    'style="color:#ffffff;text-decoration: underline;"' : 'style="color:#ffffff;"';
+                const numberStyle = isNonWorking ? 'isNonWorking' : '';
 
                 daysGrid.push(`
                         <div class="day-cell">
                             <div class="cell-content">
-                                <div class="number-zone" ${numberStyle}>${day}</div>
+                                <div class="number-zone ${numberStyle}" >${day}</div>
                                 <div class="type-zone ${type}"></div>
                             </div>
                         </div>
@@ -260,7 +329,7 @@
     let currentMonth = 11;
 
     for (let i = 0; i < totalMonths; i++) {
-        months.push({ year: currentYear, month: currentMonth });
+        months.push({year: currentYear, month: currentMonth});
         currentMonth++;
         if (currentMonth > 11) {
             currentMonth = 0;
