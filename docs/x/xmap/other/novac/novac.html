@@ -279,6 +279,8 @@
         return sequence[index];
     }
 
+    let stat = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
     function renderMonth(year, month, loop28) {
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
@@ -300,6 +302,9 @@
                 const numberStyle = isNonWorking ? 'isNonWorking' : '';
                 const isBeginLoop28 = currentLoop28 === 1;
                 const classBeginLoop28 = (isBeginLoop28) ? "beginLoop28" : "";
+                if (isBeginLoop28) {
+                    stat[day - 1] += 1;
+                }
                 daysGrid.push(`
                         <div class="day-cell ${classBeginLoop28}">
                             <div class="cell-content">
@@ -366,6 +371,7 @@
 
         container.appendChild(quarterDiv);
     });
+    console.log(stat);
 </script>
 </body>
 </html>
