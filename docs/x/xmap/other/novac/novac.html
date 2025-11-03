@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novac - Вечный квартальный календарь (декабрь 2023 — ноябрь 2051)</title>
+    <title>Novac - Вечный квартальный солнечно-лунный календарь (декабрь 2019 — ноябрь 2045)</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            border-color: white !important;
         }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: white;
             padding: 20px 0;
-            color: #000;
+            color: black;
             display: flex;
             justify-content: center;
             min-height: 100vh;
         }
+
         .calendar-container {
             display: flex;
             flex-wrap: wrap;
@@ -28,6 +29,7 @@
             max-width: 100%;
             padding: 0 10px;
         }
+
         .quarter {
             width: 105mm;
             height: 297mm;
@@ -36,41 +38,62 @@
             gap: 0;
             padding: 0;
             margin: 0;
+            border: 3px solid white;
             box-sizing: border-box;
         }
-        .winter { background-color: rgba(0, 0, 0, 0.85); color: #ffffff; }
-        .spring { background-color: rgba(255, 204, 0, 0.85); color: #000000; }
-        .summer { background-color: rgba(204, 0, 0, 0.85); color: #ffffff; }
-        .autumn { background-color: rgba(102, 102, 102, 0.85); color: #ffffff; }
+
+        .winter {
+            background-color: white;
+            color: black;
+        }
+
+        .spring {
+            background-color: white;
+            color: black;
+        }
+
+        .summer {
+            background-color: white;
+            color: black;
+        }
+
+        .autumn {
+            background-color: white;
+            color: black;
+        }
 
         .month {
             width: 100%;
             flex: 1;
             display: flex;
             flex-direction: column;
-            border: 2px solid #ffffff;
+            border: 2px solid white;
             border-radius: 0;
             overflow: hidden;
             background-color: transparent;
         }
+
         .month-header {
-            padding: 6px 0;
+            padding: 0 0 6px 0;
             text-align: center;
             font-weight: bolder;
             font-size: 7mm;
             background-color: inherit;
         }
+
         .week-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            font-size: 5mm;
+            font-size: 7mm;
             text-align: center;
             font-weight: bolder;
             background-color: transparent;
         }
+
         .week-days div {
-            padding: 0 0 4px 0;
+            padding: 2px 0;
         }
+
         .days-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -79,34 +102,55 @@
             flex: 1;
             background-color: transparent;
         }
+
         .day-cell {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            margin: 1px;
             padding: 0;
-            background-color: rgba(255,255,255,0.9);
+            height: 12.3mm;
+            background-color: white;
+            border: 1px solid black;
             position: relative;
             overflow: hidden;
+            font-weight: bolder;
         }
+
+        .beginLoop28 {
+            border-width: 5px;
+        }
+
         .cell-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             width: 100%;
             height: 100%;
             position: relative;
         }
+
         .number-zone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 9mm;
             font-weight: bolder;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 0.1mm;
             z-index: 3;
-            line-height: 1;
-            -webkit-text-stroke: 2px white;
-            -webkit-text-width: 2px;
+            color: white;
+            -webkit-text-stroke: 3px black;
+            -webkit-text-width: 3px;
             -webkit-text-color: white;
         }
+
+        .isNonWorking {
+            color: black;
+            -webkit-text-stroke: 3px white;
+            -webkit-text-width: 3px;
+            -webkit-text-color: black;
+        }
+
         .type-zone {
             position: absolute;
             top: 0;
@@ -116,10 +160,21 @@
             z-index: 2;
         }
 
-        .type-zone.alpha { background: repeating-linear-gradient(  0deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
-        .type-zone.beta  { background: repeating-linear-gradient( 45deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
-        .type-zone.gamma { background: repeating-linear-gradient( 90deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
-        .type-zone.delta { background: repeating-linear-gradient(135deg, #000000, #000000 2px, transparent 4px, transparent 6px); }
+        .type-zone.alpha {
+            background: repeating-linear-gradient(135deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+        }
+
+        .type-zone.beta {
+            background: repeating-linear-gradient(90deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+        }
+
+        .type-zone.gamma {
+            background: repeating-linear-gradient(45deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+        }
+
+        .type-zone.delta {
+            background: repeating-linear-gradient(0deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+        }
 
         .empty {
             background-color: transparent;
@@ -127,27 +182,48 @@
 
         @media print {
             body {
-                background-color: #ffffff;
+                background-color: white;
                 padding: 0;
                 justify-content: flex-start;
             }
+
             .calendar-container {
                 gap: 0;
                 padding: 0;
             }
+
             .quarter {
                 break-inside: avoid;
                 page-break-inside: avoid;
+                border: 2px solid white;
             }
-            .winter { background-color: #000000; color: #ffffff; }
-            .spring { background-color: #ffcc00; color: #000000; }
-            .summer { background-color: #cc0000; color: #ffffff; }
-            .autumn { background-color: #666666; color: #ffffff; }
+
+            .winter {
+                background-color: white;
+                color: black;
+            }
+
+            .spring {
+                background-color: white;
+                color: black;
+            }
+
+            .summer {
+                background-color: white;
+                color: black;
+            }
+
+            .autumn {
+                background-color: white;
+                color: black;
+            }
+
             .month {
-                border: 2px solid #000000;
+                border: 2px solid white;
             }
+
             .day-cell {
-                background-color: #ffffff;
+                background-color: white;
             }
         }
     </style>
@@ -189,9 +265,9 @@
         return isWeekend(date) || isHoliday(date);
     }
 
-    // Начало отсчёта: 1 декабря 2023 → "beta"
-    const baseDate = new Date(2023, 11, 1); // декабрь = 11
-    const sequence = ['beta', 'gamma', 'delta', 'alpha']; // цикл после beta
+    // Начало отсчёта: 1 декабря 2019 → "alpha"
+    const baseDate = new Date(2019, 11, 1); // декабрь = 11
+    const sequence = ['alpha', 'beta', 'gamma', 'delta']; // цикл после beta
 
     function getDateType(date) {
         const diffTime = date.getTime() - baseDate.getTime();
@@ -203,7 +279,7 @@
         return sequence[index];
     }
 
-    function renderMonth(year, month) {
+    function renderMonth(year, month, loop28) {
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         const daysInMonth = lastDay.getDate();
@@ -211,6 +287,7 @@
         const startOffset = startDay === 0 ? 6 : startDay - 1;
 
         const daysGrid = [];
+        let currentLoop28 = loop28;
         // Всегда 6 недель × 7 дней = 42 ячейки
         for (let i = 0; i < 42; i++) {
             if (i < startOffset || i >= startOffset + daysInMonth) {
@@ -220,16 +297,18 @@
                 const date = new Date(year, month, day);
                 const type = getDateType(date);
                 const isNonWorking = isNonWorkingDay(date);
-                const numberColor = isNonWorking ? '#000000' : '#ffffff';
-
+                const numberStyle = isNonWorking ? 'isNonWorking' : '';
+                const isBeginLoop28 = currentLoop28 === 1;
+                const classBeginLoop28 = (isBeginLoop28) ? "beginLoop28" : "";
                 daysGrid.push(`
-                        <div class="day-cell">
+                        <div class="day-cell ${classBeginLoop28}">
                             <div class="cell-content">
-                                <div class="number-zone" style="color:${numberColor};">${day}</div>
+                                <div class="number-zone ${numberStyle}" >${day}</div>
                                 <div class="type-zone ${type}"></div>
                             </div>
                         </div>
                     `);
+                currentLoop28 = (currentLoop28 === 28 ) ? 1: currentLoop28 + 1;
             }
         }
 
@@ -240,7 +319,7 @@
                 <div class="week-days">${dayNames.map(d => `<div>${d}</div>`).join('')}</div>
                 <div class="days-grid">${daysGrid.join('')}</div>
             `;
-        return monthDiv;
+        return [monthDiv, currentLoop28];
     }
 
     function getQuarter(monthIndex) {
@@ -250,14 +329,15 @@
         if (monthIndex >= 8 && monthIndex <= 10) return 'autumn';
     }
 
-    // Генерация всех месяцев от декабря 2023 до ноября 2051
-    const totalMonths = 28 * 12;
+    // Генерация всех месяцев от декабря 2019 до ноября 2041
+    const totalMonths = 22 * 12;
     let months = [];
-    let currentYear = 2023;
+    let currentYear = 2019;
     let currentMonth = 11;
+    let loop28 = 1;
 
     for (let i = 0; i < totalMonths; i++) {
-        months.push({ year: currentYear, month: currentMonth });
+        months.push({year: currentYear, month: currentMonth});
         currentMonth++;
         if (currentMonth > 11) {
             currentMonth = 0;
@@ -278,7 +358,10 @@
         quarterDiv.className = `quarter ${quarterType}`;
 
         q.forEach(m => {
-            quarterDiv.appendChild(renderMonth(m.year, m.month));
+            let month = renderMonth(m.year, m.month, loop28);
+            loop28 = month[1];
+            quarterDiv.appendChild(month[0]);
+
         });
 
         container.appendChild(quarterDiv);
