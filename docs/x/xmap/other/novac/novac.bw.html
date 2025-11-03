@@ -116,6 +116,10 @@
             font-weight: bolder;
         }
 
+        .beginLoop28 {
+            border-width: 5px;
+        }
+
         .cell-content {
             display: flex;
             flex-direction: column;
@@ -161,7 +165,7 @@
         }
 
         .type-zone.beta {
-            background: repeating-linear-gradient(45deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+            background: repeating-linear-gradient(135deg, #000000, #000000 4px, transparent 4px, transparent 8px);
         }
 
         .type-zone.gamma {
@@ -169,7 +173,7 @@
         }
 
         .type-zone.delta {
-            background: repeating-linear-gradient(135deg, #000000, #000000 4px, transparent 4px, transparent 8px);
+            background: repeating-linear-gradient(45deg, #000000, #000000 4px, transparent 4px, transparent 8px);
         }
 
         .empty {
@@ -261,9 +265,9 @@
         return isWeekend(date) || isHoliday(date);
     }
 
-    // Начало отсчёта: 1 декабря 2023 → "beta"
-    const baseDate = new Date(2023, 11, 1); // декабрь = 11
-    const sequence = ['beta', 'gamma', 'delta', 'alpha']; // цикл после beta
+    // Начало отсчёта: 1 декабря 2019 → "alpha"
+    const baseDate = new Date(2019, 11, 1); // декабрь = 11
+    const sequence = ['alpha', 'beta', 'gamma', 'delta']; // цикл после beta
 
     function getDateType(date) {
         const diffTime = date.getTime() - baseDate.getTime();
@@ -275,7 +279,7 @@
         return sequence[index];
     }
 
-    function renderMonth(year, month) {
+    function renderMonth(year, month, loop28) {
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         const daysInMonth = lastDay.getDate();
@@ -283,6 +287,7 @@
         const startOffset = startDay === 0 ? 6 : startDay - 1;
 
         const daysGrid = [];
+        let currentLoop28 = loop28;
         // Всегда 6 недель × 7 дней = 42 ячейки
         for (let i = 0; i < 42; i++) {
             if (i < startOffset || i >= startOffset + daysInMonth) {
@@ -293,15 +298,22 @@
                 const type = getDateType(date);
                 const isNonWorking = isNonWorkingDay(date);
                 const numberStyle = isNonWorking ? 'isNonWorking' : '';
-
+                let isBeginLoop28 = currentLoop28 === 1;
+                let classBeginLoop28;
+                if (isBeginLoop28) {
+                    classBeginLoop28 = "beginLoop28";
+                } else {
+                    classBeginLoop28 = "";
+                }
                 daysGrid.push(`
-                        <div class="day-cell">
+                        <div class="day-cell ${classBeginLoop28}">
                             <div class="cell-content">
                                 <div class="number-zone ${numberStyle}" >${day}</div>
                                 <div class="type-zone ${type}"></div>
                             </div>
                         </div>
                     `);
+                currentLoop28 = (currentLoop28 === 28 ) ? 1: currentLoop28 + 1;
             }
         }
 
@@ -312,7 +324,7 @@
                 <div class="week-days">${dayNames.map(d => `<div>${d}</div>`).join('')}</div>
                 <div class="days-grid">${daysGrid.join('')}</div>
             `;
-        return monthDiv;
+        return [monthDiv, currentLoop28];
     }
 
     function getQuarter(monthIndex) {
@@ -322,11 +334,12 @@
         if (monthIndex >= 8 && monthIndex <= 10) return 'autumn';
     }
 
-    // Генерация всех месяцев от декабря 2023 до ноября 2051
-    const totalMonths = 28 * 12;
+    // Генерация всех месяцев от декабря 2019 до ноября 2041
+    const totalMonths = 22 * 12;
     let months = [];
-    let currentYear = 2023;
+    let currentYear = 2019;
     let currentMonth = 11;
+    let loop28 = 1;
 
     for (let i = 0; i < totalMonths; i++) {
         months.push({year: currentYear, month: currentMonth});
@@ -350,7 +363,10 @@
         quarterDiv.className = `quarter ${quarterType}`;
 
         q.forEach(m => {
-            quarterDiv.appendChild(renderMonth(m.year, m.month));
+            let month = renderMonth(m.year, m.month, loop28);
+            loop28 = month[1];
+            quarterDiv.appendChild(month[0]);
+
         });
 
         container.appendChild(quarterDiv);
