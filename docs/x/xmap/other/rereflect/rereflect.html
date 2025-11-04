@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle Field from Array</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+        .canvas-container {
+            position: relative;
+            width: 841.89px;
+            height: 595.276px;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas-container" id="canvas"></div>
+
+    <script>
+        // Create array with triangle information based on the original SVG
+        const triangles = [
+            { transform: "translate(332.513,-325.632)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0000" },
+            { transform: "translate(389.12,763.559) rotate(180)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0001" },
+            { transform: "translate(-95.4748,516.36) rotate(-120)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0010" },
+            { transform: "translate(818.315,-77.5736) rotate(60)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0011" },
+            { transform: "translate(-123.306,-27.8065) rotate(-60)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0100" },
+            { transform: "translate(845.753,470.398) rotate(120)", points: [[50.62, 595.28], [25.31, 550.18], [0, 595.28]], binary: "0101" },
+            { transform: "translate(818.585,84.2713) rotate(60)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0110" },
+            { transform: "translate(-95.2048,678.204) rotate(-120)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0111" },
+            { transform: "translate(-124.594,134.619) rotate(-60)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "1000" },
+            { transform: "translate(846.662,629.018) rotate(120)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "1001" },
+            { transform: "translate(332.752,-161.566)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "1010" },
+            { transform: "translate(390.218,926.766) rotate(180)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "1011" },
+            { transform: "translate(575.351,758.186) rotate(150)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "1100" },
+            { transform: "translate(-18.5824,-155.604) rotate(-30)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "1101" },
+            { transform: "translate(525.003,-184.994) rotate(30)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "1110" },
+            { transform: "translate(30.6038,786.263) rotate(-150)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "1111" },
+            { transform: "translate(821.188,272.352) rotate(90)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0000" },
+            { transform: "translate(-267.144,329.818) rotate(-90)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0001" },
+            { transform: "translate(692.431,-185.359) rotate(30)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0010" },
+            { transform: "translate(198.032,785.898) rotate(-150)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0011" },
+            { transform: "translate(-99.2126,329.834) rotate(-90)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0100" },
+            { transform: "translate(989.12,272.368) rotate(90)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0101" },
+            { transform: "translate(148.768,-155.343) rotate(-30)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0110" },
+            { transform: "translate(742.701,758.447) rotate(150)", points: [[56.69, 595.28], [28.35, 550.18], [0, 595.28]], binary: "0111" },
+            { transform: "translate(384.013,867.926) rotate(180)", points: [[43.86, 595.28], [21.93, 567.29], [0, 595.28]], binary: "1000" },
+            { transform: "translate(340.157,-266.634)", points: [[43.86, 595.28], [21.93, 567.59], [0, 595.28]], binary: "1001" },
+            { transform: "translate(930.389,272.65) rotate(90)", points: [[55.99, 595.28], [28, 569.24], [0, 595.28]], binary: "1010" },
+            { transform: "translate(-206.695,328.642) rotate(-90)", points: [[55.99, 595.28], [28, 569.24], [0, 595.28]], binary: "1011" },
+            { transform: "translate(821.188,169.722) rotate(90)", points: [[0, 595.28], [99.28, 595.28], [0, 491.78]], binary: "1100" },
+            { transform: "translate(495.67,763.044) rotate(180)", points: [[0, 595.28], [102.96, 595.28], [0, 495.99]], binary: "1101" },
+            { transform: "translate(226.277,-162.354)", points: [[0, 595.28], [102.96, 595.28], [0, 495.99]], binary: "1110" },
+            { transform: "translate(-99.7723,432.85) rotate(-90)", points: [[0, 595.28], [99.28, 595.28], [0, 491.78]], binary: "1111" }
+        ];
+
+        function parseTransform(transformStr) {
+            const translateMatch = transformStr.match(/translate\(([^)]+)\)/);
+            const rotateMatch = transformStr.match(/rotate\(([^)]+)\)/);
+            
+            let translateX = 0, translateY = 0, rotate = 0;
+            
+            if (translateMatch) {
+                const translateValues = translateMatch[1].split(',').map(v => parseFloat(v.trim()));
+                translateX = translateValues[0] || 0;
+                translateY = translateValues[1] || 0;
+            }
+            
+            if (rotateMatch) {
+                rotate = parseFloat(rotateMatch[1]);
+            }
+            
+            return { translateX, translateY, rotate };
+        }
+
+        function applyTransform(x, y, transform) {
+            const { translateX, translateY, rotate } = transform;
+            
+            // Apply rotation around origin first
+            let rotatedX = x;
+            let rotatedY = y;
+            
+            if (rotate !== 0) {
+                const rad = rotate * Math.PI / 180;
+                rotatedX = x * Math.cos(rad) - y * Math.sin(rad);
+                rotatedY = x * Math.sin(rad) + y * Math.cos(rad);
+            }
+            
+            // Then apply translation
+            return {
+                x: rotatedX + translateX,
+                y: rotatedY + translateY
+            };
+        }
+
+        function getIncenter(p1, p2, p3) {
+            // Calculate side lengths
+            const a = Math.sqrt(Math.pow(p2.x - p3.x, 2) + Math.pow(p2.y - p3.y, 2));
+            const b = Math.sqrt(Math.pow(p1.x - p3.x, 2) + Math.pow(p1.y - p3.y, 2));
+            const c = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+            
+            // Calculate incenter coordinates
+            const px = (a * p1.x + b * p2.x + c * p3.x) / (a + b + c);
+            const py = (a * p1.y + b * p2.y + c * p3.y) / (a + b + c);
+            
+            return { x: px, y: py };
+        }
+
+        function getPointAlongLine(from, to, distance) {
+            const dx = to.x - from.x;
+            const dy = to.y - from.y;
+            const length = Math.sqrt(dx * dx + dy * dy);
+            
+            if (length === 0) return from;
+            
+            const unitX = dx / length;
+            const unitY = dy / length;
+            
+            return {
+                x: from.x + unitX * distance,
+                y: from.y + unitY * distance
+            };
+        }
+
+        function drawTriangles() {
+            const canvas = document.getElementById('canvas');
+            
+            // Create SVG container
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '841.89');
+            svg.setAttribute('height', '595.276');
+            svg.setAttribute('viewBox', '0 0 841.89 595.276');
+            svg.setAttribute('style', 'background-color: transparent;');
+            
+            triangles.forEach((triangle, index) => {
+                const transform = parseTransform(triangle.transform);
+                
+                // Create polygon element
+                const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                polygon.setAttribute('fill', '#c00000');
+                polygon.setAttribute('stroke', '#000000');
+                polygon.setAttribute('stroke-width', '0.25');
+                
+                // Transform points
+                const transformedPoints = triangle.points.map(point => {
+                    return applyTransform(point[0], point[1], transform);
+                });
+                
+                // Set points attribute
+                const pointsStr = transformedPoints.map(p => `${p.x},${p.y}`).join(' ');
+                polygon.setAttribute('points', pointsStr);
+                
+                svg.appendChild(polygon);
+                
+                // Add bit texts
+                const bits = triangle.binary.split('');
+                
+                // Center bit (first bit) - use incenter for better positioning
+                const incenter = getIncenter(transformedPoints[0], transformedPoints[1], transformedPoints[2]);
+                
+                const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                centerText.setAttribute('x', incenter.x);
+                centerText.setAttribute('y', incenter.y);
+                centerText.setAttribute('fill', 'white');
+                centerText.setAttribute('font-size', '8');
+                centerText.setAttribute('font-family', 'Arial, sans-serif');
+                centerText.setAttribute('text-anchor', 'middle');
+                centerText.setAttribute('dominant-baseline', 'middle');
+                centerText.textContent = bits[0];
+                svg.appendChild(centerText);
+                
+                // Corner bits (remaining three bits) - position inside the triangle
+                const cornerDistance = 12; // Distance from vertex towards incenter
+                
+                transformedPoints.forEach((vertex, i) => {
+                    if (i < 3) {
+                        // Get point along the line from vertex to incenter
+                        const innerPoint = getPointAlongLine(vertex, incenter, cornerDistance);
+                        
+                        const cornerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                        cornerText.setAttribute('x', innerPoint.x);
+                        cornerText.setAttribute('y', innerPoint.y);
+                        cornerText.setAttribute('fill', 'white');
+                        cornerText.setAttribute('font-size', '6');
+                        cornerText.setAttribute('font-family', 'Arial, sans-serif');
+                        cornerText.setAttribute('text-anchor', 'middle');
+                        cornerText.setAttribute('dominant-baseline', 'middle');
+                        cornerText.textContent = bits[i + 1] || '0';
+                        svg.appendChild(cornerText);
+                    }
+                });
+            });
+            
+            canvas.appendChild(svg);
+        }
+
+        // Draw the triangles when page loads
+        drawTriangles();
+    </script>
+</body>
+</html>
+
