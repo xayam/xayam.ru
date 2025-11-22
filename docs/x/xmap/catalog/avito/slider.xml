@@ -2,6 +2,11 @@
 <slider>
     <ru>
         <item active="true">
+            <href>https://www.avito.ru/moskva/kollektsionirovanie/derevyannyy_kvartalnyy_kalendar_2026_s_tsiklom_4_d_7785013819</href>
+            <src>x/xmap/catalog/avito/7785013819.webp</src>
+            <title>Деревянный квартальный календарь 2026 с циклом 4 дня</title>
+        </item>
+        <item active="false">
             <href>https://www.avito.ru/moskva/knigi_i_zhurnaly/obmen_kniga_na_knigu_4298533297</href>
             <src>x/xmap/catalog/avito/4298533297.webp</src>
             <title>Обмен книга на книгу, бесплатно</title>
@@ -11,7 +16,7 @@
             <src>x/xmap/catalog/avito/7625741120.webp</src>
             <title>Зарядное устройствово GP PowerBank V800C без аккумуляторов</title>
         </item>
-        <item active="true">
+        <item active="false">
             <href>https://www.avito.ru/moskva/knigi_i_zhurnaly/zhurnal_karavan_istoriy._komplekt_iz_6_shtuk_7433555904</href>
             <src>x/xmap/catalog/avito/7433555904.webp</src>
             <title>Журнал "Караван историй". Комплект из 6 штук</title>
