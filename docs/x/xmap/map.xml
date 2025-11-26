@@ -79,6 +79,19 @@
         </description>
     </item>
     <item active="true">
+        <id>xlab</id>
+        <description>
+            <name>
+                <ru>Лаборатория КСАЯМ'а</ru>
+                <en>Laboratory by XAYAM</en>
+            </name>
+            <annotation>
+                <ru>Группа проектов от КСАЯМ'а</ru>
+                <en>Группа проектов от КСАЯМ'а</en>
+            </annotation>
+        </description>
+    </item>
+    <item active="true">
         <id>xayam.org</id>
         <description>
             <name>
