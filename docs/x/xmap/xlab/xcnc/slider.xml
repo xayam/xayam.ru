@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <slider>
     <ru>
-        <item active="true">
-            <href>https://www.ozon.ru/product/skladnaya-kozhanaya-shahmatnaya-doska-27h27sm-1763285954</href>
-            <src>x/xmap/catalog/chess-boards/3000000.webp</src>
-            <title>Складная кожаная шахматная доска, 27х27см</title>
-        </item>
-        <item active="true">
-            <href>https://www.ozon.ru/product/skladnaya-pvh-shahmatnaya-doska-34h34sm-2375296598</href>
-            <src>x/xmap/catalog/chess-boards/3000020.webp</src>
-            <title>Складная ПВХ шахматная доска, 34х34см</title>
-        </item>
         <item active="false">
-            <href>/</href>
-            <src>x/xmap/catalog/chess-boards/3000000.webp</src>
-            <title>slide7</title>
+            <href>?</href>
+            <src>x/xmap?</src>
+            <title>?</title>
         </item>
     </ru>
     <en>en</en>

@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu>
-    <id>search</id>
+    <id>xlab</id>
     <item active="true">
-        <id>simple</id>
-        <ru>Простой поиск</ru>
-        <en>Simple search</en>
+        <id>xcnc</id>
+        <ru>XCNC</ru>
+        <en>XCNC</en>
     </item>
     <item active="true">
-        <id>filters</id>
-        <ru>Фильтры</ru>
-        <en>Filters</en>
+        <id>xgraver</id>
+        <ru>XGraver</ru>
+        <en>XGraver</en>
     </item>
     <item active="true">
-        <id>fts</id>
-        <ru>Полнотекстовый поиск</ru>
-        <en>Full-Text Search</en>
+        <id>xprinter</id>
+        <ru>XPrinter</ru>
+        <en>XPrinter</en>
+    </item>
+    <item active="true">
+        <id>xrereflect</id>
+        <ru>XRereflect</ru>
+        <en>XRereflect</en>
     </item>
 </menu>
