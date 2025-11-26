@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+    <id>search</id>
+    <item active="true">
+        <id>simple</id>
+        <ru>Простой поиск</ru>
+        <en>Simple search</en>
+    </item>
+    <item active="true">
+        <id>filters</id>
+        <ru>Фильтры</ru>
+        <en>Filters</en>
+    </item>
+    <item active="true">
+        <id>fts</id>
+        <ru>Полнотекстовый поиск</ru>
+        <en>Full-Text Search</en>
+    </item>
+</menu>
