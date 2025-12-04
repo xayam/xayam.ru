@@ -12,8 +12,8 @@
                 <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
                 <meta name="robots" content="INDEX,FOLLOW"/>
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-                <link rel="stylesheet" href="xbook.xgame/resources/default.css"/>
-                <link rel="stylesheet" href="xbook.xgame/resources/style.css"/>
+                <link rel="stylesheet" href="../games/xbook.xgame/resources/default.css"/>
+                <link rel="stylesheet" href="../games/xbook.xgame/resources/style.css"/>
             </head>
             <body>
                 <div id="book">
