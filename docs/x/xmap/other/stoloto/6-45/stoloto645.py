@@ -59,6 +59,8 @@ print(r2)
 view = [[0] * 9] * 5
 index = 0
 s = ""
+for i in range(10):
+    result = [result[-1]] + result[:-1]
 for j in range(len(view)):
     fborder = False
     for i in range(len(view[j])):
