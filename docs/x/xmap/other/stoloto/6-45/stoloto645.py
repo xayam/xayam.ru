@@ -65,7 +65,7 @@ for j in range(len(view)):
     fborder = False
     for i in range(len(view[j])):
         if not fborder:
-            view[j][i] = abs(result[index] - middle)
+            view[j][i] = result[index] - middle + 50
             index += 1
         if index >= width:
             fborder = True
