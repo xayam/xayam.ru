@@ -5,3 +5,4 @@ pyroomacoustics
 shapely
 matplotlib
 numpy
+scikit-learn
