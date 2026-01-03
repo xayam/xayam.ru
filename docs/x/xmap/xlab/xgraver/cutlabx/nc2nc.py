@@ -1,4 +1,9 @@
 import re
+import sys
+
+import numpy as np
+from Scripts import winsound
+
 from png2gif import get_trajectory
 
 
@@ -48,19 +53,31 @@ def optimize_gcode(input_path, output_path, optimizer_func, speed):
 def optimize(points: list):
     width, height, trajectory = get_trajectory("input.png")
     result = ""
-    print(len(points))
-    for idx in range(len(trajectory)):
-        print(f"{idx}/{len(trajectory)}")
-        ys, xs = trajectory[:idx + 1, 0], trajectory[:idx + 1, 1]
-        y, x = ys[0] / height * 210, xs[0] / width * 297
+    for index in range(len(trajectory)):
+        print(f"{index}/{len(trajectory)}")
+        cluster = trajectory[index]
+        y = 210.0 - cluster[0][0] / height * 210.0 + 50.1
+        x = cluster[0][1] / width * 297.0 + 5.1
         y = round(y, 2)
         x = round(x, 2)
+        ys_pred = y
+        xs_pred = x
         result += f"G0X{x}Y{y}S1000.00F1000.00\n"
-        ys, xs = 210 - ys / height * 210, xs / width * 297
-        ys = ys.round(2)
-        xs = xs.round(2)
-        for i in range(1, len(ys)):
-            result += f"G1X{xs[i]}Y{ys[i]}\n"
+        for ys, xs in cluster:
+            ys = 210.0 - ys / height * 210.0 + 50.1
+            xs = xs / width * 297.0 + 5.1
+            ys = round(ys, 2)
+            xs = round(xs, 2)
+            s = "G1"
+            if xs != xs_pred:
+                s += f"X{xs}"
+                xs_pred = xs
+            if ys != ys_pred:
+                s += f"Y{ys}"
+                ys_pred = ys
+            if s == "G1":
+                s = ""
+            result += s + "\n"
     return result
 
 if __name__ == "__main__":
@@ -69,3 +86,4 @@ if __name__ == "__main__":
         "01w.output.nc",
         optimize,
         1000)
+    winsound.Beep(1400, 1000)

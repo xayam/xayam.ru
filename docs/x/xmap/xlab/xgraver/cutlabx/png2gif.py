@@ -79,10 +79,10 @@ def get_trajectory(filename='input.png'):
             remaining = np.delete(remaining, next_idx, axis=0)
 
         # Добавляем путь по кластеру в общую траекторию
-        trajectory.extend(cluster_path)
+        trajectory.append(cluster_path)
         last_point = cluster_path[-1]  # обновляем последнюю позицию
 
-    trajectory = np.array(trajectory)
+    # trajectory = np.array(trajectory)
     return image.shape[1], image.shape[0], trajectory
 # fig, ax = plt.subplots(figsize=(10, 7))
 # ax.axis('off')
