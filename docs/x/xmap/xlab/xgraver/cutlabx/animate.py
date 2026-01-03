@@ -86,7 +86,7 @@ for cluster in ordered_clusters:
 trajectory = np.array(trajectory)
 fig, ax = plt.subplots(figsize=(9, 6))
 ax.axis('off')
-canvas = np.zeros_like(binary_image)
+canvas = np.ones_like(binary_image) * 255
 im = ax.imshow(canvas, cmap='gray', vmin=0, vmax=255)
 
 # Ограничиваем число кадров
@@ -97,10 +97,10 @@ frames = list(range(0, total, step)) + [total]
 
 def animate(i):
     idx = frames[i]
-    canvas = np.zeros_like(binary_image)
+    canvas = np.ones_like(binary_image) * 255
     if idx > 0:
         ys, xs = trajectory[:idx, 0], trajectory[:idx, 1]
-        canvas[ys, xs] = 255
+        canvas[ys, xs] = 0
     im.set_array(canvas)
     return [im]
 
