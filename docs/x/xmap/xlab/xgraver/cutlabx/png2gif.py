@@ -27,8 +27,6 @@ def get_trajectory(filename='input.png'):
             'centroid': np.array([centroid[1], centroid[0]])  # [y, x] для согласования
         })
 
-
-    # --- 3. Жадный TSP на центроидах (nearest neighbor) ---
     def solve_tsp_greedy(centroids):
         n = len(centroids)
         visited = [False] * n
@@ -83,25 +81,33 @@ def get_trajectory(filename='input.png'):
         last_point = cluster_path[-1]  # обновляем последнюю позицию
 
     # trajectory = np.array(trajectory)
-    return image.shape[1], image.shape[0], trajectory
-# fig, ax = plt.subplots(figsize=(10, 7))
-# ax.axis('off')
-# canvas = np.ones_like(binary_image) * 255
-# im = ax.imshow(canvas, cmap='gray', vmin=0, vmax=255)
-#
-# total = len(trajectory)
-# step = max(1, total // 400)
-# frames = list(range(0, total, step)) + [total]
-#
-# def animate(i):
-#     idx = frames[i]
-#     if idx > 0:
-#         ys, xs = trajectory[:idx, 0], trajectory[:idx, 1]
-#         canvas[ys, xs] = 0
-#     im.set_array(canvas)
-#     return [im]
-#
-# ani = FuncAnimation(fig, animate, frames=len(frames), interval=25, blit=True, repeat=False)
-# binary_image = 255 - binary_image
-# assert canvas.any() == binary_image.any(), "Error! canvas != binary_image"
-# ani.save("output.gif")
+    return image.shape[1], image.shape[0], binary_image, trajectory
+
+def main(filename="input.png"):
+    _, _, binary_image, trajectory = get_trajectory(filename=filename)
+
+    fig, ax = plt.subplots(figsize=(10, 7))
+    ax.axis('off')
+    canvas = np.ones_like(binary_image) * 255
+    im = ax.imshow(canvas, cmap='gray', vmin=0, vmax=255)
+
+    total = len(trajectory)
+    step = max(1, total // 400)
+    frames = list(range(0, total, step)) + [total]
+
+    def animate(i):
+        idx = frames[i]
+        if idx > 0:
+            trajectory[i] = np.array(trajectory[i])
+            ys, xs = trajectory[i][:idx, 0], trajectory[i][:idx, 1]
+            canvas[ys, xs] = 0
+        im.set_array(canvas)
+        return [im]
+
+    ani = FuncAnimation(fig, animate, frames=len(frames), interval=25, blit=True, repeat=False)
+    binary_image = 255 - binary_image
+    assert canvas.any() == binary_image.any(), "Error! canvas != binary_image"
+    ani.save("output.gif")
+
+if __name__ == "__main__":
+    main()
