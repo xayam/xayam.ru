@@ -7,7 +7,8 @@ from png2gif import get_trajectory
 
 
 def optimize(filename, speed=1000):
-    width, height, binary_image, trajectory = get_trajectory(filename)
+    width, height, binary_image, trajectory = \
+        get_trajectory(filename=filename, animate=False)
     result = ""
     # directions = [
     #     [1, 1], [0, 1], [-1, 1], [-1, 0],
@@ -46,7 +47,7 @@ def get_gcode(filename: str, preamble: str, postamble: str, speed: int):
 
     optimized_points = optimize(filename=filename, speed=speed)
 
-    with open(filename[:-3] + "nc", 'w', encoding="UTF-8") as f:
+    with open("output.nc", 'w', encoding="UTF-8") as f:
         f.write(preamble)
         f.write("\n\n")
         f.write(";L0\n")
@@ -56,4 +57,9 @@ def get_gcode(filename: str, preamble: str, postamble: str, speed: int):
 
 
 if __name__ == "__main__":
-    get_gcode("input.png","begin.nc","end.nc",1000)
+    get_gcode(
+        "input.png",
+        "begin.nc",
+        "end.nc",
+        1000
+    )

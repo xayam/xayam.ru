@@ -6,7 +6,7 @@ from scipy.spatial.distance import cdist
 
 np.random.seed(42)
 
-def get_trajectory(filename='input.png'):
+def get_trajectory(filename='input.png', animate=True):
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
     binary_image = 255 - binary_image
@@ -77,10 +77,13 @@ def get_trajectory(filename='input.png'):
             remaining = np.delete(remaining, next_idx, axis=0)
 
         # Добавляем путь по кластеру в общую траекторию
-        trajectory.append(cluster_path)
+        if animate:
+            trajectory.extend(cluster_path)
+        else:
+            trajectory.append(cluster_path)
         last_point = cluster_path[-1]  # обновляем последнюю позицию
-
-    # trajectory = np.array(trajectory)
+    if animate:
+        trajectory = np.array(trajectory)
     return image.shape[1], image.shape[0], binary_image, trajectory
 
 def main(filename="input.png"):
@@ -98,8 +101,7 @@ def main(filename="input.png"):
     def animate(i):
         idx = frames[i]
         if idx > 0:
-            trajectory[i] = np.array(trajectory[i])
-            ys, xs = trajectory[i][:idx, 0], trajectory[i][:idx, 1]
+            ys, xs = trajectory[:idx, 0], trajectory[:idx, 1]
             canvas[ys, xs] = 0
         im.set_array(canvas)
         return [im]
