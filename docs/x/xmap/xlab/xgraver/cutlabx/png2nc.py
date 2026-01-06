@@ -7,14 +7,9 @@ from png2gif import get_trajectory
 
 
 def optimize(filename, speed=1000):
-    width, height, binary_image, trajectory = \
+    width, height, _, trajectory = \
         get_trajectory(filename=filename, animate=False)
     result = ""
-    # directions = [
-    #     [1, 1], [0, 1], [-1, 1], [-1, 0],
-    #     [-1, -1], [0, -1], [1, -1], [1, 0]
-    # ]
-    binary_image = 255 - binary_image
     for index in range(len(trajectory)):
         print(f"{index + 1}/{len(trajectory)}")
         cluster = trajectory[index]
