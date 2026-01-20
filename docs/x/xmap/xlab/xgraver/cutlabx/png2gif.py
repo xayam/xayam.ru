@@ -6,6 +6,7 @@ from scipy.spatial.distance import cdist
 
 np.random.seed(42)
 
+
 def get_trajectory(filename='input.png', animate=True):
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
@@ -56,7 +57,6 @@ def get_trajectory(filename='input.png', animate=True):
 
     for cluster in ordered_clusters:
         pixels = cluster['pixels']  # (N, 2) — [y, x]
-
         # Найти ближайшую точку к последней позиции — это старт кластера
         dists = cdist([last_point], pixels)[0]
         start_idx = np.argmin(dists)
@@ -76,7 +76,7 @@ def get_trajectory(filename='input.png', animate=True):
             cluster_path.append(current)
             remaining = np.delete(remaining, next_idx, axis=0)
 
-        # Добавляем путь по кластеру в общую траекторию
+            # Добавляем путь по кластеру в общую траекторию
         if animate:
             trajectory.extend(cluster_path)
         else:
