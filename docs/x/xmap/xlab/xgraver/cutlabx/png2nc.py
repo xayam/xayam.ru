@@ -77,17 +77,17 @@ def optimize(filename, speed=""):
     return result
 
 
-def get_gcode(tip="plastic"):
+def get_gcode(material="plastic"):
     # Plastic = S1000.00F1000.00
     # Wood = = S950.00F4000.00
-    with open(f"begin_{tip}.nc", 'r', encoding="UTF-8") as f:
+    with open(f"begin_{material}.nc", 'r', encoding="UTF-8") as f:
         preamble = f.read()
-    with open(f"end_{tip}.nc", 'r', encoding="UTF-8") as f:
+    with open(f"end_{material}.nc", 'r', encoding="UTF-8") as f:
         postamble = f.read()
 
-    if tip == "wood":
+    if material == "wood":
         speed = "S950.00F4000.00"
-    elif tip == "plastic":
+    elif material == "plastic":
         speed = "S1000.00F1000.00"
     else:
         raise "Error! material!"
@@ -104,5 +104,5 @@ def get_gcode(tip="plastic"):
 
 
 if __name__ == "__main__":
-    # get_gcode()
-    get_gcode("wood")
+    # get_gcode() # plastic
+    get_gcode(material="wood")
