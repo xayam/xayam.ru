@@ -9,6 +9,7 @@ from png2gif import get_trajectory
 def optimize(filename, speed=1000):
     width, height, _, trajectory = \
         get_trajectory(filename=filename, animate=False)
+    # binary_image = 255 - binary_image
     result = ""
     for index in range(len(trajectory)):
         print(f"{index + 1}/{len(trajectory)}")
@@ -29,6 +30,7 @@ def optimize(filename, speed=1000):
                 ys_pred1 = y
             if s == "G1":
                 s = ""
+            # if binary_image[ys][xs] == 0:
             s += "\n" + s.replace("G1", "G0") + "\n"
             result += s
     return result
