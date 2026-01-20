@@ -26,7 +26,7 @@ def line_pixels(x0, y0, x1, y1):
             y0 += sy
     return points
 
-def optimize(filename, speed=1000):
+def optimize(filename, speed=""):
     width, height, binary_image, trajectory = \
         get_trajectory(filename=filename, animate=False)
     image = np.ones_like(binary_image) * 255
@@ -42,7 +42,7 @@ def optimize(filename, speed=1000):
         x = round(cluster[0][1] / width * 297.0 + 5.1, 2)
         ys_pred1, xs_pred1 = y, x
         ys_pred2, xs_pred2 = cluster[0][0], cluster[0][1]
-        result += f"G0X{x}Y{y}S{speed}.00F1000.00\n"
+        result += f"G0X{x}Y{y}{speed}\n"
         index = -1
         for ys, xs in cluster:
             index += 1
@@ -77,13 +77,22 @@ def optimize(filename, speed=1000):
     return result
 
 
-def get_gcode(filename: str, preamble: str, postamble: str, speed: int):
-    with open(preamble, 'r', encoding="UTF-8") as f:
+def get_gcode(tip="plastic"):
+    # Plastic = S1000.00F1000.00
+    # Wood = = S950.00F4000.00
+    with open(f"begin_{tip}.nc", 'r', encoding="UTF-8") as f:
         preamble = f.read()
-    with open(postamble, 'r', encoding="UTF-8") as f:
+    with open(f"end_{tip}.nc", 'r', encoding="UTF-8") as f:
         postamble = f.read()
 
-    optimized_points = optimize(filename=filename, speed=speed)
+    if tip == "wood":
+        speed = "S950.00F4000.00"
+    elif tip == "plastic":
+        speed = "S1000.00F1000.00"
+    else:
+        raise "Error! material!"
+
+    optimized_points = optimize(filename="input.png", speed=speed)
 
     with open("output.nc", 'w', encoding="UTF-8") as f:
         f.write(preamble)
@@ -95,9 +104,5 @@ def get_gcode(filename: str, preamble: str, postamble: str, speed: int):
 
 
 if __name__ == "__main__":
-    get_gcode(
-        "input.png",
-        "begin.nc",
-        "end.nc",
-        1000
-    )
+    # get_gcode()
+    get_gcode("wood")
