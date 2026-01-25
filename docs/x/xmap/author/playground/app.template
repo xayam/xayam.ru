@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DEMO Rewlis :: REad While you LISten</title>
+    <link rel="stylesheet" href="layout.css">
+    <script type="text/javascript" src="init.js"></script>
+    <script type="text/javascript" src="books.js"></script>
+    <script type="text/javascript" src="handlers.js"></script>
+    <script type="text/javascript" src="layout.js"></script>
+    <script type="text/javascript" src="load.js"></script>
+    <style></style>
+</head>
+<body>
+<script>
+    // {{{SCRIPT}}}
+</script>
+<div class="links">
+    <div id="link_catalog">
+        <img src="img/catalog.svg" alt="Каталог"><br>
+        КАТАЛОГ
+    </div>
+    <div id="link_reader">
+        <img src="img/reader.svg" alt="Чтение"><br>
+        ЧТЕНИЕ
+    </div>
+</div>
+<div class="tabs">
+    <div id="catalog" class="tab-item">
+        Каталог
+    </div>
+    <div id="reader" class="tab-item">
+        <div id="first_book">
+            Select a book from the catalog
+        </div>
+        <div id="second_book">
+            Выберите книгу из каталога
+        </div>
+        <div class="player">
+            <audio id="player" controls src=""></audio>
+        </div>
+    </div>
+</div>
+</body>
+</html>
