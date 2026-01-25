@@ -8,13 +8,12 @@
     <title>GAMES: PlayGround by Xayam</title>
     <style>
 
-
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: #f1f3f4;
+    border: 1px solid black;
     scrollbar-color: gray white;
 }
 
@@ -27,82 +26,30 @@ span {
     background-color: burlywood;
 }
 
-#first_book, #second_book {
-    position: absolute;
-    width: 50%;
-    height: calc(100% - 60px);
-    overflow-y: scroll;
-    overflow-x: auto;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    padding: 10px;
-}
-#second_book {
-    left: 50%;
-    border-left: 1px solid gray;
-}
 
-#first_book a, #second_book a {
-    font-size: 0 !important;
-}
-
-audio {
-    width: 100%;
-}
-
-.tab-item {
-    display: none;
-    width: 100%;
-    height: 100%;
-    color: black;
-}
 
 .links {
-    /*outline: 2px solid red;*/
-    position: absolute;
-    width: 100px;
+    position: relative;
+    float: left;
+    width: 25%;
     height: 100%;
-    cursor: pointer;
 }
 
-.tabs {
-    /*outline: 2px solid yellow;*/
-    position: absolute;
-    left: 100px;
-    width: calc(100% - 100px);
+.board {
+    position: relative;
+    float: left;
+    width: 50%;
     height: 100%;
-    text-align: center;
 }
 
-#reader {
-    text-align: left;
+
+.moves {
+    position: relative;
+    float: left;
+    width: 25%;
+    height: 100%;
 }
 
-#link_catalog {
-    /*outline: 2px solid green;*/
-    text-align: center;
-    height: 50%;
-}
-
-#link_reader {
-    /*outline: 2px solid blue;*/
-    text-align: center;
-    height: 50%;
-}
-
-#catalog img {
-    width: 200px;
-    height: 200px;
-    margin: 0 10px 20px 10px;
-    border: 2px solid black;
-}
-
-.player {
-    position: absolute;
-    top: calc(100% - 60px);
-    width: 100%;
-    height: 60px;
-}
 
 
 </style>
@@ -292,27 +239,38 @@ window.addEventListener("load", function () {
 
 </script>
 <div class="links">
-    <div id="link_catalog">
-        <img src="img/catalog.svg" alt="Каталог"><br>
-        КАТАЛОГ
+    <div class="game">
+        <select class="game_input">
+            <option value="chess" selected="selected">Шахматы</option>
+            <option value="checkers">Шашки</option>
+        </select>
     </div>
-    <div id="link_reader">
-        <img src="img/reader.svg" alt="Чтение"><br>
-        ЧТЕНИЕ
+    <div class="games_list">
+        <br />
+        <a href="#chess">Шахматы</a>
+        <br />
+        <a href="#checkers">Шашки</a>
+        <br />
     </div>
 </div>
-<div class="tabs">
-    <div id="catalog" class="tab-item">
-        Каталог
+<div class="board">
+    <div class="board_header">
+        board_header
     </div>
-    <div id="reader" class="tab-item">
-        <div id="first_book">
-            Select a book from the catalog
-        </div>
-        <div id="second_book">
-            Выберите книгу из каталога
-        </div>
+    <div class="board_center">
+        board_center
     </div>
+    <div class="board_footer">
+        board_footer
+    </div>
+</div>
+<div class="moves">
+    <table class="moves_list">
+        <tr>
+            <td>1.1</td>
+            <td>1.2</td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>
