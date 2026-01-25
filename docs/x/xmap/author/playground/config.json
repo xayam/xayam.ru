@@ -1,0 +1,15 @@
+{
+  "input": "app.template.html",
+  "output": "games.html",
+
+  "css": [
+    "css/default.css",
+    "css/layout.css"
+  ],
+
+  "js": [
+    "js/init.js",
+    "js/layout.js",
+    "js/load.js"
+  ]
+}

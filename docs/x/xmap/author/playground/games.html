@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GAMES: PlayGround by Xayam</title>
+    <style>
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f1f3f4;
+    scrollbar-color: gray white;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+span {
+    background-color: burlywood;
+}
+
+#first_book, #second_book {
+    position: absolute;
+    width: 50%;
+    height: calc(100% - 60px);
+    overflow-y: scroll;
+    overflow-x: auto;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    padding: 10px;
+}
+#second_book {
+    left: 50%;
+    border-left: 1px solid gray;
+}
+
+#first_book a, #second_book a {
+    font-size: 0 !important;
+}
+
+audio {
+    width: 100%;
+}
+
+.tab-item {
+    display: none;
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+.links {
+    /*outline: 2px solid red;*/
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.tabs {
+    /*outline: 2px solid yellow;*/
+    position: absolute;
+    left: 100px;
+    width: calc(100% - 100px);
+    height: 100%;
+    text-align: center;
+}
+
+#reader {
+    text-align: left;
+}
+
+#link_catalog {
+    /*outline: 2px solid green;*/
+    text-align: center;
+    height: 50%;
+}
+
+#link_reader {
+    /*outline: 2px solid blue;*/
+    text-align: center;
+    height: 50%;
+}
+
+#catalog img {
+    width: 200px;
+    height: 200px;
+    margin: 0 10px 20px 10px;
+    border: 2px solid black;
+}
+
+.player {
+    position: absolute;
+    top: calc(100% - 60px);
+    width: 100%;
+    height: 60px;
+}
+
+
+</style>
+</head>
+<body>
+<script type="text/javascript">
+let vlayout = {};
+let hlayout = {};
+let current_book = null;
+let player = null;
+let first_book = null;
+let second_book = null;
+let catalog = null;
+let reader = null;
+let link_catalog = null;
+let link_reader = null;
+let links = null;
+let tabs = null;
+
+let first_timer = null;
+let rus_position = 0;
+let eng_position = 0;
+let current_lang = "eng";
+let rus_selection = null;
+let eng_selection = null;
+let span_timer = null;
+let data_list_key = null;
+let data_list_value = null;
+let buffer_result = {"resp": {}};
+let first_book_insert_sync = null;
+let second_book_insert_sync = null;
+
+function init() {
+    player = document.getElementById("player");
+    first_book = document.getElementById("first_book");
+    second_book = document.getElementById("second_book");
+    link_catalog = document.getElementById("link_catalog");
+    link_reader = document.getElementById("link_reader");
+    catalog = document.getElementById("catalog");
+    reader = document.getElementById("reader");
+    links = document.getElementsByClassName("links")[0];
+    tabs = document.getElementsByClassName("tabs")[0];
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// function getElementByXpath(path) {
+//     return document.evaluate(path, document, null,
+//         XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+// }
+
+let getTEXT = function (url, callback, timeout) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.timeout = timeout;
+    xhr.responseType = 'text';
+    xhr.onload = function () {
+        let status = xhr.status;
+        if (status === 200) {
+            callback(null, xhr.response);
+        } else {
+            callback(status, xhr.response);
+        }
+    };
+    xhr.send();
+    return xhr;
+};
+
+let getTEXT2 = function (url, callback, _) {
+    let xhr = {};
+    xhr.timeout = 0;
+    xhr.status = 1;
+    xhr.readyState = 4;
+    xhr.response = "responseData";
+    callback(null, xhr.response);
+    return xhr;
+};
+
+function getList() {
+    getTEXT('data/list.json',
+        function (err, data) {
+            if (err !== null) {
+                alert('Something went wrong: ' + err);
+            } else {
+                let jsonobj = JSON.parse(data.toString())
+                data_list_key = jsonobj["key"].reverse();
+                data_list_value = jsonobj["value"].reverse();
+                let buffer = "";
+                let doed = [];
+                for (let i = data_list_key.length - 1; i >= 0; i--) {
+                    let spl = data_list_key[i].split("/")[2];
+                    if (doed.indexOf(spl) === -1)
+                        buffer = buffer +
+                            "<a onclick='clickCover(" + '"' +
+                            spl + '"' +
+                            ")' href='#'><img src='data/eng/" +
+                            spl + "/cover.jpg' alt='" + spl + "'></a>";
+                    doed.push(spl);
+                }
+                catalog.innerHTML = buffer;
+            }
+        }, 3000);
+}
+
+
+
+function init_layouts() {
+    vlayout = {
+        "first_book.style.position": "absolute",
+        "second_book.style.position": "absolute",
+        "first_book.style.width": "100%",
+        "second_book.style.width": "100%",
+        "first_book.style.height": "calc(50% - 30px)",
+        "second_book.style.height": "calc(50% - 30px)",
+        "second_book.style.top": "calc(50% - 30px)",
+        "second_book.style.left": "0",
+        "second_book.style.borderLeftWidth": "0",
+        "second_book.style.borderTop": "1px solid gray",
+        "link_catalog.style.position": "absolute",
+        "link_reader.style.position": "absolute",
+        "link_reader.style.left": "50%",
+        "link_catalog.style.width": "50%",
+        "link_reader.style.width": "50%",
+        "link_catalog.style.height": "100%",
+        "link_reader.style.height": "100%",
+        "links.style.width": "100%",
+        "links.style.height": "100px",
+        "tabs.style.left": "0",
+        "tabs.style.top": "100px",
+        "tabs.style.width": "100%",
+        "tabs.style.height": "calc(100% - 100px)",
+    }
+    for (let key in vlayout) {
+        let hfunc = new Function("hlayout['"+ key + "'] = " + key);
+        hfunc();
+    }
+}
+
+function load_layout(layout) {
+    for (let key in layout) {
+        let vfunc = new Function(key + " = '" + layout[key] + "'");
+        vfunc();
+    }
+}
+
+window.addEventListener("load", function () {
+    init();
+    player.addEventListener('play', function (e) {
+        play_player(e);
+    });
+    player.addEventListener('pause', function (e) {
+        pause_player(e);
+    });
+    player.addEventListener('stop', function (e) {
+        stop_player(e);
+    });
+    player.addEventListener('seeked', function (e) {
+        seeked_player(e);
+    });
+    player.addEventListener('seeking', function (e) {
+        seeking_player(e);
+    });
+    first_book.addEventListener('click', function (e) {
+        click_first_book(e);
+    });
+    second_book.addEventListener('click', function (e) {
+        click_second_book(e);
+    });
+    link_catalog.addEventListener('click', function (e) {
+        click_catalog(e);
+    });
+    link_reader.addEventListener('click', function (e) {
+        click_reader(e);
+    });
+    window.addEventListener('resize', function (e) {
+        resize_window(e);
+    });
+    init_layouts();
+    resize_window(null);
+    getList();
+    link_catalog.click();
+});
+
+
+
+</script>
+<div class="links">
+    <div id="link_catalog">
+        <img src="img/catalog.svg" alt="Каталог"><br>
+        КАТАЛОГ
+    </div>
+    <div id="link_reader">
+        <img src="img/reader.svg" alt="Чтение"><br>
+        ЧТЕНИЕ
+    </div>
+</div>
+<div class="tabs">
+    <div id="catalog" class="tab-item">
+        Каталог
+    </div>
+    <div id="reader" class="tab-item">
+        <div id="first_book">
+            Select a book from the catalog
+        </div>
+        <div id="second_book">
+            Выберите книгу из каталога
+        </div>
+    </div>
+</div>
+</body>
+</html>
