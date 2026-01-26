@@ -1,4 +1,5 @@
 {
+	
   "input": "games.template.html",
   "output": "games.html",
 
@@ -17,5 +18,10 @@
     "js/layout.js",
     "js/load.js",
     "js/board.js"
+  ],
+
+  "svg": [
+    "img/board.svg"
   ]
+  
 }
