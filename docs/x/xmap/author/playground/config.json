@@ -17,11 +17,12 @@
     "js/engine.js",
     "js/layout.js",
     "js/load.js",
+    "js/model.js",
     "js/board.js"
   ],
 
-  "board": [
-    "img/board.svg"
+  "field": [
+    "json/field.json"
   ]
   
 }
