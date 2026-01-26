@@ -8,8 +8,11 @@ def load_config(config_json: str):
 def read_list(input_list: list, begin: str, end: str):
     result = begin + "\n"
     for c in input_list:
-        with open(c, mode="r", encoding="utf-8") as f:
-            result += f.read() + "\n\n"
+        try:
+            with open(c, mode="r", encoding="utf-8") as f:
+                result += f.read() + "\n\n"
+        except FileNotFoundError:
+            print(f"ERROR! File {c} not exists!")
     return result + "\n" + end
 
 def build(config):

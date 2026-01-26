@@ -4,11 +4,15 @@
 
   "css": [
     "css/default.css",
+    "css/chessboard1.css",
+    "css/engine.css",
     "css/layout.css"
   ],
 
   "js": [
     "js/init.js",
+    "js/chessboard1.js",
+    "js/engine.js",
     "js/layout.js",
     "js/load.js"
   ]
