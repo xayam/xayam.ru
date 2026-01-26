@@ -5,28 +5,31 @@ def load_config(config_json: str):
     with open(config_json, "r", encoding="utf-8") as f:
         return json.load(f)
 
-def read_list(input_list: list, begin: str, end: str):
-    result = begin + "\n"
-    for c in input_list:
+def read_list(template, config, what):
+    begin_end = {
+        "css": ["<style>", "</style>"],
+        "js": ['<script type="text/javascript">', "</script>"],
+    }
+    result = begin_end[what][0] + "\n"
+    for c in config[what]:
         try:
             with open(c, mode="r", encoding="utf-8") as f:
                 result += f.read() + "\n\n"
         except FileNotFoundError:
             print(f"ERROR! File {c} not exists!")
-    return result + "\n" + end
+    result += "\n" + begin_end[what][1] + "\n\n"
+    result = template.replace('{{{' + what + '}}}', result, 1)
+    return result
 
 def build(config):
     with open(config["input"], mode="r", encoding="utf-8") as f:
         template = f.read()
 
-    result = read_list(config["css"], "<style>", "</style>")
-    template = template.replace("{{{STYLES}}}", result, 1)
-
-    result = read_list(config["js"], '<script type="text/javascript">', "</script>")
-    template = template.replace("{{{SCRIPTS}}}", result, 1)
+    result = read_list(template, config, "css")
+    result = read_list(result, config, "js")
 
     with open(config["output"], mode="w", encoding="utf-8") as f:
-        f.write(template)
+        f.write(result)
 
 def main():
     build(config=load_config("config.json"))

@@ -6,17 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GAMES: PlayGround by Xayam</title>
-    {{{STYLES}}}
+    {{{css}}}
 </head>
 <body>
-{{{SCRIPTS}}}
+{{{js}}}
 <div class="links">
-    <div class="game">
-        <select class="game_input">
-            <option value="chess" selected="selected">Шахматы</option>
-            <option value="checkers">Шашки</option>
-        </select>
-    </div>
     <div class="games_list">
         <br />
         <a href="#chess">Шахматы</a>
@@ -26,14 +20,31 @@
     </div>
 </div>
 <div class="board">
+    <div class="game">
+        <table>
+            <tr>
+                <td>
+                    <select name="game_input" class="game_input">
+                        <option value="chess" selected="selected">Шахматы</option>
+                        <option value="checkers">Шашки</option>
+                    </select>
+                </td>
+                <td>
+                    <a href="#rules">Правила</a>
+                </td>
+            </tr>
+        </table>
+    </div>
     <div class="board_header">
-        board_header
+        header
     </div>
     <div class="board_center">
-        board_center
+        {{{svg}}}
     </div>
     <div class="board_footer">
-        board_footer
+        <div class="footer">
+            footer
+        </div>
     </div>
 </div>
 <div class="moves">

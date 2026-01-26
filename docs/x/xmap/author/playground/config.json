@@ -6,7 +6,8 @@
     "css/default.css",
     "css/chessboard1.css",
     "css/engine.css",
-    "css/layout.css"
+    "css/layout.css",
+    "css/board.css"
   ],
 
   "js": [
@@ -14,6 +15,7 @@
     "js/chessboard1.js",
     "js/engine.js",
     "js/layout.js",
-    "js/load.js"
+    "js/load.js",
+    "js/board.js"
   ]
 }
