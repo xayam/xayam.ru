@@ -5,7 +5,6 @@
 
   "css": [
     "css/default.css",
-    "css/chessboard1.css",
     "css/engine.css",
     "css/layout.css",
     "css/board.css"
@@ -13,16 +12,15 @@
 
   "js": [
     "js/init.js",
-    "js/chessboard1.js",
     "js/engine.js",
     "js/layout.js",
     "js/load.js",
-    "js/model.js",
     "js/board.js"
   ],
 
-  "field": [
-    "json/field.json"
-  ]
+  "vars": {
+      "field": "json/field.json",
+      "board": "json/board.json"
+  }
   
 }

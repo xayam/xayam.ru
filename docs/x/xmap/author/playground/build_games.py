@@ -9,14 +9,19 @@ def read_list(template, config):
     begin_end = {
         'css': ['<style>', '</style>'],
         'js': ['<script type="text/javascript">', '</script>'],
-        'field': ['<script type="text/javascript"> let field = ', '; </script>']
+        'vars': ['<script type="text/javascript">', '</script>']
     }
     for what in begin_end:
         result = begin_end[what][0] + '\n'
         for c in config[what]:
             try:
-                with open(c, mode='r', encoding='utf-8') as f:
-                    result += f.read() + '\n\n'
+                if what == 'vars':
+                    with open(config[what][c], mode='r', encoding='utf-8') as f:
+                        value = f.read()
+                        result += 'let ' + c + ' = ' + value + ';\n'
+                else:
+                    with open(c, mode='r', encoding='utf-8') as f:
+                        result += f.read() + '\n\n'
             except FileNotFoundError:
                 print(f"ERROR! File {c} not exists!")
         result += '\n' + begin_end[what][1] + '\n\n'
