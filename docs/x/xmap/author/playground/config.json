@@ -20,7 +20,7 @@
     "js/board.js"
   ],
 
-  "svg": [
+  "board": [
     "img/board.svg"
   ]
   
