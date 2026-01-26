@@ -9,13 +9,13 @@ def read_list(template, config):
     begin_end = {
         'css': ['<style>', '</style>'],
         'js': ['<script type="text/javascript">', '</script>'],
-        'vars': ['<script type="text/javascript">', '</script>']
+        'json': ['<script type="text/javascript">', '</script>']
     }
     for what in begin_end:
         result = begin_end[what][0] + '\n'
         for c in config[what]:
             try:
-                if what == 'vars':
+                if what == 'json':
                     with open(config[what][c], mode='r', encoding='utf-8') as f:
                         value = f.read()
                         result += 'let ' + c + ' = ' + value + ';\n'
