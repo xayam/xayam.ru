@@ -5,7 +5,7 @@
 }
 
 .board {
-  border: 2px solid #404040;
+  border: 0 solid #404040;
   box-sizing: content-box;
 }
 

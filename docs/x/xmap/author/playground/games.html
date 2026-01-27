@@ -16,13 +16,13 @@
     border: 1px solid black;
     scrollbar-color: gray white;
 
-    --cell-size: calc((min(100%, 100%) - 24px) / 11);
+    --cell-size: calc((max(100%, 100%) - 24px) / 13);
 }
 
 html, body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 
@@ -33,7 +33,7 @@ html, body {
 }
 
 .board {
-  border: 2px solid #404040;
+  border: 0 solid #404040;
   box-sizing: content-box;
 }
 
@@ -83,24 +83,24 @@ html, body {
 
 
 
-.links {
+.left {
     position: relative;
     float: left;
     width: 25%;
     height: 100%;
 }
 
-.board {
+.center {
     position: relative;
     float: left;
     width: 50%;
     height: 100%;
 }
 
-.moves {
+.right {
     position: relative;
     float: left;
-    width: calc(25% - 4px);
+    width: 25%;
     height: 100%;
 }
 
@@ -108,6 +108,23 @@ html, body {
    position: relative;
    width: 100%;
    height: calc(var(--cell-size) * 1.0);
+}
+
+.board_center {
+   position: relative;
+   width: 100%;
+   height: calc(var(--cell-size) * 11.0);
+}
+
+.board_footer {
+   position: relative;
+   width: 100%;
+   height: calc(var(--cell-size) * 1.0);
+}
+
+.board_svg {
+    width: 100%;
+    height: 100%;
 }
 
 .game {
@@ -130,22 +147,6 @@ html, body {
     width: 100%;
 }
 
-.board_center {
-   position: relative;
-   width: 100%;
-   height: calc(var(--cell-size) * 9.0);
-}
-
-.board_footer {
-   position: relative;
-   width: 100%;
-   height: calc(var(--cell-size) * 1.0);
-}
-
-.board_svg {
-    width: 100%;
-    height: 100%;
-}
 
 
 
@@ -156,14 +157,14 @@ html, body {
 </head>
 <body>
 <script type="text/javascript">
-let field = {
+let field_json = {
     "fill": "white",
     "color": "white",
     "field": [
       [0, 0, 0]
     ]
 };
-let board = {
+let board_json = {
   "fill": "gray"
 };
 
@@ -173,104 +174,22 @@ let board = {
 <script type="text/javascript">
 let vlayout = {};
 let hlayout = {};
-let current_book = null;
-let player = null;
-let first_book = null;
-let second_book = null;
-let catalog = null;
-let reader = null;
-let link_catalog = null;
-let link_reader = null;
-let links = null;
-let tabs = null;
+let left = null;
+let center = null;
+let right = null;
+let board_center = null;
 
-let first_timer = null;
-let rus_position = 0;
-let eng_position = 0;
-let current_lang = "eng";
-let rus_selection = null;
-let eng_selection = null;
-let span_timer = null;
-let data_list_key = null;
-let data_list_value = null;
-let buffer_result = {"resp": {}};
-let first_book_insert_sync = null;
-let second_book_insert_sync = null;
 
 function init() {
-    player = document.getElementById("player");
-    first_book = document.getElementById("first_book");
-    second_book = document.getElementById("second_book");
-    link_catalog = document.getElementById("link_catalog");
-    link_reader = document.getElementById("link_reader");
-    catalog = document.getElementById("catalog");
-    reader = document.getElementById("reader");
-    links = document.getElementsByClassName("links")[0];
-    tabs = document.getElementsByClassName("tabs")[0];
+    left = document.getElementsByClassName("left")[0];
+    center = document.getElementsByClassName("center")[0];
+    right = document.getElementsByClassName("right")[0];
+    board_center = document.getElementsByClassName("board_center")[0];
 }
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-// function getElementByXpath(path) {
-//     return document.evaluate(path, document, null,
-//         XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-// }
-
-let getTEXT = function (url, callback, timeout) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.timeout = timeout;
-    xhr.responseType = 'text';
-    xhr.onload = function () {
-        let status = xhr.status;
-        if (status === 200) {
-            callback(null, xhr.response);
-        } else {
-            callback(status, xhr.response);
-        }
-    };
-    xhr.send();
-    return xhr;
-};
-
-let getTEXT2 = function (url, callback, _) {
-    let xhr = {};
-    xhr.timeout = 0;
-    xhr.status = 1;
-    xhr.readyState = 4;
-    xhr.response = "responseData";
-    callback(null, xhr.response);
-    return xhr;
-};
-
-function getList() {
-    getTEXT('data/list.json',
-        function (err, data) {
-            if (err !== null) {
-                alert('Something went wrong: ' + err);
-            } else {
-                let jsonobj = JSON.parse(data.toString())
-                data_list_key = jsonobj["key"].reverse();
-                data_list_value = jsonobj["value"].reverse();
-                let buffer = "";
-                let doed = [];
-                for (let i = data_list_key.length - 1; i >= 0; i--) {
-                    let spl = data_list_key[i].split("/")[2];
-                    if (doed.indexOf(spl) === -1)
-                        buffer = buffer +
-                            "<a onclick='clickCover(" + '"' +
-                            spl + '"' +
-                            ")' href='#'><img src='data/eng/" +
-                            spl + "/cover.jpg' alt='" + spl + "'></a>";
-                    doed.push(spl);
-                }
-                catalog.innerHTML = buffer;
-            }
-        }, 3000);
-}
-
 
 ;(function () {
   'use strict'
@@ -2084,31 +2003,23 @@ function getList() {
 
 
 
+function resize_window(_) {
+    if (window.innerWidth > window.innerHeight) {
+        load_layout(hlayout);
+    } else {
+        load_layout(vlayout);
+    }
+}
+
+
+
 function init_layouts() {
     vlayout = {
-        "first_book.style.position": "absolute",
-        "second_book.style.position": "absolute",
-        "first_book.style.width": "100%",
-        "second_book.style.width": "100%",
-        "first_book.style.height": "calc(50% - 30px)",
-        "second_book.style.height": "calc(50% - 30px)",
-        "second_book.style.top": "calc(50% - 30px)",
-        "second_book.style.left": "0",
-        "second_book.style.borderLeftWidth": "0",
-        "second_book.style.borderTop": "1px solid gray",
-        "link_catalog.style.position": "absolute",
-        "link_reader.style.position": "absolute",
-        "link_reader.style.left": "50%",
-        "link_catalog.style.width": "50%",
-        "link_reader.style.width": "50%",
-        "link_catalog.style.height": "100%",
-        "link_reader.style.height": "100%",
-        "links.style.width": "100%",
-        "links.style.height": "100px",
-        "tabs.style.left": "0",
-        "tabs.style.top": "100px",
-        "tabs.style.width": "100%",
-        "tabs.style.height": "calc(100% - 100px)",
+        "left.style.display": "none",
+        "center.style.width": "100%",
+        "center.style.height": "calc(var(--cell-size) * 11.0 + 24px)",
+        "right.style.width": "100%",
+        "right.style.height": "calc(var(--cell-size) * 2.0)",
     }
     for (let key in vlayout) {
         let hfunc = new Function("hlayout['"+ key + "'] = " + key);
@@ -2121,44 +2032,22 @@ function load_layout(layout) {
         let vfunc = new Function(key + " = '" + layout[key] + "'");
         vfunc();
     }
+    document.documentElement.style.setProperty(
+        '--cell-size',
+        'calc((max(100%, 100%) - 24px) / 13)'
+    );
 }
 
 window.addEventListener("load", function () {
     init();
-    player.addEventListener('play', function (e) {
-        play_player(e);
-    });
-    player.addEventListener('pause', function (e) {
-        pause_player(e);
-    });
-    player.addEventListener('stop', function (e) {
-        stop_player(e);
-    });
-    player.addEventListener('seeked', function (e) {
-        seeked_player(e);
-    });
-    player.addEventListener('seeking', function (e) {
-        seeking_player(e);
-    });
-    first_book.addEventListener('click', function (e) {
-        click_first_book(e);
-    });
-    second_book.addEventListener('click', function (e) {
-        click_second_book(e);
-    });
-    link_catalog.addEventListener('click', function (e) {
-        click_catalog(e);
-    });
-    link_reader.addEventListener('click', function (e) {
-        click_reader(e);
-    });
+
+
+
     window.addEventListener('resize', function (e) {
         resize_window(e);
     });
     init_layouts();
     resize_window(null);
-    getList();
-    link_catalog.click();
 });
 
 
@@ -2168,7 +2057,7 @@ window.addEventListener("load", function () {
 </script>
 
 
-<div class="links">
+<div class="left">
     <div class="games_list">
         <br />
         <a href="#chess">Шахматы</a>
@@ -2177,7 +2066,7 @@ window.addEventListener("load", function () {
         <br />
     </div>
 </div>
-<div class="board">
+<div class="center">
     <div class="game">
         <table>
             <tr>
@@ -2200,12 +2089,10 @@ window.addEventListener("load", function () {
         <svg class="board_svg"></svg>
     </div>
     <div class="board_footer">
-        <div class="footer">
-            footer
-        </div>
+        footer
     </div>
 </div>
-<div class="moves">
+<div class="right">
     <table class="moves_list">
         <tr>
             <td>1.1</td>

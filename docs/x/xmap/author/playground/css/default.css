@@ -7,11 +7,11 @@
     border: 1px solid black;
     scrollbar-color: gray white;
 
-    --cell-size: calc((min(100%, 100%) - 24px) / 11);
+    --cell-size: calc((max(100%, 100%) - 24px) / 13);
 }
 
 html, body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
 }

@@ -13,14 +13,15 @@
   "js": [
     "js/init.js",
     "js/engine.js",
+    "js/handlers.js",
     "js/layout.js",
     "js/load.js",
     "js/board.js"
   ],
 
   "json": {
-      "field": "json/field.json",
-      "board": "json/board.json"
+      "field_json": "json/field.json",
+      "board_json": "json/board.json"
   }
   
 }
