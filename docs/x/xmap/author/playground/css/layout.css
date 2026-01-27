@@ -11,6 +11,7 @@
     float: left;
     width: 50%;
     height: 100%;
+    --cell-size: calc((max(100%, 100%) - 24px) / 13);
 }
 
 .right {

@@ -6,8 +6,6 @@
     background-color: #f1f3f4;
     border: 1px solid black;
     scrollbar-color: gray white;
-
-    --cell-size: calc((max(100%, 100%) - 24px) / 13);
 }
 
 html, body {
