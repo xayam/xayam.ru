@@ -10,27 +10,18 @@
     "css/board.css"
   ],
 
-   "js1": [
-       "js/three.core.js"
-   ],
-
-  "module": {
-    "": "js/three.fix.js",
-    "three_module": "js/three.module.js"
-  },
-
-  "js2": [
-    "js/init.js",
-    "js/engine1.js",
-    "js/handlers.js",
-    "js/layout.js",
-    "js/load.js",
-    "js/board.js"
-  ],
-
   "json": {
       "field_json": "json/field.json",
       "board_json": "json/board.json"
-  }
-  
+  },
+
+  "js": [
+    "js/three.core.js",
+    "js/three.module.js",
+    "js/init.js",
+    "js/layout.js",
+    "js/handlers.js",
+    "js/load.js",
+    "js/board.js"
+  ]
 }
