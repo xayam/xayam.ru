@@ -6,5 +6,5 @@ window.addEventListener("load", function () {
         resize_window(e);
     });
     resize_window(null);
-    update_state();
+    create_state();
 });
