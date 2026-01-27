@@ -8,23 +8,33 @@ def load_config(config_json: str):
 def read_list(template, config):
     begin_end = {
         'css': ['<style>', '</style>'],
-        'js': ['<script type="text/javascript">', '</script>'],
-        'json': ['<script type="text/javascript">', '</script>']
+        'json': ['<script type="text/javascript">', '</script>'],
+        'js1': ['<script type="text/javascript">', '</script>'],
+        'module': ['<script type="text/javascript">', '</script>'],
+        'js2': ['<script type="text/javascript">', '</script>'],
     }
     for what in begin_end:
-        result = begin_end[what][0] + '\n'
+        result = ''
         for c in config[what]:
             try:
-                if what == 'json':
+                result += begin_end[what][0] + '\n'
+                if what in ['module', 'json']:
                     with open(config[what][c], mode='r', encoding='utf-8') as f:
                         value = f.read()
-                        result += 'let ' + c + ' = ' + value + ';\n'
+                        if what == 'json':
+                            result += 'let ' + c + ' = ' + value + ';\n'
+                        else:
+                            # if c == '':
+                            result += '\n' + value + '\n'
+                            # else:
+                            #     result += 'function ' + c + '() {\n' + value + '\n};\n'
                 else:
                     with open(c, mode='r', encoding='utf-8') as f:
                         result += f.read() + '\n\n'
             except FileNotFoundError:
                 print(f"ERROR! File {c} not exists!")
-        result += '\n' + begin_end[what][1] + '\n\n'
+            finally:
+                result += '\n' + begin_end[what][1] + '\n\n'
         template = template.replace('{{{' + what + '}}}', result, 1)
     return template
 

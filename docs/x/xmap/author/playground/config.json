@@ -10,9 +10,18 @@
     "css/board.css"
   ],
 
-  "js": [
+   "js1": [
+       "js/three.core.js"
+   ],
+
+  "module": {
+    "": "js/three.fix.js",
+    "three_module": "js/three.module.js"
+  },
+
+  "js2": [
     "js/init.js",
-    "js/engine.js",
+    "js/engine1.js",
     "js/handlers.js",
     "js/layout.js",
     "js/load.js",
