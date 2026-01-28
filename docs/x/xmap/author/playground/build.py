@@ -9,7 +9,7 @@ def read_list(template, config):
     begin_end = {
         'css': ['<style>', '</style>'],
         'json': ['<script type="text/javascript">', '</script>'],
-        'module': ['<script type="text/javascript">', '</script>'],
+        'function': ['<script type="text/javascript">', '</script>'],
         'js': ['<script type="text/javascript">', '</script>'],
     }
     for what in begin_end:
@@ -17,13 +17,13 @@ def read_list(template, config):
         for c in config[what]:
             try:
                 result += begin_end[what][0] + '\n'
-                if what in ['json', 'module']:
+                if what in ['json', 'function']:
                     with open(config[what][c], mode='r', encoding='utf-8') as f:
                         value = f.read()
                     if what == 'json':
-                        result += 'let ' + c + ' = ' + value + ';\n'
+                        result += 'let ' + c + ' = ' + value + ';\n\n'
                     else:
-                        result += 'function ' + c + '() {\n' + value + '\n};\n'
+                        result += 'function ' + c + '() {\n' + value + '\n};\n\n'
                 else:
                     with open(c, mode='r', encoding='utf-8') as f:
                         result += f.read() + '\n\n'
