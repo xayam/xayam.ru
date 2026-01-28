@@ -8,6 +8,64 @@
     <title>GAMES: PlayGround by Xayam</title>
     <style>
 
+.clearfix {
+    clear: both;
+}
+
+.board {
+    border: 0 solid #404040;
+    box-sizing: content-box;
+}
+
+.square {
+    float: left;
+    position: relative;
+    /* disable any native browser highlighting */
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+
+.white {
+    background-color: #f0d9b5;
+    color: #b58863;
+}
+
+.black {
+    background-color: #b58863;
+    color: #f0d9b5;
+}
+
+.highlight1, .highlight2 {
+    box-shadow: inset 0 0 3px 3px yellow;
+}
+
+.notation {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    position: absolute;
+}
+
+.alpha {
+    bottom: 1px;
+    right: 3px;
+}
+
+.numeric {
+    top: 2px;
+    left: 2px;
+}
+
+
+
+</style>
+
+<style>
+
 * {
     margin: 0;
     padding: 0;
@@ -26,66 +84,6 @@ html, body {
 canvas {
     width: 100%;
     height: 100%;
-}
-
-
-
-</style>
-
-<style>
-/*! chessboard.js v1.0.0 | (c) 2019 Chris Oakman | MIT License chessboardjs.com/license */
-
-.clearfix {
-  clear: both;
-}
-
-.board {
-  border: 0 solid #404040;
-  box-sizing: content-box;
-}
-
-.square {
-  float: left;
-  position: relative;
-
-  /* disable any native browser highlighting */
-  -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-}
-
-.white {
-  background-color: #f0d9b5;
-  color: #b58863;
-}
-
-.black {
-  background-color: #b58863;
-  color: #f0d9b5;
-}
-
-.highlight1, .highlight2 {
-  box-shadow: inset 0 0 3px 3px yellow;
-}
-
-.notation {
-  cursor: default;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  position: absolute;
-}
-
-.alpha {
-  bottom: 1px;
-  right: 3px;
-}
-
-.numeric {
-  top: 2px;
-  left: 2px;
 }
 
 
@@ -90901,8 +90899,8 @@ class State {
         this.scene = null;
         this.camera = null;
         this.renderer = null;
-        this.boardGroup= null;
-        this.board3d= {};
+        this.boardGroup = null;
+        this.board3d = {};
         this.canvas = canvas;
 
         this.init()
@@ -90934,9 +90932,7 @@ class State {
         this.camera.lookAt(0, 0, 0);
     }
 
-    init_state() {
-        this.boardGroup = new Group();
-        this.scene.add(this.boardGroup);
+    init_board() {
         const geometry = new BoxGeometry(this.cellSize, this.height, this.cellSize);
         for (let row = 0; row < this.size; row++) {
             for (let col = 0; col < this.size; col++) {
@@ -90959,6 +90955,12 @@ class State {
                 this.boardGroup.add(wireframe);
             }
         }
+    }
+
+    init_state() {
+        this.boardGroup = new Group();
+        this.scene.add(this.boardGroup);
+        this.init_board();
         this.boardGroup.position.set(0, 0, 0);
         this.renderer = new WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
@@ -90983,6 +90985,7 @@ function animate() {
 </script>
 
 <script type="text/javascript">
+
 let state = null;
 
 class Config {
@@ -91049,6 +91052,7 @@ class Config {
 </script>
 
 <script type="text/javascript">
+
 let config = null;
 
 window.addEventListener("load", function () {

@@ -4,8 +4,8 @@
   "output": "games.html",
 
   "css": [
-    "css/default.css",
-    "css/engine.css",
+    "css/third-party/chessboard.css",
+	"css/default.css",
     "css/layout.css"
   ],
 
@@ -13,8 +13,8 @@
       "json_json": "json/json.json"
   },
 
-  "module": {
-      "module_js": "js/module.js"
+  "function": {
+      "function_js": "js/function.js"
   },
 
   "js": [

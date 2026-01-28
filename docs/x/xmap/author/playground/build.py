@@ -42,7 +42,7 @@ def build_app(config):
         f.write(result)
 
 def main():
-    configs = ['games_config.json', ]
+    configs = ['build_games.json', ]
     for config in configs:
         build_app(config=load_config(config))
 

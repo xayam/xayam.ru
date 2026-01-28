@@ -1,3 +1,4 @@
+
 let config = null;
 
 window.addEventListener("load", function () {

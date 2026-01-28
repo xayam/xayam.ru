@@ -1,3 +1,4 @@
+
 let state = null;
 
 class Config {

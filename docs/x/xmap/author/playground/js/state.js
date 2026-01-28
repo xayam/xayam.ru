@@ -13,8 +13,8 @@ class State {
         this.scene = null;
         this.camera = null;
         this.renderer = null;
-        this.boardGroup= null;
-        this.board3d= {};
+        this.boardGroup = null;
+        this.board3d = {};
         this.canvas = canvas;
 
         this.init()
@@ -46,9 +46,7 @@ class State {
         this.camera.lookAt(0, 0, 0);
     }
 
-    init_state() {
-        this.boardGroup = new Group();
-        this.scene.add(this.boardGroup);
+    init_board() {
         const geometry = new BoxGeometry(this.cellSize, this.height, this.cellSize);
         for (let row = 0; row < this.size; row++) {
             for (let col = 0; col < this.size; col++) {
@@ -71,6 +69,12 @@ class State {
                 this.boardGroup.add(wireframe);
             }
         }
+    }
+
+    init_state() {
+        this.boardGroup = new Group();
+        this.scene.add(this.boardGroup);
+        this.init_board();
         this.boardGroup.position.set(0, 0, 0);
         this.renderer = new WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
