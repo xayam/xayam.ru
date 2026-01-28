@@ -1,10 +1,14 @@
+let config = null;
 
 window.addEventListener("load", function () {
-    init();
-    init_layouts();
+    config = new Config();
+
     window.addEventListener('resize', function (e) {
-        resize_window(e);
+        config.resize_window(e);
     });
-    resize_window(null);
-    create_state();
+
+    config.resize_window(null);
+
+    state.update_state();
+    animate();
 });

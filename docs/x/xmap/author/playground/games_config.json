@@ -1,0 +1,31 @@
+{
+	
+  "input": "games.template.html",
+  "output": "games.html",
+
+  "css": [
+    "css/default.css",
+    "css/engine.css",
+    "css/layout.css"
+  ],
+
+  "json": {
+      "json_json": "json/json.json"
+  },
+
+  "module": {
+      "module_js": "js/module.js"
+  },
+
+  "js": [
+    "js/third-party/three.core.js",
+    "js/third-party/three.module.js",
+    "js/third-party/jquery.js",
+    "js/third-party/chessboard.js",
+    "js/utils.js",
+    "js/layout.js",
+    "js/state.js",
+    "js/config.js",
+    "js/load.js"
+  ]
+}

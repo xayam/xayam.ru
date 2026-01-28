@@ -9,6 +9,7 @@ def read_list(template, config):
     begin_end = {
         'css': ['<style>', '</style>'],
         'json': ['<script type="text/javascript">', '</script>'],
+        'module': ['<script type="text/javascript">', '</script>'],
         'js': ['<script type="text/javascript">', '</script>'],
     }
     for what in begin_end:
@@ -16,10 +17,13 @@ def read_list(template, config):
         for c in config[what]:
             try:
                 result += begin_end[what][0] + '\n'
-                if what == 'json':
+                if what in ['json', 'module']:
                     with open(config[what][c], mode='r', encoding='utf-8') as f:
                         value = f.read()
+                    if what == 'json':
                         result += 'let ' + c + ' = ' + value + ';\n'
+                    else:
+                        result += 'function ' + c + '() {\n' + value + '\n};\n'
                 else:
                     with open(c, mode='r', encoding='utf-8') as f:
                         result += f.read() + '\n\n'
@@ -30,7 +34,7 @@ def read_list(template, config):
         template = template.replace('{{{' + what + '}}}', result, 1)
     return template
 
-def build(config):
+def build_app(config):
     with open(config['input'], mode='r', encoding='utf-8') as f:
         template = f.read()
     result = read_list(template, config)
@@ -38,7 +42,9 @@ def build(config):
         f.write(result)
 
 def main():
-    build(config=load_config('config.json'))
+    configs = ['games_config.json', ]
+    for config in configs:
+        build_app(config=load_config(config))
 
 if __name__ == '__main__':
     main()
