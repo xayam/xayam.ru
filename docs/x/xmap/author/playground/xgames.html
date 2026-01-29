@@ -90857,28 +90857,124 @@ function deepClone(obj) {
 
 
 
-class State {
+class Materials {
+
+    constructor() {
+       this.material = {}
+       this.material.lightField = null;
+       this.material.darkField = null;
+    }
+
+    initMaterial() {
+       this.material.lightField = new MeshBasicMaterial({color: this.lightColor});
+       this.material.darkField = new MeshBasicMaterial({color: this.darkColor});
+
+       this.material.lightEdge = new LineBasicMaterial({color: this.lightColor});
+       this.material.darkEdge = new LineBasicMaterial({color: this.darkColor});
+    }
+
+}
+
+
+
+class Geometry extends Materials {
+
+    constructor() {
+        super();
+        this.geometry = {};
+    }
+
+    initGeometry() {
+       this.geometry.field = new BoxGeometry(
+           this.cellSize,
+           this.height,
+           this.cellSize
+       );
+       this.geometry.edge = new EdgesGeometry(this.geometry.field, 15);
+    }
+
+}
+
+
+class Board extends Geometry {
+
+    constructor() {
+        super();
+        this.board = null;
+        this.fields = [];
+        this.wireframes = [];
+    }
+
+    initBoard() {
+        this.board = new Group();
+        for (let row = 0; row < this.size; row++) {
+            this.fields.push([]);
+            this.wireframes.push([]);
+            for (let col = 0; col < this.size; col++) {
+                const isLight = (row + col) % 2 === 0;
+                const x = (col - 3.5) * this.cellSize;
+                const z = (row - 3.5) * this.cellSize;
+                const y = this.height / 2;
+
+                const geometry = this.geometry.field
+                const material = isLight ? this.material.lightField : this.material.darkField
+                const field = new Mesh(geometry, material);
+                field.position.set(x, y, z);
+
+                const edge = this.geometry.edge;
+                const edgeMaterial = isLight ? this.material.darkEdge : this.material.lightEdge;
+                const wireframe = new LineSegments(edge, edgeMaterial);
+                wireframe.position.set(x, y, z);
+
+//                this.fields[row].push(field);
+//                this.wireframes[row].push(wireframe);
+                this.board.add(field);
+                this.board.add(wireframe);
+            }
+        }
+        this.board.position.set(0, 0, 0);
+    }
+
+}
+
+
+
+class Figure extends Board {
+
+    constructor() {
+        super();
+        this.figure = null;
+    }
+
+    initFigure() {
+        //
+    }
+
+}
+
+
+
+class State extends Figure {
 
     constructor(canvas) {
-        this.size = 8;
-        this.cellSize = 10;
-        this.height = 2;
+        super();
+        this.size = SIZE;
+        this.cellSize = CELL_SIZE;
+        this.height = HEIGHT;
         this.halfBoard = this.size * this.cellSize / 2;
-        this.lightColor = 0xdddddd;
-        this.darkColor  = 0x666666;
-        this.backgroundColor = 0xffffff;
+        this.lightColor = LIGHT_COLOR;
+        this.darkColor = DARK_COLOR;
+        this.backgroundColor = BACKGROUND_COLOR;
 
         this.scene = null;
         this.camera = null;
         this.renderer = null;
-        this.boardGroup = null;
-        this.board3d = {};
         this.canvas = canvas;
 
-        this.init()
+        this.init();
     }
 
-    update_state() {
+    update() {
         if (this.camera && this.renderer) {
             this.camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight;
             this.camera.updateProjectionMatrix();
@@ -90886,12 +90982,13 @@ class State {
         }
     }
 
-    init_scene() {
+    initScene() {
         this.scene = new Scene();
         this.scene.background = new Color(this.backgroundColor);
+        this.scene.add(this.board);
     }
 
-    init_camera() {
+    initCamera() {
         this.camera = new PerspectiveCamera(
             50,
             this.canvas.clientWidth / this.canvas.clientHeight,
@@ -90904,57 +91001,44 @@ class State {
         this.camera.lookAt(0, 0, 0);
     }
 
-    init_board() {
-        const geometry = new BoxGeometry(this.cellSize, this.height, this.cellSize);
-        for (let row = 0; row < this.size; row++) {
-            for (let col = 0; col < this.size; col++) {
-                const isLight = (row + col) % 2 === 0;
-                const color = isLight ? this.lightColor : this.darkColor;
-                const x = (col - 3.5) * this.cellSize;
-                const z = (row - 3.5) * this.cellSize;
-                const y = this.height / 2;
-                const material = new MeshBasicMaterial({ color: color });
-                const field = new Mesh(geometry, material);
-                field.position.set(x, y, z);
-                this.board3d['field:' + col + ':' + row] = field;
-                this.boardGroup.add(field);
-                const colorEdge = isLight ? this.darkColor : this.lightColor;
-                const edges = new EdgesGeometry(geometry, 15);
-                const edgeMat = new LineBasicMaterial({color: colorEdge});
-                const wireframe = new LineSegments(edges, edgeMat);
-                wireframe.position.set(x, y, z);
-                this.board3d['wireframe:' + col + ':' + row] = wireframe;
-                this.boardGroup.add(wireframe);
-            }
-        }
-    }
-
-    init_state() {
-        this.boardGroup = new Group();
-        this.scene.add(this.boardGroup);
-        this.init_board();
-        this.boardGroup.position.set(0, 0, 0);
+    initState() {
         this.renderer = new WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
         this.canvas.appendChild(this.renderer.domElement);
     }
 
     init() {
-        this.init_scene();
-        this.init_camera();
-        this.init_state();
+        this.initMaterial()
+        this.initGeometry();
+        this.initBoard();
+        this.initFigure();
+        this.initScene();
+        this.initCamera();
+        this.initState();
     }
 }
 
 function animate() {
     requestAnimationFrame(animate);
-    state.boardGroup.rotation.y += 0.001;
+    state.board.rotation.y += 0.001;
     state.renderer.render(state.scene, state.camera);
 }
 
 
 
 let state = null;
+
+const SIZE = 8;
+const CELL_SIZE = 10;
+const HEIGHT = 2;
+const LIGHT_COLOR = 0xdddddd;
+const DARK_COLOR = 0x666666;
+const BACKGROUND_COLOR = 0xffffff;
+
+const FIELD = "FIELD";
+const FIELD_WHITE = "FIELD_WHITE";
+const FIELD_BLACK = "FIELD_BLACK";
+
 
 class Config {
 
@@ -90975,12 +91059,12 @@ class Config {
         this.right = document.getElementsByClassName("right")[0];
         this.board_center = document.getElementsByClassName("board_center")[0];
 
-        this.init_layouts();
+        this.initLayouts();
 
         state = new State(this.board_center);
     }
 
-    init_layouts() {
+    initLayouts() {
         this.vertical_layout["this.left.style.display"] = "none";
         this.vertical_layout["this.center.style.width"] = "100%";
         this.vertical_layout["this.center.style.height"] = "calc(var(--cell-size) * 11.0 + 24px)";
@@ -90993,26 +91077,23 @@ class Config {
         }
     }
 
-    load_layout(layout) {
+    loadLayout(layout) {
         for (let key in layout) {
             const execute = key + " = '" + layout[key] + "';";
             eval(execute);
         }
     }
 
-    resize_window(_) {
+    reSizeWindow(_) {
         if (window.innerWidth > window.innerHeight) {
-            this.load_layout(this.horizontal_layout);
+            this.loadLayout(this.horizontal_layout);
         } else {
-            this.load_layout(this.vertical_layout);
+            this.loadLayout(this.vertical_layout);
         }
-
-        state.update_state();
-
-        setTimeout(state.update_state, 500);
-        setTimeout(state.update_state, 1000);
+        state.update();
+        setTimeout(state.update, 500);
+        setTimeout(state.update, 1000);
     }
-
 }
 
 
@@ -91023,12 +91104,12 @@ window.addEventListener("load", function () {
     config = new Config();
 
     window.addEventListener('resize', function (e) {
-        config.resize_window(e);
+        config.reSizeWindow(e);
     });
 
-    config.resize_window(null);
+    config.reSizeWindow(null);
 
-    state.update_state();
+    state.update();
     animate();
 });
 

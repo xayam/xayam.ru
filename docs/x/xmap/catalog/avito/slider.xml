@@ -2,11 +2,16 @@
 <slider>
     <ru>
         <item active="true">
+            <href>https://www.avito.ru/moskva/predlozheniya_uslug/lazernaya_rezka_i_gravirovka_do_razmera_a4_7945394669</href>
+            <src>x/xmap/catalog/avito/7945394669.jpg</src>
+            <title>Лазерная резка и гравировка до размера А4</title>
+        </item>
+        <item active="false">
             <href>https://www.avito.ru/moskva/mebel_i_interer/derevyan._motivatsion._sbornik_tsitaty_velikih_lyudey_7817244529</href>
             <src>x/xmap/catalog/avito/7817244529.webp</src>
             <title>Деревянный мотивационный "Сборник цитат великих людей"</title>
         </item>
-        <item active="true">
+        <item active="false">
             <href>https://www.avito.ru/moskva/kollektsionirovanie/derevyan._kvartalnyy_kalendar_2026_s_tsiklom_4_dnya_7785013819</href>
             <src>x/xmap/catalog/avito/7785013819.webp</src>
             <title>Деревянный квартальный календарь 2026 с циклом 4 дня</title>

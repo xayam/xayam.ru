@@ -1,26 +1,25 @@
 
-class State {
+class State extends Figure {
 
     constructor(canvas) {
-        this.size = 8;
-        this.cellSize = 10;
-        this.height = 2;
+        super();
+        this.size = SIZE;
+        this.cellSize = CELL_SIZE;
+        this.height = HEIGHT;
         this.halfBoard = this.size * this.cellSize / 2;
-        this.lightColor = 0xdddddd;
-        this.darkColor  = 0x666666;
-        this.backgroundColor = 0xffffff;
+        this.lightColor = LIGHT_COLOR;
+        this.darkColor = DARK_COLOR;
+        this.backgroundColor = BACKGROUND_COLOR;
 
         this.scene = null;
         this.camera = null;
         this.renderer = null;
-        this.boardGroup = null;
-        this.board3d = {};
         this.canvas = canvas;
 
-        this.init()
+        this.init();
     }
 
-    update_state() {
+    update() {
         if (this.camera && this.renderer) {
             this.camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight;
             this.camera.updateProjectionMatrix();
@@ -28,12 +27,13 @@ class State {
         }
     }
 
-    init_scene() {
+    initScene() {
         this.scene = new Scene();
         this.scene.background = new Color(this.backgroundColor);
+        this.scene.add(this.board);
     }
 
-    init_camera() {
+    initCamera() {
         this.camera = new PerspectiveCamera(
             50,
             this.canvas.clientWidth / this.canvas.clientHeight,
@@ -46,50 +46,25 @@ class State {
         this.camera.lookAt(0, 0, 0);
     }
 
-    init_board() {
-        const geometry = new BoxGeometry(this.cellSize, this.height, this.cellSize);
-        for (let row = 0; row < this.size; row++) {
-            for (let col = 0; col < this.size; col++) {
-                const isLight = (row + col) % 2 === 0;
-                const color = isLight ? this.lightColor : this.darkColor;
-                const x = (col - 3.5) * this.cellSize;
-                const z = (row - 3.5) * this.cellSize;
-                const y = this.height / 2;
-                const material = new MeshBasicMaterial({ color: color });
-                const field = new Mesh(geometry, material);
-                field.position.set(x, y, z);
-                this.board3d['field:' + col + ':' + row] = field;
-                this.boardGroup.add(field);
-                const colorEdge = isLight ? this.darkColor : this.lightColor;
-                const edges = new EdgesGeometry(geometry, 15);
-                const edgeMat = new LineBasicMaterial({color: colorEdge});
-                const wireframe = new LineSegments(edges, edgeMat);
-                wireframe.position.set(x, y, z);
-                this.board3d['wireframe:' + col + ':' + row] = wireframe;
-                this.boardGroup.add(wireframe);
-            }
-        }
-    }
-
-    init_state() {
-        this.boardGroup = new Group();
-        this.scene.add(this.boardGroup);
-        this.init_board();
-        this.boardGroup.position.set(0, 0, 0);
+    initState() {
         this.renderer = new WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
         this.canvas.appendChild(this.renderer.domElement);
     }
 
     init() {
-        this.init_scene();
-        this.init_camera();
-        this.init_state();
+        this.initMaterial()
+        this.initGeometry();
+        this.initBoard();
+        this.initFigure();
+        this.initScene();
+        this.initCamera();
+        this.initState();
     }
 }
 
 function animate() {
     requestAnimationFrame(animate);
-    state.boardGroup.rotation.y += 0.001;
+    state.board.rotation.y += 0.001;
     state.renderer.render(state.scene, state.camera);
 }

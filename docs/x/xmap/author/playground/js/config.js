@@ -1,6 +1,18 @@
 
 let state = null;
 
+const SIZE = 8;
+const CELL_SIZE = 10;
+const HEIGHT = 2;
+const LIGHT_COLOR = 0xdddddd;
+const DARK_COLOR = 0x666666;
+const BACKGROUND_COLOR = 0xffffff;
+
+const FIELD = "FIELD";
+const FIELD_WHITE = "FIELD_WHITE";
+const FIELD_BLACK = "FIELD_BLACK";
+
+
 class Config {
 
     constructor() {
@@ -20,12 +32,12 @@ class Config {
         this.right = document.getElementsByClassName("right")[0];
         this.board_center = document.getElementsByClassName("board_center")[0];
 
-        this.init_layouts();
+        this.initLayouts();
 
         state = new State(this.board_center);
     }
 
-    init_layouts() {
+    initLayouts() {
         this.vertical_layout["this.left.style.display"] = "none";
         this.vertical_layout["this.center.style.width"] = "100%";
         this.vertical_layout["this.center.style.height"] = "calc(var(--cell-size) * 11.0 + 24px)";
@@ -38,24 +50,21 @@ class Config {
         }
     }
 
-    load_layout(layout) {
+    loadLayout(layout) {
         for (let key in layout) {
             const execute = key + " = '" + layout[key] + "';";
             eval(execute);
         }
     }
 
-    resize_window(_) {
+    reSizeWindow(_) {
         if (window.innerWidth > window.innerHeight) {
-            this.load_layout(this.horizontal_layout);
+            this.loadLayout(this.horizontal_layout);
         } else {
-            this.load_layout(this.vertical_layout);
+            this.loadLayout(this.vertical_layout);
         }
-
-        state.update_state();
-
-        setTimeout(state.update_state, 500);
-        setTimeout(state.update_state, 1000);
+        state.update();
+        setTimeout(state.update, 500);
+        setTimeout(state.update, 1000);
     }
-
 }

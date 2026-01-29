@@ -20,6 +20,10 @@
     "js/third-party/jquery.js",
     "js/third-party/chessboard.js",
     "js/utils.js",
+    "js/material.js",
+    "js/geometry.js",
+    "js/board.js",
+    "js/figure.js",
     "js/state.js",
     "js/config.js",
     "js/load.js"

@@ -5,11 +5,11 @@ window.addEventListener("load", function () {
     config = new Config();
 
     window.addEventListener('resize', function (e) {
-        config.resize_window(e);
+        config.reSizeWindow(e);
     });
 
-    config.resize_window(null);
+    config.reSizeWindow(null);
 
-    state.update_state();
+    state.update();
     animate();
 });
