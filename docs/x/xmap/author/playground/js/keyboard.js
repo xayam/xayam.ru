@@ -1,5 +1,5 @@
 
-class KeyBoard extends Figure {
+class KeyBoard extends Scenes {
 
     constructor(){
         super();

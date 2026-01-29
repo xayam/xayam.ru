@@ -1,5 +1,5 @@
 
-class Action extends Mouse {
+class Action extends Touche {
 
     constructor(){
         super();

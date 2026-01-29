@@ -10,12 +10,8 @@ class State extends User {
         this.lightColor = LIGHT_COLOR;
         this.darkColor = DARK_COLOR;
         this.backgroundColor = BACKGROUND_COLOR;
-
-        this.scene = null;
-        this.camera = null;
         this.renderer = null;
         this.canvas = canvas;
-
         this.init();
     }
 
@@ -25,25 +21,6 @@ class State extends User {
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
         }
-    }
-
-    initScene() {
-        this.scene = new Scene();
-        this.scene.background = new Color(this.backgroundColor);
-        this.scene.add(this.board);
-    }
-
-    initCamera() {
-        this.camera = new PerspectiveCamera(
-            50,
-            this.canvas.clientWidth / this.canvas.clientHeight,
-            0.1,
-            1000
-        );
-        this.camera.position.set(- this.size * this.cellSize * 1.41,
-                                   this.size * this.cellSize * 1.41, 0
-        );
-        this.camera.lookAt(0, 0, 0);
     }
 
     initState() {
@@ -59,7 +36,10 @@ class State extends User {
         this.initFigure();
         this.initKeyBoard();
         this.initMouse();
+        this.initTouch();
         this.initAction();
+        this.initRule();
+        this.initGame();
         this.initUser();
         this.initScene();
         this.initCamera();

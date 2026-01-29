@@ -1,5 +1,5 @@
 
-class User extends Action {
+class User extends Game {
 
     constructor(){
         super();
