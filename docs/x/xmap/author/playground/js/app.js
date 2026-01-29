@@ -16,6 +16,7 @@ class App extends Config {
         this.initConfig();
         this.state = new State(this.board_center);
         window.addEventListener('resize', this.onReSizeFunction);
+        this.fullScreen();
         this.onReSizeFunction(null);
         this.state.update();
         animate();
@@ -35,5 +36,15 @@ class App extends Config {
         setTimeout(this.state.update, 500);
         setTimeout(this.state.update, 1000);
     }
-}
 
+    fullScreen() {
+//        document.addEventListener('fullscreenchange', () => {
+//        if (document.fullscreenElement) {
+//            console.log('Переход в полноэкранный режим (через requestFullscreen)');
+//        } else {
+//            console.log('Выход из полноэкранного режима');
+//        }
+//        });
+//        document.documentElement.requestFullscreen();
+    }
+}
