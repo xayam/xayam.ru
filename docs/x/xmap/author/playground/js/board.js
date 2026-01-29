@@ -29,8 +29,8 @@ class Board extends Geometry {
                 const wireframe = new LineSegments(edge, edgeMaterial);
                 wireframe.position.set(x, y, z);
 
-//                this.fields[row].push(field);
-//                this.wireframes[row].push(wireframe);
+                this.fields[row].push(field);
+                this.wireframes[row].push(wireframe);
                 this.board.add(field);
                 this.board.add(wireframe);
             }
