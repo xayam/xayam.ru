@@ -5,8 +5,7 @@ class Builder:
     def __init__(self, name: str):
         self.name = name
         self.config_filename = f"build/{self.name}.json"
-        self.template_filename = f"build/{self.name}.template.html"
-        self.output_filename = f"{self.name}.html"
+        self.template_filename = f"{self.name}/template.html"
         self.config = None
         self.template = None
         self.decorations = {
@@ -27,8 +26,9 @@ class Builder:
 
     def run(self):
         rendered = self.render()
-        with open(self.output_filename, mode='w', encoding='utf-8') as f:
-            f.write(rendered)
+        for output in self.config["outputs"]:
+            with open(output, mode='w', encoding='utf-8') as f:
+                f.write(rendered)
 
     def render(self):
         for s in self.schemes:
@@ -43,14 +43,14 @@ class Builder:
     def process(self, temp: str, what: str, c: str):
         try:
             if what in ['json', 'function']:
-                with open(self.config[what][c], mode='r', encoding='utf-8') as f:
+                with open(f"{self.name}/{self.config[what][c]}", mode='r', encoding='utf-8') as f:
                     value = f.read()
                 if what == 'json':
                     temp += 'let ' + c + ' = ' + value + ';\n\n'
                 else:
                     temp += 'function ' + c + '() {\n' + value + '\n};\n\n'
             else:
-                with open(c, mode='r', encoding='utf-8') as f:
+                with open(f"{self.name}/{c}", mode='r', encoding='utf-8') as f:
                     temp += f.read() + '\n\n'
         except FileNotFoundError:
             print(f"[WARNING] File {c} not exists!")
