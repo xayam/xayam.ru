@@ -1,5 +1,5 @@
 
-class Camera extends Figure {
+class Cameras extends Figure {
 
     constructor(){
         super();

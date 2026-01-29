@@ -1,5 +1,5 @@
 
-class Scenes extends Camera {
+class Scenes extends Cameras {
 
     constructor(){
         super();

@@ -34,15 +34,15 @@ class State extends User {
         this.initGeometry();
         this.initBoard();
         this.initFigure();
+        this.initCamera();
+        this.initScene();
         this.initKeyBoard();
         this.initMouse();
-        this.initTouch();
+        this.initTouche();
         this.initAction();
         this.initRule();
         this.initGame();
         this.initUser();
-        this.initScene();
-        this.initCamera();
         this.initState();
     }
 }
