@@ -24,6 +24,10 @@
     "js/geometry.js",
     "js/board.js",
     "js/figure.js",
+    "js/keyboard.js",
+    "js/mouse.js",
+    "js/action.js",
+    "js/user.js",
     "js/state.js",
     "js/config.js",
     "js/load.js"

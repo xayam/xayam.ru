@@ -1,5 +1,5 @@
 
-class State extends Figure {
+class State extends User {
 
     constructor(canvas) {
         super();
@@ -57,6 +57,10 @@ class State extends Figure {
         this.initGeometry();
         this.initBoard();
         this.initFigure();
+        this.initKeyBoard();
+        this.initMouse();
+        this.initAction();
+        this.initUser();
         this.initScene();
         this.initCamera();
         this.initState();

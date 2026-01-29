@@ -90926,8 +90926,8 @@ class Board extends Geometry {
                 const wireframe = new LineSegments(edge, edgeMaterial);
                 wireframe.position.set(x, y, z);
 
-//                this.fields[row].push(field);
-//                this.wireframes[row].push(wireframe);
+                this.fields[row].push(field);
+                this.wireframes[row].push(wireframe);
                 this.board.add(field);
                 this.board.add(wireframe);
             }
@@ -90954,7 +90954,67 @@ class Figure extends Board {
 
 
 
-class State extends Figure {
+class KeyBoard extends Figure {
+
+    constructor(){
+        super();
+        this.keyboard = null;
+    }
+
+    initKeyBoard() {
+
+    }
+
+}
+
+
+
+class Mouse extends KeyBoard {
+
+    constructor(){
+        super();
+        this.mouse = null;
+    }
+
+    initMouse() {
+
+    }
+
+}
+
+
+
+class Action extends Mouse {
+
+    constructor(){
+        super();
+        this.action = null;
+    }
+
+    initAction() {
+
+    }
+
+}
+
+
+
+class User extends Action {
+
+    constructor(){
+        super();
+        this.user = null;
+    }
+
+    initUser() {
+
+    }
+
+}
+
+
+
+class State extends User {
 
     constructor(canvas) {
         super();
@@ -91012,6 +91072,10 @@ class State extends Figure {
         this.initGeometry();
         this.initBoard();
         this.initFigure();
+        this.initKeyBoard();
+        this.initMouse();
+        this.initAction();
+        this.initUser();
         this.initScene();
         this.initCamera();
         this.initState();
