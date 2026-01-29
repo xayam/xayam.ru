@@ -42,6 +42,7 @@
     "js/model/engine/ai.js",
     "js/model/state.js",
     "js/config.js",
-    "js/app.js"
+    "js/app.js",
+    "js/load.js"
   ]
 }

@@ -49,6 +49,6 @@ class State extends User {
 
 function animate() {
     requestAnimationFrame(animate);
-    state.board.rotation.y += 0.001;
-    state.renderer.render(state.scene, state.camera);
+    app.state.board.rotation.y += 0.001;
+    app.state.renderer.render(app.state.scene, app.state.camera);
 }

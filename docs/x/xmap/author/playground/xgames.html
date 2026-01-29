@@ -91164,14 +91164,10 @@ class State extends User {
 
 function animate() {
     requestAnimationFrame(animate);
-    state.board.rotation.y += 0.001;
-    state.renderer.render(state.scene, state.camera);
+    app.state.board.rotation.y += 0.001;
+    app.state.renderer.render(app.state.scene, app.state.camera);
 }
 
-
-
-let config = null;
-let state = null;
 
 const SIZE = 8;
 const CELL_SIZE = 10;
@@ -91189,19 +91185,14 @@ class Config {
         this.center = null;
         this.right = null;
         this.board_center = null;
-
-        this.init();
     }
 
-    init() {
+    initConfig() {
         this.left = document.getElementsByClassName("left")[0];
         this.center = document.getElementsByClassName("center")[0];
         this.right = document.getElementsByClassName("right")[0];
         this.board_center = document.getElementsByClassName("board_center")[0];
-
         this.initLayouts();
-
-        state = new State(this.board_center);
     }
 
     initLayouts() {
@@ -91210,7 +91201,6 @@ class Config {
         this.vertical_layout["this.center.style.height"] = "calc(var(--cell-size) * 11.0 + 24px)";
         this.vertical_layout["this.right.style.width"] = "100%";
         this.vertical_layout["this.right.style.height"] = "calc(var(--cell-size) * 2.0)";
-
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
             eval(execute);
@@ -91223,33 +91213,53 @@ class Config {
             eval(execute);
         }
     }
+}
 
-    reSizeWindow(_) {
+
+
+class App extends Config {
+
+    constructor() {
+        super();
+        this.state = null;
+    }
+
+    init() {
+        this.initConfig();
+        this.state = new State(this.board_center);
+        this.onReSizeFunction = (e) => {
+            this.reSizeWindow();
+        }
+        window.addEventListener('resize', this.onReSizeFunction);
+        this.reSizeWindow(null);
+        this.state.update();
+        animate();
+    }
+
+    run() {
+        this.onLoadFunction = () => {
+            this.init();
+        }
+        window.addEventListener("load", this.onLoadFunction);
+    }
+
+    reSizeWindow(e) {
         if (window.innerWidth > window.innerHeight) {
             this.loadLayout(this.horizontal_layout);
         } else {
             this.loadLayout(this.vertical_layout);
         }
-        state.update();
-        setTimeout(state.update, 500);
-        setTimeout(state.update, 1000);
+        this.state.update();
+        setTimeout(this.state.update, 500);
+        setTimeout(this.state.update, 1000);
     }
 }
 
 
 
-window.addEventListener("load", function () {
-    config = new Config();
 
-    window.addEventListener('resize', function (e) {
-        config.reSizeWindow(e);
-    });
-
-    config.reSizeWindow(null);
-
-    state.update();
-    animate();
-});
+let app = new App();
+app.run();
 
 
 
