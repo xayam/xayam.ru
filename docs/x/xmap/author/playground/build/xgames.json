@@ -1,7 +1,4 @@
 {
-	
-  "input": "games.template.html",
-  "output": "games.html",
 
   "css": [
     "css/third-party/chessboard.css",

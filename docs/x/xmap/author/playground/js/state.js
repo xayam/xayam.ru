@@ -90,6 +90,6 @@ class State {
 
 function animate() {
     requestAnimationFrame(animate);
-    state.boardGroup.rotation.y += 0.005;
+    state.boardGroup.rotation.y += 0.001;
     state.renderer.render(state.scene, state.camera);
 }
