@@ -11,5 +11,10 @@
         <ru>Больше, чем одна форма</ru>
         <en>More than one form</en>
     </item>
+    <item active="true">
+        <id>playground</id>
+        <ru>Игровая площадка от КСАЯМ'а</ru>
+        <en>PlayGround by XAYAM</en>
+    </item>
 
 </menu>

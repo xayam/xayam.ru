@@ -1,4 +1,5 @@
 
+let config = null;
 let state = null;
 
 const SIZE = 8;
@@ -7,11 +8,6 @@ const HEIGHT = 2;
 const LIGHT_COLOR = 0xdddddd;
 const DARK_COLOR = 0x666666;
 const BACKGROUND_COLOR = 0xffffff;
-
-const FIELD = "FIELD";
-const FIELD_WHITE = "FIELD_WHITE";
-const FIELD_BLACK = "FIELD_BLACK";
-
 
 class Config {
 

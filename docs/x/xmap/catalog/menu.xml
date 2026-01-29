@@ -2,6 +2,11 @@
 <menu>
     <id>catalog</id>
     <item active="true">
+        <id>shops</id>
+        <ru>Мои магазины</ru>
+        <en>My shops</en>
+    </item>
+    <item active="true">
         <id>chess-figures</id>
         <ru>Шахматные фигуры&amp;Кости</ru>
         <en>Chess figures&amp;Dices</en>
@@ -30,11 +35,6 @@
         <id>avito</id>
         <ru>Авито</ru>
         <en>Avito</en>
-    </item>
-    <item active="true">
-        <id>shops</id>
-        <ru>Мои магазины</ru>
-        <en>My shops</en>
     </item>
     <item active="true">
         <id>blogs</id>

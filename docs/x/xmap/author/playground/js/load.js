@@ -1,6 +1,4 @@
 
-let config = null;
-
 window.addEventListener("load", function () {
     config = new Config();
 
