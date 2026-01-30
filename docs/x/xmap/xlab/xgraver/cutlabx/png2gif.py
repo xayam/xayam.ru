@@ -6,7 +6,7 @@ from scipy.spatial.distance import cdist
 
 np.random.seed(42)
 
-def greedyPath(pixels, last_point, animate, trajectory):
+def greedy_path(pixels, last_point, animate, trajectory):
     dists = cdist([last_point], pixels)[0]
     start_idx = np.argmin(dists)
     start_point = pixels[start_idx]
@@ -27,7 +27,8 @@ def greedyPath(pixels, last_point, animate, trajectory):
     last_point = cluster_path[-1]
     return trajectory, last_point
 
-def matrixPath(pixels, last_point, animate, trajectory: list):
+
+def matrix_path(pixels, last_point, animate, trajectory: list):
     rows = {}
     for y, x in pixels:
         rows.setdefault(y, []).append(x)
@@ -100,8 +101,8 @@ def get_trajectory(filename='input.png', animate=True):
     last_point = np.array([0, 0])
     for cluster in ordered_clusters:
         pixels = cluster['pixels']  # (N, 2) — [y, x]
-        trajectory, last_point = matrixPath(pixels, last_point, animate, trajectory)
-        # trajectory, last_point = greedyPath(pixels, last_point, animate, trajectory)
+        # trajectory, last_point = matrix_path(pixels, last_point, animate, trajectory)
+        trajectory, last_point = greedy_path(pixels, last_point, animate, trajectory)
     if animate:
         trajectory = np.array(trajectory)
     return image.shape[1], image.shape[0], binary_image, trajectory
@@ -129,7 +130,8 @@ def main(filename="input.png"):
     ani = FuncAnimation(fig, animate, frames=len(frames), interval=25, blit=True, repeat=False)
     binary_image = 255 - binary_image
     assert canvas.any() == binary_image.any(), "Error! canvas != binary_image"
-    ani.save("output.gif")
+    # ani.save("output.matrix.gif")
+    ani.save("output.greedy.gif")
 
 if __name__ == "__main__":
     main()
