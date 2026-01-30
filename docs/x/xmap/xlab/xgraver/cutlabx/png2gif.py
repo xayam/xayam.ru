@@ -8,7 +8,8 @@ from scipy.spatial.distance import cdist
 
 np.random.seed(42)
 
-def greedy_path(pixels, last_point, trajectory):
+def greedy_path(pixels, last_point):
+    trajectory = []
     dists = cdist([last_point], pixels)[0]
     start_idx = np.argmin(dists)
     start_point = pixels[start_idx]
@@ -26,8 +27,9 @@ def greedy_path(pixels, last_point, trajectory):
     return trajectory, last_point
 
 
-def matrix_path(pixels, last_point, trajectory: list):
+def matrix_path(pixels, last_point):
     rows = {}
+    trajectory = []
     for y, x in pixels:
         rows.setdefault(y, []).append(x)
     sorted_ys = sorted(rows.keys())
@@ -93,8 +95,8 @@ def get_trajectory(filename='input.png', animate=True):
     last_point = np.array([0, 0])
     for cluster in ordered_clusters:
         pixels = cluster['pixels']  # (N, 2) — [y, x]
-        # result, last_point = matrix_path(pixels, last_point, [])
-        result, last_point = greedy_path(pixels, last_point, [])
+        result, last_point = matrix_path(pixels, last_point)
+        # result, last_point = greedy_path(pixels, last_point)
         trajectory.append(result)
     if animate:
         trajectory = np.array(trajectory)

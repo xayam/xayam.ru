@@ -94,6 +94,8 @@ def optimize(filename: str, speed: str, loop: int = 1) -> str:
         for l in range(loop):
             print(f"{i + 1}/{len(trajectory)} : {l + 1}/{loop}")
             cluster = trajectory[i]
+            path = []
+            y_pred = None
             for j in range(1, len(cluster)):
                 flag = False
                 ys1, xs1 = cluster[j - 1]
@@ -102,6 +104,7 @@ def optimize(filename: str, speed: str, loop: int = 1) -> str:
                 x1 = round(xs1 / width * widthA4 + boundX, 2)
                 if j == 1:
                     result += f"G0X{x1}Y{y1}{speed}\n"
+                    y_pred = y1
                 y2 = round(heightA4 - ys2 / height * heightA4 + boundY, 2)
                 x2 = round(xs2 / width * widthA4 + boundX, 2)
                 points = line_pixels(ys1, xs1, ys2, xs2)
@@ -110,16 +113,26 @@ def optimize(filename: str, speed: str, loop: int = 1) -> str:
                         flag = True
                         break
                 if not flag:
-                    result += f"G0X{x1}Y{y1}\n"
-                    result += f"G1X{x2}Y{y2}\n"
+                    path.append([x1, y1, x2, y2])
                     image = cv2.line(image, (xs1, ys1), (xs2, ys2),
                                      color=(0, 0, 0), thickness=1)
-                # else:
-                #     result += f"G0{x1}"
-                #     if (y_pred is None) or (y_pred != y1):
-                #         result += f"Y{y1}"
-                #         y_pred = y1
-                #     result += "\n"
+                else:
+                    x_begin, y_begin, x_end, y_end = path[0]
+                    for xx1, yy1, xx2, yy2 in path[1:]:
+                        distance = (xx1 - x_end) ** 2 + (yy1 - y_end) ** 2
+                        if distance in [1, 2]:
+                            x_end, y_end = xx2, yy2
+                        else:
+                            result += f"G0X{x_begin}"
+                            if y_begin != y_pred:
+                                result += f"Y{y_begin}"
+                                y_pred = y_begin
+                            result += "\n"
+                            result += f"G1X{x_end}"
+                            # result += f"Y{y_end}"
+                            result += "\n"
+                            x_begin, y_begin, x_end, y_end = xx1, yy1, xx2, yy2
+                    path = []
             # print(cluster)
             # sys.exit()
             # ys1, xs1 = cluster[0][0], cluster[0][1]
