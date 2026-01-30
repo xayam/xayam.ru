@@ -1,3 +1,4 @@
+import re
 import json
 
 class Builder:
@@ -38,20 +39,29 @@ class Builder:
                     temp = self.process(temp, t, c)
                 temp += '\n' + self.decorations[s][1] + '\n\n'
                 self.template = self.template.replace('<!--{{{' + t + '}}}-->', temp, 1)
+        self.template = self.template.replace('\n' * 6, '\n' * 3)
+        self.template = self.template.replace('\n' * 6, '\n' * 3)
+        self.template = self.template.replace('\n' * 3, '\n' * 2)
+        self.template = self.template.replace('\n' * 3, '\n' * 2)
         return self.template
 
     def process(self, temp: str, what: str, c: str):
         try:
             if what in ['json', 'function']:
                 with open(f"{self.name}/{self.config[what][c]}", mode='r', encoding='utf-8') as f:
-                    value = f.read()
+                    value = self.shift(text=f.read())
                 if what == 'json':
                     temp += 'let ' + c + ' = ' + value + ';\n\n'
                 else:
                     temp += 'function ' + c + '() {\n' + value + '\n};\n\n'
             else:
                 with open(f"{self.name}/{c}", mode='r', encoding='utf-8') as f:
-                    temp += f.read() + '\n\n'
+                    temp += self.shift(text=f.read()) + '\n\n'
         except FileNotFoundError:
             print(f"[WARNING] File {c} not exists!")
         return temp
+
+    @staticmethod
+    def shift(text, count=12):
+        return text
+        # return re.sub(r'^', ' ' * count, text, flags=re.MULTILINE)
