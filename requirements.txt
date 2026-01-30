@@ -6,3 +6,7 @@ shapely
 matplotlib
 numpy
 scikit-learn
+
+opencv-python
+scipy
+PyAudio

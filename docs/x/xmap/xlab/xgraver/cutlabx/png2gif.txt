@@ -6,53 +6,6 @@ from scipy.spatial.distance import cdist
 
 np.random.seed(42)
 
-def greedyPath(pixels, last_point, animate, trajectory):
-    dists = cdist([last_point], pixels)[0]
-    start_idx = np.argmin(dists)
-    start_point = pixels[start_idx]
-    remaining = np.delete(pixels, start_idx, axis=0)
-
-    current = start_point
-    cluster_path = [current]
-    while len(remaining) > 0:
-        dists = cdist([current], remaining)[0]
-        next_idx = np.argmin(dists)
-        current = remaining[next_idx]
-        cluster_path.append(current)
-        remaining = np.delete(remaining, next_idx, axis=0)
-    if animate:
-        trajectory.extend(cluster_path)
-    else:
-        trajectory.append(cluster_path)
-    last_point = cluster_path[-1]
-    return trajectory, last_point
-
-def matrixPath(pixels, last_point, animate, trajectory: list):
-    rows = {}
-    for y, x in pixels:
-        rows.setdefault(y, []).append(x)
-
-    sorted_ys = sorted(rows.keys())
-
-    cluster_path = []
-    for i, y in enumerate(sorted_ys):
-        xs = sorted(rows[y])
-        if i % 2 == 1:  # нечётная строка — меняем направление
-            xs = xs[::-1]
-        for x in xs:
-            cluster_path.append(np.array([y, x]))
-
-    if len(cluster_path) > 1:
-        start_candidates = [cluster_path[0], cluster_path[-1]]
-        dists_to_start = cdist([last_point], start_candidates)[0]
-        if dists_to_start[1] < dists_to_start[0]:  # ближе конец змейки
-            cluster_path = cluster_path[::-1]  # разворачиваем весь путь
-    if animate:
-        trajectory.extend(cluster_path)
-    else:
-        trajectory.append(cluster_path)
-    last_point = cluster_path[-1]
-    return trajectory, last_point
 
 def get_trajectory(filename='input.png', animate=True):
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
@@ -82,6 +35,7 @@ def get_trajectory(filename='input.png', animate=True):
         current = 0  # начинаем с первого
         visited[current] = True
         order.append(current)
+
         for _ in range(n - 1):
             last = centroids[current]
             distances = cdist([last], centroids)[0]
@@ -92,16 +46,38 @@ def get_trajectory(filename='input.png', animate=True):
             current = next_idx
         return order
 
+
     centroids_list = np.array([c['centroid'] for c in cluster_data])  # (K, 2)
     tsp_order = solve_tsp_greedy(centroids_list)
     ordered_clusters = [cluster_data[i] for i in tsp_order]
 
     trajectory = []
-    last_point = np.array([0, 0])
+
+    last_point = np.array([0, 0])  # начальная позиция (можно выбрать любую)
+
     for cluster in ordered_clusters:
         pixels = cluster['pixels']  # (N, 2) — [y, x]
-        trajectory, last_point = matrixPath(pixels, last_point, animate, trajectory)
-        # trajectory, last_point = greedyPath(pixels, last_point, animate, trajectory)
+        # Найти ближайшую точку к последней позиции — это старт кластера
+        dists = cdist([last_point], pixels)[0]
+        start_idx = np.argmin(dists)
+        start_point = pixels[start_idx]
+        remaining = np.delete(pixels, start_idx, axis=0)
+
+        # Простой способ обхода внутри: отсортировать по расстоянию от текущей точки (жадно)
+        # (можно заменить на змейку, если кластер плотный)
+        current = start_point
+        cluster_path = [current]
+        while len(remaining) > 0:
+            dists = cdist([current], remaining)[0]
+            next_idx = np.argmin(dists)
+            current = remaining[next_idx]
+            cluster_path.append(current)
+            remaining = np.delete(remaining, next_idx, axis=0)
+        if animate:
+            trajectory.extend(cluster_path)
+        else:
+            trajectory.append(cluster_path)
+        last_point = cluster_path[-1]  # обновляем последнюю позицию
     if animate:
         trajectory = np.array(trajectory)
     return image.shape[1], image.shape[0], binary_image, trajectory
