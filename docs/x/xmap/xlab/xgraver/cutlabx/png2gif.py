@@ -22,10 +22,10 @@ def greedy_path(pixels, last_point, animate, trajectory):
         current = remaining[next_idx]
         cluster_path.append(current)
         remaining = np.delete(remaining, next_idx, axis=0)
-    if animate:
-        trajectory.extend(cluster_path)
-    else:
-        trajectory.append(cluster_path)
+    # if animate:
+    trajectory.extend(cluster_path)
+    # else:
+    #     trajectory.append(cluster_path)
     last_point = cluster_path[-1]
     return trajectory, last_point
 
@@ -50,10 +50,10 @@ def matrix_path(pixels, last_point, animate, trajectory: list):
         dists_to_start = cdist([last_point], start_candidates)[0]
         if dists_to_start[1] < dists_to_start[0]:  # ближе конец змейки
             cluster_path = cluster_path[::-1]  # разворачиваем весь путь
-    if animate:
-        trajectory.extend(cluster_path)
-    else:
-        trajectory.append(cluster_path)
+    # if animate:
+    trajectory.extend(cluster_path)
+    # else:
+    # trajectory.append(cluster_path)
     last_point = cluster_path[-1]
     return trajectory, last_point
 
@@ -144,8 +144,9 @@ def get_trajectory(filename='input.png', animate=True):
         pixels = cluster['pixels']  # (N, 2) — [y, x]
         # result = matrix2_path(pixels)
         # trajectory.append(result)
-        trajectory, last_point = matrix_path(pixels, last_point, animate, trajectory)
-        # trajectory, last_point = greedy_path(pixels, last_point, animate, trajectory)
+        # trajectory, last_point = matrix_path(pixels, last_point, animate, trajectory)
+        result, last_point = greedy_path(pixels, last_point, animate, [])
+        trajectory.append(result)
     if animate:
         trajectory = np.array(trajectory)
     return image.shape[1], image.shape[0], binary_image, trajectory

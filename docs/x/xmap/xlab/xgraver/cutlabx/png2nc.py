@@ -1,3 +1,5 @@
+import sys
+
 import numpy as np
 import cv2
 import winsound
@@ -49,7 +51,7 @@ config = {
     },
     METAL_GRAVE: {
         SPEED: 1000,
-        POWER: 95,
+        POWER: 100,
         LOOP: 1
     },
     METAL_BURN: {
@@ -63,7 +65,7 @@ config = {
 task = config[task]
 
 
-def line_pixels(x0, y0, x1, y1):
+def line_pixels(y0, x0, y1, x1):
     points = []
     dx = abs(x1 - x0)
     dy = abs(y1 - y0)
@@ -87,50 +89,83 @@ def optimize(filename: str, speed: str, loop: int = 1) -> str:
     width, height, binary_image, trajectory = \
         get_trajectory(filename=filename, animate=False)
     image = np.ones_like(binary_image) * 255
-    # image3 = np.ones_like(binary_image) * 255
-    # cv2.imwrite("temp.png", image)
-    # image = cv2.imread("temp.png", cv2.IMREAD_GRAYSCALE)
-    # binary_image = 255 - binary_image
     result = ""
     for i in range(len(trajectory)):
         for l in range(loop):
             print(f"{i + 1}/{len(trajectory)} : {l + 1}/{loop}")
             cluster = trajectory[i]
-            y = round(heightA4 - cluster[0][0] / height * heightA4 + boundY, 2)
-            x = round(cluster[0][1] / width * widthA4 + boundX, 2)
-            ys_pred1, xs_pred1 = y, x
-            ys_pred2, xs_pred2 = cluster[0][0], cluster[0][1]
-            result += f"G0X{x}Y{y}{speed}\n"
-            index = -1
-            for ys, xs in cluster:
-                index += 1
+            for j in range(1, len(cluster)):
                 flag = False
-                y = round(heightA4 - ys / height * heightA4 + boundY, 2)
-                x = round(xs / width * widthA4 + boundX, 2)
-                line_pts = line_pixels(xs, ys, xs_pred2, ys_pred2)
-                for yy, xx in line_pts:
+                ys1, xs1 = cluster[j - 1]
+                ys2, xs2 = cluster[j]
+                y1 = round(heightA4 - ys1 / height * heightA4 + boundY, 2)
+                x1 = round(xs1 / width * widthA4 + boundX, 2)
+                if j == 1:
+                    result += f"G0X{x1}Y{y1}{speed}\n"
+                y2 = round(heightA4 - ys2 / height * heightA4 + boundY, 2)
+                x2 = round(xs2 / width * widthA4 + boundX, 2)
+                points = line_pixels(ys1, xs1, ys2, xs2)
+                for yy, xx in points:
                     if binary_image[yy, xx] == 0:
                         flag = True
                         break
-                if flag:
-                    s = "G0"
-                else:
-                    s = "G1"
-                if x != xs_pred1:
-                    s += f"X{x}"
-                    xs_pred1 = x
-                if y != ys_pred1:
-                    s += f"Y{y}"
-                    ys_pred1 = y
-                if s in ["G0", "G1"]:
-                    s = ""
                 if not flag:
-                    image = cv2.line(image,
-                                     (xs, ys), (xs_pred2, ys_pred2),
-                                     (0, 0, 0), thickness=1)
-                s += "\n" + s.replace("G1", "G0") + "\n"
-                ys_pred2, xs_pred2 = ys, xs
-                result += s
+                    result += f"G0X{x1}Y{y1}\n"
+                    result += f"G1X{x2}Y{y2}\n"
+                    image = cv2.line(image, (xs1, ys1), (xs2, ys2),
+                                     color=(0, 0, 0), thickness=1)
+                # else:
+                #     result += f"G0{x1}"
+                #     if (y_pred is None) or (y_pred != y1):
+                #         result += f"Y{y1}"
+                #         y_pred = y1
+                #     result += "\n"
+            # print(cluster)
+            # sys.exit()
+            # ys1, xs1 = cluster[0][0], cluster[0][1]
+            # y1 = round(heightA4 - ys1 / height * heightA4 + boundY, 2)
+            # x1 = round(xs1 / width * widthA4 + boundX, 2)
+            # result += f"G0X{x1}Y{y1}{speed}\n"
+            # for j in range(1, len(cluster)):
+            #     print(cluster[j-1])
+            #     image = cv2.line(image, cluster[j-1], cluster[j],
+            #                      color=(0, 0, 0), thickness=1)
+                # y2 = round(heightA4 - ys2 / height * heightA4 + boundY, 2)
+                # x2 = round(xs2 / width * widthA4 + boundX, 2)
+                # points = line_pixels(xs1, ys1, xs2, ys2)
+                # flag = False
+                # for yy, xx in points:
+                #     if binary_image[yy, xx] == 0:
+                #         flag = True
+                #         break
+                # if not flag:
+                #     result += f"G1X{x2}Y{y2}\n"
+                #     # image = cv2.line(image,
+                #     #                 (xs1, ys1), (xs2, ys2),
+                #     #                 (0, 0, 0), thickness=1
+                #     # )
+                # else:
+                #     result += f"G0{x2}Y{y2}\n"
+
+                # if x != xs_pred1:
+                #     s += f"X{x}"
+                #     xs_pred1 = x
+                # if y != ys_pred1:
+                #     s += f"Y{y}"
+                #     ys_pred1 = y
+                # if s in ["G0", "G1"]:
+                #     s = ""
+                # if not flag:
+                #     y2 = round(heightA4 - ys_pred2 / height * heightA4 + boundY, 2)
+                #     x2 = round(xs_pred2 / width * widthA4 + boundX, 2)
+                #     image = cv2.line(image,
+                #                      (xs, ys), (xs_pred2, ys_pred2),
+                #                      (0, 0, 0), thickness=1)
+                #     result += f"G0X{x}Y{y}{speed}\n"
+                #     result += f"G1X{x2}Y{y2}{speed}\n"
+                # # s += "\n" + s.replace("G1", "G0") + "\n"
+                # ys_pred2, xs_pred2 = ys, xs
+                # # result += s
     cv2.imwrite("output.nc.png", image)
     return result
 
