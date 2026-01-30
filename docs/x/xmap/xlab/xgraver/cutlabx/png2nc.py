@@ -128,8 +128,8 @@ def optimize(filename: str, speed: str, loop: int = 1) -> str:
                     image = cv2.line(image,
                                      (xs, ys), (xs_pred2, ys_pred2),
                                      (0, 0, 0), thickness=1)
-                ys_pred2, xs_pred2 = ys, xs
                 s += "\n" + s.replace("G1", "G0") + "\n"
+                ys_pred2, xs_pred2 = ys, xs
                 result += s
     cv2.imwrite("output.nc.png", image)
     return result

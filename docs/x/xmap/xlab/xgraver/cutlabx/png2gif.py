@@ -1,3 +1,5 @@
+import sys
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -55,6 +57,45 @@ def matrix_path(pixels, last_point, animate, trajectory: list):
     last_point = cluster_path[-1]
     return trajectory, last_point
 
+def matrix2_path(pixels):
+    result = []
+    begin_y, begin_x = pixels[0]
+    end_y, end_x = pixels[0]
+    for y, x in pixels[1:]:
+        if (y == end_y) and (x != end_x):
+            end_x = x
+        elif y != end_y:
+            result.append([begin_y, begin_x, end_y, end_x])
+            begin_y, begin_x, end_y, end_x= y, x, y, x
+    for i in range(len(result)):
+        if i % 2 == 1:
+            result[i] = result[i][::-1]
+    return result
+    # print(len(pixels))
+    # print(len(result))
+    # sys.exit()
+    # sorted_ys = sorted(rows.keys())
+    #
+    # cluster_path = []
+    # for i, y in enumerate(sorted_ys):
+    #     xs = sorted(rows[y])
+    #     if i % 2 == 1:  # нечётная строка — меняем направление
+    #         xs = xs[::-1]
+    #     for x in xs:
+    #         cluster_path.append(np.array([y, x]))
+    #
+    # if len(cluster_path) > 1:
+    #     start_candidates = [cluster_path[0], cluster_path[-1]]
+    #     dists_to_start = cdist([last_point], start_candidates)[0]
+    #     if dists_to_start[1] < dists_to_start[0]:  # ближе конец змейки
+    #         cluster_path = cluster_path[::-1]  # разворачиваем весь путь
+    # if animate:
+    #     trajectory.extend(cluster_path)
+    # else:
+    #     trajectory.append(cluster_path)
+    # last_point = cluster_path[-1]
+    # return trajectory, last_point
+
 def get_trajectory(filename='input.png', animate=True):
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
@@ -101,8 +142,10 @@ def get_trajectory(filename='input.png', animate=True):
     last_point = np.array([0, 0])
     for cluster in ordered_clusters:
         pixels = cluster['pixels']  # (N, 2) — [y, x]
-        # trajectory, last_point = matrix_path(pixels, last_point, animate, trajectory)
-        trajectory, last_point = greedy_path(pixels, last_point, animate, trajectory)
+        # result = matrix2_path(pixels)
+        # trajectory.append(result)
+        trajectory, last_point = matrix_path(pixels, last_point, animate, trajectory)
+        # trajectory, last_point = greedy_path(pixels, last_point, animate, trajectory)
     if animate:
         trajectory = np.array(trajectory)
     return image.shape[1], image.shape[0], binary_image, trajectory
