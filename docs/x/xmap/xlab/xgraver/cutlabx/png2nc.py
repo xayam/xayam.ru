@@ -15,7 +15,7 @@ PLASTIC_GRAVE = "plastic_grave"
 METAL_GRAVE = "metal_grave"
 METAL_BURN = "metal_burn"
 
-# ввод задания для гравера здесь
+# ВВОД задания для гравера ЗДЕСЬ
 task = METAL_GRAVE
 
 # калибровка по точке привязки
