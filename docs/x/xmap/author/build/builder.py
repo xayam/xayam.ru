@@ -28,9 +28,12 @@ class Builder:
 
     def run(self):
         rendered = self.render()
-        for output in self.outputs:
+        print(self.outputs['{+}'])
+        sys.exit()
+        for output in self.outputs['{+}']:
             with open(output, mode='w', encoding='utf-8') as f:
                 f.write(rendered)
+            break
 
     def render(self):
         for match in self.input:
@@ -47,7 +50,7 @@ class Builder:
                     result = ''
                     begin = self.config['{' + task + '}{' + match + '}'][0] + '\n'
                     end = '\n' + self.config['{' + task + '}{' + match + '}'][1] + '\n\n'
-                    # print(begin, end)
+                    print(begin, end)
                     path_list = []
                     for path in paths:
                         if task == '-':
@@ -66,23 +69,19 @@ class Builder:
                                     path_list.append((p, ''))
                     for path, content in path_list:
                         begin2 = begin.replace("{@src_image}", "src='" + path + "'")
-                        result += content
                         result += begin2
-        # TODO
+                        result += content
+                        result += end
+                    self.template = self.template.replace(
+                        self.config["decorate"][0] + match + self.config["decorate"][1],
+                        result,
+                        1
+                    )
         return self.template
 
-    def process(self, temp: str, what: str, c: str):
+    def process(self):
         try:
-            if what in ['json', 'function']:
-                with open(f"{self.name}/{self.config[what][c]}", mode='r', encoding='utf-8') as f:
-                    value = f.read()
-                if what == 'json':
-                    temp += 'let ' + c + ' = ' + value + ';\n\n'
-                else:
-                    temp += 'function ' + c + '() {\n' + value + '\n};\n\n'
-            else:
-                with open(f"{self.name}/{c}", mode='r', encoding='utf-8') as f:
-                    temp += f.read() + '\n\n'
+            pass
         except FileNotFoundError:
-            print(f"[WARNING] File {c} not exists!")
-        return temp
+            print(f"[WARNING] File not exists!")
+        return []
