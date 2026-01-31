@@ -1,0 +1,108 @@
+{
+  "config": {
+    "root": "",
+    "decorate": [
+      "<!--{{{",
+      "}}}-->"
+    ],
+    "temp": [
+      "temp_begin",
+      "temp_end"
+    ],
+    "matches": [
+      "env_style",
+      "dev_javascript",
+      "env_javascript",
+      "env_image"
+    ],
+    "{-}{env_style}": [
+      "<link rel='stylesheet' type='text/css' {@href_style}",
+      " />"
+    ],
+    "{+}{env_style}": [
+      "<style>",
+      "</style>"
+    ],
+    "{-}{dev_javascript}": [
+      "<script {@src_script}>",
+      "</script>"
+    ],
+    "{+}{dev_javascript}": [
+      "<script type='text/javascript'>",
+      "</script>"
+    ],
+    "{-}{env_javascript}": [
+      "<script {@src_script}>",
+      "</script>"
+    ],
+    "{+}{env_javascript}": [
+      "<script type='text/javascript'>",
+      "</script>"
+    ],
+    "{-}{env_image}": [
+      "<img {@src_image}",
+      " />"
+    ],
+    "{+}{env_image}": [
+      "<img {@src_image}",
+      " />"
+    ]
+  },
+  "outputs": {
+    "{-}": [
+      "playground/playground.template.@number.html"
+    ],
+    "{+}": [
+      "playground.html",
+      "playground/playground.html"
+    ]
+  },
+  "env_style": {
+    "{+}": [
+      "playground/css/third-party/chessboard.css",
+      "playground/css/default.css",
+      "playground/css/layout.css"
+    ]
+  },
+  "dev_javascript": {
+    "{+}{three}": [
+      "playground/js/model/external/three.core.js",
+      "playground/js/model/external/three.module.js"
+    ],
+    "{+}": [
+      "playground/js/model/external/jquery.js"
+    ],
+    "{+}{chess}": [
+      "playground/js/model/external/chessboard.js"
+    ]
+  },
+  "env_javascript": {
+    "{-+}": [
+      "playground/js/model/utils.js",
+      "playground/js/view/material.js",
+      "playground/js/view/geometry.js",
+      "playground/js/view/board.js",
+      "playground/js/view/figure.js",
+      "playground/js/view/camera.js",
+      "playground/js/view/scene.js",
+      "playground/js/controller/io/keyboard.js",
+      "playground/js/controller/io/mouse.js",
+      "playground/js/controller/io/touche.js",
+      "playground/js/controller/io/action.js",
+      "playground/js/controller/io/event.js",
+      "playground/js/controller/uci.js",
+      "playground/js/controller/command.js",
+      "playground/js/model/rule.js",
+      "playground/js/model/game.js",
+      "playground/js/model/user.js",
+      "playground/js/model/engine/engine.js",
+      "playground/js/model/engine/evaluate.js",
+      "playground/js/model/engine/search.js",
+      "playground/js/model/engine/ai.js",
+      "playground/js/model/state.js",
+      "playground/js/config.js",
+      "playground/js/app.js",
+      "playground/js/load.js"
+    ]
+  }
+}

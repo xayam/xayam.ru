@@ -1,67 +1,88 @@
 import re
 import json
+import sys
+
 
 class Builder:
 
     def __init__(self, name: str):
         self.name = name
-        self.config_filename = f"build/{self.name}.json"
-        self.template_filename = f"{self.name}/template.html"
+        self.config_json = f"{self.name}.json"
+        self.template_html = f"{self.name}/template.html"
         self.config = None
+        self.outputs = None
+        self.input = None
         self.template = None
-        self.decorations = {
-            'style': ['<style>', '</style>'],
-            'javascript': ['<script type="text/javascript">', '</script>']
-        }
-        self.schemes = {
-            'style': ['css'],
-            'javascript': ['json', 'function', 'js']
-        }
         self.init()
 
     def init(self):
-        with open(self.config_filename, 'r', encoding='utf-8') as f:
-            self.config = json.load(f)
-        with open(self.template_filename, mode='r', encoding='utf-8') as f:
+        with open(self.config_json, 'r', encoding='utf-8') as f:
+            config_json = json.load(f)
+        self.config = config_json['config']
+        config_json.pop('config', None)
+        self.outputs = config_json['outputs']
+        config_json.pop('outputs', None)
+        self.input = config_json
+        with open(self.template_html, mode='r', encoding='utf-8') as f:
             self.template = f.read()
 
     def run(self):
         rendered = self.render()
-        for output in self.config["outputs"]:
+        for output in self.outputs:
             with open(output, mode='w', encoding='utf-8') as f:
                 f.write(rendered)
 
     def render(self):
-        for s in self.schemes:
-            for t in self.schemes[s]:
-                temp = self.decorations[s][0] + '\n'
-                for c in self.config[t]:
-                    temp = self.process(temp, t, c)
-                temp += '\n' + self.decorations[s][1] + '\n\n'
-                self.template = self.template.replace('<!--{{{' + t + '}}}-->', temp, 1)
-        self.template = self.template.replace('\n' * 6, '\n' * 3)
-        self.template = self.template.replace('\n' * 6, '\n' * 3)
-        self.template = self.template.replace('\n' * 3, '\n' * 2)
-        self.template = self.template.replace('\n' * 3, '\n' * 2)
+        for match in self.input:
+            for tasks in self.input[match]:
+                task_matches = re.findall(r"\{[\+\-]+\}", tasks)[0][1:-1]
+                task_names = re.findall(r"\{[a-zA-z0-9_]*\}", tasks)
+                if task_names:
+                    task_names = task_names[0]
+                else:
+                    task_names = ''
+                paths = self.input[match][tasks]
+
+                for task in task_matches:
+                    result = ''
+                    begin = self.config['{' + task + '}{' + match + '}'][0] + '\n'
+                    end = '\n' + self.config['{' + task + '}{' + match + '}'][1] + '\n\n'
+                    # print(begin, end)
+                    path_list = []
+                    for path in paths:
+                        if task == '-':
+                            begin = begin.replace("{@href_style}", "href='" + path + "'")
+                            begin = begin.replace("{@src_script}", "src='" + path + "'")
+                            begin = begin.replace("{@src_image}", "src='" + path + "'")
+                            result += begin
+                            result += end
+                        elif task == '+':
+                            if not path.endswith('.png'):
+                                with open(path, mode='r', encoding='utf-8') as f:
+                                    path_list.append((path, f.read()))
+                            else:
+                                with open(path, mode='rb') as f:
+                                    p = "data/png:" + f.read().decode()
+                                    path_list.append((p, ''))
+                    for path, content in path_list:
+                        begin2 = begin.replace("{@src_image}", "src='" + path + "'")
+                        result += content
+                        result += begin2
+        # TODO
         return self.template
 
     def process(self, temp: str, what: str, c: str):
         try:
             if what in ['json', 'function']:
                 with open(f"{self.name}/{self.config[what][c]}", mode='r', encoding='utf-8') as f:
-                    value = self.shift(text=f.read())
+                    value = f.read()
                 if what == 'json':
                     temp += 'let ' + c + ' = ' + value + ';\n\n'
                 else:
                     temp += 'function ' + c + '() {\n' + value + '\n};\n\n'
             else:
                 with open(f"{self.name}/{c}", mode='r', encoding='utf-8') as f:
-                    temp += self.shift(text=f.read()) + '\n\n'
+                    temp += f.read() + '\n\n'
         except FileNotFoundError:
             print(f"[WARNING] File {c} not exists!")
         return temp
-
-    @staticmethod
-    def shift(text, count=12):
-        return text
-        # return re.sub(r'^', ' ' * count, text, flags=re.MULTILINE)

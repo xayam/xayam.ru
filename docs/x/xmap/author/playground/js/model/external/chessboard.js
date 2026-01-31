@@ -1,5 +1,3 @@
-;(function () {
-  'use strict'
 
   var $ = window['jQuery']
 
@@ -1805,5 +1803,4 @@
 
   // expose util functions
   window['Chessboard']['fenToObj'] = fenToObj
-  window['Chessboard']['objToFen'] = objToFen
-})() // end anonymous wrapper
+  window['Chessboard']['objToFen'] = objToFen;
