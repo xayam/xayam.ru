@@ -47,7 +47,7 @@ class Builder:
                     path_list = []
                     for path in paths:
                         if task == '-':
-                            p = path[len(self.name) + 1:]
+                            p = './' + path[len(self.name) + 1:]
                             begin2 = begin.replace("{@href_style}", "href='" + p + "'")
                             begin2 = begin2.replace("{@src_script}", "src='" + p + "'")
                             begin2 = begin2.replace("{@src_image}", "src='" + p + "'")
