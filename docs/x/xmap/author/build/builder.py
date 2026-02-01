@@ -27,15 +27,10 @@ class Builder:
             self.template = f.read()
 
     def run(self):
-        rendered = self.render()
-        print(self.outputs['{+}'])
-        sys.exit()
-        for output in self.outputs['{+}']:
-            with open(output, mode='w', encoding='utf-8') as f:
-                f.write(rendered)
-            break
+        self.render()
 
     def render(self):
+        n = 1
         for match in self.input:
             for tasks in self.input[match]:
                 task_matches = re.findall(r"\{[\+\-]+\}", tasks)[0][1:-1]
@@ -44,21 +39,21 @@ class Builder:
                     task_names = task_names[0]
                 else:
                     task_names = ''
-                paths = self.input[match][tasks]
-
                 for task in task_matches:
+                    paths = self.input[match][tasks]
                     result = ''
                     begin = self.config['{' + task + '}{' + match + '}'][0] + '\n'
                     end = '\n' + self.config['{' + task + '}{' + match + '}'][1] + '\n\n'
-                    print(begin, end)
                     path_list = []
                     for path in paths:
                         if task == '-':
-                            begin = begin.replace("{@href_style}", "href='" + path + "'")
-                            begin = begin.replace("{@src_script}", "src='" + path + "'")
-                            begin = begin.replace("{@src_image}", "src='" + path + "'")
-                            result += begin
+                            p = path[len(self.name) + 1:]
+                            begin2 = begin.replace("{@href_style}", "href='" + p + "'")
+                            begin2 = begin2.replace("{@src_script}", "src='" + p + "'")
+                            begin2 = begin2.replace("{@src_image}", "src='" + p + "'")
+                            result += begin2
                             result += end
+                            # self.save(result, n, task, match)
                         elif task == '+':
                             if not path.endswith('.png'):
                                 with open(path, mode='r', encoding='utf-8') as f:
@@ -72,16 +67,26 @@ class Builder:
                         result += begin2
                         result += content
                         result += end
-                    self.template = self.template.replace(
-                        self.config["decorate"][0] + match + self.config["decorate"][1],
-                        result,
-                        1
-                    )
-        return self.template
+                    n = self.save(result, n, task, match)
 
-    def process(self):
-        try:
-            pass
-        except FileNotFoundError:
-            print(f"[WARNING] File not exists!")
-        return []
+    def save(self, result, n, task, match):
+        self.template = self.template.replace(
+            self.config["decorate"][0] + match + self.config["decorate"][1],
+            result,
+            1
+        )
+        for output in self.outputs['{' + task + '}']:
+            out = self.config['root'] + output.replace('{@number}', str(n))
+            with open(out, mode='w', encoding='utf-8') as f:
+                if n == 6:
+                    t1 = "".join([f"\\{k}" for k in self.config["decorate"][0]])
+                    t2 = self.config["temp"][0]
+                    t3 = self.config["temp"][1]
+                    t4 = "".join([f"\\{k}" for k in self.config["decorate"][1]])
+                    te = t1 + t2 + t4 + '.+?' + t1 + t3 + t4
+                    self.template = re.sub(
+                        te,'', self.template, 1,
+                        flags=re.MULTILINE | re.UNICODE | re.DOTALL
+                    )
+                f.write(self.template)
+        return n + 1

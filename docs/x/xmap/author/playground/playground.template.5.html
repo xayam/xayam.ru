@@ -78350,493 +78350,109 @@ class WebGLRenderer {
 </script>
 
 
-
-<script type='text/javascript'>
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function deepClone(obj) {
-    if (obj === null || typeof obj !== 'object') return obj;
-    if (obj instanceof Date) return new Date(obj);
-    if (obj instanceof Array) return obj.map(item => deepClone(item));
-    if (obj instanceof Object) {
-        return Object.keys(obj).reduce((acc, key) => {
-            acc[key] = deepClone(obj[key]);
-            return acc;
-        }, {});
-    }
-    return obj;
-}
+<!--{{{temp_begin}}}-->
+<script src='js/model/utils.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Materials {
-
-    constructor() {
-       this.material = {}
-       this.material.lightField = null;
-       this.material.darkField = null;
-    }
-
-    initMaterial() {
-       this.material.lightField = new MeshBasicMaterial({color: this.lightColor});
-       this.material.darkField = new MeshBasicMaterial({color: this.darkColor});
-
-       this.material.lightEdge = new LineBasicMaterial({color: this.lightColor});
-       this.material.darkEdge = new LineBasicMaterial({color: this.darkColor});
-    }
-
-}
+<script src='js/view/material.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Geometry extends Materials {
-
-    constructor() {
-        super();
-        this.geometry = {};
-    }
-
-    initGeometry() {
-       this.geometry.field = new BoxGeometry(
-           this.cellSize,
-           this.height,
-           this.cellSize
-       );
-       this.geometry.edge = new EdgesGeometry(this.geometry.field, 15);
-    }
-
-}
-</script>
-
-<script type='text/javascript'>
-
-class Board extends Geometry {
-
-    constructor() {
-        super();
-        this.board = null;
-        this.fields = [];
-        this.wireframes = [];
-    }
-
-    initBoard() {
-        this.board = new Group();
-        for (let row = 0; row < this.size; row++) {
-            this.fields.push([]);
-            this.wireframes.push([]);
-            for (let col = 0; col < this.size; col++) {
-                const isLight = (row + col) % 2 === 0;
-                const x = (col - 3.5) * this.cellSize;
-                const z = (row - 3.5) * this.cellSize;
-                const y = this.height / 2;
-
-                const geometry = this.geometry.field
-                const material = isLight ? this.material.lightField : this.material.darkField
-                const field = new Mesh(geometry, material);
-                field.position.set(x, y, z);
-
-                const edge = this.geometry.edge;
-                const edgeMaterial = isLight ? this.material.darkEdge : this.material.lightEdge;
-                const wireframe = new LineSegments(edge, edgeMaterial);
-                wireframe.position.set(x, y, z);
-
-                this.fields[row].push(field);
-                this.wireframes[row].push(wireframe);
-                this.board.add(field);
-                this.board.add(wireframe);
-            }
-        }
-        this.board.position.set(0, 0, 0);
-    }
-
-}
+<script src='js/view/geometry.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Figure extends Board {
-
-    constructor() {
-        super();
-        this.figure = null;
-    }
-
-    initFigure() {
-        //
-    }
-
-}
+<script src='js/view/board.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Cameras extends Figure {
-
-    constructor(){
-        super();
-        this.camera = null;
-    }
-
-    initCamera() {
-        this.camera = new PerspectiveCamera(
-            50,
-            this.canvas.clientWidth / this.canvas.clientHeight,
-            0.1,
-            1000
-        );
-        this.camera.position.set(- this.size * this.cellSize * 1.41,
-                                   this.size * this.cellSize * 1.41, 0
-        );
-        this.camera.lookAt(0, 0, 0);
-    }
-
-}
+<script src='js/view/figure.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Scenes extends Cameras {
-
-    constructor(){
-        super();
-        this.scene = null;
-    }
-
-    initScene() {
-        this.scene = new Scene();
-        this.scene.background = new Color(this.backgroundColor);
-        this.scene.add(this.board);
-    }
-
-}
+<script src='js/view/camera.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class KeyBoard extends Scenes {
-
-    constructor(){
-        super();
-        this.keyboard = null;
-    }
-
-    initKeyBoard() {
-
-    }
-
-}
+<script src='js/view/scene.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Mouse extends KeyBoard {
-
-    constructor(){
-        super();
-        this.mouse = null;
-    }
-
-    initMouse() {
-
-    }
-
-}
+<script src='js/controller/io/keyboard.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Touche extends Mouse {
-
-    constructor(){
-        super();
-        this.touche = null;
-    }
-
-    initTouche() {
-
-    }
-
-}
+<script src='js/controller/io/mouse.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Action extends Touche {
-
-    constructor(){
-        super();
-        this.action = null;
-    }
-
-    initAction() {
-
-    }
-
-}
+<script src='js/controller/io/touche.js'>
 
 </script>
 
-<script type='text/javascript'>
+<script src='js/controller/io/action.js'>
 
 </script>
 
-<script type='text/javascript'>
+<script src='js/controller/io/event.js'>
 
 </script>
 
-<script type='text/javascript'>
+<script src='js/controller/uci.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Rule extends Action {
-
-    constructor(){
-        super();
-        this.rule = null;
-    }
-
-    initRule() {
-
-    }
-
-}
+<script src='js/controller/command.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class Game extends Rule {
-
-    constructor(){
-        super();
-        this.game = null;
-    }
-
-    initGame() {
-
-    }
-
-}
+<script src='js/model/rule.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class User extends Game {
-
-    constructor(){
-        super();
-        this.user = null;
-    }
-
-    initUser() {
-
-    }
-
-}
+<script src='js/model/game.js'>
 
 </script>
 
-<script type='text/javascript'>
+<script src='js/model/user.js'>
 
 </script>
 
-<script type='text/javascript'>
+<script src='js/model/engine/engine.js'>
 
 </script>
 
-<script type='text/javascript'>
+<script src='js/model/engine/evaluate.js'>
 
 </script>
 
-<script type='text/javascript'>
+<script src='js/model/engine/search.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class State extends User {
-
-    constructor(canvas) {
-        super();
-        this.size = SIZE;
-        this.cellSize = CELL_SIZE;
-        this.height = HEIGHT;
-        this.halfBoard = this.size * this.cellSize / 2;
-        this.lightColor = LIGHT_COLOR;
-        this.darkColor = DARK_COLOR;
-        this.backgroundColor = BACKGROUND_COLOR;
-        this.renderer = null;
-        this.canvas = canvas;
-        this.init();
-    }
-
-    update() {
-        if (this.camera && this.renderer) {
-            this.camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight;
-            this.camera.updateProjectionMatrix();
-            this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
-        }
-    }
-
-    initState() {
-        this.renderer = new WebGLRenderer({ antialias: true });
-        this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
-        this.canvas.appendChild(this.renderer.domElement);
-    }
-
-    init() {
-        this.initMaterial()
-        this.initGeometry();
-        this.initBoard();
-        this.initFigure();
-        this.initCamera();
-        this.initScene();
-        this.initKeyBoard();
-        this.initMouse();
-        this.initTouche();
-        this.initAction();
-        this.initRule();
-        this.initGame();
-        this.initUser();
-        this.initState();
-    }
-}
-
-function animate() {
-    requestAnimationFrame(animate);
-    app.state.board.rotation.y += 0.001;
-    app.state.renderer.render(app.state.scene, app.state.camera);
-}
+<script src='js/model/engine/ai.js'>
 
 </script>
 
-<script type='text/javascript'>
-const SIZE = 8;
-const CELL_SIZE = 10;
-const HEIGHT = 2;
-const LIGHT_COLOR = 0xdddddd;
-const DARK_COLOR = 0x666666;
-const BACKGROUND_COLOR = 0xffffff;
-
-class Config {
-
-    constructor() {
-        this.vertical_layout = {};
-        this.horizontal_layout = {};
-        this.left = null;
-        this.center = null;
-        this.right = null;
-        this.board_center = null;
-    }
-
-    initConfig() {
-        this.left = document.getElementsByClassName("left")[0];
-        this.center = document.getElementsByClassName("center")[0];
-        this.right = document.getElementsByClassName("right")[0];
-        this.board_center = document.getElementsByClassName("board_center")[0];
-        this.initLayouts();
-    }
-
-    initLayouts() {
-        this.vertical_layout["this.left.style.display"] = "none";
-        this.vertical_layout["this.center.style.width"] = "100%";
-        this.vertical_layout["this.center.style.height"] = "calc(var(--cell-size) * 11.0 + 24px)";
-        this.vertical_layout["this.right.style.width"] = "100%";
-        this.vertical_layout["this.right.style.height"] = "calc(var(--cell-size) * 2.0)";
-        for (let key in this.vertical_layout) {
-            const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
-            eval(execute);
-        }
-    }
-
-    loadLayout(layout) {
-        for (let key in layout) {
-            const execute = key + " = '" + layout[key] + "';";
-            eval(execute);
-        }
-    }
-}
+<script src='js/model/state.js'>
 
 </script>
 
-<script type='text/javascript'>
-
-class App extends Config {
-
-    constructor() {
-        super();
-        this.state = null;
-        this.onReSizeFunction = (e) => {
-            this.reSizeWindow();
-        }
-        this.onLoadFunction = () => {
-            this.init();
-        }
-    }
-
-    init() {
-        this.initConfig();
-        this.state = new State(this.board_center);
-        window.addEventListener('resize', this.onReSizeFunction);
-        this.fullScreen();
-        this.onReSizeFunction(null);
-        this.state.update();
-        animate();
-    }
-
-    run() {
-        window.addEventListener("load", this.onLoadFunction);
-    }
-
-    reSizeWindow(e) {
-        if (window.innerWidth > window.innerHeight) {
-            this.loadLayout(this.horizontal_layout);
-        } else {
-            this.loadLayout(this.vertical_layout);
-        }
-        this.state.update();
-        setTimeout(this.state.update, 500);
-        setTimeout(this.state.update, 1000);
-    }
-
-    fullScreen() {
-//        document.addEventListener('fullscreenchange', () => {
-//        if (document.fullscreenElement) {
-//            console.log('Переход в полноэкранный режим (через requestFullscreen)');
-//        } else {
-//            console.log('Выход из полноэкранного режима');
-//        }
-//        });
-//        document.documentElement.requestFullscreen();
-    }
-}
+<script src='js/config.js'>
 
 </script>
 
-<script type='text/javascript'>
+<script src='js/app.js'>
 
-let app = new App();
-app.run();
+</script>
+
+<script src='js/load.js'>
 
 </script>
 
 
+<!--{{{temp_end}}}-->
+<!--{{{env_javascript}}}-->
 </body>
 </html>
