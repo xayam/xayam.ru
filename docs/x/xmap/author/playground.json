@@ -53,8 +53,7 @@
       "playground/playground.template.{@number}.html"
     ],
     "{+}": [
-      "playground.html",
-      "playground/playground.html"
+      "playground.html"
     ]
   },
   "env_style": {
