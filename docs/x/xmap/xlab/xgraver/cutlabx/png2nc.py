@@ -41,8 +41,8 @@ LOOP = "loop"   # количество проходов
 config = {
     WOOD_GRAVE: {
         ALGORITHM: algorithm,
-        SPEED: 3300,
-        POWER: 100,
+        SPEED: 4000,
+        POWER: 95,
         LOOP: 1
     },
     WOOD_BURN: {
