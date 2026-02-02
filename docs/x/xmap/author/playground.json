@@ -64,15 +64,11 @@
     ]
   },
   "dev_javascript": {
-    "{+}{three}": [
-      "playground/js/model/external/three.core.js",
-      "playground/js/model/external/three.module.js"
-    ],
     "{+}": [
-      "playground/js/model/external/jquery.js"
-    ],
-    "{+}{chess}": [
-      "playground/js/model/external/chessboard.js"
+      "playground/js/model/external/1/three.core.js",
+      "playground/js/model/external/1/three.module.js",
+      "playground/js/model/external/1/jquery.js",
+      "playground/js/model/external/1/chessboard.js"
     ]
   },
   "env_javascript": {

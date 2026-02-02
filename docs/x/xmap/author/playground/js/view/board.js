@@ -6,10 +6,11 @@ class Board extends Geometry {
         this.board = null;
         this.fields = [];
         this.wireframes = [];
+        this.chessboard = ChessBoard('chessboard', 'start')
     }
 
     initBoard() {
-        this.board = new Group();
+        this.board = new THREE.Group();
         for (let row = 0; row < this.size; row++) {
             this.fields.push([]);
             this.wireframes.push([]);
@@ -21,12 +22,12 @@ class Board extends Geometry {
 
                 const geometry = this.geometry.field
                 const material = isLight ? this.material.lightField : this.material.darkField
-                const field = new Mesh(geometry, material);
+                const field = new THREE.Mesh(geometry, material);
                 field.position.set(x, y, z);
 
                 const edge = this.geometry.edge;
                 const edgeMaterial = isLight ? this.material.darkEdge : this.material.lightEdge;
-                const wireframe = new LineSegments(edge, edgeMaterial);
+                const wireframe = new THREE.LineSegments(edge, edgeMaterial);
                 wireframe.position.set(x, y, z);
 
                 this.fields[row].push(field);

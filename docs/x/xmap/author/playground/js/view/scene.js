@@ -7,9 +7,12 @@ class Scenes extends Cameras {
     }
 
     initScene() {
-        this.scene = new Scene();
-        this.scene.background = new Color(this.backgroundColor);
+        this.scene = new THREE.Scene();
+        this.scene.background = new THREE.Color(this.backgroundColor);
         this.scene.add(this.board);
+        for (let figure in this.figures) {
+            this.scene.add(figure);
+        }
     }
 
 }

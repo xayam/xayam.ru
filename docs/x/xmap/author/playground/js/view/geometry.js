@@ -7,12 +7,12 @@ class Geometry extends Materials {
     }
 
     initGeometry() {
-       this.geometry.field = new BoxGeometry(
+       this.geometry.field = new THREE.BoxGeometry(
            this.cellSize,
            this.height,
            this.cellSize
        );
-       this.geometry.edge = new EdgesGeometry(this.geometry.field, 15);
+       this.geometry.edge = new THREE.EdgesGeometry(this.geometry.field, 15);
     }
 
 }

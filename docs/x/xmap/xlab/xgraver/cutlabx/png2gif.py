@@ -8,6 +8,24 @@ from scipy.spatial.distance import cdist
 
 np.random.seed(42)
 
+def greedy_path(pixels, last_point):
+    trajectory = []
+    dists = cdist([last_point], pixels)[0]
+    start_idx = np.argmin(dists)
+    start_point = pixels[start_idx]
+    remaining = np.delete(pixels, start_idx, axis=0)
+    current = start_point
+    cluster_path = [current]
+    while len(remaining) > 0:
+        dists = cdist([current], remaining)[0]
+        next_idx = np.argmin(dists)
+        current = remaining[next_idx]
+        cluster_path.append(current)
+        remaining = np.delete(remaining, next_idx, axis=0)
+    trajectory.extend(cluster_path)
+    last_point = cluster_path[-1]
+    return trajectory, last_point
+
 def matrix_path(pixels, last_point):
     rows = {}
     trajectory = []
@@ -30,7 +48,7 @@ def matrix_path(pixels, last_point):
     last_point = cluster_path[-1]
     return trajectory, last_point
 
-def get_trajectory(filename='input.png', animate=True):
+def get_trajectory(filename='input.png', algorithm=greedy_path, animate=True):
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
     binary_image = 255 - binary_image
@@ -76,8 +94,12 @@ def get_trajectory(filename='input.png', animate=True):
     last_point = np.array([0, 0])
     for cluster in ordered_clusters:
         pixels = cluster['pixels']  # (N, 2) — [y, x]
-        result, last_point = matrix_path(pixels, last_point)
+        result, last_point = algorithm(pixels, last_point)
         trajectory.append(result)
+        if animate:
+            trajectory.extend(result)
+        else:
+            trajectory.append(result)
     if animate:
         trajectory = np.array(trajectory)
     return image.shape[1], image.shape[0], binary_image, trajectory

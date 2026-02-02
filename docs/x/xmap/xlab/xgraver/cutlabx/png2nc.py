@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 import winsound
 
-from png2gif import get_trajectory
+from png2gif import greedy_path, matrix_path, get_trajectory
 
 #    Шаблоны заданий работы гравера:
 # 1) WOOD - установлен синий лазер;
@@ -16,9 +16,14 @@ WOOD_BURN = "wood_burn"
 PLASTIC_GRAVE = "plastic_grave"
 METAL_GRAVE = "metal_grave"
 METAL_BURN = "metal_burn"
-
+ALGORITHM = "algorithm"
+# алгоритм траекторий
+# greedy_path медленно, много памяти и хорошо
+# matrix_path быстро, мало памяти, но и иногда хуже
+algorithm = greedy_path
+# algorithm = matrix_path
 # ВВОД задания для гравера ЗДЕСЬ
-task = METAL_GRAVE
+task = WOOD_GRAVE
 
 # калибровка по точке привязки
 boundX = 5.1
@@ -35,26 +40,31 @@ LOOP = "loop"   # количество проходов
 # Все конфигурации заданий работы гравера
 config = {
     WOOD_GRAVE: {
-        SPEED: 4000,
-        POWER: 95,
+        ALGORITHM: algorithm,
+        SPEED: 3300,
+        POWER: 100,
         LOOP: 1
     },
     WOOD_BURN: {
+        ALGORITHM: algorithm,
         SPEED: 400,
         POWER: 95,
         LOOP: 5
     },
     PLASTIC_GRAVE: {
+        ALGORITHM: algorithm,
         SPEED: 1000,
         POWER: 95,
         LOOP: 1
     },
     METAL_GRAVE: {
+        ALGORITHM: algorithm,
         SPEED: 1000,
         POWER: 100,
         LOOP: 1
     },
     METAL_BURN: {
+        ALGORITHM: algorithm,
         SPEED: 400,
         POWER: 95,
         LOOP: 5
@@ -85,9 +95,9 @@ def line_pixels(y0, x0, y1, x1):
             y0 += sy
     return points
 
-def optimize(filename: str, speed: str, loop: int = 1) -> str:
+def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
     width, height, binary_image, trajectory = \
-        get_trajectory(filename=filename, animate=False)
+        get_trajectory(filename=filename, algorithm=algorithm, animate=False)
     image = np.ones_like(binary_image) * 255
     result = ""
     for i in range(len(trajectory)):
@@ -129,13 +139,14 @@ def optimize(filename: str, speed: str, loop: int = 1) -> str:
     return result
 
 
-def get_gcode(speed: int = 4000, power: int = 95, loop: int = 1):
+def get_gcode(algorithm, speed: int = 4000, power: int = 95, loop: int = 1):
     with open(f"begin.nc", 'r', encoding="UTF-8") as f:
         preamble = f.read()
     with open(f"end.nc", 'r', encoding="UTF-8") as f:
         postamble = f.read()
     speed = f"S{power * 10}.00F{speed}.00"
-    optimized_points = optimize(filename="input.png", speed=speed, loop=loop)
+    optimized_points = optimize(filename="input.png", algorithm=algorithm,
+                                speed=speed, loop=loop)
 
     with open("output.nc", 'w', encoding="UTF-8") as f:
         f.write(preamble)

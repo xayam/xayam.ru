@@ -7,7 +7,7 @@ class Cameras extends Figure {
     }
 
     initCamera() {
-        this.camera = new PerspectiveCamera(
+        this.camera = new THREE.PerspectiveCamera(
             50,
             this.canvas.clientWidth / this.canvas.clientHeight,
             0.1,

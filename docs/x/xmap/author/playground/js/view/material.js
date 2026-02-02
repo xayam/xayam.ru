@@ -8,11 +8,11 @@ class Materials {
     }
 
     initMaterial() {
-       this.material.lightField = new MeshBasicMaterial({color: this.lightColor});
-       this.material.darkField = new MeshBasicMaterial({color: this.darkColor});
+       this.material.lightField = new THREE.MeshBasicMaterial({color: this.lightColor});
+       this.material.darkField = new THREE.MeshBasicMaterial({color: this.darkColor});
 
-       this.material.lightEdge = new LineBasicMaterial({color: this.lightColor});
-       this.material.darkEdge = new LineBasicMaterial({color: this.darkColor});
+       this.material.lightEdge = new THREE.LineBasicMaterial({color: this.lightColor});
+       this.material.darkEdge = new THREE.LineBasicMaterial({color: this.darkColor});
     }
 
 }

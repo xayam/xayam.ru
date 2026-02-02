@@ -36,7 +36,7 @@ class Builder:
                 task_matches = re.findall(r"\{[\+\-]+\}", tasks)[0][1:-1]
                 task_names = re.findall(r"\{[a-zA-z0-9_]*\}", tasks)
                 if task_names:
-                    task_names = task_names[0]
+                    task_names = task_names[0][1:-1]
                 else:
                     task_names = ''
                 for task in task_matches:
@@ -56,17 +56,29 @@ class Builder:
                             # self.save(result, n, task, match)
                         elif task == '+':
                             if not path.endswith('.png'):
-                                with open(path, mode='r', encoding='utf-8') as f:
-                                    path_list.append((path, f.read()))
+                                with (open(path, mode='r', encoding='utf-8') as f):
+                                    content = f.read()
+                                    path_list.append((path, content))
                             else:
                                 with open(path, mode='rb') as f:
                                     p = "data/png:" + f.read().decode()
                                     path_list.append((p, ''))
-                    for path, content in path_list:
-                        begin2 = begin.replace("{@src_image}", "src='" + path + "'")
-                        result += begin2
-                        result += content
-                        result += end
+                    if path_list:
+                        if not task_names:
+                            for path, content in path_list:
+                                begin2 = begin.replace("{@src_image}", "src='" + path + "'")
+                                result += begin2
+                                result += content
+                                result += end
+                        else:
+                            prefix = 'var ' + task_names + ' = new class _' + task_names + ' {\n'
+                            postfix = '\n}();\n'
+                            result += begin
+                            result += prefix
+                            for path, content in path_list:
+                                result += content
+                            result += postfix
+                            result += end
                     n = self.save(result, n, task, match)
 
     def save(self, result, n, task, match):
@@ -78,7 +90,7 @@ class Builder:
         for output in self.outputs['{' + task + '}']:
             out = self.config['root'] + output.replace('{@number}', str(n))
             with open(out, mode='w', encoding='utf-8') as f:
-                if n == 6:
+                if n == 4:
                     t1 = "".join([f"\\{k}" for k in self.config["decorate"][0]])
                     t2 = self.config["temp"][0]
                     t3 = self.config["temp"][1]

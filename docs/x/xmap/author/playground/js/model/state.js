@@ -24,7 +24,7 @@ class State extends User {
     }
 
     initState() {
-        this.renderer = new WebGLRenderer({ antialias: true });
+        this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
         this.canvas.appendChild(this.renderer.domElement);
     }
