@@ -7,6 +7,6 @@ matplotlib
 numpy
 scikit-learn
 
-opencv-python
+opencv-contrib-python
 scipy
 PyAudio

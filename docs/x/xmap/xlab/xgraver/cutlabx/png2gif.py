@@ -8,6 +8,44 @@ from scipy.spatial.distance import cdist
 
 np.random.seed(42)
 
+def contour_path(pixels, last_point):
+    """
+        Строит траекторию через обход контуров OpenCV + оптимизацию соединений.
+        Работает с предварительно скелетизированным изображением.
+        """
+    # 1. Создаём бинарную маску из пикселей кластера
+    h, w = np.max(pixels, axis=0) + 10
+    mask = np.zeros((h, w), dtype=np.uint8)
+    for y, x in pixels:
+        mask[y, x] = 255
+    # 2. Находим все контуры (внешние + внутренние)
+    contours, _ = cv2.findContours(mask, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
+    # 3. Преобразуем контуры в цепочки точек [ [y0,x0], [y1,x1], ... ]
+    chains = []
+    for cnt in contours:
+        chain = [np.array([point[0][1], point[0][0]]) for point in cnt]  # [y, x]
+        if len(chain) > 1:
+            chains.append(chain)
+    # 4. Сортируем цепочки по ближайшему расстоянию от last_point
+    trajectory = []
+    current = last_point
+    while chains:
+        # Находим ближайший конец любой цепочки
+        best_idx, best_end, best_dist = None, None, float('inf')
+        for i, chain in enumerate(chains):
+            for end_idx in (0, -1):
+                d = np.linalg.norm(current - chain[end_idx])
+                if d < best_dist:
+                    best_dist, best_idx, best_end = d, i, end_idx
+        # Берём цепочку, возможно разворачиваем
+        chain = chains.pop(best_idx)
+        if best_end == -1:
+            chain = chain[::-1]
+        trajectory.extend(chain)
+        current = chain[-1]
+
+    return trajectory, current
+
 def greedy_path(pixels, last_point):
     trajectory = []
     dists = cdist([last_point], pixels)[0]
@@ -55,7 +93,13 @@ def get_trajectory(filename='input.png', algorithm=greedy_path, animate=True):
     num_labels, labels, stats, centroids = cv2.connectedComponentsWithStats(
         binary_image, connectivity=8
     )
-
+    # def skeletonize_image(bi):
+    #     skeleton = cv2.ximgproc.thinning(
+    #         bi.astype(np.uint8),
+    #         thinningType=cv2.ximgproc.THINNING_ZHANGSUEN
+    #     )
+    #     return skeleton
+    # binary_image = skeletonize_image(binary_image)
     # Пропускаем фон (метка 0)
     cluster_data = []
     for label in range(1, num_labels):

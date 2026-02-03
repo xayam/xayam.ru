@@ -1,10 +1,11 @@
+import os
 import sys
 
 import numpy as np
 import cv2
 import winsound
 
-from png2gif import greedy_path, matrix_path, get_trajectory
+from png2gif import greedy_path, matrix_path, contour_path, get_trajectory
 
 #    Шаблоны заданий работы гравера:
 # 1) WOOD - установлен синий лазер;
@@ -18,9 +19,10 @@ METAL_GRAVE = "metal_grave"
 METAL_BURN = "metal_burn"
 ALGORITHM = "algorithm"
 # алгоритм траекторий
-# greedy_path медленно, много памяти и хорошо
-# matrix_path быстро, мало памяти, но и иногда хуже
-algorithm = greedy_path
+# greedy_path медленно, плохое качество
+# matrix_path быстро, хорошее качество
+# contour_path - быстро, только контур, есть недостатки - лишние линии
+algorithm = matrix_path
 # algorithm = matrix_path
 # ВВОД задания для гравера ЗДЕСЬ
 task = WOOD_GRAVE
@@ -41,8 +43,8 @@ LOOP = "loop"   # количество проходов
 config = {
     WOOD_GRAVE: {
         ALGORITHM: algorithm,
-        SPEED: 4000,
-        POWER: 95,
+        SPEED: 7000,
+        POWER: 80,
         LOOP: 1
     },
     WOOD_BURN: {
@@ -122,8 +124,10 @@ def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
                     if binary_image[yy, xx] == 0:
                         flag = True
                         break
-                if not flag:
-                    path.append([x1, y1, x2, y2])
+                if flag:
+                    result += f"G0X{x2}Y{y2}\n"
+                    y_pred = y2
+                else:
                     s1 = f"G0X{x1}"
                     if y1 != y_pred:
                         s1 += f"Y{y1}"
@@ -134,8 +138,8 @@ def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
                     result += f"G1X{x2}"
                     result += "\n"
                     image = cv2.line(image, (xs1, ys1), (xs2, ys2),
-                                     color=(0, 0, 0), thickness=1)
-    cv2.imwrite("output.nc.png", image)
+                                         color=(0, 0, 0), thickness=1)
+    cv2.imwrite(filename + ".nc.png", image)
     return result
 
 
@@ -144,17 +148,20 @@ def get_gcode(algorithm, speed: int = 4000, power: int = 95, loop: int = 1):
         preamble = f.read()
     with open(f"end.nc", 'r', encoding="UTF-8") as f:
         postamble = f.read()
-    speed = f"S{power * 10}.00F{speed}.00"
-    optimized_points = optimize(filename="input.png", algorithm=algorithm,
-                                speed=speed, loop=loop)
+    conf = f"S{power * 10}.00F{speed}.00"
+    inputs = [f for f in os.listdir('./') if f.endswith('.png') and f.startswith('matrix.')]
+    for filename in inputs:
+        print(filename)
+        optimized_points = optimize(filename=filename, algorithm=algorithm,
+                                    speed=conf, loop=loop)
 
-    with open("output.nc", 'w', encoding="UTF-8") as f:
-        f.write(preamble)
-        f.write("\n\n")
-        f.write(";L0\n")
-        f.write(optimized_points)
-        f.write("\n\n")
-        f.write(postamble)
+        with open(f"{filename}-{speed}-{power}-{loop}.nc", 'w', encoding="UTF-8") as f:
+            f.write(preamble)
+            f.write("\n\n")
+            f.write(";L0\n")
+            f.write(optimized_points)
+            f.write("\n\n")
+            f.write(postamble)
 
 
 if __name__ == "__main__":
