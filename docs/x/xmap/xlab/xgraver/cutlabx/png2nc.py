@@ -149,7 +149,10 @@ def get_gcode(algorithm, speed: int = 4000, power: int = 95, loop: int = 1):
     with open(f"end.nc", 'r', encoding="UTF-8") as f:
         postamble = f.read()
     conf = f"S{power * 10}.00F{speed}.00"
-    inputs = [f for f in os.listdir('./') if f.endswith('.png') and f.startswith('matrix.')]
+    inputs = [
+        f for f in os.listdir('./')
+        if f.endswith('all.png') and f.startswith('matrix.')
+    ]
     for filename in inputs:
         print(filename)
         optimized_points = optimize(filename=filename, algorithm=algorithm,
