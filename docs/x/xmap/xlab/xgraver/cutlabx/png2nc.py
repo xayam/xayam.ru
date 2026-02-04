@@ -10,11 +10,12 @@ from png2gif import greedy_path, matrix_path, contour_path, get_trajectory
 # matrix_path быстро, хорошее качество
 # contour_path - быстро, только контур, есть недостатки - лишние линии
 algorithms = {
-    "matrix": matrix_path,
+    "matrix": matrix_path, # для гравировки
     "contour": contour_path,
-    "greedy": greedy_path # TODO плохой недоделанный алгоритм
+    "greedy": greedy_path # TODO плохой недоделанный алгоритм, работает для резки по линиям
 }
 materials = {
+    "burn": "burn",
     "osina": "wood_light",
     "buk": "wood_hard",
     "bereza": "wood_hard",
@@ -32,40 +33,19 @@ widthA4 = 297.0
 heightA4 = 210.0
 
 # TODO удалить это
-SPEED = "speed" # скорость передвижения лазера
-POWER = "power" # мощность включения лазера в процентах
-LOOP = "loop"   # количество проходов
 config1 = {
-    "WOOD_GRAVE": {
-        "ALGORITHM": "algorithm",
-        SPEED: 7000,
-        POWER: 80,
-        LOOP: 1
-    },
-    "WOOD_BURN": {
-        "ALGORITHM": "algorithm",
-        SPEED: 400,
-        POWER: 95,
-        LOOP: 5
-    },
     "PLASTIC_GRAVE": {
         "ALGORITHM": "algorithm",
-        SPEED: 1000,
-        POWER: 95,
-        LOOP: 1
+        "SPEED": 1000,
+        "POWER": 95,
+        "LOOP": 1
     },
     "METAL_GRAVE": {
         "ALGORITHM": "algorithm",
-        SPEED: 1000,
-        POWER: 100,
-        LOOP: 1
+        "SPEED": 1000,
+        "POWER": 100,
+        "LOOP": 1
     },
-    "METAL_BURN": {
-        "ALGORITHM": "algorithm",
-        SPEED: 400,
-        POWER: 95,
-        LOOP: 5
-    }
 }
 
 
@@ -149,9 +129,9 @@ def get_gcode():
         s2 = s.split("-")
         algorithm = algorithms[s2[0]]
         # material = materials[s2[1]]
-        speed = int(s2[2])
-        power = int(s2[3])
-        loop = int(s2[4])
+        speed = int(s2[2]) # скорость передвижения лазера
+        power = int(s2[3]) # мощность включения лазера в процентах
+        loop = int(s2[4]) # количество проходов
         conf = f"S{power * 10}.00F{speed}.00"
         print(conf)
         optimized_points = optimize(filename=filename, algorithm=algorithm,
