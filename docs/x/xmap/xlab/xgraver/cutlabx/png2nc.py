@@ -148,6 +148,8 @@ def get_gcode():
         s = filename.split("--")[1]
         s2 = s.split("-")
         algorithm = algorithms[s2[0]]
+        material = algorithms[s2[1]]
+        assert material in materials
         speed = int(s2[2])
         power = int(s2[3])
         loop = int(s2[4])
