@@ -22,7 +22,6 @@ materials = {
     "plastic": "plastic",
     "metal": "metal"
 }
-# ВВОД задания для гравера ЗДЕСЬ
 
 # калибровка по точке привязки
 boundX = 5.1
@@ -32,11 +31,10 @@ boundY = 50.1
 widthA4 = 297.0
 heightA4 = 210.0
 
+# TODO удалить это
 SPEED = "speed" # скорость передвижения лазера
 POWER = "power" # мощность включения лазера в процентах
 LOOP = "loop"   # количество проходов
-
-# Все конфигурации заданий работы гравера
 config = {
     "WOOD_GRAVE": {
         "ALGORITHM": "algorithm",
@@ -69,7 +67,6 @@ config = {
         LOOP: 5
     }
 }
-
 
 
 def line_pixels(y0, x0, y1, x1):
