@@ -35,7 +35,7 @@ heightA4 = 210.0
 SPEED = "speed" # скорость передвижения лазера
 POWER = "power" # мощность включения лазера в процентах
 LOOP = "loop"   # количество проходов
-config = {
+config1 = {
     "WOOD_GRAVE": {
         "ALGORITHM": "algorithm",
         SPEED: 7000,
@@ -130,7 +130,7 @@ def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
                     result += "\n"
                     image = cv2.line(image, (xs1, ys1), (xs2, ys2),
                                          color=(0, 0, 0), thickness=1)
-    cv2.imwrite(filename + ".nc.png", image)
+    cv2.imwrite(filename[:-3] + ".nc.png", image)
     return result
 
 
