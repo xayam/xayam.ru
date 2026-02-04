@@ -1,31 +1,28 @@
 import os
-import sys
-
 import numpy as np
 import cv2
 import winsound
 
 from png2gif import greedy_path, matrix_path, contour_path, get_trajectory
 
-#    Шаблоны заданий работы гравера:
-# 1) WOOD - установлен синий лазер;
-# 2) PLASTIC/METAL - установлен красный лазер;
-# 3) GRAVE - гравировка (один проход);
-# 4) BURN - резка (несколько проходов по кластерам, обычно хватает 5 раз);
-WOOD_GRAVE = "wood_grave"
-WOOD_BURN = "wood_burn"
-PLASTIC_GRAVE = "plastic_grave"
-METAL_GRAVE = "metal_grave"
-METAL_BURN = "metal_burn"
-ALGORITHM = "algorithm"
 # алгоритм траекторий
 # greedy_path медленно, плохое качество
 # matrix_path быстро, хорошее качество
 # contour_path - быстро, только контур, есть недостатки - лишние линии
-algorithm = matrix_path
-# algorithm = matrix_path
+algorithms = {
+    "matrix": matrix_path,
+    "contour": contour_path,
+    "greedy": greedy_path # TODO плохой недоделанный алгоритм
+}
+materials = {
+    "osina": "wood_light",
+    "buk": "wood_hard",
+    "bereza": "wood_hard",
+    "acril": "acril",
+    "plastic": "plastic",
+    "metal": "metal"
+}
 # ВВОД задания для гравера ЗДЕСЬ
-task = WOOD_GRAVE
 
 # калибровка по точке привязки
 boundX = 5.1
@@ -41,40 +38,38 @@ LOOP = "loop"   # количество проходов
 
 # Все конфигурации заданий работы гравера
 config = {
-    WOOD_GRAVE: {
-        ALGORITHM: algorithm,
+    "WOOD_GRAVE": {
+        "ALGORITHM": "algorithm",
         SPEED: 7000,
         POWER: 80,
         LOOP: 1
     },
-    WOOD_BURN: {
-        ALGORITHM: algorithm,
+    "WOOD_BURN": {
+        "ALGORITHM": "algorithm",
         SPEED: 400,
         POWER: 95,
         LOOP: 5
     },
-    PLASTIC_GRAVE: {
-        ALGORITHM: algorithm,
+    "PLASTIC_GRAVE": {
+        "ALGORITHM": "algorithm",
         SPEED: 1000,
         POWER: 95,
         LOOP: 1
     },
-    METAL_GRAVE: {
-        ALGORITHM: algorithm,
+    "METAL_GRAVE": {
+        "ALGORITHM": "algorithm",
         SPEED: 1000,
         POWER: 100,
         LOOP: 1
     },
-    METAL_BURN: {
-        ALGORITHM: algorithm,
+    "METAL_BURN": {
+        "ALGORITHM": "algorithm",
         SPEED: 400,
         POWER: 95,
         LOOP: 5
     }
 }
 
-# не менять
-task = config[task]
 
 
 def line_pixels(y0, x0, y1, x1):
@@ -106,7 +101,6 @@ def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
         for l in range(loop):
             print(f"{i + 1}/{len(trajectory)} : {l + 1}/{loop}")
             cluster = trajectory[i]
-            path = []
             y_pred = None
             for j in range(1, len(cluster)):
                 flag = False
@@ -143,22 +137,28 @@ def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
     return result
 
 
-def get_gcode(algorithm, speed: int = 4000, power: int = 95, loop: int = 1):
+def get_gcode():
     with open(f"begin.nc", 'r', encoding="UTF-8") as f:
         preamble = f.read()
     with open(f"end.nc", 'r', encoding="UTF-8") as f:
         postamble = f.read()
-    conf = f"S{power * 10}.00F{speed}.00"
     inputs = [
         f for f in os.listdir('./')
         if f.endswith('all.png') and f.startswith('matrix.')
     ]
     for filename in inputs:
         print(filename)
+        s = filename.split("--")[1]
+        s2 = s.split("-")
+        algorithm = algorithms[s2[0]]
+        speed = int(s2[2])
+        power = int(s2[3])
+        loop = int(s2[4])
+        conf = f"S{power * 10}.00F{speed}.00"
         optimized_points = optimize(filename=filename, algorithm=algorithm,
                                     speed=conf, loop=loop)
 
-        with open(f"{filename}-{speed}-{power}-{loop}.nc", 'w', encoding="UTF-8") as f:
+        with open(f"{filename[:-3]}nc", 'w', encoding="UTF-8") as f:
             f.write(preamble)
             f.write("\n\n")
             f.write(";L0\n")
@@ -168,5 +168,5 @@ def get_gcode(algorithm, speed: int = 4000, power: int = 95, loop: int = 1):
 
 
 if __name__ == "__main__":
-    get_gcode(**task)
+    get_gcode()
     winsound.Beep(1000, 1500)
