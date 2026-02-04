@@ -130,7 +130,7 @@ def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
                     result += "\n"
                     image = cv2.line(image, (xs1, ys1), (xs2, ys2),
                                          color=(0, 0, 0), thickness=1)
-    cv2.imwrite(filename[:-3] + ".nc.png", image)
+    cv2.imwrite(filename[:-3] + "nc.png", image)
     return result
 
 
@@ -148,12 +148,12 @@ def get_gcode():
         s = filename.split("--")[1]
         s2 = s.split("-")
         algorithm = algorithms[s2[0]]
-        material = algorithms[s2[1]]
-        assert material in materials
+        # material = materials[s2[1]]
         speed = int(s2[2])
         power = int(s2[3])
         loop = int(s2[4])
         conf = f"S{power * 10}.00F{speed}.00"
+        print(conf)
         optimized_points = optimize(filename=filename, algorithm=algorithm,
                                     speed=conf, loop=loop)
 
