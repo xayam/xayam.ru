@@ -74,8 +74,8 @@ def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
         get_trajectory(filename=filename, algorithm=algorithm, animate=False)
     image = np.ones_like(binary_image) * 255
     result = ""
-    for i in range(len(trajectory)):
-        for l in range(loop):
+    for l in range(loop):
+        for i in range(len(trajectory)):
             print(f"{i + 1}/{len(trajectory)} : {l + 1}/{loop}")
             cluster = trajectory[i]
             y_pred = None
