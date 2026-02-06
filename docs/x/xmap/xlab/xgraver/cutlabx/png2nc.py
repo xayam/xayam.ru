@@ -18,6 +18,7 @@ materials = {
     "burn": "burn",
     "osina": "wood_light",
     "buk": "wood_hard",
+    "dub": "wood_hard",
     "bereza": "wood_hard",
     "acril": "acril",
     "plastic": "plastic",
