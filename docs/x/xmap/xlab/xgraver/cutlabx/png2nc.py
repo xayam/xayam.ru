@@ -17,6 +17,7 @@ algorithms = {
 materials = {
     "burn": "burn",
     "osina": "wood_light",
+    "fanera": "wood_light",
     "buk": "wood_hard",
     "dub": "wood_hard",
     "bereza": "wood_hard",
