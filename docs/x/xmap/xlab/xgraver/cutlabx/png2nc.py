@@ -6,13 +6,13 @@ import winsound
 from png2gif import greedy_path, matrix_path, contour_path, get_trajectory
 
 # алгоритм траекторий
-# greedy_path медленно, плохое качество
-# matrix_path быстро, хорошее качество
+# greedy_path медленно, для сложных картинок
+# matrix_path быстро, для текста и мелких кластеров
 # contour_path - быстро, только контур, есть недостатки - лишние линии
 algorithms = {
-    "matrix": matrix_path, # для гравировки
+    "matrix": matrix_path,
     "contour": contour_path,
-    "greedy": greedy_path # TODO плохой недоделанный алгоритм, работает для резки по линиям
+    "greedy": greedy_path
 }
 materials = {
     "burn": "burn",

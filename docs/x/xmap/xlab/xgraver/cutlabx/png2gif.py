@@ -5,14 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from scipy.spatial.distance import cdist
+from telebot.service_utils import chunks
 
 np.random.seed(42)
 
 def contour_path(pixels, last_point):
-    """
-        Строит траекторию через обход контуров OpenCV + оптимизацию соединений.
-        Работает с предварительно скелетизированным изображением.
-        """
     # 1. Создаём бинарную маску из пикселей кластера
     h, w = np.max(pixels, axis=0) + 10
     mask = np.zeros((h, w), dtype=np.uint8)
@@ -43,7 +40,6 @@ def contour_path(pixels, last_point):
             chain = chain[::-1]
         trajectory.extend(chain)
         current = chain[-1]
-
     return trajectory, current
 
 def greedy_path(pixels, last_point):
@@ -86,26 +82,21 @@ def matrix_path(pixels, last_point):
     last_point = cluster_path[-1]
     return trajectory, last_point
 
-def get_trajectory(filename='input.png', algorithm=greedy_path, animate=True):
+def get_trajectory(filename='input.png',
+                   algorithm=greedy_path, animate=True,
+                   max_cluster_size=2000):
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
     binary_image = 255 - binary_image
     num_labels, labels, stats, centroids = cv2.connectedComponentsWithStats(
-        binary_image, connectivity=8
+        binary_image, connectivity=4
     )
-    # def skeletonize_image(bi):
-    #     skeleton = cv2.ximgproc.thinning(
-    #         bi.astype(np.uint8),
-    #         thinningType=cv2.ximgproc.THINNING_ZHANGSUEN
-    #     )
-    #     return skeleton
-    # binary_image = skeletonize_image(binary_image)
-    # Пропускаем фон (метка 0)
     cluster_data = []
     for label in range(1, num_labels):
         mask = (labels == label)
         ys, xs = np.where(mask)
         pixels = np.column_stack([ys, xs])  # (N, 2), [row, col] = [y, x]
+
         centroid = centroids[label]  # (x, y)
         cluster_data.append({
             'label': label,
@@ -138,12 +129,16 @@ def get_trajectory(filename='input.png', algorithm=greedy_path, animate=True):
     last_point = np.array([0, 0])
     for cluster in ordered_clusters:
         pixels = cluster['pixels']  # (N, 2) — [y, x]
-        result, last_point = algorithm(pixels, last_point)
-        trajectory.append(result)
-        if animate:
-            trajectory.extend(result)
-        else:
+        chunks =  [
+            pixels[i:i + max_cluster_size]
+            for i in range(0, len(pixels), max_cluster_size)]
+        for chunk in chunks:
+            result, last_point = algorithm(chunk, last_point)
             trajectory.append(result)
+            if animate:
+                trajectory.extend(result)
+            else:
+                trajectory.append(result)
     if animate:
         trajectory = np.array(trajectory)
     return image.shape[1], image.shape[0], binary_image, trajectory
