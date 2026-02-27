@@ -84,7 +84,7 @@ def matrix_path(pixels, last_point):
 
 def get_trajectory(filename='input.png',
                    algorithm=greedy_path, animate=True,
-                   max_cluster_size=2000):
+                   max_cluster_size=1000):
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
     binary_image = 255 - binary_image
