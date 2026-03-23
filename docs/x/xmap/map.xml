@@ -26,19 +26,6 @@
             </annotation>
         </description>
     </item>
-    <item active="false">
-        <id>forms</id>
-        <description>
-            <name>
-                <ru>Формы</ru>
-                <en>Forms</en>
-            </name>
-            <annotation>
-                <ru>Больше, чем одна форма [в разработке]</ru>
-                <en>Больше, чем одна форма [в разработке]</en>
-            </annotation>
-        </description>
-    </item>
     <item active="true">
         <id>author</id>
         <description>
