@@ -29,6 +29,13 @@
                         <xsl:copy-of select="$s01_classic_games__01_chess_ru" />
                         <xsl:copy-of select="$s01_classic_games__02_checkers_ru" />
                     </div>
+
+
+
+                    <div id="section-99">
+                        <xsl:copy-of select="$s99_end__98_backcover2_ru" />
+                        <xsl:copy-of select="$s99_end__99_backcover_ru" />
+                    </div>
                 </div>
 
             </body>
