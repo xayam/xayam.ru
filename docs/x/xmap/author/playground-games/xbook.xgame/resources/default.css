@@ -1,6 +1,7 @@
 @page {
     size: A5 portrait;
     margin: 0;
+    padding: 0;
 }
 
 * {
@@ -24,11 +25,17 @@ img {
 }
 
 #book div {
-    border: 1px solid black;
+    border: 0 solid black;
 }
 
 .pageA5 {
+    page-break-before: always;
     min-width: 300px;
     max-width: 148mm;
+    width: 148mm;
     height: 210mm;
+}
+
+.page-break {
+    page-break-before: always;
 }

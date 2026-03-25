@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ru>
-        <div>
+        <div class="page-break">
             <a name="backcover" />
             <img src="xbook.xgame/resources/backcover.jpg" />
         </div>
