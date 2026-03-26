@@ -24,7 +24,7 @@
                         <xsl:copy-of select="$s00_begin__04_table_ru" />
                         <xsl:copy-of select="$s00_begin__05_intro_ru" />
                     </div>
-                    <div id="section-01">
+                    <div id="section-01" class="page-break">
                         <h1><xsl:value-of select="$s01_classic_games_ru" /></h1>
                         <xsl:copy-of select="$s01_classic_games__01_chess_ru" />
                         <xsl:copy-of select="$s01_classic_games__02_checkers_ru" />
