@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ru>
         <div>
-            2
+            <a name="checkers" />
+            <h1>Шашки</h1>
+            <p>
+                123
+            </p>
+            <p>
+                456
+            </p>
+            <p>
+                789
+            </p>
         </div>
 </ru>
