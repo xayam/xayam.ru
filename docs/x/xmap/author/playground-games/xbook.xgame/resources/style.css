@@ -27,3 +27,9 @@ p {
 .table a {
     margin-left: 30px;
 }
+
+.memory {
+    padding: 50px;
+    text-align: right;
+    font-style: italic;
+}

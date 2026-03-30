@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ru>
         <div class="pageA5">
-            cover2
+            <a name="cover2" />
+            <p class="memory">
+                Посвящается моей сестре...
+            </p>
         </div>
 </ru>
