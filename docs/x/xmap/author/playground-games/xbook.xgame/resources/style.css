@@ -5,13 +5,23 @@ p {
     margin: 10px;
 }
 
+#book {
+    min-width: 300px;
+    max-width: 148mm;
+    margin: 0 auto;
+}
+
+#book div {
+    border: 0 solid black;
+}
+
 #book div h1 {
     margin-top: 20px;
     text-align: center;
 }
 
 .table h2 {
-    margin-left: 15px;
+    margin: 10px;
 }
 
 .table a {
