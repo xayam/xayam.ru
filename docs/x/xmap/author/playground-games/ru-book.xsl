@@ -38,7 +38,7 @@
                     </div>
 
 
-                    <div id="section-99">
+                    <div id="section-99" class="page-break">
                         <xsl:copy-of select="$s99_end__98_backcover2_ru" />
                         <xsl:copy-of select="$s99_end__99_backcover_ru" />
                     </div>
