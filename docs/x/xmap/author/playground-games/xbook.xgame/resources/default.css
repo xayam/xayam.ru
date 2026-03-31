@@ -19,6 +19,10 @@ img {
     background-repeat: no-repeat;
 }
 
+a:visited {
+    color: blue;
+}
+
 .pageA5 {
     page-break-before: always;
     min-width: 300px;

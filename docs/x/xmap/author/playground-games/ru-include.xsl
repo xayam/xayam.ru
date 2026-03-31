@@ -4,6 +4,7 @@
 
     <xsl:include href="00-begin/ru-sections.xsl" />
     <xsl:include href="01-classic-games/ru-sections.xsl" />
+    <xsl:include href="02-with-dice/ru-sections.xsl" />
 
     <xsl:include href="99-end/ru-sections.xsl" />
 </xsl:stylesheet>
