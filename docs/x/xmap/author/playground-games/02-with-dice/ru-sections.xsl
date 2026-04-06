@@ -5,4 +5,5 @@
     <xsl:variable name="s02_with_dice__02_random_chess_ru" select="document('02-random-chess/ru.xml')/ru/div" />
     <xsl:variable name="s02_with_dice__03_chess_with_d12_ru" select="document('03-chess-with-D12/ru.xml')/ru/div" />
     <xsl:variable name="s02_with_dice__04_chess_with_3xd12_ru" select="document('04-chess-with-3xD12/ru.xml')/ru/div" />
+    <xsl:variable name="s02_with_dice__05_random_other_ru" select="document('05-random-other/ru.xml')/ru/div" />
 </xsl:stylesheet>

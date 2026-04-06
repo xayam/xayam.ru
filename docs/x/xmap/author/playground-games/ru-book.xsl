@@ -35,6 +35,7 @@
                         <xsl:copy-of select="$s02_with_dice__02_random_chess_ru" />
                         <xsl:copy-of select="$s02_with_dice__03_chess_with_d12_ru" />
                         <xsl:copy-of select="$s02_with_dice__04_chess_with_3xd12_ru" />
+                        <xsl:copy-of select="$s02_with_dice__05_random_other_ru" />
                     </div>
 
 
