@@ -16,6 +16,7 @@ pillow
 groundingdino-py
 segment-anything
 ultralytics
+mobilesam-mirror
 
 opencv-contrib-python
 scipy

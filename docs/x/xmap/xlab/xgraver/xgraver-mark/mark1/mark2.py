@@ -8,9 +8,9 @@ from mobile_sam import sam_model_registry, SamPredictor
 # === НАСТРОЙКИ ===
 INPUT_FILE = "input.jpg"
 OUTPUT_FILE = "output_subpixel.jpg"
-SAM_WEIGHTS = "mobile_sam.pt"  # ← Ваш локальный файл
-CLASSES = ["dice", "die", "D6", "D12", "cube", "game piece"]
-CONF_THRESHOLD = 0.25
+SAM_WEIGHTS = "sam_vit_h_4b8939.pth"  # ← Ваш локальный файл
+CLASSES = ["pentagon", "пятиугольник"]
+CONF_THRESHOLD = 0.005
 # =================
 
 if not os.path.exists(INPUT_FILE):
