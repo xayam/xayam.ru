@@ -29,20 +29,25 @@ def detect(prompts=("dice", "other"), img_source="input.jpg"):
     draw = ImageDraw.Draw(image)
     # font = ImageFont.load_default()
     count = 0
+    result = []
     for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
         if score > 0.3:
             count += 1
             box = [int(i) for i in box.tolist()]
             class_name = prompts[label]
+            sizes = box[0] - 20, box[1] - 20, box[2] + 20, box[3] + 20
+            output_path = f"{img_source}.output{count}.jpg"
+            result.append(output_path)
+            saver = image.crop(sizes)
+            saver.save(output_path)
             print(class_name, str(box[2] - box[0]), str(score))
-            draw.rectangle(box, outline="lime", width=3)
+            draw.rectangle(sizes, outline="lime", width=3)
             # text = f"{class_name} {score:.2f}"
             # draw.text((box[0], box[1]), text, fill="lime", font=font)
-    # Сохранение и показ
+    print(f"✅ Обнаружено {count} объектов")
     output_path = f"{img_source}.output.jpg"
     image.save(output_path)
-    print(f"✅ Обнаружено {count} объектов")
-    print(f"✅ Результат сохранён в {output_path}")
+    return result
 
 def main():
     detect()
