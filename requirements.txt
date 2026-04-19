@@ -10,13 +10,8 @@ scikit-learn
 opencv-python
 transformers
 torch
-torchvision
-supervision
 pillow
-groundingdino-py
-segment-anything
-ultralytics
-mobilesam-mirror
+trimesh
 
 opencv-contrib-python
 scipy
