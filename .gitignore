@@ -19,5 +19,6 @@ docs/xportfolios/__secret__.py
 *.zip
 *.7z
 *.rar
-
+*.pth
+*.pt
 *admin.php

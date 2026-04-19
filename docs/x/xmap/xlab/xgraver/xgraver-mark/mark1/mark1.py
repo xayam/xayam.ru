@@ -1,36 +1,41 @@
 import cv2
+import numpy as np
+from transformers import pipeline
+from PIL import Image
+import sys
+import os
 
-# 1. Захват одного кадра
-cap = cv2.VideoCapture(0)
-ret, frame = cap.read()
-cap.release()
-if not ret:
-    raise SystemExit("❌ Камера не отвечает")
+INPUT_FILE = "input.jpg"  # Ваше изображение
+OUTPUT_FILE = "output.jpg"  # Результат с точками
 
-# 2. Базовая обработка
-gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-blur = cv2.GaussianBlur(gray, (9, 9), 0)
-thresh = cv2.adaptiveThreshold(blur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, 
-                               cv2.THRESH_BINARY_INV, 11, 5)
+if not os.path.exists(INPUT_FILE):
+    sys.exit("❌ Файл не найден. Положите картинку рядом со скриптом.")
 
-# 3. Поиск центров
-contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+print("⏳ Загрузка AI-модели (первый запуск скачает ~350 МБ)...")
+# OWLv2: современная zero-shot модель для детекции по текстовому запросу
+detector = pipeline("zero-shot-object-detection", model="google/owlv2-base-patch16-ensemble")
+
+image = Image.open(INPUT_FILE)
+print("🔍 Поиск верхней грани кубиков D12 додекаэдра")
+# Ищем по синонимам, порог уверенности 0.15 отбрасывает мусор
+results = detector(image,
+                   candidate_labels=["dice",
+                                     ""],
+                   threshold=0.15
+                   )
+
+img_cv = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 count = 0
-for cnt in contours:
-    area = cv2.contourArea(cnt)
-    # 👇 Подстройте этот диапазон под ваше расстояние камеры
-    if 4000 < area < 200000:  
-        M = cv2.moments(cnt)
-        if M["m00"] != 0:
-            cx, cy = int(M["m10"]/M["m00"]), int(M["m01"]/M["m00"])
-            cv2.circle(frame, (cx, cy), 8, (0, 0, 255), -1)   # точка
-            cv2.circle(frame, (cx, cy), 14, (0, 255, 0), 2)   # обводка
-            count += 1
 
-# 4. Вывод
-cv2.imwrite("output.jpg", frame)
-print(f"✅ Готово. Найдено центров: {count}")
-print("🖼️ Откройте output.jpg или нажмите любую клавишу для просмотра")
-cv2.imshow("Result", frame)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+for res in results:
+    box = res["box"]
+    # Центр ограничивающей рамки
+    cx = int((box["xmin"] + box["xmax"]) / 2)
+    cy = int((box["ymin"] + box["ymax"]) / 2)
+
+    cv2.circle(img_cv, (cx, cy), 10, (0, 255, 0), -1)  # 🟢 Центр
+    cv2.circle(img_cv, (cx, cy), 18, (0, 0, 255), 2)  # 🔴 Обводка
+    count += 1
+
+cv2.imwrite(OUTPUT_FILE, img_cv)
+print(f"✅ Готово. Найдено кубиков: {count}. Сохранено в {OUTPUT_FILE}")
