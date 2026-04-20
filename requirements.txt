@@ -10,8 +10,14 @@ scikit-learn
 opencv-python
 transformers
 torch
-pillow
 trimesh
+
+torchvision
+torchaudio
+diffusers
+accelerate
+pillow
+safetensors
 
 opencv-contrib-python
 scipy

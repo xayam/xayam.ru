@@ -2,6 +2,8 @@ import torch
 from transformers import AutoProcessor, Owlv2ForObjectDetection
 from PIL import Image, ImageDraw
 
+from contour import main as contour_main
+
 # 1. Загрузка модели и процессора
 MODEL_ID = "google/owlv2-base-patch16-ensemble"
 processor = AutoProcessor.from_pretrained(MODEL_ID)
@@ -31,15 +33,21 @@ def detect(prompts=("dice", "other"), img_source="input.jpg"):
     count = 0
     result = []
     for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
-        if score > 0.39:
+        if score > 0.3:
             count += 1
             box = [int(i) for i in box.tolist()]
             class_name = prompts[label]
-            sizes = box[0] - 20, box[1] - 20, box[2] + 20, box[3] + 20
+            sizes = box[0] - 0, box[1] - 0, box[2] + 0, box[3] + 0
             output_path = f"{img_source}.output{count}.jpg"
-            result.append(output_path)
             saver = image.crop(sizes)
-            saver.save(output_path)
+            result.append({
+                "name": output_path,
+                "width": image.width,
+                "height": image.height,
+                "input_box": sizes,
+                "input_image": saver
+            })
+            # saver.save(output_path)
             print(class_name, str(box[2] - box[0]), str(score))
             draw.rectangle(sizes, outline="lime", width=3)
             # text = f"{class_name} {score:.2f}"
@@ -50,7 +58,8 @@ def detect(prompts=("dice", "other"), img_source="input.jpg"):
     return result
 
 def main():
-    detect()
+    results = detect()
+    contour_main(results)
 
 if __name__ == "__main__":
     main()
