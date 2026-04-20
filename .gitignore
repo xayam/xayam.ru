@@ -22,4 +22,5 @@ docs/xportfolios/__secret__.py
 *.rar
 *.pth
 *.pt
+*.gguf
 *admin.php
