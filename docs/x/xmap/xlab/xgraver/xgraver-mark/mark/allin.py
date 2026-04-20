@@ -5,7 +5,7 @@ import io
 
 client = OpenAI(
     base_url="http://127.0.0.1:8045/v1",
-    api_key="sk-faa2293c43b4415abd74d7a60d3f5f6d"
+    api_key="sk-2e7c928a6f5a4d5e829677fbbc5b98a5"
 )
 
 def encode_image(image_path):
