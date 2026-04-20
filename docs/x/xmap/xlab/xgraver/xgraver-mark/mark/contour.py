@@ -6,6 +6,7 @@ from diffusers import StableDiffusionControlNetPipeline, ControlNetModel, UniPCM
 from diffusers.utils import load_image
 import warnings
 
+from smooth import smooth_wood_preserve_edges
 from finder import main as find_finder
 
 warnings.filterwarnings("ignore")
@@ -68,16 +69,27 @@ def main(mark_input):
     detector = CannyEdgeDetector(device="cpu")  # или "cuda" для GPU
     images = []
     for mark in mark_input:
-        edges, original = detector.extract_canny_edges(
-            mark["input_image"],  # ваше изображение
-            low_threshold=5,  # ниже = больше деталей
-            high_threshold=30  # выше = только сильные края
-        )
+        # _, original = detector.extract_canny_edges(
+        #     mark["input_image"],  # ваше изображение
+        #     # low_threshold=5,  # ниже = больше деталей
+        #     # high_threshold=30  # выше = только сильные края
+        # )
+        original = mark["input_image"]
         img_cv = np.array(mark["input_image"])
+        img_cv = smooth_wood_preserve_edges(
+            img_cv,
+            d=30,  # сила размытия (9-15)
+            sigma_color=60,  # защита по цвету (30-80)
+            sigma_space=60,  # защита по пространству (30-80)
+            canny_low=20,  # порог Canny: ниже = больше рёбер
+            canny_high=80,  # порог Canny: выше = только чёткие границы
+            dilate_k=3,  # толщина защитной зоны вокруг рёбер
+            soft_blend=True  # True = плавный переход, False = жёсткая маска
+        )
         gray_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
         # blurred = cv2.GaussianBlur(gray_cv, (7, 7), 0)
-        blurred = cv2.bilateralFilter(gray_cv, 9, 75, 75)
-        edges_cv = cv2.Canny(blurred, 5, 30)
+        blurred = cv2.bilateralFilter(gray_cv, 7, 60, 60)
+        edges_cv = cv2.Canny(blurred, 7, 20)
         images.append({
             "result": find_finder(mark, original, edges_cv),
             "edges": edges_cv
