@@ -4,7 +4,7 @@ venv/
 .idea/
 __pycache__/
 .run/
-__secret__.py
+docs/x/xmap/xlab/xgraver/xgraver-mark/mark/__secret__.py
 docs/x/xmap/other/comics/rus/*
 !docs/x/xmap/other/comics/rus/__init__.py
 !docs/x/xmap/other/comics/rus/.htaccess
