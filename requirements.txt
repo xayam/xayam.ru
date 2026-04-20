@@ -22,3 +22,5 @@ safetensors
 opencv-contrib-python
 scipy
 PyAudio
+
+llama-cpp-python
