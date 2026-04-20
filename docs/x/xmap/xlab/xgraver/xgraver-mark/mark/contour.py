@@ -70,13 +70,14 @@ def main(mark_input):
     for mark in mark_input:
         edges, original = detector.extract_canny_edges(
             mark["input_image"],  # ваше изображение
-            low_threshold=9,  # ниже = больше деталей
-            high_threshold=27  # выше = только сильные края
+            low_threshold=5,  # ниже = больше деталей
+            high_threshold=30  # выше = только сильные края
         )
         img_cv = np.array(mark["input_image"])
         gray_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
-        blurred = cv2.GaussianBlur(gray_cv, (9, 9), 0)
-        edges_cv = cv2.Canny(blurred, 9, 27)
+        # blurred = cv2.GaussianBlur(gray_cv, (7, 7), 0)
+        blurred = cv2.bilateralFilter(gray_cv, 9, 75, 75)
+        edges_cv = cv2.Canny(blurred, 5, 30)
         images.append({
             "result": find_finder(mark, original, edges_cv),
             "edges": edges_cv
