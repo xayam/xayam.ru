@@ -22,5 +22,9 @@ safetensors
 opencv-contrib-python
 scipy
 PyAudio
+lxml
 
 llama-cpp-python
+
+azure-ai-inference
+
