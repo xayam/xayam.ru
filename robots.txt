@@ -1,6 +1,0 @@
-# robots for
-User-agent: *
-Sitemap: https://xayam.ru/docs/sitemap.xml
-Allow: /docs
-Crawl-delay: 1
-Host: xayam.ru
