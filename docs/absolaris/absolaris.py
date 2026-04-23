@@ -107,9 +107,10 @@ def get_text_messages(message):
     print("Answer | Ответ отослан пользователю " + str(message.from_user.id))
 
 if __name__ == '__main__':
-    try:
-        bot.polling()
-    except telebot.apihelper.ApiTelegramException as e1:
-        print("ERROR 1001 | " + str(type(e1)) + " / " + e1.__str__())
-    except Exception as e2:
-        print("ERROR 1002 | " + str(type(e2)) + " / " + e2.__str__())
+    while True:
+        try:
+            bot.polling()
+        except telebot.apihelper.ApiTelegramException as e1:
+            print("ERROR 1001 | " + str(type(e1)) + " / " + e1.__str__())
+        except Exception as e2:
+            print("ERROR 1002 | " + str(type(e2)) + " / " + e2.__str__())
