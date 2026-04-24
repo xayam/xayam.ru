@@ -6,7 +6,7 @@ import winsound
 from png2gif import greedy_path, matrix_path, contour_path, get_trajectory
 
 # алгоритм траекторий
-# greedy_path медленно, для сложных картинок
+# greedy_path для сложных картинок
 # matrix_path быстро, для текста и мелких кластеров
 # contour_path - быстро, только контур, есть недостатки - лишние линии
 algorithms = {
