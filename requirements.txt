@@ -8,23 +8,11 @@ numpy
 scikit-learn
 
 opencv-python
-transformers
-torch
-trimesh
-
-torchvision
-torchaudio
-diffusers
-accelerate
 pillow
-safetensors
 
 opencv-contrib-python
 scipy
 PyAudio
 lxml
 
-llama-cpp-python
-
-azure-ai-inference
 
