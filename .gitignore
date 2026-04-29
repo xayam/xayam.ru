@@ -4,14 +4,12 @@ venv/
 .idea/
 __pycache__/
 .run/
-docs/x/xmap/xlab/xgraver/xgraver-mark/mark/__secret__.py
+*__secret__*
 docs/x/xmap/other/comics/rus/*
 !docs/x/xmap/other/comics/rus/__init__.py
 !docs/x/xmap/other/comics/rus/.htaccess
 docs/rewlis/data/*
 !docs/rewlis/data/__init__.py
-docs/absolaris/__secret__.py
-docs/xportfolios/__secret__.py
 *to.dgt.from.xayam.txt
 *.avi
 *.mp4
