@@ -7,11 +7,6 @@
             <title>Сумка пляжная Airport синяя, 53x18x34 см</title>
         </item>
         <item active="true">
-            <href>https://www.ozon.ru/product/ryukzak-turisticheskiy-siniy-21-l-2790801538/</href>
-            <src>x/xmap/catalog/boxes/4000030.webp</src>
-            <title>Рюкзак Airport синий, 21 л</title>
-        </item>
-        <item active="true">
             <href>https://www.ozon.ru/product/ryukzak-turisticheskiy-chernyy-36-l-2366978293/</href>
             <src>x/xmap/catalog/boxes/4000020.webp</src>
             <title>Водонепроницаемый деловой рюкзак, USB-рюкзак, 15.6-дюймовый рюкзак для ноутбука, унисекс, 36л
@@ -26,6 +21,11 @@
             <href>https://www.ozon.ru/product/ryukzak-turisticheskiy-chernyy-21-01-l-2366946037/</href>
             <src>x/xmap/catalog/boxes/4000000.webp</src>
             <title>Водонепроницаемый женский противоугонный рюкзак, 21л</title>
+        </item>
+        <item active="false">
+            <href>https://www.ozon.ru/product/ryukzak-turisticheskiy-siniy-21-l-2790801538/</href>
+            <src>x/xmap/catalog/boxes/4000030.webp</src>
+            <title>Рюкзак Airport синий, 21 л</title>
         </item>
         <item active="false">
             <href>/</href>

@@ -37,14 +37,14 @@
             <title>Журнал "Караван историй". Комплект из 6 штук</title>
         </item>
         <item active="true">
-            <href>https://www.avito.ru/moskva/odezhda_obuv_aksessuary/norkovaya_shuba_48-ogo_razmera_3786394684</href>
-            <src>x/xmap/catalog/avito/3786394684.webp</src>
-            <title>Норковая шуба 48-ого размера</title>
-        </item>
-        <item active="true">
             <href>https://www.avito.ru/moskva/odezhda_obuv_aksessuary/dublenka_naturalnaya_muzhskaya_52-ogo_razmera_3785629125</href>
             <src>x/xmap/catalog/avito/3785629125.webp</src>
             <title>Дубленка натуральная мужская 52-ого размера</title>
+        </item>
+        <item active="false">
+            <href>https://www.avito.ru/moskva/odezhda_obuv_aksessuary/norkovaya_shuba_48-ogo_razmera_3786394684</href>
+            <src>x/xmap/catalog/avito/3786394684.webp</src>
+            <title>Норковая шуба 48-ого размера</title>
         </item>
         <item active="false">
             <href>/</href>
