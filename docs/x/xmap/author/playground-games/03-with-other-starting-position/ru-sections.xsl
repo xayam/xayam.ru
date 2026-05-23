@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-    <xsl:variable name="s01_classic_games_ru" select="'Классические игры'" />
-    <xsl:variable name="s01_classic_games__01_chess_ru" select="document('01-chess/ru.xml')/ru/div" />
-    <xsl:variable name="s01_classic_games__02_checkers_ru" select="document('02-checkers/ru.xml')/ru/div" />
+    <xsl:variable name="s03_other_start_ru" select="'Часть 4. Игры с другой стартовой позицией'" />
+    <xsl:variable name="s03_other_start__01_chess_960_ru" select="document('01-chess-960/ru.xml')/ru/div" />
+    <xsl:variable name="s03_other_start__02_DFRC_ru" select="document('02-DFRC/ru.xml')/ru/div" />
+    <xsl:variable name="s03_other_start__03_king_chess_ru" select="document('03-king-chess/ru.xml')/ru/div" />
+    <xsl:variable name="s03_other_start__04_racing_kings_ru" select="document('04-racing-kings/ru.xml')/ru/div" />
+    <xsl:variable name="s03_other_start__05_bad_chess_ru" select="document('05-really-bad-chess/ru.xml')/ru/div" />
 </xsl:stylesheet>

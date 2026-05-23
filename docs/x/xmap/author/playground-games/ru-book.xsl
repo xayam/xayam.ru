@@ -37,6 +37,14 @@
                         <xsl:copy-of select="$s02_with_dice__04_chess_with_3xd12_ru" />
                         <xsl:copy-of select="$s02_with_dice__05_random_other_ru" />
                     </div>
+                    <div id="section-03" class="page-break">
+                        <h1><xsl:value-of select="$s03_other_start_ru" /></h1>
+                        <xsl:copy-of select="$s03_other_start__01_chess_960_ru" />
+                        <xsl:copy-of select="$s03_other_start__02_DFRC_ru" />
+                        <xsl:copy-of select="$s03_other_start__03_king_chess_ru" />
+                        <xsl:copy-of select="$s03_other_start__04_racing_kings_ru" />
+                        <xsl:copy-of select="$s03_other_start__05_bad_chess_ru" />
+                    </div>
 
 
                     <div id="section-99" class="page-break">
