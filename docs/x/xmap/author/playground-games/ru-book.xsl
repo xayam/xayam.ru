@@ -45,6 +45,12 @@
                         <xsl:copy-of select="$s03_other_start__04_racing_kings_ru" />
                         <xsl:copy-of select="$s03_other_start__05_bad_chess_ru" />
                     </div>
+                    <div id="section-04" class="page-break">
+                        <h1><xsl:value-of select="$s04_two_sets_ru" /></h1>
+                        <xsl:copy-of select="$s04_two_sets__01_bughouse_ru" />
+                        <xsl:copy-of select="$s04_two_sets__02_alice_ru" />
+                        <xsl:copy-of select="$s04_two_sets__03_horde_ru" />
+                    </div>
 
 
                     <div id="section-99" class="page-break">
