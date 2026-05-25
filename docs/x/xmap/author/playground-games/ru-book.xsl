@@ -60,6 +60,8 @@
                         <xsl:copy-of select="$s05_other_sizes__05_6x6_los_alamos_ru" />
                         <xsl:copy-of select="$s05_other_sizes__06_grand_chess_ru" />
                         <xsl:copy-of select="$s05_other_sizes__07_gothic_chess_ru" />
+                        <xsl:copy-of select="$s05_other_sizes__08_kapablanka_ru" />
+                        <xsl:copy-of select="$s05_other_sizes__09_bear_chess_ru" />
                     </div>
 
 
