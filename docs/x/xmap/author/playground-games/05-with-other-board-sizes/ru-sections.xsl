@@ -6,6 +6,4 @@
     <xsl:variable name="s05_other_sizes__03_4x4_chess_ru" select="document('03-4x4-chess/ru.xml')/ru/div" />
     <xsl:variable name="s05_other_sizes__04_5x5_gardner_mini_ru" select="document('04-5x5-gardner-mini-chess/ru.xml')/ru/div" />
     <xsl:variable name="s05_other_sizes__05_6x6_los_alamos_ru" select="document('05-6x6-los-alamos-chess/ru.xml')/ru/div" />
-    <xsl:variable name="s05_other_sizes__06_grand_chess_ru" select="document('06-grand-chess/ru.xml')/ru/div" />
-    <xsl:variable name="s05_other_sizes__07_gothic_chess_ru" select="document('07-gothic-chess/ru.xml')/ru/div" />
 </xsl:stylesheet>

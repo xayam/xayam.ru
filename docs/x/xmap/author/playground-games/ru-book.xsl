@@ -58,18 +58,18 @@
                         <xsl:copy-of select="$s05_other_sizes__03_4x4_chess_ru" />
                         <xsl:copy-of select="$s05_other_sizes__04_5x5_gardner_mini_ru" />
                         <xsl:copy-of select="$s05_other_sizes__05_6x6_los_alamos_ru" />
-                        <xsl:copy-of select="$s05_other_sizes__06_grand_chess_ru" />
-                        <xsl:copy-of select="$s05_other_sizes__07_gothic_chess_ru" />
                     </div>
                     <div id="section-06" class="page-break">
                         <h1><xsl:value-of select="$s06_add_figures_ru" /></h1>
-                        <xsl:copy-of select="$s06_add_figures__01_kapablanka_ru" />
-                        <xsl:copy-of select="$s06_add_figures__02_bear_chess_ru" />
-                        <xsl:copy-of select="$s06_add_figures__03_maharajah_ru" />
-                        <xsl:copy-of select="$s06_add_figures__04_seirawan_ru" />
-                        <xsl:copy-of select="$s06_add_figures__05_berolina_ru" />
-                        <xsl:copy-of select="$s06_add_figures__06_duck_ru" />
-                        <xsl:copy-of select="$s06_add_figures__07_teleport_ru" />
+                        <xsl:copy-of select="$s06_add_figures__01_maharajah_ru" />
+                        <xsl:copy-of select="$s06_add_figures__02_gothic_chess_ru" />
+                        <xsl:copy-of select="$s06_add_figures__03_kapablanka_ru" />
+                        <xsl:copy-of select="$s06_add_figures__04_grand_chess_ru" />
+                        <xsl:copy-of select="$s06_add_figures__05_bear_chess_ru" />
+                        <xsl:copy-of select="$s06_add_figures__06_seirawan_ru" />
+                        <xsl:copy-of select="$s06_add_figures__07_berolina_ru" />
+                        <xsl:copy-of select="$s06_add_figures__08_duck_ru" />
+                        <xsl:copy-of select="$s06_add_figures__09_teleport_ru" />
                     </div>
 
 
