@@ -63,6 +63,14 @@
                         <xsl:copy-of select="$s05_other_sizes__08_kapablanka_ru" />
                         <xsl:copy-of select="$s05_other_sizes__09_bear_chess_ru" />
                     </div>
+                    <div id="section-06" class="page-break">
+                        <h1><xsl:value-of select="$s06_add_figures_ru" /></h1>
+                        <xsl:copy-of select="$s06_add_figures__01_maharajah_ru" />
+                        <xsl:copy-of select="$s06_add_figures__02_seirawan_ru" />
+                        <xsl:copy-of select="$s06_add_figures__03_berolina_ru" />
+                        <xsl:copy-of select="$s06_add_figures__04_duck_ru" />
+                        <xsl:copy-of select="$s06_add_figures__05_teleport_ru" />
+                    </div>
 
 
                     <div id="section-99" class="page-break">

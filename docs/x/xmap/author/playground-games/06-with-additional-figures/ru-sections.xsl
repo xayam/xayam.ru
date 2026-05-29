@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-    <xsl:variable name="s03_other_start_ru" select="'Часть 4. Игры с другой стартовой позицией'" />
-    <xsl:variable name="s03_other_start__01_chess_960_ru" select="document('01-chess-960/ru.xml')/ru/div" />
-    <xsl:variable name="s03_other_start__02_DFRC_ru" select="document('02-DFRC/ru.xml')/ru/div" />
-    <xsl:variable name="s03_other_start__03_king_chess_ru" select="document('03-king-chess/ru.xml')/ru/div" />
-    <xsl:variable name="s03_other_start__04_racing_kings_ru" select="document('04-racing-kings/ru.xml')/ru/div" />
-    <xsl:variable name="s03_other_start__05_bad_chess_ru" select="document('05-really-bad-chess/ru.xml')/ru/div" />
+    <xsl:variable name="s06_add_figures_ru" select="'Часть 7. Игры с дополнительными фигурами'" />
+    <xsl:variable name="s06_add_figures__01_maharajah_ru" select="document('01-maharajah/ru.xml')/ru/div" />
+    <xsl:variable name="s06_add_figures__02_seirawan_ru" select="document('02-seirawan-chess/ru.xml')/ru/div" />
+    <xsl:variable name="s06_add_figures__03_berolina_ru" select="document('03-berolina-pawn/ru.xml')/ru/div" />
+    <xsl:variable name="s06_add_figures__04_duck_ru" select="document('04-duck-chess/ru.xml')/ru/div" />
+    <xsl:variable name="s06_add_figures__05_teleport_ru" select="document('05-teleport/ru.xml')/ru/div" />
 </xsl:stylesheet>

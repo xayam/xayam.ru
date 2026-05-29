@@ -8,6 +8,7 @@
     <xsl:include href="03-with-other-starting-position/ru-sections.xsl" />
     <xsl:include href="04-with-two-sets-of-figures/ru-sections.xsl" />
     <xsl:include href="05-with-other-board-sizes/ru-sections.xsl" />
+    <xsl:include href="06-with-additional-figures/ru-sections.xsl" />
 
     <xsl:include href="99-end/ru-sections.xsl" />
 </xsl:stylesheet>

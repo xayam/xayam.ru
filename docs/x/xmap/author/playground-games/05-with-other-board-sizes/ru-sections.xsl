@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-    <xsl:variable name="s05_other_sizes_ru" select="'Часть 5. Игры с другими размерами досок'" />
+    <xsl:variable name="s05_other_sizes_ru" select="'Часть 6. Игры с другими размерами досок'" />
     <xsl:variable name="s05_other_sizes__01_3x3_chess_ru" select="document('01-3x3-chess/ru.xml')/ru/div" />
     <xsl:variable name="s05_other_sizes__02_3x4_chess_ru" select="document('02-3x4-chess/ru.xml')/ru/div" />
     <xsl:variable name="s05_other_sizes__03_4x4_chess_ru" select="document('03-4x4-chess/ru.xml')/ru/div" />
