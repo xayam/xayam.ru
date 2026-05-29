@@ -52,12 +52,12 @@
                         <xsl:copy-of select="$s04_two_sets__03_horde_ru" />
                     </div>
                     <div id="section-05" class="page-break">
-                        <h1><xsl:value-of select="$s05_other_sizes_ru" /></h1>
-                        <xsl:copy-of select="$s05_other_sizes__01_3x3_chess_ru" />
-                        <xsl:copy-of select="$s05_other_sizes__02_3x4_chess_ru" />
-                        <xsl:copy-of select="$s05_other_sizes__03_4x4_chess_ru" />
-                        <xsl:copy-of select="$s05_other_sizes__04_5x5_gardner_mini_ru" />
-                        <xsl:copy-of select="$s05_other_sizes__05_6x6_los_alamos_ru" />
+                        <h1><xsl:value-of select="$s05_mini_sizes_ru" /></h1>
+                        <xsl:copy-of select="$s05_mini_sizes__01_3x3_chess_ru" />
+                        <xsl:copy-of select="$s05_mini_sizes__02_3x4_chess_ru" />
+                        <xsl:copy-of select="$s05_mini_sizes__03_4x4_chess_ru" />
+                        <xsl:copy-of select="$s05_mini_sizes__04_5x5_gardner_mini_ru" />
+                        <xsl:copy-of select="$s05_mini_sizes__05_6x6_los_alamos_ru" />
                     </div>
                     <div id="section-06" class="page-break">
                         <h1><xsl:value-of select="$s06_add_figures_ru" /></h1>
