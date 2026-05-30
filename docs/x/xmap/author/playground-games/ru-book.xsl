@@ -66,10 +66,9 @@
                         <xsl:copy-of select="$s06_add_figures__03_kapablanka_ru" />
                         <xsl:copy-of select="$s06_add_figures__04_grand_chess_ru" />
                         <xsl:copy-of select="$s06_add_figures__05_bear_chess_ru" />
-                        <xsl:copy-of select="$s06_add_figures__06_seirawan_ru" />
-                        <xsl:copy-of select="$s06_add_figures__07_berolina_ru" />
-                        <xsl:copy-of select="$s06_add_figures__08_duck_ru" />
-                        <xsl:copy-of select="$s06_add_figures__09_teleport_ru" />
+                        <xsl:copy-of select="$s06_add_figures__06_berolina_ru" />
+                        <xsl:copy-of select="$s06_add_figures__07_duck_ru" />
+                        <xsl:copy-of select="$s06_add_figures__08_teleport_ru" />
                     </div>
 
 

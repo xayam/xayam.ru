@@ -6,8 +6,7 @@
     <xsl:variable name="s06_add_figures__03_kapablanka_ru" select="document('03-chess-kapablanka/ru.xml')/ru/div" />
     <xsl:variable name="s06_add_figures__04_grand_chess_ru" select="document('04-grand-chess/ru.xml')/ru/div" />
     <xsl:variable name="s06_add_figures__05_bear_chess_ru" select="document('05-bear-chess/ru.xml')/ru/div" />
-    <xsl:variable name="s06_add_figures__06_seirawan_ru" select="document('06-seirawan-chess/ru.xml')/ru/div" />
-    <xsl:variable name="s06_add_figures__07_berolina_ru" select="document('07-berolina-pawn/ru.xml')/ru/div" />
-    <xsl:variable name="s06_add_figures__08_duck_ru" select="document('08-duck-chess/ru.xml')/ru/div" />
-    <xsl:variable name="s06_add_figures__09_teleport_ru" select="document('09-teleport/ru.xml')/ru/div" />
+    <xsl:variable name="s06_add_figures__06_berolina_ru" select="document('06-berolina-pawn/ru.xml')/ru/div" />
+    <xsl:variable name="s06_add_figures__07_duck_ru" select="document('07-duck-chess/ru.xml')/ru/div" />
+    <xsl:variable name="s06_add_figures__08_teleport_ru" select="document('08-teleport/ru.xml')/ru/div" />
 </xsl:stylesheet>
