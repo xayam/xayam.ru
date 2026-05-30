@@ -19,8 +19,8 @@ img {
     background-repeat: no-repeat;
 }
 
-a:visited {
-    color: blue;
+a, a:visited {
+    color: black;
 }
 
 .pageA5 {
