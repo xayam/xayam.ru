@@ -8,5 +8,5 @@
     <xsl:variable name="s06_add_figures__05_bear_chess_ru" select="document('05-bear-chess/ru.xml')/ru/div" />
     <xsl:variable name="s06_add_figures__06_berolina_ru" select="document('06-berolina-pawn/ru.xml')/ru/div" />
     <xsl:variable name="s06_add_figures__07_duck_ru" select="document('07-duck-chess/ru.xml')/ru/div" />
-    <xsl:variable name="s06_add_figures__08_astal_ru" select="document('08-astral/ru.xml')/ru/div" />
+    <xsl:variable name="s06_add_figures__08_astral_ru" select="document('08-astral-chess/ru.xml')/ru/div" />
 </xsl:stylesheet>
