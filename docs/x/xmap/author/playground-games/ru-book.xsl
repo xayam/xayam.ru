@@ -68,7 +68,7 @@
                         <xsl:copy-of select="$s06_add_figures__05_bear_chess_ru" />
                         <xsl:copy-of select="$s06_add_figures__06_berolina_ru" />
                         <xsl:copy-of select="$s06_add_figures__07_duck_ru" />
-                        <xsl:copy-of select="$s06_add_figures__08_teleport_ru" />
+                        <xsl:copy-of select="$s06_add_figures__08_astral_ru" />
                     </div>
 
 
