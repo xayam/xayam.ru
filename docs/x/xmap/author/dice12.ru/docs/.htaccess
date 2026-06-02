@@ -1,0 +1,24 @@
+Options +FollowSymlinks -Indexes
+
+AddCharset UTF-8 .txt
+AddType 'text/plain; charset=UTF-8' txt
+AddCharset UTF-8 .html
+AddType 'text/html; charset=UTF-8' html
+AddCharset UTF-8 .xml
+AddType 'text/xml; charset=UTF-8' xml
+AddCharset UTF-8 .xsl
+AddType 'text/xsl; charset=UTF-8' xsl
+
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+
+DirectoryIndex index.html
+#DirectoryIndex index.xml
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+	RewriteCond %{REQUEST_URI} -f
+    RewriteRule ^index\.xml$ / [R=301,L]
+    #RewriteCond %{HTTPS} off
+    #RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}
+</IfModule>
