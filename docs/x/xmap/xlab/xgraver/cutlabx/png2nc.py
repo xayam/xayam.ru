@@ -4,12 +4,14 @@ import cv2
 import winsound
 
 from png2gif import greedy_path, matrix_path, contour_path, get_trajectory
+from gray import gray_algorithm
 
 # алгоритм траекторий
 # greedy_path для сложных картинок
 # matrix_path быстро, для текста и мелких кластеров
 # contour_path - быстро, только контур, есть недостатки - лишние линии
 algorithms = {
+    "gray": gray_algorithm,
     "matrix": matrix_path,
     "contour": contour_path,
     "greedy": greedy_path
@@ -136,8 +138,11 @@ def get_gcode():
         loop = int(s2[4]) # количество проходов
         conf = f"S{power * 10}.00F{speed}.00"
         print(conf)
-        optimized_points = optimize(filename=filename, algorithm=algorithm,
-                                    speed=conf, loop=loop)
+        if s2[0] == "gray":
+            optimized_points = algorithm.__call__(filename=filename, speed=speed, power=power)
+        else:
+            optimized_points = optimize(filename=filename, algorithm=algorithm,
+                                        speed=conf, loop=loop)
 
         with open(f"{filename[:-3]}nc", 'w', encoding="UTF-8") as f:
             f.write(preamble)
