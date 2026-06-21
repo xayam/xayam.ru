@@ -4,6 +4,22 @@ import numpy as np
 from png2nc import heightA4, widthA4, boundX, boundY, line_pixels
 
 def get_gray_trajectory(filename):
+    gray_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+    # _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
+    # binary_image = 255 - binary_image
+
+    trajectory = []
+    last_point = np.array([0, 0])
+    for cluster in ordered_clusters:
+        pixels = cluster['pixels']  # (N, 2) — [y, x]
+        chunks =  [
+            pixels[i:i + max_cluster_size]
+            for i in range(0, len(pixels), max_cluster_size)]
+        for chunk in chunks:
+            result, last_point = algorithm(chunk, last_point)
+            trajectory.append(result)
+            trajectory.append(result)
+    return image.shape[1], image.shape[0], binary_image, trajectory
     return 1, 2, 3, [[4]]
 
 def gray_optimize(filename: str, speed: str, power: str) -> str:
