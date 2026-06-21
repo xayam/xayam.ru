@@ -6,7 +6,7 @@ from png2nc import heightA4, widthA4, boundX, boundY, line_pixels
 def get_gray_trajectory(filename):
     gray_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     # _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
-    # binary_image = 255 - binary_image
+    #  binary_image = 255 - binary_image
 
     trajectory = []
     last_point = np.array([0, 0])
