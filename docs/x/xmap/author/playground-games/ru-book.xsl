@@ -41,9 +41,8 @@
                         <h1><xsl:value-of select="$s03_other_start_ru" /></h1>
                         <xsl:copy-of select="$s03_other_start__01_chess_960_ru" />
                         <xsl:copy-of select="$s03_other_start__02_DFRC_ru" />
-                        <xsl:copy-of select="$s03_other_start__03_king_chess_ru" />
-                        <xsl:copy-of select="$s03_other_start__04_racing_kings_ru" />
-                        <xsl:copy-of select="$s03_other_start__05_bad_chess_ru" />
+                        <xsl:copy-of select="$s03_other_start__03_racing_kings_ru" />
+                        <xsl:copy-of select="$s03_other_start__04_bad_chess_ru" />
                     </div>
                     <div id="section-04" class="page-break">
                         <h1><xsl:value-of select="$s04_two_sets_ru" /></h1>
@@ -69,6 +68,11 @@
                         <xsl:copy-of select="$s06_add_figures__06_berolina_ru" />
                         <xsl:copy-of select="$s06_add_figures__07_duck_ru" />
                         <xsl:copy-of select="$s06_add_figures__08_astral_ru" />
+                    </div>
+                    <div id="section-07" class="page-break">
+                        <h1><xsl:value-of select="$s07_with_pocket_ru" /></h1>
+                        <xsl:copy-of select="$s07_with_pocket__01_crazy_house_ru" />
+                        <xsl:copy-of select="$s07_with_pocket__02_king_chess_ru" />
                     </div>
 
 
