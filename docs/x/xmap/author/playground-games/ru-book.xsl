@@ -74,6 +74,18 @@
                         <xsl:copy-of select="$s07_with_pocket__01_crazy_house_ru" />
                         <xsl:copy-of select="$s07_with_pocket__02_king_chess_ru" />
                     </div>
+                    <div id="section-08" class="page-break">
+                        <h1><xsl:value-of select="$s08_other_rules_ru" /></h1>
+                        <xsl:copy-of select="$s08_other_rules__01_anti_chess_ru" />
+                        <xsl:copy-of select="$s08_other_rules__02_anti_checkers_ru" />
+                        <xsl:copy-of select="$s08_other_rules__03_three_check_ru" />
+                        <xsl:copy-of select="$s08_other_rules__04_metamorph_ru" />
+                        <xsl:copy-of select="$s08_other_rules__05_king_hill_ru" />
+                        <xsl:copy-of select="$s08_other_rules__06_atomic_ru" />
+                        <xsl:copy-of select="$s08_other_rules__07_marseillais_chess_ru" />
+                        <xsl:copy-of select="$s08_other_rules__08_andernach_chess_ru" />
+                        <xsl:copy-of select="$s08_other_rules__09_progressive_chess_ru" />
+                    </div>
 
 
                     <div id="section-99" class="page-break">

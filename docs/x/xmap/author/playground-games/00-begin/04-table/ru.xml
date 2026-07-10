@@ -89,17 +89,32 @@
             <br/>
             <br/>
 
-
             <h2>Часть 9. Игры с другими правилами</h2>
-            <a href="#"></a>
+            <a href="#anti_chess">Анти-шахматы</a>
+            <br/>
+            <a href="#anti_checkers">Анти-шашки</a>
+            <br/>
+            <a href="#three_check">Три шаха</a>
+            <br/>
+            <a href="#metamorph">Метаморф</a>
+            <br/>
+            <a href="#king_hill">Царь горы</a>
+            <br/>
+            <a href="#atomic">Атомные шахматы</a>
+            <br/>
+            <a href="#marseillais_chess">Марсельские шахматы</a>
+            <br/>
+            <a href="#andernach_chess">Андернахские шахматы</a>
+            <br/>
+            <a href="#progressive_chess">Прогрессивные шахматы</a>
             <br/>
 
             <h2>Часть 10. Другие игры</h2>
-            <a href="#"></a>
+            <a href="#a">1</a>
             <br/>
 
             <h2>Часть 11. Конец</h2>
-            <a href="#">Заключение</a>
+            <a href="#ending">Заключение</a>
             <br/>
             <a href="#appendix">Аппендикс</a>
             <br/>
