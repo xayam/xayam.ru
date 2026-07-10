@@ -4,120 +4,175 @@
             <a name="table" />
             <h1>Содержание</h1>
 
+            <a name="_part_01" />
             <h2>Часть 1. Начало</h2>
             <a href="#cover">Больше, чем одна игра. Обложка</a>
             <br/>
             <a href="#memory">Посвящается</a>
             <br/>
+            <a name="_annotation" />
             <a href="#annotation">Аннотация</a>
             <br/>
+            <a name="_table" />
             <a href="#table">Содержание</a>
             <br/>
+            <a name="_intro" />
             <a href="#intro">Введение</a>
             <br/>
 
+            <a name="_part_02" />
             <h2>Часть 2. Классические игры</h2>
+            <a name="_chess" />
             <a href="#chess">Шахматы</a>
             <br/>
+            <a name="_checkers" />
             <a href="#checkers">Шашки</a>
             <br/>
 
+            <a name="_part_03" />
             <h2>Часть 3. Игры с костями</h2>
+            <a name="_dicechess" />
             <a href="#dicechess">ДайсЧес</a>
             <br/>
+            <a name="_random" />
             <a href="#random">Случайные шахматы с одним кубиком D6</a>
             <br/>
+            <a name="_random_1xd12" />
             <a href="#random_1xd12">Случайные шахматы с одним додекаэдром D12</a>
             <br/>
+            <a name="_random_3xd12" />
             <a href="#random_3xd12">Случайные шахматы с тремя додекаэдрами D12</a>
             <br/>
+            <a name="_random_other" />
             <a href="#random_other">Другие случайные шахматы</a>
             <br/>
 
+            <a name="_part_04" />
             <h2>Часть 4. Игры с другой стартовой позицией</h2>
+            <a name="_chess960" />
             <a href="#chess960">Шахматы Фишера</a>
             <br/>
+            <a name="_dfrc" />
             <a href="#dfrc">Двойные шахматы Фишера</a>
             <br/>
+            <a name="_racing_kings" />
             <a href="#racing_kings">Гонка королей</a>
             <br/>
+            <a name="_really_bad_chess" />
             <a href="#really_bad_chess">Очень плохие шахматы</a>
             <br/>
 
+            <a name="_part_05" />
             <h2>Часть 5. Игры с двумя досками или наборами фигур</h2>
+            <a name="_bughouse" />
             <a href="#bughouse">Багхаус или шведские шахматы</a>
             <br/>
+            <a name="_alice" />
             <a href="#alice">Шахматы Алисы</a>
             <br/>
+            <a name="_horde" />
             <a href="#horde">Орда</a>
             <br/>
 
+            <a name="_part_06" />
             <h2>Часть 6. Игры с маленькими размерами досок</h2>
+            <a name="_mini_3x3" />
             <a href="#mini_3x3">Миниатюрные шахматы на доске 3x3</a>
             <br/>
+            <a name="_mini_3x4" />
             <a href="#mini_3x4">Миниатюрные шахматы на доске 3x4</a>
             <br/>
+            <a name="_mini_4x4" />
             <a href="#mini_4x4">Миниатюрные шахматы на доске 4x4</a>
             <br/>
+            <a name="_gardner" />
             <a href="#gardner">Мини-шахматы Гарднера</a>
             <br/>
+            <a name="_los_alamos" />
             <a href="#los_alamos">Шахматы Лос-Аламос</a>
             <br/>
 
+            <a name="_part_07" />
             <h2>Часть 7. Игры с дополнительными фигурами и большими досками</h2>
+            <a name="_maharajah" />
             <a href="#maharajah">Магараджа</a>
             <br/>
+            <a name="_gothic_chess" />
             <a href="#gothic_chess">Готические шахматы</a>
             <br/>
+            <a name="_kapablanka" />
             <a href="#kapablanka">Шахматы Капабланки</a>
             <br/>
+            <a name="_grand_chess" />
             <a href="#grand_chess">Большие шахматы или ГрандЧес</a>
             <br/>
+            <a name="_bear_chess" />
             <a href="#bear_chess">Медвежьи шахматы</a>
             <br/>
+            <a name="_berolina" />
             <a href="#berolina">Шахматы Беролины</a>
             <br/>
+            <a name="_duck_chess" />
             <a href="#duck_chess">Утиные шахматы</a>
             <br/>
+            <a name="_astral_chess" />
             <a href="#astral_chess">Астральные шахматы (авторская)</a>
             <br/>
 
+            <a name="_part_08" />
             <h2>Часть 8. Игры с карманом</h2>
+            <a name="_crazy_house" />
             <a href="#crazy_house">КрейзиХаус</a>
             <br/>
+            <a name="_king_chess" />
             <a href="#king_chess">КингЧесс</a>
             <br/>
-            <br/>
 
+            <a name="_part_09" />
             <h2>Часть 9. Игры с другими правилами</h2>
+            <a name="_anti_chess" />
             <a href="#anti_chess">Анти-шахматы</a>
             <br/>
+            <a name="_anti_checkers" />
             <a href="#anti_checkers">Анти-шашки</a>
             <br/>
+            <a name="_three_check" />
             <a href="#three_check">Три шаха</a>
             <br/>
+            <a name="_metamorph" />
             <a href="#metamorph">Метаморф</a>
             <br/>
+            <a name="_king_hill" />
             <a href="#king_hill">Царь горы</a>
             <br/>
+            <a name="_atomic" />
             <a href="#atomic">Атомные шахматы</a>
             <br/>
+            <a name="_marseillais_chess" />
             <a href="#marseillais_chess">Марсельские шахматы</a>
             <br/>
+            <a name="_andernach_chess" />
             <a href="#andernach_chess">Андернахские шахматы</a>
             <br/>
+            <a name="_progressive_chess" />
             <a href="#progressive_chess">Прогрессивные шахматы</a>
             <br/>
 
+            <a name="_part_10" />
             <h2>Часть 10. Другие игры</h2>
+            <a name="_a" />
             <a href="#a">1</a>
             <br/>
 
+            <a name="_part_11" />
             <h2>Часть 11. Конец</h2>
+            <a name="_ending" />
             <a href="#ending">Заключение</a>
             <br/>
+            <a name="_appendix" />
             <a href="#appendix">Аппендикс</a>
             <br/>
+            <a name="_advert" />
             <a href="#advert">Реклама</a>
             <br/>
             <a href="#backcover">Больше, чем одна игра. Задняя обложка</a>
