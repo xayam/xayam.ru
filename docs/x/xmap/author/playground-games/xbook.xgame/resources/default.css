@@ -21,6 +21,11 @@ img {
 
 a, a:visited {
     color: black;
+    text-decoration-line: None;
+}
+
+a:hover {
+    text-decoration-line: underline;
 }
 
 .pageA5 {

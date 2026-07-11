@@ -2,6 +2,6 @@
 <ru>
         <div>
             <a name="cover" style="position:absolute; top:0; left:0;"/>
-            <img src="xbook.xgame/resources/cover.jpg" />
+            <a href="#_cover"><img src="xbook.xgame/resources/cover.jpg" /></a>
         </div>
 </ru>
