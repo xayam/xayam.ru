@@ -25,7 +25,6 @@
                 </xsl:if>
             </head>
             <body>
-                <a name="cover"/>
                 <div id="book">
                     <div id="section-00">
                         <xsl:copy-of select="$s00_begin__01_cover_ru" />
@@ -150,6 +149,12 @@
                     </div>
 
                     <div id="section-99" class="page-break">
+                        <a name="part_11" />
+                        <h1>
+                            <a href="#_part_11">
+                                <xsl:value-of select="$s99_end_ru" />
+                            </a>
+                        </h1>
                         <xsl:copy-of select="$s99_end__01_ending_ru" />
                         <xsl:copy-of select="$s99_end__02_advert_ru" />
                         <xsl:copy-of select="$s99_end__98_backcover2_ru" />
