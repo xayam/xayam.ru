@@ -2,6 +2,6 @@
 <ru>
         <div class="no-counter">
             <a name="cover" style="position:absolute; top:0; left:0;"/>
-            <a href="#_cover"><img src="xbook.xgame/resources/cover.jpg" /></a>
+            <img src="xbook.xgame/resources/cover.jpg" />
         </div>
 </ru>

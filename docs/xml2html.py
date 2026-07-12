@@ -11,6 +11,16 @@ tasks = [
         "xsl": "x/xmap/author/playground-games/ru-book.xsl",
         "html": "x/xmap/author/playground-games/ru-book.html"
     },
+    {
+        "xml": "x/xmap/author/playground-games/ru-book.fb2.xml",
+        "xsl": "x/xmap/author/playground-games/ru-book.xsl",
+        "html": "x/xmap/author/playground-games/ru-book.fb2.html"
+    },
+    {
+        "xml": "x/xmap/author/playground-games/ru-book.pdf.xml",
+        "xsl": "x/xmap/author/playground-games/ru-book.xsl",
+        "html": "x/xmap/author/playground-games/ru-book.pdf.html"
+    },
 ]
 
 replacers = [

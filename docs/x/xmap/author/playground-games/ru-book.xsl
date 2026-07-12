@@ -14,7 +14,9 @@
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
                 <link rel="stylesheet" href="xbook.xgame/resources/default.css"/>
                 <link rel="stylesheet" href="xbook.xgame/resources/style.css"/>
-                <script src="xbook.xgame/resources/paged.polyfill.js"/>
+                <xsl:if test="$book_type='pdf'">
+                    <script src="xbook.xgame/resources/paged.polyfill.js"/>
+                </xsl:if>
             </head>
             <body>
                 <div id="book">
