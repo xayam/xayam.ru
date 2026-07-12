@@ -25,6 +25,7 @@
                 </xsl:if>
             </head>
             <body>
+                <a name="cover"/>
                 <div id="book">
                     <div id="section-00">
                         <xsl:copy-of select="$s00_begin__01_cover_ru" />
