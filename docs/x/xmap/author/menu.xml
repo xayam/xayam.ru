@@ -2,7 +2,7 @@
 <menu>
     <id>author</id>
     <item active="true">
-        <id>playground-games</id>
+        <id>playground-rules</id>
         <ru>Больше, чем одна игра</ru>
         <en>More than one game</en>
     </item>

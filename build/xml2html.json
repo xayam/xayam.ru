@@ -1,0 +1,72 @@
+{
+  "tasks": [
+    {
+      "base": "../docs/",
+      "xml": "index.xml",
+      "xsl": "x/index.xsl",
+      "html": "index.html"
+    },
+    {
+      "base": "../docs/x/xmap/author/playground-rules/",
+      "xml": "ru-book.xml",
+      "xsl": "ru-book.xsl",
+      "html": "ru-book.html"
+    },
+    {
+      "base": "../docs/x/xmap/author/playground-rules/",
+      "xml": "ru-book.fb2.xml",
+      "xsl": "ru-book.xsl",
+      "html": "ru-book.fb2.html"
+    },
+    {
+      "base": "../docs/x/xmap/author/playground-rules/",
+      "xml": "ru-book.pdf.xml",
+      "xsl": "ru-book.xsl",
+      "html": "ru-book.pdf.html"
+    }
+  ],
+
+  "string_replacers": [
+    {
+      "from": "<?xml version=\"1.0\"?>",
+      "to": "<!DOCTYPE html>"
+    },
+    {
+      "from": "x/xmap/author/playground-rules/ru-book.xml",
+      "to": "x/xmap/author/playground-rules/ru-book.html"
+    }
+  ],
+
+  "file_replacers": [
+    {
+      "template": "{{{INDEX_DEFAULT_CSS}}}",
+      "file": "../docs/x/xstyle/resources/default.css"
+    },
+    {
+      "template": "{{{INDEX_STYLE_CSS}}}",
+      "file": "../docs/x/xstyle/resources/style.css"
+    },
+    {
+      "template": "{{{INDEX_SLIDER_CSS}}}",
+      "file": "../docs/x/xstyle/resources/slider.css"
+    },
+    {
+      "template": "{{{XGAME_DEFAULT_CSS}}}",
+      "file": "../docs/x/xmap/author/playground-rules/xbook.xgame/resources/default.css"
+    },
+    {
+      "template": "{{{XGAME_STYLE_CSS}}}",
+      "file": "../docs/x/xmap/author/playground-rules/xbook.xgame/resources/style.css"
+    },
+    {
+      "template": "{{{XGAME_PAGED}}}",
+      "file": "../docs/x/xmap/author/playground-rules/xbook.xgame/resources/paged.polyfill.js"
+    }
+  ],
+
+  "mime_types": {
+    "png": "png",
+    "jpg": "jpeg",
+    "webp": "webp"
+  }
+}
