@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
+    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
     <xsl:include href="ru-include.xsl" />
     <xsl:template match="/book">
         <html lang="ru">
@@ -12,10 +13,15 @@
                 <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
                 <meta name="robots" content="INDEX,FOLLOW"/>
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-                <link rel="stylesheet" href="xbook.xgame/resources/default.css"/>
-                <link rel="stylesheet" href="xbook.xgame/resources/style.css"/>
+                <style>
+                    //{{{DEFAULT_CSS}}}
+
+                    //{{{STYLE_CSS}}}
+                </style>
                 <xsl:if test="$book_type='pdf'">
-                    <script src="xbook.xgame/resources/paged.polyfill.js"/>
+                    <script>
+                        //{{{PAGED}}}
+                    </script>
                 </xsl:if>
             </head>
             <body>

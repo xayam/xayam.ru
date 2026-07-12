@@ -6,13 +6,122 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-type">
 <meta name="robots" content="INDEX,FOLLOW">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="xbook.xgame/resources/default.css">
-<link rel="stylesheet" href="xbook.xgame/resources/style.css">
+<style>
+                    
+@page {
+    size: A5 portrait;
+    margin: 0;
+    padding: 0;
+}
+
+@media print {
+    @page {
+        size: A5 portrait;
+        margin: 1cm;
+        @bottom-center {
+            content: counter(page);
+            font-size: 10pt;
+        }
+    }
+
+     a.counter::after {
+        content: target-counter(attr(href url), page);
+        padding-right: 1cm;
+        float: right;
+    }
+
+    @page:first {
+        margin: 0;
+    }
+
+    @page no-number-page {
+        margin: 0;
+        @bottom-center {
+            content: none;
+        }
+    }
+
+    .no-counter {
+        page: no-number-page;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    width: 100%;
+}
+
+.covers img {
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+a, a:visited {
+    color: black;
+    text-decoration-line: None;
+}
+
+a:hover {
+    text-decoration-line: underline;
+}
+
+.pageA5 {
+    min-width: 300px;
+    max-width: 148mm;
+    height: 210mm;
+}
+
+.page-break {
+    page-break-before: always;
+    break-before: always;
+}
+
+
+                    
+p {
+    text-indent: 20px;
+    text-align: justify;
+    margin: 10px;
+}
+
+#book {
+    min-width: 300px;
+    max-width: 148mm;
+    margin: 0 auto;
+}
+
+#book div {
+    border: 0 solid black;
+}
+
+#book div h1 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.table h2 {
+    margin: 10px;
+}
+
+.table a {
+    margin-left: 30px;
+}
+
+.memory {
+    padding: 50px;
+    text-align: right;
+    font-style: italic;
+}
+                </style>
 </head>
 <body><div id="book">
 <div id="section-00">
-<div class="no-counter">
-            <a name="cover" style="position:absolute; top:0; left:0;"></a>
+<div class="no-counter covers">
+            <a name="cover"></a>
             <img src="xbook.xgame/resources/cover.jpg">
         </div>
 <div class="page-break no-counter">
@@ -2755,12 +2864,12 @@
             </p>
         </div>
 <div class="page-break no-counter">
-            <a id=""></a>
+            <a id="____"></a>
             <p>
 
             </p>
         </div>
-<div class="page-break no-counter">
+<div class="page-break no-counter covers">
             <a name="backcover"></a>
             <img src="xbook.xgame/resources/backcover.jpg">
         </div>
