@@ -23,6 +23,12 @@
       "xml": "ru-book.pdf.xml",
       "xsl": "ru-book.xsl",
       "html": "ru-book.pdf.html"
+    },
+    {
+      "base": "../docs/x/xmap/author/playground/",
+      "xml": "playground.xml",
+      "xsl": "playground.xsl",
+      "html": "playground.html"
     }
   ],
 
@@ -50,6 +56,7 @@
       "template": "{{{INDEX_SLIDER_CSS}}}",
       "file": "../docs/x/xstyle/resources/slider.css"
     },
+
     {
       "template": "{{{XGAME_DEFAULT_CSS}}}",
       "file": "../docs/x/xmap/author/playground-rules/xbook.xgame/resources/default.css"
@@ -61,12 +68,144 @@
     {
       "template": "{{{XGAME_PAGED}}}",
       "file": "../docs/x/xmap/author/playground-rules/xbook.xgame/resources/paged.polyfill.js"
+    },
+
+    {
+      "template": "{{{PG_CHESSBOARD_CSS}}}",
+      "file": "../docs/x/xmap/author/playground/css/third-party/chessboard.css"
+    },
+    {
+      "template": "{{{PG_DEFAULT_CSS}}}",
+      "file": "../docs/x/xmap/author/playground/css/default.css"
+    },
+    {
+      "template": "{{{PG_LAYOUT_CSS}}}",
+      "file": "../docs/x/xmap/author/playground/css/layout.css"
+    },
+
+    {
+      "template": "{{{PG_THREE_CORE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/external/1/three.core.js"
+    },
+    {
+      "template": "{{{PG_THREE_MODULE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/external/1/three.module.js"
+    },
+    {
+      "template": "{{{PG_JQUERY_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/external/1/jquery.js"
+    },
+    {
+      "template": "{{{PG_CHESSBOARD_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/external/1/chessboard.js"
+    },
+
+    {
+      "template": "{{{PG_UTILS_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/utils.js"
+    },
+    {
+      "template": "{{{PG_MATERIAL_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/view/material.js"
+    },
+    {
+      "template": "{{{PG_GEOMETRY_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/view/geometry.js"
+    },
+    {
+      "template": "{{{PG_BOARD_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/view/board.js"
+    },
+    {
+      "template": "{{{PG_FIGURE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/view/figure.js"
+    },
+    {
+      "template": "{{{PG_CAMERA_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/view/camera.js"
+    },
+    {
+      "template": "{{{PG_SCENE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/view/scene.js"
+    },
+    {
+      "template": "{{{PG_KEYBOARD_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/controller/io/keyboard.js"
+    },
+    {
+      "template": "{{{PG_MOUSE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/controller/io/mouse.js"
+    },
+    {
+      "template": "{{{PG_TOUCHE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/controller/io/touche.js"
+    },
+    {
+      "template": "{{{PG_ACTION_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/controller/io/action.js"
+    },
+    {
+      "template": "{{{PG_EVENT_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/controller/io/event.js"
+    },
+    {
+      "template": "{{{PG_UCI_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/controller/uci.js"
+    },
+    {
+      "template": "{{{PG_COMMAND_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/controller/command.js"
+    },
+    {
+      "template": "{{{PG_RULE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/rule.js"
+    },
+    {
+      "template": "{{{PG_GAME_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/game.js"
+    },
+    {
+      "template": "{{{PG_USER_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/user.js"
+    },
+    {
+      "template": "{{{PG_ENGINE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/engine/engine.js"
+    },
+    {
+      "template": "{{{PG_EVALUATE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/engine/evaluate.js"
+    },
+    {
+      "template": "{{{PG_SEARCH_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/engine/search.js"
+    },
+    {
+      "template": "{{{PG_AI_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/engine/ai.js"
+    },
+    {
+      "template": "{{{PG_STATE_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/model/state.js"
+    },
+    {
+      "template": "{{{PG_CONFIG_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/config.js"
+    },
+    {
+      "template": "{{{PG_APP_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/app.js"
+    },
+    {
+      "template": "{{{PG_LOAD_JS}}}",
+      "file": "../docs/x/xmap/author/playground/app/load.js"
     }
   ],
 
   "mime_types": {
     "png": "png",
     "jpg": "jpeg",
+    "jpeg": "jpeg",
     "webp": "webp"
   }
 }

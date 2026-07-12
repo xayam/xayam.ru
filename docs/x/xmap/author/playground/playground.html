@@ -1,13 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>PlayGround by Xayam</title>
     <style>
-
+                
 .clearfix {
     clear: both;
 }
@@ -60,10 +59,8 @@
     left: 2px;
 }
 
-</style>
 
-<style>
-
+                
 * {
     margin: 0;
     padding: 0;
@@ -88,10 +85,8 @@ canvas {
     display: none;
 }
 
-</style>
 
-<style>
-
+                
 .left {
     position: relative;
     float: left;
@@ -102,28 +97,14 @@ canvas {
 .center {
     position: relative;
     float: left;
-    width: 50%;
+    width: 75%;
     height: 100%;
-    --cell-size: calc((max(100%, 100%) - 24px) / 13);
-}
-
-.right {
-    position: relative;
-    float: left;
-    width: 25%;
-    height: 100%;
-}
-
-.board_header {
-   position: relative;
-   width: 100%;
-   height: calc(var(--cell-size) * 1.0);
 }
 
 .board_center {
    position: relative;
    width: 100%;
-   height: calc(var(--cell-size) * 11.0);
+   height: 100%;
 }
 
 .board_footer {
@@ -132,85 +113,31 @@ canvas {
    height: calc(var(--cell-size) * 1.0);
 }
 
-.board_svg {
-    width: 100%;
-    height: 100%;
-}
-
-.game {
-   position: relative;
-   width: 100%;
-   height: 24px;
-}
-
-.game table {
+.game_input {
     width: 100%;
 }
-
-.game td {
-    width: 50%;
-    font-size: 18px;
-    text-align: center;
-}
-
-.game select {
-    width: 100%;
-}
-
-</style>
-
-
-</head>
-<body>
-<div id="chessboard"></div>
-<div class="left">
-    <div class="games_list">
-        <br/>
-        <a href="#chess">Шахматы</a>
-        <br/>
-        <a href="#dicechess">ДайсЧесс</a>
-        <br/>
-        <a href="#crazyhouse">КрейзиХаус</a>
-        <br/>
+            </style>
+  </head>
+  <body>
+    <div id="chessboard">1</div>
+    <div class="left">
+      <div class="games_list">
+        <select name="game_input" class="game_input">
+          <option value="chess" selected="selected">Шахматы</option>
+          <option value="dicechess">ДайсЧес</option>
+          <option value="crazyhouse">КрейзиХаус</option>
+        </select>
+      </div>
+      <div class="game_rules">
+                123
+            </div>
     </div>
-</div>
-<div class="center">
-    <div class="game">
-        <table>
-            <tr>
-                <td>
-                    <select name="game_input" class="game_input">
-                        <option value="chess" selected="selected">Шахматы</option>
-                        <option value="dicechess">ДайсЧесс</option>
-                        <option value="crazyhouse">КрейзиХаус</option>
-                    </select>
-                </td>
-                <td>
-                    <a href="#rules">Правила</a>
-                </td>
-            </tr>
-        </table>
+    <div class="center">
+      <div class="board_center"/>
     </div>
-    <div class="board_header">
-        header
-    </div>
-    <div class="board_center">
-
-    </div>
-    <div class="board_footer">
-        footer
-    </div>
-</div>
-<div class="right">
-    <table class="moves_list">
-        <tr>
-            <td>1.1</td>
-            <td>1.2</td>
-        </tr>
-    </table>
-</div>
-<script type='text/javascript'>
-let TC = (function () {
+    <div class="right"/>
+    <script type="text/javascript">
+            let TC = (function () {
 
     /**
      * @license
@@ -60065,10 +59992,9 @@ let TC = (function () {
 
 })();
 
-</script>
-
-<script type='text/javascript'>
-let THREE = (function () {
+        </script>
+    <script type="text/javascript">
+            let THREE = (function () {
 
     /**
      * @license
@@ -80072,10 +79998,9 @@ void main() {
 
 })();
 
-</script>
-
-<script type='text/javascript'>
-/*!
+        </script>
+    <script type="text/javascript">
+            /*!
  * jQuery JavaScript Library v3.7.1
  * https://jquery.com/
  *
@@ -90792,10 +90717,9 @@ if ( typeof noGlobal === "undefined" ) {
 return jQuery;
 } );
 
-</script>
-
-<script type='text/javascript'>
-// chessboard.js v1.0.0
+        </script>
+    <script type="text/javascript">
+            // chessboard.js v1.0.0
 // https://github.com/oakmac/chessboardjs/
 //
 // Copyright (c) 2019, Chris Oakman
@@ -92613,12 +92537,9 @@ return jQuery;
   window['Chessboard']['objToFen'] = objToFen
 })() // end anonymous wrapper
 
-</script>
-
-
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -92636,10 +92557,9 @@ function deepClone(obj) {
     return obj;
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Materials {
 
     constructor() {
@@ -92658,10 +92578,9 @@ class Materials {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Geometry extends Materials {
 
     constructor() {
@@ -92679,10 +92598,9 @@ class Geometry extends Materials {
     }
 
 }
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Board extends Geometry {
 
     constructor() {
@@ -92725,10 +92643,9 @@ class Board extends Geometry {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Figure extends Board {
 
     constructor() {
@@ -92777,10 +92694,9 @@ class Figure extends Board {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Cameras extends Figure {
 
     constructor(){
@@ -92803,10 +92719,9 @@ class Cameras extends Figure {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Scenes extends Cameras {
 
     constructor(){
@@ -92825,10 +92740,9 @@ class Scenes extends Cameras {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class KeyBoard extends Scenes {
 
     constructor(){
@@ -92842,10 +92756,9 @@ class KeyBoard extends Scenes {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Mouse extends KeyBoard {
 
     constructor(){
@@ -92859,10 +92772,9 @@ class Mouse extends KeyBoard {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Touche extends Mouse {
 
     constructor(){
@@ -92876,10 +92788,9 @@ class Touche extends Mouse {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Action extends Touche {
 
     constructor(){
@@ -92893,22 +92804,18 @@ class Action extends Touche {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
-</script>
-
-<script type='text/javascript'>
-
-</script>
-
-<script type='text/javascript'>
-
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
+        </script>
+    <script type="text/javascript">
+            
+        </script>
+    <script type="text/javascript">
+            
+        </script>
+    <script type="text/javascript">
+            
 class Rule extends Action {
 
     constructor(){
@@ -92922,10 +92829,9 @@ class Rule extends Action {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class Game extends Rule {
 
     constructor(){
@@ -92939,10 +92845,9 @@ class Game extends Rule {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class User extends Game {
 
     constructor(){
@@ -92956,26 +92861,21 @@ class User extends Game {
 
 }
 
-</script>
-
-<script type='text/javascript'>
-
-</script>
-
-<script type='text/javascript'>
-
-</script>
-
-<script type='text/javascript'>
-
-</script>
-
-<script type='text/javascript'>
-
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
+        </script>
+    <script type="text/javascript">
+            
+        </script>
+    <script type="text/javascript">
+            
+        </script>
+    <script type="text/javascript">
+            
+        </script>
+    <script type="text/javascript">
+            
 class State extends User {
 
     constructor(canvas) {
@@ -93030,10 +92930,9 @@ function animate() {
     app.state.renderer.render(app.state.scene, app.state.camera);
 }
 
-</script>
-
-<script type='text/javascript'>
-const SIZE = 8;
+        </script>
+    <script type="text/javascript">
+            const SIZE = 8;
 const CELL_SIZE = 10;
 const HEIGHT = 2;
 const LIGHT_COLOR = 0xdddddd;
@@ -93060,11 +92959,11 @@ class Config {
     }
 
     initLayouts() {
-        this.vertical_layout["this.left.style.display"] = "none";
-        this.vertical_layout["this.center.style.width"] = "100%";
-        this.vertical_layout["this.center.style.height"] = "calc(var(--cell-size) * 11.0 + 24px)";
-        this.vertical_layout["this.right.style.width"] = "100%";
-        this.vertical_layout["this.right.style.height"] = "calc(var(--cell-size) * 2.0)";
+        // this.vertical_layout["this.left.style.display"] = "none";
+        // this.vertical_layout["this.center.style.width"] = "100%";
+        // this.vertical_layout["this.center.style.height"] = "calc(var(--cell-size) * 11.0 + 24px)";
+        // this.vertical_layout["this.right.style.width"] = "100%";
+        // this.vertical_layout["this.right.style.height"] = "calc(var(--cell-size) * 2.0)";
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
             eval(execute);
@@ -93079,10 +92978,9 @@ class Config {
     }
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 class App extends Config {
 
     constructor() {
@@ -93133,15 +93031,12 @@ class App extends Config {
     }
 }
 
-</script>
-
-<script type='text/javascript'>
-
+        </script>
+    <script type="text/javascript">
+            
 let app = new App();
 app.run();
 
-</script>
-
-
-</body>
+        </script>
+  </body>
 </html>
