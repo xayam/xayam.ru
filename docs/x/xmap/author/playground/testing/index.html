@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>D12 Random Chess • Человек vs Движок</title>
+  
+  <!-- Библиотеки -->
+  <link rel="stylesheet" href="css/chessboard.css"/>
+  <script src="js/jquery.js"></script>
+  <script src="js/chess.js"></script>
+  <script src="js/chessboard.js"></script>
+  
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="dark-theme">
+  <div class="app-container">
+    
+    <!-- Шапка -->
+    <header class="game-header">
+      <h1>🎲 D12 Random Chess</h1>
+      <div class="game-info">
+        <span id="turn-indicator">Ход: Белые</span>
+        <span id="status-message">Бросьте кубики</span>
+      </div>
+    </header>
+
+    <!-- Игровое поле -->
+    <main class="game-area">
+      
+      <!-- Левая панель: кубики и управление -->
+      <aside class="control-panel">
+        <div class="dice-section">
+          <h3>Кубики</h3>
+          <div class="dice-container" id="dice-container">
+            <div class="die d12" id="die1">?</div>
+            <div class="die d12" id="die2">?</div>
+            <div class="die d12" id="die3">?</div>
+          </div>
+          <button id="roll-btn" class="btn-primary">🎲 Бросить кубики</button>
+          <button id="undo-btn" class="btn-secondary" disabled>↩ Отменить</button>
+        </div>
+
+        <div class="moves-section">
+          <h3>Доступные ходы</h3>
+          <div id="available-moves" class="moves-list">
+            <p class="hint">После броска здесь появятся фигуры для хода</p>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h3>Настройки</h3>
+          <label>
+            <input type="checkbox" id="show-hints" checked/>
+            Показывать подсказки
+          </label>
+          <label>
+            Сложность ИИ:
+            <select id="ai-difficulty">
+              <option value="1">Лёгкий</option>
+              <option value="2" selected>Средний</option>
+              <option value="3">Сложный</option>
+            </select>
+          </label>
+        </div>
+      </aside>
+
+      <!-- Центральная панель: доска -->
+      <div class="board-section">
+        <div id="chessboard" style="width: 480px"></div>
+        <div class="board-controls">
+          <button id="new-game-btn" class="btn-primary">🔄 Новая игра</button>
+          <button id="flip-btn" class="btn-secondary">🔁 Перевернуть</button>
+        </div>
+      </div>
+
+      <!-- Правая панель: история и статус -->
+      <aside class="info-panel">
+        <div class="history-section">
+          <h3>История ходов</h3>
+          <div id="move-history" class="move-history"></div>
+        </div>
+        
+        <div class="capture-section">
+          <h3>Взятые фигуры</h3>
+          <div class="captures">
+            <div id="white-captured" class="captured-piece white"></div>
+            <div id="black-captured" class="captured-piece black"></div>
+          </div>
+        </div>
+
+        <div class="rules-reminder">
+          <h4>📜 Правила</h4>
+          <ul>
+            <li>🎲 Бросьте 3 кубика D12</li>
+            <li>⚪ Выпала ваша фигура — <strong>обязан</strong> ходить</li>
+            <li>⚫ Выпала фигура противника — <strong>можете</strong> ходить ею</li>
+            <li>👑 Цель: взять короля противника</li>
+            <li>❌ Нет шаха/мата/пата</li>
+          </ul>
+        </div>
+      </aside>
+
+    </main>
+
+    <!-- Модальное окно окончания игры -->
+    <div id="game-over-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="game-result">Победа!</h2>
+        <p id="game-message">Король противника взят</p>
+        <button id="play-again-btn" class="btn-primary">🔄 Сыграть ещё</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Скрипты -->
+  <script src="js/dice.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "config": {
+	"base": "../docs/",
+    "root": "x/xmap/author/playground/",
+    "decorate": [
+      "<!--{{{",
+      "}}}-->"
+    ],
+    "temp": [
+      "temp_begin",
+      "temp_end"
+    ],
+    "matches": [
+      "env_style",
+      "dev_javascript",
+      "env_javascript",
+      "env_image"
+    ],
+    "{-}{env_style}": [
+      "<link rel='stylesheet' type='text/css' {@href_style}",
+      " />"
+    ],
+    "{+}{env_style}": [
+      "<style>",
+      "</style>"
+    ],
+    "{-}{dev_javascript}": [
+      "<script {@src_script}>",
+      "</script>"
+    ],
+    "{+}{dev_javascript}": [
+      "<script type='text/javascript'>",
+      "</script>"
+    ],
+    "{-}{env_javascript}": [
+      "<script {@src_script}>",
+      "</script>"
+    ],
+    "{+}{env_javascript}": [
+      "<script type='text/javascript'>",
+      "</script>"
+    ],
+    "{-}{env_image}": [
+      "<img {@src_image}",
+      " />"
+    ],
+    "{+}{env_image}": [
+      "<img {@src_image}",
+      " />"
+    ]
+  },
+  "outputs": {
+    "{-}": [
+      "playground.template.{@number}.html"
+    ],
+    "{+}": [
+      "playground.html"
+    ]
+  },
+  "env_style": {
+    "{+}": [
+      "app/model/resources/css/third-party/chessboard.css",
+      "app/model/resources/css/default.css",
+      "app/model/resources/css/layout.css"
+    ]
+  },
+  "dev_javascript": {
+    "{+}": [
+      "app/model/external/1/three.core.js",
+      "app/model/external/1/three.module.js",
+      "app/model/external/1/jquery.js",
+      "app/model/external/1/chessboard.js"
+    ]
+  },
+  "env_javascript": {
+    "{-+}": [
+      "app/model/utils.js",
+      "app/view/material.js",
+      "app/view/geometry.js",
+      "app/view/board.js",
+      "app/view/figure.js",
+      "app/view/camera.js",
+      "app/view/scene.js",
+      "app/controller/io/keyboard.js",
+      "app/controller/io/mouse.js",
+      "app/controller/io/touche.js",
+      "app/controller/io/action.js",
+      "app/controller/io/event.js",
+      "app/controller/uci.js",
+      "app/controller/command.js",
+      "app/model/rule.js",
+      "app/model/game.js",
+      "app/model/user.js",
+      "app/model/engine/engine.js",
+      "app/model/engine/evaluate.js",
+      "app/model/engine/search.js",
+      "app/model/engine/ai.js",
+      "app/model/state.js",
+      "app/config.js",
+      "app/app.js",
+      "app/load.js"
+    ]
+  }
+}
