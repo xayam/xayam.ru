@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ru>
         <div>
-            <a name="checkers" />
+            <a id="checkers" />
             <h1><a href="#_checkers">Шашки</a></h1>
             <p>
                     Шашки — это классическая настольная игра для двух игроков,

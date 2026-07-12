@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ru>
         <div>
-            <a name="dicechess" />
+            <a id="dicechess" />
             <h1><a href="#_dicechess">ДайсЧес</a></h1>
             <p>
                     ДайсЧес представляет собой современную вариацию классических

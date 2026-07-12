@@ -1,157 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ru>
         <div class="page-break table">
-            <a name="table" />
+            <a id="table" />
             <h1><a href="#_table">Содержание</a></h1>
 
             <a name="_cover" />
             <h2><a href="#cover">Часть 1. Начало</a></h2>
             <a name="_annotation" />
-            <a href="#annotation">Аннотация</a>
+            <a href="#annotation" class="counter">Аннотация</a>
             <br/>
             <a name="_table" />
-            <a href="#table">Содержание</a>
+            <a href="#table" class="counter">Содержание</a>
             <br/>
             <a name="_intro" />
-            <a href="#intro">Введение</a>
+            <a href="#intro" class="counter">Введение</a>
             <br/>
 
             <a name="_part_02" />
             <h2><a href="#part_02">Часть 2. Классические игры</a></h2>
             <a name="_chess" />
-            <a href="#chess">Шахматы</a>
+            <a href="#chess" class="counter">Шахматы</a>
             <br/>
             <a name="_checkers" />
-            <a href="#checkers">Шашки</a>
+            <a href="#checkers" class="counter">Шашки</a>
             <br/>
 
             <a name="_part_03" />
             <h2><a href="#part_03">Часть 3. Игры с костями</a></h2>
             <a name="_dicechess" />
-            <a href="#dicechess">ДайсЧес</a>
+            <a href="#dicechess" class="counter">ДайсЧес</a>
             <br/>
             <a name="_random" />
-            <a href="#random">Случайные шахматы с одним кубиком D6</a>
+            <a href="#random" class="counter">Случайные шахматы с одним кубиком D6</a>
             <br/>
             <a name="_random_1xd12" />
-            <a href="#random_1xd12">Случайные шахматы с одним додекаэдром D12</a>
+            <a href="#random_1xd12" class="counter">Случайные шахматы с одним додекаэдром D12</a>
             <br/>
             <a name="_random_3xd12" />
-            <a href="#random_3xd12">Случайные шахматы с тремя додекаэдрами D12</a>
+            <a href="#random_3xd12" class="counter">Случайные шахматы с тремя додекаэдрами D12</a>
             <br/>
             <a name="_random_other" />
-            <a href="#random_other">Другие случайные шахматы</a>
+            <a href="#random_other" class="counter">Другие случайные шахматы</a>
             <br/>
 
             <a name="_part_04" />
             <h2><a href="#part_04">Часть 4. Игры с другой стартовой позицией</a></h2>
             <a name="_chess960" />
-            <a href="#chess960">Шахматы Фишера</a>
+            <a href="#chess960" class="counter">Шахматы Фишера</a>
             <br/>
             <a name="_dfrc" />
-            <a href="#dfrc">Двойные шахматы Фишера</a>
+            <a href="#dfrc" class="counter">Двойные шахматы Фишера</a>
             <br/>
             <a name="_racing_kings" />
-            <a href="#racing_kings">Гонка королей</a>
+            <a href="#racing_kings" class="counter">Гонка королей</a>
             <br/>
             <a name="_really_bad_chess" />
-            <a href="#really_bad_chess">Очень плохие шахматы</a>
+            <a href="#really_bad_chess" class="counter">Очень плохие шахматы</a>
             <br/>
 
             <a name="_part_05" />
             <h2><a href="#part_05">Часть 5. Игры с двумя досками или наборами фигур</a></h2>
             <a name="_bughouse" />
-            <a href="#bughouse">Багхаус или шведские шахматы</a>
+            <a href="#bughouse" class="counter">Багхаус или шведские шахматы</a>
             <br/>
             <a name="_alice" />
-            <a href="#alice">Шахматы Алисы</a>
+            <a href="#alice" class="counter">Шахматы Алисы</a>
             <br/>
             <a name="_horde" />
-            <a href="#horde">Орда</a>
+            <a href="#horde" class="counter">Орда</a>
             <br/>
 
             <a name="_part_06" />
             <h2><a href="#part_06">Часть 6. Игры с маленькими размерами досок</a></h2>
             <a name="_mini_3x3" />
-            <a href="#mini_3x3">Миниатюрные шахматы на доске 3x3</a>
+            <a href="#mini_3x3" class="counter">Миниатюрные шахматы на доске 3x3</a>
             <br/>
             <a name="_mini_3x4" />
-            <a href="#mini_3x4">Миниатюрные шахматы на доске 3x4</a>
+            <a href="#mini_3x4" class="counter">Миниатюрные шахматы на доске 3x4</a>
             <br/>
             <a name="_mini_4x4" />
-            <a href="#mini_4x4">Миниатюрные шахматы на доске 4x4</a>
+            <a href="#mini_4x4" class="counter">Миниатюрные шахматы на доске 4x4</a>
             <br/>
             <a name="_gardner" />
-            <a href="#gardner">Мини-шахматы Гарднера</a>
+            <a href="#gardner" class="counter">Мини-шахматы Гарднера</a>
             <br/>
             <a name="_los_alamos" />
-            <a href="#los_alamos">Шахматы Лос-Аламос</a>
+            <a href="#los_alamos" class="counter">Шахматы Лос-Аламос</a>
             <br/>
 
             <a name="_part_07" />
             <h2><a href="#part_07">Часть 7. Игры с дополнительными фигурами и большими досками</a></h2>
             <a name="_maharajah" />
-            <a href="#maharajah">Магараджа</a>
+            <a href="#maharajah" class="counter">Магараджа</a>
             <br/>
             <a name="_gothic_chess" />
-            <a href="#gothic_chess">Готические шахматы</a>
+            <a href="#gothic_chess" class="counter">Готические шахматы</a>
             <br/>
             <a name="_kapablanka" />
-            <a href="#kapablanka">Шахматы Капабланки</a>
+            <a href="#kapablanka" class="counter">Шахматы Капабланки</a>
             <br/>
             <a name="_grand_chess" />
-            <a href="#grand_chess">Большие шахматы или ГрандЧес</a>
+            <a href="#grand_chess" class="counter">Большие шахматы или ГрандЧес</a>
             <br/>
             <a name="_bear_chess" />
-            <a href="#bear_chess">Медвежьи шахматы</a>
+            <a href="#bear_chess" class="counter">Медвежьи шахматы</a>
             <br/>
             <a name="_berolina" />
-            <a href="#berolina">Шахматы Беролины</a>
+            <a href="#berolina" class="counter">Шахматы Беролины</a>
             <br/>
             <a name="_duck_chess" />
-            <a href="#duck_chess">Утиные шахматы</a>
+            <a href="#duck_chess" class="counter">Утиные шахматы</a>
             <br/>
             <a name="_astral_chess" />
-            <a href="#astral_chess">Астральные шахматы (авторская)</a>
+            <a href="#astral_chess" class="counter">Астральные шахматы (авторская)</a>
             <br/>
 
             <a name="_part_08" />
             <h2><a href="#part_08">Часть 8. Игры с карманом</a></h2>
             <a name="_crazy_house" />
-            <a href="#crazy_house">КрейзиХаус</a>
+            <a href="#crazy_house" class="counter">КрейзиХаус</a>
             <br/>
             <a name="_king_chess" />
-            <a href="#king_chess">КингЧесс</a>
+            <a href="#king_chess" class="counter">КингЧесс</a>
             <br/>
 
             <a name="_part_09" />
             <h2><a href="#part_09">Часть 9. Игры с другими правилами</a></h2>
             <a name="_anti_chess" />
-            <a href="#anti_chess">Анти-шахматы</a>
+            <a href="#anti_chess" class="counter">Анти-шахматы</a>
             <br/>
             <a name="_anti_checkers" />
-            <a href="#anti_checkers">Анти-шашки</a>
+            <a href="#anti_checkers" class="counter">Анти-шашки</a>
             <br/>
             <a name="_three_check" />
-            <a href="#three_check">Три шаха</a>
+            <a href="#three_check" class="counter">Три шаха</a>
             <br/>
             <a name="_metamorph" />
-            <a href="#metamorph">Метаморф</a>
+            <a href="#metamorph" class="counter">Метаморф</a>
             <br/>
             <a name="_king_hill" />
-            <a href="#king_hill">Царь горы</a>
+            <a href="#king_hill" class="counter">Царь горы</a>
             <br/>
             <a name="_atomic" />
-            <a href="#atomic">Атомные шахматы</a>
+            <a href="#atomic" class="counter">Атомные шахматы</a>
             <br/>
             <a name="_marseillais_chess" />
-            <a href="#marseillais_chess">Марсельские шахматы</a>
+            <a href="#marseillais_chess" class="counter">Марсельские шахматы</a>
             <br/>
             <a name="_andernach_chess" />
-            <a href="#andernach_chess">Андернахские шахматы</a>
+            <a href="#andernach_chess" class="counter">Андернахские шахматы</a>
             <br/>
             <a name="_progressive_chess" />
-            <a href="#progressive_chess">Прогрессивные шахматы</a>
+            <a href="#progressive_chess" class="counter">Прогрессивные шахматы</a>
             <br/>
 
             <a name="_part_10" />
@@ -163,16 +163,10 @@
             <a name="_part_11" />
             <h2><a href="#part_11">Часть 11. Конец</a></h2>
             <a name="_ending" />
-            <a href="#ending">Заключение</a>
-            <br/>
-            <a name="_appendix" />
-            <a href="#appendix">Аппендикс</a>
-            <br/>
+            <a href="#ending" class="counter">Заключение</a>
+            <br />
             <a name="_advert" />
-            <a href="#advert">Реклама</a>
-            <br/>
-            <a name="_backcover" />
-            <a href="#backcover">Больше, чем одна игра. Задняя обложка</a>
-            <br/>
+            <a href="#advert" class="counter">Реклама</a>
+            <br />
         </div>
 </ru>

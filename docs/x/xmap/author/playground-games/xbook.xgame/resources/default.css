@@ -5,6 +5,38 @@
     padding: 0;
 }
 
+@media print {
+    @page {
+        size: A5 portrait;
+        margin: 1cm;
+        @bottom-center {
+            content: counter(page);
+            font-size: 10pt;
+        }
+    }
+
+     a.counter::after {
+        content: target-counter(attr(href url), page);
+        padding-right: 1cm;
+        float: right;
+    }
+
+    @page:first {
+        margin: 0;
+    }
+
+    @page no-number-page {
+        margin: 0;
+        @bottom-center {
+            content: none;
+        }
+    }
+
+    .no-counter {
+        page: no-number-page;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;

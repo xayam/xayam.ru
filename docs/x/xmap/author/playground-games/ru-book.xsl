@@ -14,6 +14,7 @@
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
                 <link rel="stylesheet" href="xbook.xgame/resources/default.css"/>
                 <link rel="stylesheet" href="xbook.xgame/resources/style.css"/>
+                <script src="xbook.xgame/resources/paged.polyfill.js"/>
             </head>
             <body>
                 <div id="book">
@@ -128,11 +129,12 @@
                     </div>
 
                     <div id="section-99" class="page-break">
+                        <xsl:copy-of select="$s99_end__01_ending_ru" />
+                        <xsl:copy-of select="$s99_end__02_advert_ru" />
                         <xsl:copy-of select="$s99_end__98_backcover2_ru" />
                         <xsl:copy-of select="$s99_end__99_backcover_ru" />
                     </div>
                 </div>
-
             </body>
         </html>
     </xsl:template>

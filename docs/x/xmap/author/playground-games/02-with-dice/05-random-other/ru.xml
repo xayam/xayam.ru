@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ru>
         <div>
-            <a name="random_other" />
+            <a id="random_other" />
             <h1><a href="#_random_other">Другие случайные шахматы</a></h1>
             <p>
                     Случайные шахматы с различными комбинациями кубиков открывают

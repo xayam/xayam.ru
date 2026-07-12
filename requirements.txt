@@ -17,3 +17,6 @@ lxml
 
 pandas
 openpyxl
+
+weasyprint
+
