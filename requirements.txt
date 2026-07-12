@@ -1,22 +1,21 @@
-openai
-pyTelegramBotAPI
-
-pyroomacoustics
-shapely
-matplotlib
-numpy
-scikit-learn
-
-opencv-python
-pillow
-
-opencv-contrib-python
-scipy
-PyAudio
 lxml
+base64
 
-pandas
-openpyxl
+#weasyprint
 
-weasyprint
+#openai
+#pyTelegramBotAPI
 
+#pyroomacoustics
+#shapely
+#matplotlib
+#numpy
+#scikit-learn
+
+#opencv-python
+#pillow
+#opencv-contrib-python
+#scipy
+#PyAudio
+#pandas
+#openpyxl
