@@ -156,13 +156,13 @@
                 <meta name="robots" content="INDEX,FOLLOW"/>
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
                 <style>
-                    //{{{DEFAULT_CSS}}}
+                    {{{XGAME_DEFAULT_CSS}}}
 
-                    //{{{STYLE_CSS}}}
+                    {{{XGAME_STYLE_CSS}}}
                 </style>
                 <xsl:if test="$book_type='pdf'">
                     <script>
-                        //{{{PAGED}}}
+                        {{{XGAME_PAGED}}}
                     </script>
                 </xsl:if>
             </head>

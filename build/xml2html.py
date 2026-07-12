@@ -50,15 +50,28 @@ string_replacers = [
 
 file_replacers = [
     {
-        "template": "//{{{DEFAULT_CSS}}}",
+        "template": "{{{INDEX_DEFAULT_CSS}}}",
+        "file": "../docs/x/xstyle/resources/default.css",
+    },
+    {
+        "template": "{{{INDEX_STYLE_CSS}}}",
+        "file": "../docs/x/xstyle/resources/style.css",
+    },
+    {
+        "template": "{{{INDEX_SLIDER_CSS}}}",
+        "file": "../docs/x/xstyle/resources/slider.css",
+    },
+
+    {
+        "template": "{{{XGAME_DEFAULT_CSS}}}",
         "file": "../docs/x/xmap/author/playground-games/xbook.xgame/resources/default.css",
     },
     {
-        "template": "//{{{STYLE_CSS}}}",
+        "template": "{{{XGAME_STYLE_CSS}}}",
         "file": "../docs/x/xmap/author/playground-games/xbook.xgame/resources/style.css",
     },
     {
-        "template": "//{{{PAGED}}}",
+        "template": "{{{XGAME_PAGED}}}",
         "file": "../docs/x/xmap/author/playground-games/xbook.xgame/resources/paged.polyfill.js",
     },
 ]

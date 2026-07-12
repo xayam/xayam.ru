@@ -15,9 +15,13 @@
                 <meta name="zen-verification"
                       content="iJPmmxXlF90pWT2kSvlOGdg0aRLgyGgFv97HotfCksTnFoqT9pn6hgvoxwGbH60K" />
                 <link rel="shortcut icon" href="{$favicon}" type="image/x-icon"/>
-                <link rel="stylesheet" href="x/xstyle/resources/default.css"/>
-                <link rel="stylesheet" href="x/xstyle/resources/style.css"/>
-                <link rel="stylesheet" href="x/xstyle/resources/slider.css"/>
+                <style>
+                    {{{INDEX_DEFAULT_CSS}}}
+
+                    {{{INDEX_STYLE_CSS}}}
+
+                    {{{INDEX_SLIDER_CSS}}}
+                </style>
             </head>
             <body>
                 <div id="header">
