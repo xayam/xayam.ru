@@ -5,17 +5,17 @@ p {
     margin: 10px;
 }
 
-#book {
+#booker {
     min-width: 300px;
     max-width: 148mm;
     margin: 0 auto;
 }
 
-#book div {
+#booker div {
     border: 0 solid black;
 }
 
-#book div h1 {
+#booker div h1 {
     margin-top: 20px;
     text-align: center;
 }
