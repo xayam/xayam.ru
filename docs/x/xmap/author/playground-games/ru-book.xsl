@@ -127,6 +127,18 @@
                         <xsl:copy-of select="$s08_other_rules__08_andernach_chess_ru" />
                         <xsl:copy-of select="$s08_other_rules__09_progressive_chess_ru" />
                     </div>
+                    <div id="section-09" class="page-break">
+                        <a name="part_10" />
+                        <h1>
+                            <a href="#_part_10">
+                                <xsl:value-of select="$s09_other_games_ru" />
+                            </a>
+                        </h1>
+                        <xsl:copy-of select="$s09_other_games__01_pawn_duel_ru" />
+                        <xsl:copy-of select="$s09_other_games__02_rook_game_ru" />
+                        <xsl:copy-of select="$s09_other_games__03_makruk_ru" />
+                        <xsl:copy-of select="$s09_other_games__04_metamorph_dice_ru" />
+                    </div>
 
                     <div id="section-99" class="page-break">
                         <xsl:copy-of select="$s99_end__01_ending_ru" />

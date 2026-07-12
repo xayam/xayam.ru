@@ -156,12 +156,21 @@
 
             <a name="_part_10" />
             <h2><a href="#part_10">Часть 10. Другие игры</a></h2>
-            <a name="_a" />
-            <a href="#a">1</a>
+            <a name="_pawn_duel" />
+            <a href="#pawn_duel" class="counter">Пешечная дуэль</a>
+            <br/>
+            <a name="_rook_game" />
+            <a href="#rook_game" class="counter">Игра с ладьёй (Ним)</a>
+            <br/>
+            <a name="_makruk" />
+            <a href="#makruk" class="counter">Макрук</a>
+            <br/>
+            <a name="_metamorph_dice" />
+            <a href="#metamorph_dice" class="counter">Метаморф с костями</a>
             <br/>
 
-            <a name="_part_11" />
-            <h2><a href="#part_11">Часть 11. Конец</a></h2>
+            <a name="_backcover" />
+            <h2><a href="#backcover">Часть 11. Конец</a></h2>
             <a name="_ending" />
             <a href="#ending" class="counter">Заключение</a>
             <br />

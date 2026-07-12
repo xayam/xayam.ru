@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-    <xsl:variable name="s03_other_start_ru" select="'Часть 4. Игры с другой стартовой позицией'" />
-    <xsl:variable name="s03_other_start__01_chess_960_ru" select="document('01-chess-960/ru.xml')/ru/div" />
-    <xsl:variable name="s03_other_start__02_DFRC_ru" select="document('02-DFRC/ru.xml')/ru/div" />
-    <xsl:variable name="s03_other_start__03_king_chess_ru" select="document('03-king-chess/ru.xml')/ru/div" />
-    <xsl:variable name="s03_other_start__04_racing_kings_ru" select="document('04-racing-kings/ru.xml')/ru/div" />
-    <xsl:variable name="s03_other_start__05_bad_chess_ru" select="document('05-really-bad-chess/ru.xml')/ru/div" />
+    <xsl:variable name="s09_other_games_ru" select="'Часть 10. Другие игры'" />
+    <xsl:variable name="s09_other_games__01_pawn_duel_ru" select="document('01-pawn-duel/ru.xml')/ru/div" />
+    <xsl:variable name="s09_other_games__02_rook_game_ru" select="document('02-rook-game/ru.xml')/ru/div" />
+    <xsl:variable name="s09_other_games__03_makruk_ru" select="document('03-makruk/ru.xml')/ru/div" />
+    <xsl:variable name="s09_other_games__04_metamorph_dice_ru" select="document('04-metamorph-with-dice/ru.xml')/ru/div" />
 </xsl:stylesheet>
