@@ -2,12 +2,32 @@
 <games>
     <game>
         <number>01</number>
-        <id>chess</id>
-        <name>Шахматы</name>
+        <id>dice-chess</id>
+        <name>ДайсЧес</name>
+        <gambling>true</gambling>
     </game>
     <game>
         <number>02</number>
-        <id>checkers</id>
-        <name>Шашки</name>
+        <id>random-chess</id>
+        <name>Случайные шахматы с одним кубиком D6</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>03</number>
+        <id>chess-with-D12</id>
+        <name>Случайные шахматы с одним додекаэдром D12</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>04</number>
+        <id>chess-with-3xD12</id>
+        <name>Случайные шахматы с тремя додекаэдрами D12</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>05</number>
+        <id>random-other</id>
+        <name>Другие случайные шахматы</name>
+        <gambling>false</gambling>
     </game>
 </games>

@@ -4,10 +4,12 @@
         <number>01</number>
         <id>chess</id>
         <name>Шахматы</name>
+        <gambling>true</gambling>
     </game>
     <game>
         <number>02</number>
         <id>checkers</id>
         <name>Шашки</name>
+        <gambling>true</gambling>
     </game>
 </games>

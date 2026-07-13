@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<games>
+    <game>
+        <number>01</number>
+        <id>anti-chess</id>
+        <name>Анти-шахматы</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>02</number>
+        <id>anti-checkers</id>
+        <name>Анти-шашки</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>03</number>
+        <id>three-check</id>
+        <name>Три шаха</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>04</number>
+        <id>metamorph</id>
+        <name>Метаморф</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>05</number>
+        <id>king-of-the-hill</id>
+        <name>Царь горы</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>06</number>
+        <id>atomic</id>
+        <name>Атомные шахматы</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>07</number>
+        <id>marseillais-chess</id>
+        <name>Марсельские шахматы</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>08</number>
+        <id>andernach-chess</id>
+        <name>Андернахские шахматы</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>09</number>
+        <id>progressive-chess</id>
+        <name>Прогрессивные шахматы</name>
+        <gambling>true</gambling>
+    </game>
+</games>

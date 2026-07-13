@@ -4,25 +4,30 @@
         <number>01</number>
         <id>cover</id>
         <name> </name>
+        <gambling>false</gambling>
     </game>
     <game>
         <number>02</number>
         <id>cover2</id>
         <name> </name>
+        <gambling>false</gambling>
     </game>
     <game>
         <number>03</number>
         <id>annotation</id>
         <name>Аннотация</name>
+        <gambling>false</gambling>
     </game>
     <game>
         <number>04</number>
         <id>table</id>
         <name>Содержание</name>
+        <gambling>false</gambling>
     </game>
     <game>
         <number>05</number>
         <id>intro</id>
         <name>Введение</name>
+        <gambling>false</gambling>
     </game>
 </games>

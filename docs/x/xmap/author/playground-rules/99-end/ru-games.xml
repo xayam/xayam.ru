@@ -2,27 +2,26 @@
 <games>
     <game>
         <number>01</number>
-        <id>cover</id>
-        <name> </name>
+        <id>ending</id>
+        <name>Заключение</name>
+        <gambling>false</gambling>
     </game>
     <game>
         <number>02</number>
-        <id>cover2</id>
+        <id>advert</id>
+        <name>Реклама</name>
+        <gambling>false</gambling>
+    </game>
+    <game>
+        <number>98</number>
+        <id>backcover2</id>
         <name> </name>
+        <gambling>false</gambling>
     </game>
     <game>
-        <number>03</number>
-        <id>annotation</id>
-        <name>Аннотация</name>
-    </game>
-    <game>
-        <number>04</number>
-        <id>table</id>
-        <name>Содержание</name>
-    </game>
-    <game>
-        <number>05</number>
-        <id>intro</id>
-        <name>Введение</name>
+        <number>99</number>
+        <id>backcover</id>
+        <name> </name>
+        <gambling>false</gambling>
     </game>
 </games>

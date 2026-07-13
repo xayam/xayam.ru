@@ -2,7 +2,9 @@
 
 E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\.venv\Scripts\python.exe E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\build\xml2html.py
 
-D:\Programs\WeasyPrint\weasyprint.exe E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\docs\x\xmap\author\playground-rules\ru-book.pdf.html E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\docs\x\xmap\\author\playground-rules\ru-book.pdf
+rem D:\Programs\WeasyPrint\weasyprint.exe E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\docs\x\xmap\author\playground-rules\ru-book.pdf.html E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\docs\x\xmap\\author\playground-rules\ru-book.pdf
+
+D:\Programs\Calibre\Calibre\ebook-convert.exe E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\docs\x\xmap\author\playground-rules\ru-book.pdf.html E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\docs\x\xmap\\author\playground-rules\ru-book.pdf --paper-size a5
 
 rem D:\Programs\Calibre\Calibre\ebook-convert.exe E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\docs\x\xmap\author\playground-rules\ru-book.html E:\Xayam\XWork\XWorker\Projects\xarchive\XArchive\subprojects\org\xayam.ru\xayam.ru\docs\x\xmap\\author\playground-rules\ru-book.epub --no-default-epub-cover --preserve-cover-aspect-ratio --smarten-punctuation
 
