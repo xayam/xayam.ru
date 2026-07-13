@@ -2,31 +2,31 @@
 <games>
     <game>
         <number>01</number>
-        <id>3x3-chess</id>
+        <id>chess-3x3</id>
         <name>Миниатюрные шахматы на доске 3x3</name>
         <gambling>true</gambling>
     </game>
     <game>
         <number>02</number>
-        <id>3x4-chess</id>
+        <id>chess-3x4</id>
         <name>Миниатюрные шахматы на доске 3x4</name>
         <gambling>true</gambling>
     </game>
     <game>
         <number>03</number>
-        <id>4x4-chess</id>
+        <id>chess-4x4</id>
         <name>Миниатюрные шахматы на доске 4x4</name>
         <gambling>true</gambling>
     </game>
     <game>
         <number>04</number>
-        <id>5x5-gardner-mini-chess</id>
+        <id>chess-5x5-gardner</id>
         <name>Мини-шахматы Гарднера</name>
         <gambling>true</gambling>
     </game>
     <game>
         <number>05</number>
-        <id>6x6-los-alamos-chess</id>
+        <id>chess-6x6-los-alamos</id>
         <name>Шахматы Лос-Аламос</name>
         <gambling>true</gambling>
     </game>
