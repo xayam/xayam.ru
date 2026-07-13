@@ -27,49 +27,49 @@
                         <xsl:variable name="content"
                                       select="document(concat($number, '-', $id, '/', $number2, '-', $id2, '/ru.xml'))/ru/div"/>
                         <xsl:if test="$name2!=' '">
-                            <xsl:if test="$book_type!=$fb2 or $id2!='table'">
-                                <br />
-                                <a name="{$id2}" id="{$id2}" />
-                                <a href="#_{$id2}">
-                                    <h1><xsl:value-of select="$name2" /></h1>
-                                </a>
-                            </xsl:if>
+                            <br />
+                            <a name="{$id2}" id="{$id2}" />
+                            <a href="#_{$id2}">
+                                <h1><xsl:value-of select="$name2" /></h1>
+                            </a>
                         </xsl:if>
-                        <xsl:if test="$book_type!=$fb2">
-                            <xsl:if test="$content[@class='table']">
-                                <xsl:for-each select="$parts">
-                                    <xsl:variable name="number3" select="number" />
-                                    <xsl:variable name="id3" select="id" />
-                                    <xsl:variable name="name3" select="name" />
-                                    <xsl:variable name="games2" select="document(concat($number3, '-', $id3, '/ru-games.xml'))/games/game"/>
-                                    <xsl:if test="$number3!='00'">
-                                        <br />
-                                        <a name="_part_{$number3}" />
-                                        <p class="section">
-                                            <a href="#part_{$number3}">
-                                                <xsl:value-of select="$name3" />
+                        <xsl:if test="$content[@class='table']">
+                            <xsl:for-each select="$parts">
+                                <xsl:variable name="number3" select="number" />
+                                <xsl:variable name="id3" select="id" />
+                                <xsl:variable name="name3" select="name" />
+                                <xsl:variable name="games2" select="document(concat($number3, '-', $id3, '/ru-games.xml'))/games/game"/>
+                                <xsl:if test="$number3='04' or $number3='08'">
+                                    <div class="page-break">
+                                    </div>
+                                </xsl:if>
+                                <xsl:if test="$number3!='00'">
+                                    <br />
+                                    <a name="_part_{$number3}" />
+                                    <p class="section">
+                                        <a href="#part_{$number3}">
+                                            <xsl:value-of select="$name3" />
+                                        </a>
+                                    </p>
+                                    <br />
+                                </xsl:if>
+                                <xsl:for-each select="$games2">
+                                    <xsl:variable name="number4" select="number" />
+                                    <xsl:variable name="id4" select="id" />
+                                    <xsl:variable name="name4" select="name" />
+                                    <xsl:if test="$name4!=' '">
+                                        <a name="_{$id4}" />
+                                        <p class="subsection">
+                                            <a href="#{$id4}" class="counter">
+                                                <xsl:value-of select="$name4" />
                                             </a>
                                         </p>
                                         <br />
                                     </xsl:if>
-                                    <xsl:for-each select="$games2">
-                                        <xsl:variable name="number4" select="number" />
-                                        <xsl:variable name="id4" select="id" />
-                                        <xsl:variable name="name4" select="name" />
-                                        <xsl:if test="$name4!=' '">
-                                            <a name="_{$id4}" />
-                                            <p class="subsection">
-                                                <a href="#{$id4}" class="counter">
-                                                    <xsl:value-of select="$name4" />
-                                                </a>
-                                            </p>
-                                            <br />
-                                        </xsl:if>
-                                    </xsl:for-each>
                                 </xsl:for-each>
-                                <div class="page-break">
-                                </div>
-                            </xsl:if>
+                            </xsl:for-each>
+                            <div class="page-break">
+                            </div>
                         </xsl:if>
                         <xsl:copy-of select="$content" />
                     </xsl:for-each>
