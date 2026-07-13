@@ -14,6 +14,7 @@
                     <xsl:if test="$number!='00'">
                         <div class="page-break">
                         </div>
+                        <br />
                         <a name="part_{$number}" />
                         <h1>
                             <a href="#_part_{$number}">
@@ -29,8 +30,13 @@
                                       select="document(concat($number, '-', $id, '/', $number2, '-', $id2, '/ru.xml'))/ru/div"/>
                         <xsl:if test="$name2!=' '">
                             <xsl:if test="$book_type!='fb2' or $id2!='table'">
+                                <br />
                                 <a name="{$id2}" id="{$id2}" />
-                                <h1><a href="#_{$id2}"><xsl:value-of select="$name2" /></a></h1>
+                                <h1>
+                                    <a href="#_{$id2}">
+                                        <xsl:value-of select="$name2" />
+                                    </a>
+                                </h1>
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$book_type!='fb2'">
