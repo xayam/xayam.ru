@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<games>
+    <game>
+        <number>01</number>
+        <id>chess</id>
+        <name>Шахматы</name>
+    </game>
+    <game>
+        <number>02</number>
+        <id>checkers</id>
+        <name>Шашки</name>
+    </game>
+</games>

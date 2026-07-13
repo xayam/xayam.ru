@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parts>
+    <part>
+        <number>00</number>
+        <id>begin</id>
+        <name>Часть 1. Начало</name>
+    </part>
+    <part>
+        <number>01</number>
+        <id>classic-games</id>
+        <name>Часть 2. Классические игры</name>
+    </part>
+<!--    <part>-->
+<!--        <number>02</number>-->
+<!--        <id>with-dice</id>-->
+<!--        <name>Часть 3. Игры с костями</name>-->
+<!--    </part>-->
+<!--    <part>-->
+<!--        <number>03</number>-->
+<!--        <id>with-other-starting-position</id>-->
+<!--        <name>Часть 4. Игры с другими начальными позициями</name>-->
+<!--    </part>-->
+<!--    <part>-->
+<!--        <number>04</number>-->
+<!--        <id>with-two-sets-of-figures</id>-->
+<!--        <name>Часть 5. Игры с двумя досками или наборами фигур</name>-->
+<!--    </part>-->
+<!--    <part>-->
+<!--        <number>05</number>-->
+<!--        <id>with-mini-board-sizes</id>-->
+<!--        <name>Часть 6. Игры на миниатюрных досках</name>-->
+<!--    </part>-->
+<!--    <part>-->
+<!--        <number>06</number>-->
+<!--        <id>with-additional-figures</id>-->
+<!--        <name>Часть 7. Игры с дополнительными фигурами и на больших досках</name>-->
+<!--    </part>-->
+<!--    <part>-->
+<!--        <number>07</number>-->
+<!--        <id>with-pocket</id>-->
+<!--        <name>Часть 8. Игры с карманом</name>-->
+<!--    </part>-->
+<!--    <part>-->
+<!--        <number>08</number>-->
+<!--        <id>with-other-rules</id>-->
+<!--        <name>Часть 9. Игры с другими правилами</name>-->
+<!--    </part>-->
+<!--    <part>-->
+<!--        <number>09</number>-->
+<!--        <id>other-games</id>-->
+<!--        <name>Часть 10. Другие игры</name>-->
+<!--    </part>-->
+<!--    <part>-->
+<!--        <number>99</number>-->
+<!--        <id>end</id>-->
+<!--        <name>Часть 11. Конец</name>-->
+<!--    </part>-->
+</parts>

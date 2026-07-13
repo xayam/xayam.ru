@@ -4,16 +4,16 @@
     <xsl:variable name="book_type" select="/book/type" />
     <xsl:variable name="title_ru" select="/book/title/ru" />
 
-    <xsl:include href="00-begin/ru-sections.xsl" />
-    <xsl:include href="01-classic-games/ru-sections.xsl" />
-    <xsl:include href="02-with-dice/ru-sections.xsl" />
-    <xsl:include href="03-with-other-starting-position/ru-sections.xsl" />
-    <xsl:include href="04-with-two-sets-of-figures/ru-sections.xsl" />
-    <xsl:include href="05-with-mini-board-sizes/ru-sections.xsl" />
-    <xsl:include href="06-with-additional-figures/ru-sections.xsl" />
-    <xsl:include href="07-with-pocket/ru-sections.xsl" />
-    <xsl:include href="08-with-other-rules/ru-sections.xsl" />
-    <xsl:include href="09-other-games/ru-sections.xsl" />
+<!--    <xsl:include href="00-begin/ru-sections.xsl" />-->
+<!--    <xsl:include href="01-classic-games/ru-sections.xsl" />-->
+<!--    <xsl:include href="02-with-dice/ru-sections.xsl" />-->
+<!--    <xsl:include href="03-with-other-starting-position/ru-sections.xsl" />-->
+<!--    <xsl:include href="04-with-two-sets-of-figures/ru-sections.xsl" />-->
+<!--    <xsl:include href="05-with-mini-board-sizes/ru-sections.xsl" />-->
+<!--    <xsl:include href="06-with-additional-figures/ru-sections.xsl" />-->
+<!--    <xsl:include href="07-with-pocket/ru-sections.xsl" />-->
+<!--    <xsl:include href="08-with-other-rules/ru-sections.xsl" />-->
+<!--    <xsl:include href="09-other-games/ru-sections.xsl" />-->
 
-    <xsl:include href="99-end/ru-sections.xsl" />
+<!--    <xsl:include href="99-end/ru-sections.xsl" />-->
 </xsl:stylesheet>

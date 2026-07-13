@@ -20,9 +20,6 @@
 
             </div>
         </div>
-        <div class="right">
-
-        </div>
         <script type="text/javascript">
             {{{PG_THREE_CORE_JS}}}
         </script>
