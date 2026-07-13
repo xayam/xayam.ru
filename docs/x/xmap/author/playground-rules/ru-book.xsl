@@ -12,15 +12,13 @@
                 <xsl:variable name="games" select="document(concat($number, '-', $id, '/ru-games.xml'))/games/game"/>
                 <div id="section-{$number}">
                     <xsl:if test="$number!='00'">
+                        <br />
                         <div class="page-break">
                         </div>
-                        <br />
                         <a name="part_{$number}" />
-                        <h1>
-                            <a href="#_part_{$number}">
-                                <xsl:value-of select="$name" />
-                            </a>
-                        </h1>
+                        <a href="#_part_{$number}">
+                            <h1><xsl:value-of select="$name" /></h1>
+                        </a>
                     </xsl:if>
                     <xsl:for-each select="$games">
                         <xsl:variable name="number2" select="number" />
@@ -29,17 +27,15 @@
                         <xsl:variable name="content"
                                       select="document(concat($number, '-', $id, '/', $number2, '-', $id2, '/ru.xml'))/ru/div"/>
                         <xsl:if test="$name2!=' '">
-                            <xsl:if test="$book_type!='fb2' or $id2!='table'">
+                            <xsl:if test="$book_type!=$fb2 or $id2!='table'">
                                 <br />
                                 <a name="{$id2}" id="{$id2}" />
-                                <h1>
-                                    <a href="#_{$id2}">
-                                        <xsl:value-of select="$name2" />
-                                    </a>
-                                </h1>
+                                <a href="#_{$id2}">
+                                    <h1><xsl:value-of select="$name2" /></h1>
+                                </a>
                             </xsl:if>
                         </xsl:if>
-                        <xsl:if test="$book_type!='fb2'">
+                        <xsl:if test="$book_type!=$fb2">
                             <xsl:if test="$content[@class='table']">
                                 <xsl:for-each select="$parts">
                                     <xsl:variable name="number3" select="number" />
@@ -49,9 +45,11 @@
                                     <xsl:if test="$number3!='00'">
                                         <br />
                                         <a name="_part_{$number3}" />
-                                        <a href="#part_{$number3}" class="section">
-                                            <xsl:value-of select="$name3" />
-                                        </a>
+                                        <p class="section">
+                                            <a href="#part_{$number3}">
+                                                <xsl:value-of select="$name3" />
+                                            </a>
+                                        </p>
                                         <br />
                                     </xsl:if>
                                     <xsl:for-each select="$games2">
@@ -60,9 +58,11 @@
                                         <xsl:variable name="name4" select="name" />
                                         <xsl:if test="$name4!=' '">
                                             <a name="_{$id4}" />
-                                            <a href="#{$id4}" class="counter">
-                                                <xsl:value-of select="$name4" />
-                                            </a>
+                                            <p class="subsection">
+                                                <a href="#{$id4}" class="counter">
+                                                    <xsl:value-of select="$name4" />
+                                                </a>
+                                            </p>
                                             <br />
                                         </xsl:if>
                                     </xsl:for-each>

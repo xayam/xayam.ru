@@ -34,45 +34,22 @@ p {
     font-style: italic;
 }
 
-a.section {
+.section {
     font-size: 16pt;
     font-weight: bold;
 }
 
-a.section:before {
+.section:before {
     content: '';
     padding-left: 1cm;
 }
 
-a.counter:before {
+.subsection:before {
     content: '';
     padding-left: 2cm;
 }
 
-/*div.section {*/
-/*    display: flex;*/
-/*}*/
-
-/*div.section::before {*/
-/*    content: "";*/
-/*    width: 1cm;*/
-/*    flex-shrink: 0;*/
-/*}*/
-
-/*div.section {*/
-/*    flex: 1;*/
-/*}*/
-
-/*div.subsection {*/
-/*    display: flex;*/
-/*}*/
-
-/*div.subsection::before {*/
-/*    content: "";*/
-/*    width: 2cm;*/
-/*    flex-shrink: 0;*/
-/*}*/
-
-/*div.subsection {*/
-/*    flex: 1;*/
-/*}*/
+.section, .subsection {
+    display: inline;
+    text-align: left;
+}

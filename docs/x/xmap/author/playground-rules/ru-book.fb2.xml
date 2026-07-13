@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="ru-book.xsl"?>
+<?xml-stylesheet type="text/xsl" href="ru-book.fb2.xsl"?>
 <book>
     <type>fb2</type>
-    <title>
-        <ru>Больше, чем одна игра</ru>
-        <en>More than one game</en>
-    </title>
+    <title>Больше, чем одна игра</title>
+    <language>ru</language>
+    <author>Алексей Белянин</author>
+    <date>2027.01.01</date>
+    <genre>games</genre>
 </book>

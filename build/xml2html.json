@@ -15,8 +15,8 @@
     {
       "base": "../docs/x/xmap/author/playground-rules/",
       "xml": "ru-book.fb2.xml",
-      "xsl": "ru-book.xsl",
-      "html": "ru-book.fb2.html"
+      "xsl": "ru-book.fb2.xsl",
+      "html": "ru-book.fb2"
     },
     {
       "base": "../docs/x/xmap/author/playground-rules/",
@@ -34,8 +34,8 @@
 
   "string_replacers": [
     {
-      "from": "<?xml version=\"1.0\"?>",
-      "to": "<!DOCTYPE html>"
+      "from": "<?xml version=\"1.0\"?>\n",
+      "to": ""
     },
     {
       "from": "x/xmap/author/playground-rules/ru-book.xml",
