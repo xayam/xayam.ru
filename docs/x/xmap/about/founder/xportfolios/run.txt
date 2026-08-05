@@ -1,0 +1,20 @@
+cd /var/www/www-root/data
+sudo apt install python3.12-venv
+sudo python -m venv xportfoliosvenv
+source xportfoliosvenv/bin/activate
+pip install openai
+pip install pyTelegramBotAPI
+
+cd /var/www/www-root/data && python -m venv xportfoliosvenv && source xportfoliosvenv/bin/activate && pip install openai && pip install pyTelegramBotAPI
+
+xportfoliosvenv/bin/python www/xayam.ru/xportfolios/xportfolios.py
+
+ps aufx | grep xportfolios.py
+ps aufx | grep python
+
+pkill -f xportfolios.py
+cd /var/www/www-root/data && xportfoliosvenv/bin/python www/xayam.ru/xportfolios/xportfolios.py
+
+ps aufx | grep xportfolios.py
+ps aufx | grep python
+
