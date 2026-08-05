@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from png2nc import heightA4, widthA4, boundX, boundY, line_pixels
+from config import heightA4, widthA4, boundX, boundY, line_pixels
 
 def get_gray_trajectory(filename):
     gray_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
