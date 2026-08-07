@@ -4,23 +4,22 @@ import cv2
 import winsound
 
 from config import *
-from png2gif import greedy_path, matrix_path, contour_path, get_trajectory
+from png2gif import greedy_path, matrix_path, liner_path, get_trajectory, get_liner_trajectory
 from gray import get_gray_trajectory
 
 # алгоритм траекторий
 # greedy_path для сложных картинок
 # matrix_path быстро, для текста и мелких кластеров
 # contour_path - быстро, только контур, есть недостатки - лишние линии
-algorithms = {
-    "gray": get_gray_trajectory,
-    "matrix": matrix_path,
-    "contour": contour_path,
-    "greedy": greedy_path
+methods = {
+    "liner": {"trajectory": get_liner_trajectory, "algorithm": liner_path},
+    "matrix": {"trajectory": get_trajectory, "algorithm": matrix_path},
+    "greedy": {"trajectory": get_trajectory, "algorithm": greedy_path},
 }
 
 def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
     width, height, binary_image, trajectory = \
-        get_trajectory(filename=filename, algorithm=algorithm, animate=False)
+        methods[algorithm]["trajectory"](filename=filename, algorithm=methods[algorithm]["algorithm"])
     image = np.ones_like(binary_image) * 255
     result = ""
     for l in range(loop):
@@ -76,7 +75,7 @@ def get_gcode():
         print(filename)
         s = filename.split("--")[1]
         s2 = s.split("-")
-        algorithm = algorithms[s2[0]]
+        algorithm = s2[0]
         # material = materials[s2[1]]
         speed = int(s2[2]) # скорость передвижения лазера
         power = int(s2[3]) # мощность включения лазера в процентах

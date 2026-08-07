@@ -5,9 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from scipy.spatial.distance import cdist
+from scipy.stats import false_discovery_control
 from telebot.service_utils import chunks
 
 np.random.seed(42)
+animate=False
 
 def contour_path(pixels, last_point):
     # 1. Создаём бинарную маску из пикселей кластера
@@ -82,14 +84,45 @@ def matrix_path(pixels, last_point):
     last_point = cluster_path[-1]
     return trajectory, last_point
 
+def liner_path(pixels):
+    trajectory = []
+    cluster_path = []
+    for y, x in pixels:
+        cluster_path.append(np.array([y, x]))
+    trajectory.extend(cluster_path)
+    return trajectory
+
+def get_liner_trajectory(filename='input.png', algorithm=liner_path):
+    image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+    _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
+    binary_image = 255 - binary_image
+    trajectory = []
+    reverse = 0
+    for ys in range(binary_image.shape[0] - 1, -1, -1):
+        pixels = []
+        for xs in  range(binary_image.shape[1]):
+            if binary_image[ys, xs] == 255:
+                pixels.append(np.array([ys, xs]))
+        if len(pixels) > 0:
+            result = algorithm(pixels)
+            if reverse % 2 == 1:
+                result = result[::-1]
+            reverse = 1 - reverse
+            if animate:
+                trajectory.extend(result)
+            else:
+                trajectory.append(result)
+    if animate:
+        trajectory = np.array(trajectory)
+    return image.shape[1], image.shape[0], binary_image, trajectory
+
 def get_trajectory(filename='input.png',
-                   algorithm=greedy_path, animate=True,
-                   max_cluster_size=1000):
+                   algorithm=greedy_path, connectivity=4, max_cluster_size=1000):
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     _, binary_image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY)
     binary_image = 255 - binary_image
     num_labels, labels, stats, centroids = cv2.connectedComponentsWithStats(
-        binary_image, connectivity=4
+        binary_image, connectivity=connectivity
     )
     cluster_data = []
     for label in range(1, num_labels):
@@ -134,7 +167,6 @@ def get_trajectory(filename='input.png',
             for i in range(0, len(pixels), max_cluster_size)]
         for chunk in chunks:
             result, last_point = algorithm(chunk, last_point)
-            trajectory.append(result)
             if animate:
                 trajectory.extend(result)
             else:
@@ -144,8 +176,19 @@ def get_trajectory(filename='input.png',
     return image.shape[1], image.shape[0], binary_image, trajectory
 
 def main(filename="input.png"):
-    _, _, binary_image, trajectory = get_trajectory(filename=filename)
-
+    # job = {
+    #     "algorithm": matrix_path,
+    #     "trajectory": get_trajectory
+    # }
+    job = {
+        "algorithm": liner_path,
+        "trajectory": get_liner_trajectory
+    }
+    # job = {
+    #     "algorithm": greedy_path,
+    #     "trajectory": get_trajectory
+    # }
+    _, _, binary_image, trajectory = job["trajectory"](filename=filename, algorithm=job["algorithm"])
     fig, ax = plt.subplots(figsize=(10, 7))
     ax.axis('off')
     canvas = np.ones_like(binary_image) * 255
@@ -166,8 +209,8 @@ def main(filename="input.png"):
     ani = FuncAnimation(fig, animate, frames=len(frames), interval=25, blit=True, repeat=False)
     binary_image = 255 - binary_image
     assert canvas.any() == binary_image.any(), "Error! canvas != binary_image"
-    # ani.save("output.matrix.gif")
-    ani.save("output.greedy.gif")
+    ani.save("test." + job["algorithm"].__name__.replace("_", ".") + ".gif")
 
 if __name__ == "__main__":
+    animate = True
     main()
