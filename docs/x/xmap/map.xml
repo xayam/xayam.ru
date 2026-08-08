@@ -27,15 +27,15 @@
         </description>
     </item>
     <item active="true">
-        <id>author</id>
+        <id>dice12</id>
         <description>
             <name>
-                <ru>Авторские книги</ru>
-                <en>Author books</en>
+                <ru>Дайсы</ru>
+                <en>Dice12</en>
             </name>
             <annotation>
-                <ru>Авторские электронные книги</ru>
-                <en>Авторские электронные книги</en>
+                <ru>Дайсы</ru>
+                <en>Дайсы</en>
             </annotation>
         </description>
     </item>

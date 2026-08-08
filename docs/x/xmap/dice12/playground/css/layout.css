@@ -1,0 +1,30 @@
+
+.left {
+    position: relative;
+    float: left;
+    width: 25%;
+    height: 100%;
+}
+
+.center {
+    position: relative;
+    float: left;
+    width: 75%;
+    height: 100%;
+}
+
+.board_center {
+   position: relative;
+   width: 100%;
+   height: 100%;
+}
+
+.board_footer {
+   position: relative;
+   width: 100%;
+   height: calc(var(--cell-size) * 1.0);
+}
+
+.game_input {
+    width: 100%;
+}

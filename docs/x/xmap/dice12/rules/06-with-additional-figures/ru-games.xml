@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<games>
+    <game>
+        <number>01</number>
+        <id>maharajah</id>
+        <name>Магараджа</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>02</number>
+        <id>gothic-chess</id>
+        <name>Готические шахматы</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>03</number>
+        <id>chess-kapablanka</id>
+        <name>Шахматы Капабланки</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>04</number>
+        <id>grand-chess</id>
+        <name>Большие шахматы или ГрандЧес</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>05</number>
+        <id>bear-chess</id>
+        <name>Медвежьи шахматы</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>06</number>
+        <id>berolina-pawn</id>
+        <name>Шахматы Беролины</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>07</number>
+        <id>duck-chess</id>
+        <name>Утиные шахматы</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>08</number>
+        <id>astral-chess</id>
+        <name>Астральные шахматы (авторская)</name>
+        <gambling>true</gambling>
+    </game>
+</games>

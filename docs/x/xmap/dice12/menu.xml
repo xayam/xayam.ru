@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+    <id>dice12</id>
+    <item active="true">
+        <id>rules</id>
+        <ru>Больше, чем одна игра</ru>
+        <en>More than one game</en>
+    </item>
+    <item active="true">
+        <id>playground</id>
+        <ru>Игровая площадка от КСАЯМ'а</ru>
+        <en>PlayGround by XAYAM</en>
+    </item>
+
+</menu>

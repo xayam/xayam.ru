@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<games>
+    <game>
+        <number>01</number>
+        <id>chess-960</id>
+        <name>Шахматы Фишера</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>02</number>
+        <id>DFRC</id>
+        <name>Двойные шахматы Фишера</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>03</number>
+        <id>racing-kings</id>
+        <name>Гонка королей</name>
+        <gambling>true</gambling>
+    </game>
+    <game>
+        <number>04</number>
+        <id>really-bad-chess</id>
+        <name>Очень плохие шахматы</name>
+        <gambling>true</gambling>
+    </game>
+</games>
