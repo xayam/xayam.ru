@@ -1,0 +1,6 @@
+# robots for
+User-agent: *
+Sitemap: https://dice12.ru/sitemap.xml
+Allow: /
+Crawl-delay: 1
+Host: dice12.ru
