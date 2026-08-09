@@ -15,13 +15,13 @@
     <game>
         <number>03</number>
         <id>chess-with-D12</id>
-        <name>Случайные шахматы с одним додекаэдром D12</name>
+        <name>Случайные шахматы с одним додекаэдром</name>
         <gambling>true</gambling>
     </game>
     <game>
         <number>04</number>
         <id>chess-with-3xD12</id>
-        <name>Случайные шахматы с тремя додекаэдрами D12</name>
+        <name>Случайные шахматы с тремя додекаэдрами</name>
         <gambling>true</gambling>
     </game>
     <game>
