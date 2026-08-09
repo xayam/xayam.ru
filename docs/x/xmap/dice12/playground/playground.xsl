@@ -4,110 +4,76 @@
     <xsl:template name="block-body">
         <div id="chessboard">1</div>
         <div class="left">
-            <div class="games_list">
-                <select name="game_input" class="game_input">
-                    <option value="chess" selected="selected">Шахматы</option>
-                    <option value="dicechess">ДайсЧес</option>
-                    <option value="crazyhouse">КрейзиХаус</option>
+            <div class="menus">
+                <a href="#a1">U1 vs U2</a> |
+                <a href="#a2">U vs AI</a> |
+                <a href="#a3">AI vs U</a> |
+                <a href="#a4">AI vs AI</a>
+            </div>
+            <div class="games">
+                <select id="select_game" name="select_game" class="select_game">
+                    <xsl:variable name="parts" select="document('../rules/ru-parts.xml')/parts/part" />
+                    <xsl:for-each select="$parts">
+                        <xsl:variable name="number" select="number" />
+                        <xsl:variable name="id" select="id" />
+                        <xsl:variable name="name" select="name" />
+                        <xsl:variable name="games"
+                                      select="document(concat('../rules/', $number, '-', $id, '/ru-games.xml'))/games/game"/>
+                        <xsl:for-each select="$games">
+                            <xsl:variable name="number2" select="number" />
+                            <xsl:variable name="id2" select="id" />
+                            <xsl:variable name="name2" select="name" />
+                            <xsl:variable name="gambling2" select="gambling" />
+                            <xsl:if test="$gambling2='true'">
+                                <option value="{$id2}">
+                                    <xsl:value-of select="$name2" />
+                                </option>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:for-each>
                 </select>
             </div>
-            <div class="game_rules">
-                123
+            <div class="rules">
+                <xsl:variable name="parts2" select="document('../rules/ru-parts.xml')/parts/part" />
+                <xsl:for-each select="$parts2">
+                    <xsl:variable name="number" select="number" />
+                    <xsl:variable name="id" select="id" />
+                    <xsl:variable name="name" select="name" />
+                    <xsl:variable name="games"
+                                  select="document(concat('../rules/', $number, '-', $id, '/ru-games.xml'))/games/game"/>
+                    <xsl:for-each select="$games">
+                        <xsl:variable name="number2" select="number" />
+                        <xsl:variable name="id2" select="id" />
+                        <xsl:variable name="name2" select="name" />
+                        <xsl:variable name="gambling2" select="gambling" />
+                        <xsl:if test="$gambling2='true'">
+                            <xsl:variable name="content"
+                                      select="document(concat('../rules/', $number, '-', $id, '/', $number2, '-', $id2, '/ru.xml'))/ru/div"/>
+                            <xsl:choose>
+                                <xsl:when test="$id2='chess'">
+                                    <div id="{$id2}" class="rules_game active">
+                                        <xsl:copy-of select="$content" />
+                                    </div>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <div id="{$id2}" class="rules_game">
+                                        <xsl:copy-of select="$content" />
+                                    </div>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:for-each>
             </div>
         </div>
-        <div class="center">
-            <div class="board_center">
-
-            </div>
+        <div class="board">
         </div>
-        <script type="text/javascript">
-            {{{PG_THREE_CORE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_THREE_MODULE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_JQUERY_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_CHESSBOARD_JS}}}
-        </script>
-
-        <script type="text/javascript">
-            {{{PG_UTILS_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_MATERIAL_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_GEOMETRY_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_BOARD_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_FIGURE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_CAMERA_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_SCENE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_KEYBOARD_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_MOUSE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_TOUCHE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_ACTION_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_EVENT_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_UCI_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_COMMAND_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_RULE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_GAME_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_USER_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_ENGINE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_EVALUATE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_SEARCH_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_AI_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_STATE_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_CONFIG_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_APP_JS}}}
-        </script>
-        <script type="text/javascript">
-            {{{PG_LOAD_JS}}}
-        </script>
+        <xsl:variable name="js" select="/root/js/item" />
+        <xsl:for-each select="$js">
+            <script>
+               <xsl:value-of select="concat('{{{', ., '}}}')" disable-output-escaping="yes" />
+            </script>
+        </xsl:for-each>
     </xsl:template>
     <xsl:template match="/">
         <html lang="ru">
@@ -116,13 +82,12 @@
             <meta name="viewport"
                   content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
             <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-            <title>PlayGround by Xayam</title>
+            <title>Плейграунд для вариантов шахмат от XAYAM</title>
             <style>
-                {{{PG_CHESSBOARD_CSS}}}
-
-                {{{PG_DEFAULT_CSS}}}
-
-                {{{PG_LAYOUT_CSS}}}
+                <xsl:variable name="css" select="/root/css/item" />
+                <xsl:for-each select="$css">
+                    <xsl:value-of select="concat('{{{', ., '}}}')" disable-output-escaping="yes" />
+                </xsl:for-each>
             </style>
         </head>
         <body>

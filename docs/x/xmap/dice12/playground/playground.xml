@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="playground.xsl"?>
 <root>
+    <js>
+        <item>PG_THREE_CORE_JS</item>
+        <item>PG_THREE_MODULE_JS</item>
+        <item>PG_JQUERY_JS</item>
+        <item>PG_CHESSBOARD_JS</item>
+        <item>PG_UTILS_JS</item>
+        <item>PG_MATERIAL_JS</item>
+        <item>PG_GEOMETRY_JS</item>
+        <item>PG_BOARD_JS</item>
+        <item>PG_FIGURE_JS</item>
+        <item>PG_CAMERA_JS</item>
+        <item>PG_SCENE_JS</item>
+        <item>PG_KEYBOARD_JS</item>
+        <item>PG_MOUSE_JS</item>
+        <item>PG_TOUCHE_JS</item>
+        <item>PG_ACTION_JS</item>
+        <item>PG_EVENT_JS</item>
+        <item>PG_UCI_JS</item>
+        <item>PG_COMMAND_JS</item>
+        <item>PG_RULE_JS</item>
+        <item>PG_GAME_JS</item>
+        <item>PG_USER_JS</item>
+        <item>PG_ENGINE_JS</item>
+        <item>PG_EVALUATE_JS</item>
+        <item>PG_SEARCH_JS</item>
+        <item>PG_AI_JS</item>
+        <item>PG_STATE_JS</item>
+        <item>PG_CONFIG_JS</item>
+        <item>PG_APP_JS</item>
+        <item>PG_LOAD_JS</item>
+    </js>
+    <css>
+        <item>PG_CHESSBOARD_CSS</item>
+        <item>PG_DEFAULT_CSS</item>
+        <item>PG_LAYOUT_CSS</item>
+    </css>
 </root>

@@ -4,7 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     background-color: #f1f3f4;
-    border: 1px solid black;
+    border: 0px solid black;
     scrollbar-color: gray white;
 }
 
@@ -14,6 +14,12 @@ html, body {
     overflow: visible;
 }
 
+p {
+    text-indent: 20px;
+    text-align: justify;
+    margin: 10px;
+}
+
 canvas {
     width: 100%;
     height: 100%;
@@ -21,4 +27,16 @@ canvas {
 
 #chessboard {
     display: none;
+}
+
+.rules_game {
+    display: none;
+}
+
+.rules_game.active {
+    display: block;
+}
+
+.menus {
+    font-size: 8px;
 }

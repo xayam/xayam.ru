@@ -10,26 +10,35 @@ class Config {
     constructor() {
         this.vertical_layout = {};
         this.horizontal_layout = {};
-        this.left = null;
-        this.center = null;
-        this.right = null;
-        this.board_center = null;
+        this.left_div = null;
+        this.board_div = null;
+        this.select_game = null;
     }
 
     initConfig() {
-        this.left = document.getElementsByClassName("left")[0];
-        this.center = document.getElementsByClassName("center")[0];
-        this.right = document.getElementsByClassName("right")[0];
-        this.board_center = document.getElementsByClassName("board_center")[0];
+        this.left_div = document.getElementsByClassName("left")[0];
+        this.board_div = document.getElementsByClassName("board")[0];
+        this.select_game = document.querySelector('#select_game');
+        this.select_game.addEventListener('change',
+        () => {
+            document.querySelectorAll('.rules_game').forEach(
+                block => {
+                    block.classList.remove('active');
+                }
+            );
+            const target = document.getElementById(this.select_game.value);
+            if (target) {
+                target.classList.add('active');
+            }
+        });
         this.initLayouts();
     }
 
     initLayouts() {
-        // this.vertical_layout["this.left.style.display"] = "none";
-        // this.vertical_layout["this.center.style.width"] = "100%";
-        // this.vertical_layout["this.center.style.height"] = "calc(var(--cell-size) * 11.0 + 24px)";
-        // this.vertical_layout["this.right.style.width"] = "100%";
-        // this.vertical_layout["this.right.style.height"] = "calc(var(--cell-size) * 2.0)";
+        this.vertical_layout["this.left_div.style.width"] = "100%";
+        this.vertical_layout["this.left_div.style.height"] = "25%";
+        this.vertical_layout["this.board_div.style.width"] = "100%";
+        this.vertical_layout["this.board_div.style.height"] = "75%";
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
             eval(execute);

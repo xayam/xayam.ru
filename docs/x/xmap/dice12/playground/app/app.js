@@ -14,7 +14,7 @@ class App extends Config {
 
     init() {
         this.initConfig();
-        this.state = new State(this.board_center);
+        this.state = new State(this.board_div);
         window.addEventListener('resize', this.onReSizeFunction);
         this.fullScreen();
         this.onReSizeFunction(null);
