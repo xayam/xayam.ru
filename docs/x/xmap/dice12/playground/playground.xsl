@@ -68,12 +68,6 @@
         </div>
         <div class="board">
         </div>
-        <xsl:variable name="js" select="/root/js/item" />
-        <xsl:for-each select="$js">
-            <script>
-               <xsl:value-of select="concat('{{{', ., '}}}')" disable-output-escaping="yes" />
-            </script>
-        </xsl:for-each>
     </xsl:template>
     <xsl:template match="/">
         <html lang="ru">
@@ -91,7 +85,13 @@
             </style>
         </head>
         <body>
-              <xsl:call-template name="block-body"/>
+            <xsl:variable name="js" select="/root/js/item" />
+            <xsl:for-each select="$js">
+                <script>
+                   {{{<xsl:value-of select="." disable-output-escaping="yes" />}}}
+                </script>
+            </xsl:for-each>
+            <xsl:call-template name="block-body"/>
         </body>
         </html>
     </xsl:template>
