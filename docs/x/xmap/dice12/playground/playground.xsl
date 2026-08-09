@@ -80,7 +80,7 @@
             <style>
                 <xsl:variable name="css" select="/root/css/item" />
                 <xsl:for-each select="$css">
-                    <xsl:value-of select="concat('{{{', ., '}}}')" disable-output-escaping="yes" />
+                    {{{<xsl:value-of select="."/>}}}
                 </xsl:for-each>
             </style>
         </head>
@@ -88,7 +88,7 @@
             <xsl:variable name="js" select="/root/js/item" />
             <xsl:for-each select="$js">
                 <script>
-                   {{{<xsl:value-of select="." disable-output-escaping="yes" />}}}
+                   {{{<xsl:value-of select="."/>}}}
                 </script>
             </xsl:for-each>
             <xsl:call-template name="block-body"/>
