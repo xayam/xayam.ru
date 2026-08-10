@@ -6,12 +6,12 @@
     background-color: #f1f3f4;
     border: 0px solid black;
     scrollbar-color: gray white;
+    overflow: hidden;
 }
 
 html, body {
     width: 100%;
     height: 100%;
-    overflow: visible;
 }
 
 p {
@@ -29,14 +29,15 @@ canvas {
     display: none;
 }
 
+.rules {
+    overflow: visible;
+    word-wrap: break-word;
+}
+
 .rules_game {
     display: none;
 }
 
 .rules_game.active {
     display: block;
-}
-
-.menus {
-    font-size: 8px;
 }

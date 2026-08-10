@@ -3,7 +3,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Плейграунд для вариантов шахмат от XAYAM</title>
+    <title>Варианты шахмат на площадке от XAYAM.RU</title>
     <style>
                     
 .clearfix {
@@ -67,12 +67,12 @@
     background-color: #f1f3f4;
     border: 0px solid black;
     scrollbar-color: gray white;
+    overflow: hidden;
 }
 
 html, body {
     width: 100%;
     height: 100%;
-    overflow: visible;
 }
 
 p {
@@ -90,6 +90,11 @@ canvas {
     display: none;
 }
 
+.rules {
+    overflow: visible;
+    word-wrap: break-word;
+}
+
 .rules_game {
     display: none;
 }
@@ -98,29 +103,29 @@ canvas {
     display: block;
 }
 
-.menus {
-    font-size: 8px;
-}
                 
                     
 .left {
     position: relative;
     float: left;
-    width: 25%;
+    width: 30%;
     height: 100%;
+    overflow-x: auto;
     overflow-y: scroll;
+    border-right: 1px solid gray;
 }
 
 .board {
     position: relative;
     float: left;
-    width: 75%;
+    width: 70%;
     height: 100%;
 }
 
-.select_game {
+.select_menu, .select_game {
     width: 100%;
     background-color: white;
+    border-bottom: 1px solid gray;
 }
 
                 </style>
@@ -92937,11 +92942,23 @@ class Config {
         this.left_div = null;
         this.board_div = null;
         this.select_game = null;
+        this.games_div = null;
+        this.games_label = null;
+        this.games_select = null;
+        this.menus_div = null;
+        this.menus_label = null;
+        this.menus_select = null;
     }
 
     initConfig() {
         this.left_div = document.getElementsByClassName("left")[0];
         this.board_div = document.getElementsByClassName("board")[0];
+        this.games_div = document.getElementsByClassName("games")[0];
+        this.games_label = document.querySelector('.games label');
+        this.games_select = document.querySelector('.games select');
+        this.menus_div = document.getElementsByClassName("menus")[0];
+        this.menus_label = document.querySelector('.menus label');
+        this.menus_select = document.querySelector('.menus select');
         this.select_game = document.querySelector('#select_game');
         this.select_game.addEventListener('change',
         () => {
@@ -92961,9 +92978,28 @@ class Config {
 
     initLayouts() {
         this.vertical_layout["this.left_div.style.width"] = "100%";
-        this.vertical_layout["this.left_div.style.height"] = "25%";
+        this.vertical_layout["this.left_div.style.height"] = "30%";
+        this.vertical_layout["this.left_div.style.borderRightWidth"] = "0";
+        this.vertical_layout["this.left_div.style.borderBottom"] = "1px solid gray";
+
         this.vertical_layout["this.board_div.style.width"] = "100%";
-        this.vertical_layout["this.board_div.style.height"] = "75%";
+        this.vertical_layout["this.board_div.style.height"] = "70%";
+
+        this.vertical_layout["this.games_div.style.display"] = "flex";
+        this.vertical_layout["this.games_div.style.alignItems"] = "center";
+        this.vertical_layout["this.games_div.style.gap"] = "8px";
+        this.vertical_layout["this.games_label.style.whiteSpace"] = "nowrap";
+        this.vertical_layout["this.games_label.style.flexShrink"] = "0";
+        this.vertical_layout["this.games_label.style.width"] = "125px";
+        this.vertical_layout["this.games_select.style.flex"] = "1";
+
+        this.vertical_layout["this.menus_div.style.display"] = "flex";
+        this.vertical_layout["this.menus_div.style.alignItems"] = "center";
+        this.vertical_layout["this.menus_div.style.gap"] = "8px";
+        this.vertical_layout["this.menus_label.style.whiteSpace"] = "nowrap";
+        this.vertical_layout["this.menus_label.style.flexShrink"] = "0";
+        this.vertical_layout["this.menus_label.style.width"] = "125px";
+        this.vertical_layout["this.menus_select.style.flex"] = "1";
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
             eval(execute);
@@ -93040,10 +93076,21 @@ app.run();
                 </script>
     <div id="chessboard">1</div>
     <div class="left">
-      <div class="menus"><a href="#a1">U1 vs U2</a> |
-                <a href="#a2">U vs AI</a> |
-                <a href="#a3">AI vs U</a> |
-                <a href="#a4">AI vs AI</a></div>
+      <div class="menus">
+        <label for="select_menu">Выберите режим:</label>
+        <select id="select_menu" name="select_menu" class="select_menu">
+          <option value="mode_u_vs_ai_level_1">Пользователь против AI (Уровень 1)</option>
+          <option value="mode_u_vs_ai_level_2">Пользователь против AI (Уровень 2)</option>
+          <option value="mode_u_vs_ai_level_3">Пользователь против AI (Уровень 3)</option>
+          <option value="mode_ai_vs_u_level_1">AI (Уровень 1) против Пользователя</option>
+          <option value="mode_ai_vs_u_level_2">AI (Уровень 2) против Пользователя</option>
+          <option value="mode_ai_vs_u_level_3">AI (Уровень 3) против Пользователя</option>
+          <option value="mode_u1_vs_u2">Пользователь 1 против Пользователя 2</option>
+          <option value="mode_ai_vs_ai_level_1">AI (Уровень 1) против AI (Уровень 1)</option>
+          <option value="mode_ai_vs_ai_level_2">AI (Уровень 2) против AI (Уровень 2)</option>
+          <option value="mode_ai_vs_ai_level_3">AI (Уровень 3) против AI (Уровень 3)</option>
+        </select>
+      </div>
       <div class="games">
         <label for="select_game">Выберите игру:</label>
         <select id="select_game" name="select_game" class="select_game">

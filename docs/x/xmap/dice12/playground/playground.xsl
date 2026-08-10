@@ -5,10 +5,19 @@
         <div id="chessboard">1</div>
         <div class="left">
             <div class="menus">
-                <a href="#a1">U1 vs U2</a> |
-                <a href="#a2">U vs AI</a> |
-                <a href="#a3">AI vs U</a> |
-                <a href="#a4">AI vs AI</a>
+                <label for="select_menu">Выберите режим:</label>
+                <select id="select_menu" name="select_menu" class="select_menu">
+                    <option value="mode_u_vs_ai_level_1">Пользователь против AI (Уровень 1)</option>
+                    <option value="mode_u_vs_ai_level_2">Пользователь против AI (Уровень 2)</option>
+                    <option value="mode_u_vs_ai_level_3">Пользователь против AI (Уровень 3)</option>
+                    <option value="mode_ai_vs_u_level_1">AI (Уровень 1) против Пользователя</option>
+                    <option value="mode_ai_vs_u_level_2">AI (Уровень 2) против Пользователя</option>
+                    <option value="mode_ai_vs_u_level_3">AI (Уровень 3) против Пользователя</option>
+                    <option value="mode_u1_vs_u2">Пользователь 1 против Пользователя 2</option>
+                    <option value="mode_ai_vs_ai_level_1">AI (Уровень 1) против AI (Уровень 1)</option>
+                    <option value="mode_ai_vs_ai_level_2">AI (Уровень 2) против AI (Уровень 2)</option>
+                    <option value="mode_ai_vs_ai_level_3">AI (Уровень 3) против AI (Уровень 3)</option>
+                </select>
             </div>
             <div class="games">
                 <label for="select_game">Выберите игру:</label>
@@ -84,7 +93,7 @@
             <meta name="viewport"
                   content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
             <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-            <title>Плейграунд для вариантов шахмат от XAYAM</title>
+            <title>Варианты шахмат на площадке от XAYAM.RU</title>
             <style>
                 <xsl:variable name="css" select="/root/css/item" />
                 <xsl:for-each select="$css">

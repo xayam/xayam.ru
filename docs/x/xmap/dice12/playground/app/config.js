@@ -13,11 +13,23 @@ class Config {
         this.left_div = null;
         this.board_div = null;
         this.select_game = null;
+        this.games_div = null;
+        this.games_label = null;
+        this.games_select = null;
+        this.menus_div = null;
+        this.menus_label = null;
+        this.menus_select = null;
     }
 
     initConfig() {
         this.left_div = document.getElementsByClassName("left")[0];
         this.board_div = document.getElementsByClassName("board")[0];
+        this.games_div = document.getElementsByClassName("games")[0];
+        this.games_label = document.querySelector('.games label');
+        this.games_select = document.querySelector('.games select');
+        this.menus_div = document.getElementsByClassName("menus")[0];
+        this.menus_label = document.querySelector('.menus label');
+        this.menus_select = document.querySelector('.menus select');
         this.select_game = document.querySelector('#select_game');
         this.select_game.addEventListener('change',
         () => {
@@ -37,9 +49,28 @@ class Config {
 
     initLayouts() {
         this.vertical_layout["this.left_div.style.width"] = "100%";
-        this.vertical_layout["this.left_div.style.height"] = "25%";
+        this.vertical_layout["this.left_div.style.height"] = "30%";
+        this.vertical_layout["this.left_div.style.borderRightWidth"] = "0";
+        this.vertical_layout["this.left_div.style.borderBottom"] = "1px solid gray";
+
         this.vertical_layout["this.board_div.style.width"] = "100%";
-        this.vertical_layout["this.board_div.style.height"] = "75%";
+        this.vertical_layout["this.board_div.style.height"] = "70%";
+
+        this.vertical_layout["this.games_div.style.display"] = "flex";
+        this.vertical_layout["this.games_div.style.alignItems"] = "center";
+        this.vertical_layout["this.games_div.style.gap"] = "8px";
+        this.vertical_layout["this.games_label.style.whiteSpace"] = "nowrap";
+        this.vertical_layout["this.games_label.style.flexShrink"] = "0";
+        this.vertical_layout["this.games_label.style.width"] = "125px";
+        this.vertical_layout["this.games_select.style.flex"] = "1";
+
+        this.vertical_layout["this.menus_div.style.display"] = "flex";
+        this.vertical_layout["this.menus_div.style.alignItems"] = "center";
+        this.vertical_layout["this.menus_div.style.gap"] = "8px";
+        this.vertical_layout["this.menus_label.style.whiteSpace"] = "nowrap";
+        this.vertical_layout["this.menus_label.style.flexShrink"] = "0";
+        this.vertical_layout["this.menus_label.style.width"] = "125px";
+        this.vertical_layout["this.menus_select.style.flex"] = "1";
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
             eval(execute);
