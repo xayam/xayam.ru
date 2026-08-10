@@ -20,12 +20,8 @@
                         <xsl:variable name="name" select="name" />
                         <xsl:variable name="games"
                                       select="document(concat('../rules/', $number, '-', $id, '/ru-games.xml'))/games/game"/>
-                        <xsl:variable name="subname">
-                            <xsl:call-template name="get-last">
-                                <xsl:with-param name="string" select="$name" />
-                                <xsl:with-param name="delimiter" select="'. '" />
-                            </xsl:call-template>
-                        </xsl:variable>
+                        <xsl:variable name="subname"
+                                      select="substring-after($name, '. ')" />
                         <xsl:if test="$number!='00' and $number!='99'">
                             <optgroup label="{$subname}">
                                 <xsl:for-each select="$games">
@@ -79,22 +75,6 @@
         </div>
         <div class="board">
         </div>
-    </xsl:template>
-
-    <xsl:template name="get-last">
-        <xsl:param name="string" />
-        <xsl:param name="delimiter" select="'. '" />
-        <xsl:choose>
-            <xsl:when test="contains($string, $delimiter)">
-                <xsl:call-template name="get-last">
-                    <xsl:with-param name="string" select="substring-after($string, $delimiter)" />
-                    <xsl:with-param name="delimiter" select="$delimiter" />
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$string" />
-            </xsl:otherwise>
-        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="/">
