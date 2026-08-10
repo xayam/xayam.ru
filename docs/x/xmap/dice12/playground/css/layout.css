@@ -20,12 +20,15 @@
     border-bottom: 1px solid gray;
 }
 
+.rules {
+    height: calc(100% - 85px);
+}
+
 .rules_game {
     width: 100%;
     height: 100%;
     overflow-x: auto;
     overflow-y: scroll;
-    padding-bottom: 80px;
     word-wrap: break-word;
 }
 

@@ -44,4 +44,5 @@ canvas {
 .games label, .menus label {
     width: 60px;
     min-width: 60px;
+    margin-left: 5px;
 }

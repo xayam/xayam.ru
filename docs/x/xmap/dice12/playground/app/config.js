@@ -19,7 +19,7 @@ class Config {
         this.menus_div = null;
         this.menus_label = null;
         this.menus_select = null;
-        this.rules_game_div = null;
+        this.rules_div = null;
     }
 
     initConfig() {
@@ -31,7 +31,7 @@ class Config {
         this.menus_div = document.getElementsByClassName("menus")[0];
         this.menus_label = document.querySelector('.menus label');
         this.menus_select = document.querySelector('.menus select');
-        this.rules_game_div = document.querySelector('.rules_game');
+        this.rules_div = document.querySelector('.rules');
         this.select_game = document.querySelector('#select_game');
         this.select_game.addEventListener('change',
         () => {
@@ -54,10 +54,8 @@ class Config {
         this.vertical_layout["this.left_div.style.height"] = "30%";
         this.vertical_layout["this.left_div.style.borderRightWidth"] = "0";
         this.vertical_layout["this.left_div.style.borderBottom"] = "1px solid gray";
-
         this.vertical_layout["this.board_div.style.width"] = "100%";
         this.vertical_layout["this.board_div.style.height"] = "70%";
-
         this.vertical_layout["this.games_div.style.height"] = "20px";
         this.vertical_layout["this.games_div.style.display"] = "flex";
         this.vertical_layout["this.games_div.style.alignItems"] = "center";
@@ -65,7 +63,6 @@ class Config {
         this.vertical_layout["this.games_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.games_label.style.flexShrink"] = "0";
         this.vertical_layout["this.games_select.style.flex"] = "1";
-
         this.vertical_layout["this.menus_div.style.height"] = "20px";
         this.vertical_layout["this.menus_div.style.display"] = "flex";
         this.vertical_layout["this.menus_div.style.alignItems"] = "center";
@@ -73,8 +70,7 @@ class Config {
         this.vertical_layout["this.menus_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.menus_label.style.flexShrink"] = "0";
         this.vertical_layout["this.menus_select.style.flex"] = "1";
-
-        this.vertical_layout["this.rules_game_div.style.paddingBottom"] = "40px";
+        this.vertical_layout["this.rules_div.style.height"] = "calc(100% - 45px)";
 
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
