@@ -11,6 +11,7 @@
                 <a href="#a4">AI vs AI</a>
             </div>
             <div class="games">
+                <label for="select_game">Выберите игру:</label>
                 <select id="select_game" name="select_game" class="select_game">
                     <xsl:variable name="parts" select="document('../rules/ru-parts.xml')/parts/part" />
                     <xsl:for-each select="$parts">
@@ -19,17 +20,27 @@
                         <xsl:variable name="name" select="name" />
                         <xsl:variable name="games"
                                       select="document(concat('../rules/', $number, '-', $id, '/ru-games.xml'))/games/game"/>
-                        <xsl:for-each select="$games">
-                            <xsl:variable name="number2" select="number" />
-                            <xsl:variable name="id2" select="id" />
-                            <xsl:variable name="name2" select="name" />
-                            <xsl:variable name="gambling2" select="gambling" />
-                            <xsl:if test="$gambling2='true'">
-                                <option value="{$id2}">
-                                    <xsl:value-of select="$name2" />
-                                </option>
-                            </xsl:if>
-                        </xsl:for-each>
+                        <xsl:variable name="subname">
+                            <xsl:call-template name="get-last">
+                                <xsl:with-param name="string" select="$name" />
+                                <xsl:with-param name="delimiter" select="'. '" />
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:if test="$number!='00' and $number!='99'">
+                            <optgroup label="{$subname}">
+                                <xsl:for-each select="$games">
+                                    <xsl:variable name="number2" select="number" />
+                                    <xsl:variable name="id2" select="id" />
+                                    <xsl:variable name="name2" select="name" />
+                                    <xsl:variable name="gambling2" select="gambling" />
+                                    <xsl:if test="$gambling2='true'">
+                                        <option value="{$id2}">
+                                            <xsl:value-of select="$name2" />
+                                        </option>
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </optgroup>
+                        </xsl:if>
                     </xsl:for-each>
                 </select>
             </div>
@@ -69,6 +80,23 @@
         <div class="board">
         </div>
     </xsl:template>
+
+    <xsl:template name="get-last">
+        <xsl:param name="string" />
+        <xsl:param name="delimiter" select="'. '" />
+        <xsl:choose>
+            <xsl:when test="contains($string, $delimiter)">
+                <xsl:call-template name="get-last">
+                    <xsl:with-param name="string" select="substring-after($string, $delimiter)" />
+                    <xsl:with-param name="delimiter" select="$delimiter" />
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$string" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
     <xsl:template match="/">
         <html lang="ru">
         <head>

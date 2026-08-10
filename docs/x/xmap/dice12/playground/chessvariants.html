@@ -93045,48 +93045,67 @@ app.run();
                 <a href="#a3">AI vs U</a> |
                 <a href="#a4">AI vs AI</a></div>
       <div class="games">
+        <label for="select_game">Выберите игру:</label>
         <select id="select_game" name="select_game" class="select_game">
-          <option value="chess">Шахматы</option>
-          <option value="checkers">Шашки</option>
-          <option value="dice-chess">ДайсЧес</option>
-          <option value="random-chess">Случайные шахматы с одним кубиком D6</option>
-          <option value="chess-with-D12">Случайные шахматы с одним додекаэдром</option>
-          <option value="chess-with-3xD12">Случайные шахматы с тремя додекаэдрами</option>
-          <option value="chess-960">Шахматы Фишера</option>
-          <option value="DFRC">Двойные шахматы Фишера</option>
-          <option value="racing-kings">Гонка королей</option>
-          <option value="really-bad-chess">Очень плохие шахматы</option>
-          <option value="bughouse">Багхаус или шведские шахматы</option>
-          <option value="alice">Шахматы Алисы</option>
-          <option value="horde">Орда</option>
-          <option value="chess-3x3">Миниатюрные шахматы на доске 3x3</option>
-          <option value="chess-3x4">Миниатюрные шахматы на доске 3x4</option>
-          <option value="chess-4x4">Миниатюрные шахматы на доске 4x4</option>
-          <option value="chess-5x5-gardner">Мини-шахматы Гарднера</option>
-          <option value="chess-6x6-los-alamos">Шахматы Лос-Аламос</option>
-          <option value="maharajah">Магараджа</option>
-          <option value="gothic-chess">Готические шахматы</option>
-          <option value="chess-kapablanka">Шахматы Капабланки</option>
-          <option value="grand-chess">Большие шахматы или ГрандЧес</option>
-          <option value="bear-chess">Медвежьи шахматы</option>
-          <option value="berolina-pawn">Шахматы Беролины</option>
-          <option value="duck-chess">Утиные шахматы</option>
-          <option value="astral-chess">Астральные шахматы (авторская)</option>
-          <option value="crazy-house">КрейзиХаус</option>
-          <option value="king-chess">КингЧесс</option>
-          <option value="anti-chess">Анти-шахматы</option>
-          <option value="anti-checkers">Анти-шашки</option>
-          <option value="three-check">Три шаха</option>
-          <option value="metamorph">Метаморф</option>
-          <option value="king-of-the-hill">Царь горы</option>
-          <option value="atomic">Атомные шахматы</option>
-          <option value="marseillais-chess">Марсельские шахматы</option>
-          <option value="andernach-chess">Андернахские шахматы</option>
-          <option value="progressive-chess">Прогрессивные шахматы</option>
-          <option value="pawn-duel">Пешечная дуэль</option>
-          <option value="rook-game">Игра с ладьёй (Ним)</option>
-          <option value="makruk">Макрук</option>
-          <option value="metamorph-with-dice">Метаморф с костями</option>
+          <optgroup label="Классические игры">
+            <option value="chess">Шахматы</option>
+            <option value="checkers">Шашки</option>
+          </optgroup>
+          <optgroup label="Игры с костями">
+            <option value="dice-chess">ДайсЧес</option>
+            <option value="random-chess">Случайные шахматы с одним кубиком D6</option>
+            <option value="chess-with-D12">Случайные шахматы с одним додекаэдром</option>
+            <option value="chess-with-3xD12">Случайные шахматы с тремя додекаэдрами</option>
+          </optgroup>
+          <optgroup label="Игры с другими начальными позициями">
+            <option value="chess-960">Шахматы Фишера</option>
+            <option value="DFRC">Двойные шахматы Фишера</option>
+            <option value="racing-kings">Гонка королей</option>
+            <option value="really-bad-chess">Очень плохие шахматы</option>
+          </optgroup>
+          <optgroup label="Игры с двумя наборами или досками">
+            <option value="bughouse">Багхаус или шведские шахматы</option>
+            <option value="alice">Шахматы Алисы</option>
+            <option value="horde">Орда</option>
+          </optgroup>
+          <optgroup label="Игры на миниатюрных досках">
+            <option value="chess-3x3">Миниатюрные шахматы на доске 3x3</option>
+            <option value="chess-3x4">Миниатюрные шахматы на доске 3x4</option>
+            <option value="chess-4x4">Миниатюрные шахматы на доске 4x4</option>
+            <option value="chess-5x5-gardner">Мини-шахматы Гарднера</option>
+            <option value="chess-6x6-los-alamos">Шахматы Лос-Аламос</option>
+          </optgroup>
+          <optgroup label="Игры с дополнительными фигурами">
+            <option value="maharajah">Магараджа</option>
+            <option value="gothic-chess">Готические шахматы</option>
+            <option value="chess-kapablanka">Шахматы Капабланки</option>
+            <option value="grand-chess">Большие шахматы или ГрандЧес</option>
+            <option value="bear-chess">Медвежьи шахматы</option>
+            <option value="berolina-pawn">Шахматы Беролины</option>
+            <option value="duck-chess">Утиные шахматы</option>
+            <option value="astral-chess">Астральные шахматы (авторская)</option>
+          </optgroup>
+          <optgroup label="Игры с карманом">
+            <option value="crazy-house">КрейзиХаус</option>
+            <option value="king-chess">КингЧесс</option>
+          </optgroup>
+          <optgroup label="Игры с другими правилами">
+            <option value="anti-chess">Анти-шахматы</option>
+            <option value="anti-checkers">Анти-шашки</option>
+            <option value="three-check">Три шаха</option>
+            <option value="metamorph">Метаморф</option>
+            <option value="king-of-the-hill">Царь горы</option>
+            <option value="atomic">Атомные шахматы</option>
+            <option value="marseillais-chess">Марсельские шахматы</option>
+            <option value="andernach-chess">Андернахские шахматы</option>
+            <option value="progressive-chess">Прогрессивные шахматы</option>
+          </optgroup>
+          <optgroup label="Другие игры">
+            <option value="pawn-duel">Пешечная дуэль</option>
+            <option value="rook-game">Игра с ладьёй (Ним)</option>
+            <option value="makruk">Макрук</option>
+            <option value="metamorph-with-dice">Метаморф с костями</option>
+          </optgroup>
         </select>
       </div>
       <div class="rules">

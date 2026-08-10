@@ -23,7 +23,7 @@
     <part>
         <number>04</number>
         <id>with-two-sets-of-figures</id>
-        <name>Часть 4. Игры с двумя досками или наборами фигур</name>
+        <name>Часть 4. Игры с двумя наборами или досками</name>
     </part>
     <part>
         <number>05</number>
@@ -33,7 +33,7 @@
     <part>
         <number>06</number>
         <id>with-additional-figures</id>
-        <name>Часть 6. Игры с дополнительными фигурами и на больших досках</name>
+        <name>Часть 6. Игры с дополнительными фигурами</name>
     </part>
     <part>
         <number>07</number>
