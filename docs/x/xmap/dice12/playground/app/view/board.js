@@ -6,7 +6,11 @@ class Board extends Geometry {
         this.board = null;
         this.fields = [];
         this.wireframes = [];
-        this.chessboard = ChessBoard('chessboard', 'start')
+        this.chessboard_config = {
+            pieceTheme: '',
+            position: 'start'
+        }
+        this.chessboard = ChessBoard('chessboard', this.chessboard_config)
     }
 
     initBoard() {

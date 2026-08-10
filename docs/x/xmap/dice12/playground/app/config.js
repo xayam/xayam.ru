@@ -56,21 +56,27 @@ class Config {
         this.vertical_layout["this.left_div.style.borderBottom"] = "1px solid gray";
         this.vertical_layout["this.board_div.style.width"] = "100%";
         this.vertical_layout["this.board_div.style.height"] = "70%";
-        this.vertical_layout["this.games_div.style.height"] = "20px";
+        this.vertical_layout["this.games_div.style.height"] = "10%";
         this.vertical_layout["this.games_div.style.display"] = "flex";
         this.vertical_layout["this.games_div.style.alignItems"] = "center";
         this.vertical_layout["this.games_div.style.gap"] = "8px";
+        this.vertical_layout["this.games_label.style.fontSize"] = "80cqb";
         this.vertical_layout["this.games_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.games_label.style.flexShrink"] = "0";
+        this.vertical_layout["this.games_select.style.fontSize"] = "80cqb";
         this.vertical_layout["this.games_select.style.flex"] = "1";
-        this.vertical_layout["this.menus_div.style.height"] = "20px";
+        this.vertical_layout["this.menus_div.style.height"] = "10%";
         this.vertical_layout["this.menus_div.style.display"] = "flex";
         this.vertical_layout["this.menus_div.style.alignItems"] = "center";
         this.vertical_layout["this.menus_div.style.gap"] = "8px";
+        this.vertical_layout["this.menus_label.style.fontSize"] = "80cqb";
+        this.vertical_layout["this.menus_label.style.lineHeight"] = "1";
         this.vertical_layout["this.menus_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.menus_label.style.flexShrink"] = "0";
+        this.vertical_layout["this.menus_select.style.fontSize"] = "80cqb";
+        this.vertical_layout["this.menus_select.style.lineHeight"] = "1";
         this.vertical_layout["this.menus_select.style.flex"] = "1";
-        this.vertical_layout["this.rules_div.style.height"] = "calc(100% - 45px)";
+        this.vertical_layout["this.rules_div.style.height"] = "calc(100% - 20%)";
 
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';

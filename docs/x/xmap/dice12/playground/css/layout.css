@@ -21,7 +21,7 @@
 }
 
 .rules {
-    height: calc(100% - 85px);
+    height: calc(100% - 10%);
 }
 
 .rules_game {
@@ -33,9 +33,11 @@
 }
 
 .menus {
-    height: 40px;
+    height: 5%;
+    container-type: size;
 }
 
 .games {
-    height: 40px;
+    height: 5%;
+    container-type: size;
 }

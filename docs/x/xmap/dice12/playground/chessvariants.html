@@ -98,16 +98,22 @@ canvas {
     display: block;
 }
 
-.games {
-    padding-bottom: 5px;
-}
-
 .games label, .menus label {
-    width: 60px;
-    min-width: 60px;
+    width: 10%;
     margin-left: 5px;
 }
 
+.games select, .games label {
+    font-size: 40cqb;
+}
+
+.menus select, .menus label {
+    font-size: 40cqb;
+}
+
+option {
+    background-color: white;
+}
                 
                     
 .left {
@@ -132,7 +138,7 @@ canvas {
 }
 
 .rules {
-    height: calc(100% - 85px);
+    height: calc(100% - 10%);
 }
 
 .rules_game {
@@ -144,11 +150,13 @@ canvas {
 }
 
 .menus {
-    height: 40px;
+    height: 5%;
+    container-type: size;
 }
 
 .games {
-    height: 40px;
+    height: 5%;
+    container-type: size;
 }
 
                 </style>
@@ -91315,7 +91323,8 @@ return jQuery;
     // default piece theme is wikipedia
     if (!config.hasOwnProperty('pieceTheme') ||
         (!isString(config.pieceTheme) && !isFunction(config.pieceTheme))) {
-      config.pieceTheme = 'img/chesspieces/wikipedia/{piece}.png'
+//      config.pieceTheme = 'img/chesspieces/wikipedia/{piece}.png'
+      config.pieceTheme = ''
     }
 
     // animation speeds
@@ -91608,7 +91617,11 @@ return jQuery;
     }
 
     function buildPieceHTML (piece, hidden, id) {
-      var html = '<img src="' + buildPieceImgSrc(piece) + '" '
+      var html = '<img src="' +
+
+//      buildPieceImgSrc(piece) +
+
+      '" '
       if (isString(id) && id !== '') {
         html += 'id="' + id + '" '
       }
@@ -91623,7 +91636,8 @@ return jQuery;
 
       html += '" />'
 
-      return interpolateTemplate(html, CSS)
+      return ""
+//      return interpolateTemplate(html, CSS)
     }
 
     function buildSparePiecesHTML (color) {
@@ -92626,7 +92640,11 @@ class Board extends Geometry {
         this.board = null;
         this.fields = [];
         this.wireframes = [];
-        this.chessboard = ChessBoard('chessboard', 'start')
+        this.chessboard_config = {
+            pieceTheme: '',
+            position: 'start'
+        }
+        this.chessboard = ChessBoard('chessboard', this.chessboard_config)
     }
 
     initBoard() {
@@ -93008,21 +93026,27 @@ class Config {
         this.vertical_layout["this.left_div.style.borderBottom"] = "1px solid gray";
         this.vertical_layout["this.board_div.style.width"] = "100%";
         this.vertical_layout["this.board_div.style.height"] = "70%";
-        this.vertical_layout["this.games_div.style.height"] = "20px";
+        this.vertical_layout["this.games_div.style.height"] = "10%";
         this.vertical_layout["this.games_div.style.display"] = "flex";
         this.vertical_layout["this.games_div.style.alignItems"] = "center";
         this.vertical_layout["this.games_div.style.gap"] = "8px";
+        this.vertical_layout["this.games_label.style.fontSize"] = "80cqb";
         this.vertical_layout["this.games_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.games_label.style.flexShrink"] = "0";
+        this.vertical_layout["this.games_select.style.fontSize"] = "80cqb";
         this.vertical_layout["this.games_select.style.flex"] = "1";
-        this.vertical_layout["this.menus_div.style.height"] = "20px";
+        this.vertical_layout["this.menus_div.style.height"] = "10%";
         this.vertical_layout["this.menus_div.style.display"] = "flex";
         this.vertical_layout["this.menus_div.style.alignItems"] = "center";
         this.vertical_layout["this.menus_div.style.gap"] = "8px";
+        this.vertical_layout["this.menus_label.style.fontSize"] = "80cqb";
+        this.vertical_layout["this.menus_label.style.lineHeight"] = "1";
         this.vertical_layout["this.menus_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.menus_label.style.flexShrink"] = "0";
+        this.vertical_layout["this.menus_select.style.fontSize"] = "80cqb";
+        this.vertical_layout["this.menus_select.style.lineHeight"] = "1";
         this.vertical_layout["this.menus_select.style.flex"] = "1";
-        this.vertical_layout["this.rules_div.style.height"] = "calc(100% - 45px)";
+        this.vertical_layout["this.rules_div.style.height"] = "calc(100% - 20%)";
 
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';

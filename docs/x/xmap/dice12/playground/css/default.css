@@ -37,12 +37,19 @@ canvas {
     display: block;
 }
 
-.games {
-    padding-bottom: 5px;
+.games label, .menus label {
+    width: 10%;
+    margin-left: 5px;
 }
 
-.games label, .menus label {
-    width: 60px;
-    min-width: 60px;
-    margin-left: 5px;
+.games select, .games label {
+    font-size: 40cqb;
+}
+
+.menus select, .menus label {
+    font-size: 40cqb;
+}
+
+option {
+    background-color: white;
 }

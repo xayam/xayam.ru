@@ -576,7 +576,8 @@
     // default piece theme is wikipedia
     if (!config.hasOwnProperty('pieceTheme') ||
         (!isString(config.pieceTheme) && !isFunction(config.pieceTheme))) {
-      config.pieceTheme = 'img/chesspieces/wikipedia/{piece}.png'
+//      config.pieceTheme = 'img/chesspieces/wikipedia/{piece}.png'
+      config.pieceTheme = ''
     }
 
     // animation speeds
@@ -869,7 +870,11 @@
     }
 
     function buildPieceHTML (piece, hidden, id) {
-      var html = '<img src="' + buildPieceImgSrc(piece) + '" '
+      var html = '<img src="' +
+
+//      buildPieceImgSrc(piece) +
+
+      '" '
       if (isString(id) && id !== '') {
         html += 'id="' + id + '" '
       }
@@ -884,7 +889,8 @@
 
       html += '" />'
 
-      return interpolateTemplate(html, CSS)
+      return ""
+//      return interpolateTemplate(html, CSS)
     }
 
     function buildSparePiecesHTML (color) {
