@@ -7,13 +7,18 @@ from lxml import etree
 with open("xml2html.json", 'r', encoding='utf-8') as f:
     config = json.load(f)
 tasks = config["tasks"]
-string_replacers = config["string_replacers"]
-file_replacers = config["file_replacers"]
+string_replaces = config["tasks_string"]
 mime_types = config["mime_types"]
 
 for task in tasks:
     xml_doc = etree.parse(task["base"] + task["xml"])
     xsl_doc = etree.parse(task["base"] + task["xsl"])
+    templates = []
+    if task["templates"]:
+        xml_template = etree.parse(task["base"] + task["templates"])
+        root_template = xml_template.getroot()
+        templates = [item.text for item in root_template.xpath("//item")]
+        # print(templates)
     transform = etree.XSLT(xsl_doc)
     task["output"] = str(transform(xml_doc))
     images = re.findall(r"src=\"(.+?)\.(png|jpg|webp)\"", task["output"])
@@ -35,12 +40,12 @@ for task in tasks:
         task["output"] = task["output"].replace(
             f"src=\"{image['orig']}\"", f"src=\"{src}\"")
 
-    for r in string_replacers:
+    for r in string_replaces:
         task["output"] = task["output"].replace(r["from"], r["to"])
-    for r in file_replacers:
-        with open(r["file"], "r", encoding="utf-8") as f:
+    for r in templates:
+        with open(task["base"] + r, "r", encoding="utf-8") as f:
             r_file = f.read()
-        task["output"] = task["output"].replace(r["template"], r_file)
-    with open(task["base"] + task["html"], "w", encoding="utf-8") as f:
+        task["output"] = task["output"].replace("{{{" + r + "}}}", r_file)
+    with open(task["base"] + task["file"], "w", encoding="utf-8") as f:
         f.write(task["output"])
-    print(f"✅ HTML успешно создан: {task['base'] + task['html']}")
+    print(f"✅ HTML успешно создан: {task['base'] + task['file']}")

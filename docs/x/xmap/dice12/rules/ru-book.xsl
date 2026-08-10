@@ -90,14 +90,18 @@
                 <meta name="robots" content="INDEX,FOLLOW"/>
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
                 <style>
-                    {{{XGAME_DEFAULT_CSS}}}
-
-                    {{{XGAME_STYLE_CSS}}}
+                    <xsl:variable name="css" select="document('rules.xml')/root/css/item"/>
+                    <xsl:for-each select="$css">
+                         {{{<xsl:value-of select="." />}}}
+                    </xsl:for-each>
                 </style>
                 <xsl:if test="$book_type='pdf'">
-                    <script>
-                        {{{XGAME_PAGED}}}
-                    </script>
+                        <xsl:variable name="js" select="document('rules.xml')/root/js/item"/>
+                        <xsl:for-each select="$js">
+                            <script>
+                                {{{<xsl:value-of select="." />}}}
+                            </script>
+                        </xsl:for-each>
                 </xsl:if>
             </head>
             <body>

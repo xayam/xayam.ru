@@ -51,12 +51,12 @@
                                       select="document(concat('../rules/', $number, '-', $id, '/', $number2, '-', $id2, '/ru.xml'))/ru/div"/>
                             <xsl:choose>
                                 <xsl:when test="$id2='chess'">
-                                    <div id="{$id2}" class="rules_game active">
+                                    <div id="rules_{$id2}" class="rules_game active">
                                         <xsl:copy-of select="$content" />
                                     </div>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <div id="{$id2}" class="rules_game">
+                                    <div id="rules_{$id2}" class="rules_game">
                                         <xsl:copy-of select="$content" />
                                     </div>
                                 </xsl:otherwise>

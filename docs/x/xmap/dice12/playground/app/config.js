@@ -26,9 +26,10 @@ class Config {
                     block.classList.remove('active');
                 }
             );
-            const target = document.getElementById(this.select_game.value);
+            const target = document.getElementById("rules_" + this.select_game.value);
             if (target) {
                 target.classList.add('active');
+                window.location.href = "#" + this.select_game.value;
             }
         });
         this.initLayouts();

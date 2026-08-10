@@ -92950,9 +92950,10 @@ class Config {
                     block.classList.remove('active');
                 }
             );
-            const target = document.getElementById(this.select_game.value);
+            const target = document.getElementById("rules_" + this.select_game.value);
             if (target) {
                 target.classList.add('active');
+                window.location.href = "#" + this.select_game.value;
             }
         });
         this.initLayouts();
@@ -93089,7 +93090,7 @@ app.run();
         </select>
       </div>
       <div class="rules">
-        <div id="chess" class="rules_game active">
+        <div id="rules_chess" class="rules_game active">
           <div>
             <p>
                     Шахматы — это настольная игра для двух игроков. Цель игры проста:
@@ -93183,7 +93184,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="checkers" class="rules_game">
+        <div id="rules_checkers" class="rules_game">
           <div>
             <p>
                     Шашки — это классическая настольная игра для двух игроков,
@@ -93245,7 +93246,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="dice-chess" class="rules_game">
+        <div id="rules_dice-chess" class="rules_game">
           <div>
             <p>
                     ДайсЧес представляет собой современную вариацию классических
@@ -93337,7 +93338,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="random-chess" class="rules_game">
+        <div id="rules_random-chess" class="rules_game">
           <div>
             <p>
                     Случайные шахматы с одним кубиком D6 представляют собой адаптацию
@@ -93416,7 +93417,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="chess-with-D12" class="rules_game">
+        <div id="rules_chess-with-D12" class="rules_game">
           <div>
             <p>
                     Случайные шахматы с одним додекаэдром D12 представляют собой интересную
@@ -93499,7 +93500,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="chess-with-3xD12" class="rules_game">
+        <div id="rules_chess-with-3xD12" class="rules_game">
           <div>
             <p>
                     Случайные шахматы с тремя додекаэдрами D12 представляют собой
@@ -93592,7 +93593,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="chess-960" class="rules_game">
+        <div id="rules_chess-960" class="rules_game">
           <div>
             <p> Шахматы Фишера, также широко известные как Шахматы-960, представляют
                 собой вариант классических шахмат, разработанный одиннадцатым
@@ -93654,7 +93655,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="DFRC" class="rules_game">
+        <div id="rules_DFRC" class="rules_game">
           <div>
             <p> Двойные шахматы Фишера, также известные как DFRC, развивают идею
                 рандомизации начальной позиции, внося одно фундаментальное
@@ -93709,7 +93710,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="racing-kings" class="rules_game">
+        <div id="rules_racing-kings" class="rules_game">
           <div>
             <p> Гонка королей — это необычная и динамичная шахматная вариация,
                 главная цель которой кардинально отличается от классических шахмат.
@@ -93744,7 +93745,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="really-bad-chess" class="rules_game">
+        <div id="rules_really-bad-chess" class="rules_game">
           <div>
             <p> Настольная адаптация «Очень плохих шахмат» переносит безумие
                 оригинальной концепции из мобильного приложения в физический мир,
@@ -93781,7 +93782,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="bughouse" class="rules_game">
+        <div id="rules_bughouse" class="rules_game">
           <div>
             <p> Игра «Багхаус», также известная как шведские шахматы, представляет
                 собой командную разновидность классических шахмат для четырёх
@@ -93853,7 +93854,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="alice" class="rules_game">
+        <div id="rules_alice" class="rules_game">
           <div>
             <p> Шахматы Алисы — это оригинальный вариант классической шахматной игры,
                 созданный в 1953 году Верноном Партоном. Особенность игры заключается
@@ -93919,7 +93920,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="horde" class="rules_game">
+        <div id="rules_horde" class="rules_game">
           <div>
             <p> Шахматный вариант «Орда» представляет собой уникальное асимметричное
                 противостояние, кардинально отличающееся от классических партий
@@ -93967,7 +93968,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="chess-3x3" class="rules_game">
+        <div id="rules_chess-3x3" class="rules_game">
           <div>
             <p> Миниатюрные шахматы на доске 3×3 представляют собой упрощённую
                 версию классической игры, сохраняющую при этом основные принципы
@@ -94015,7 +94016,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="chess-3x4" class="rules_game">
+        <div id="rules_chess-3x4" class="rules_game">
           <div>
             <p> Миниатюрные шахматы на доске 3×4 представляют собой логическое
                 развитие идеи сверх-компактных шахмат, где к трёх-клеточной ширине
@@ -94061,7 +94062,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="chess-4x4" class="rules_game">
+        <div id="rules_chess-4x4" class="rules_game">
           <div>
             <p> Миниатюрные шахматы на доске 4×4 занимают промежуточное положение
                 между сверх-компактными вариантами и более просторными форматами,
@@ -94114,7 +94115,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="chess-5x5-gardner" class="rules_game">
+        <div id="rules_chess-5x5-gardner" class="rules_game">
           <div>
             <p> Мини-шахматы Гарднера, предложенные Мартином Гарднером в 1962 году,
                 разворачиваются на доске 5×5 и представляют собой наиболее
@@ -94163,7 +94164,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="chess-6x6-los-alamos" class="rules_game">
+        <div id="rules_chess-6x6-los-alamos" class="rules_game">
           <div>
             <p> Шахматы Лос-Аламоса, созданные в 1956 году специалистами
                 одноимённой национальной лаборатории, занимают особое место
@@ -94218,7 +94219,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="maharajah" class="rules_game">
+        <div id="rules_maharajah" class="rules_game">
           <div>
             <p> Магараджа представляет собой асимметричную шахматную задачу,
                 в которой противоборствующие стороны обладают заведомо неравными
@@ -94272,7 +94273,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="gothic-chess" class="rules_game">
+        <div id="rules_gothic-chess" class="rules_game">
           <div>
             <p> Готические шахматы, созданные Эдом Трайсом в 2000 году и
                 запатентованные в 2002-м, разворачиваются на прямоугольной
@@ -94327,7 +94328,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="chess-kapablanka" class="rules_game">
+        <div id="rules_chess-kapablanka" class="rules_game">
           <div>
             <p> Шахматы Капабланки, разработанные третьим чемпионом мира Хосе
                 Раулем Капабланкой в 1920-х годах, разворачиваются на прямоугольной
@@ -94385,7 +94386,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="grand-chess" class="rules_game">
+        <div id="rules_grand-chess" class="rules_game">
           <div>
             <p> Большие шахматы, или ГрандЧес, представляют собой масштабную
                 вариацию классической игры, разработанную Кристианом Фрилингом
@@ -94441,7 +94442,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="bear-chess" class="rules_game">
+        <div id="rules_bear-chess" class="rules_game">
           <div>
             <p> Медвежьи шахматы, предложенные Михаилом Сосновским в 1985 году в
                 Калинине, разворачиваются на стоклеточной доске размером 10×10
@@ -94495,7 +94496,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="berolina-pawn" class="rules_game">
+        <div id="rules_berolina-pawn" class="rules_game">
           <div>
             <p> Шахматы Беролины представляют собой оригинальный вариант
                 классических шахмат, в котором стандартные пешки заменены
@@ -94537,7 +94538,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="duck-chess" class="rules_game">
+        <div id="rules_duck-chess" class="rules_game">
           <div>
             <p> Утиные шахматы представляют собой оригинальный вариант классической
                 игры, созданный доктором Тимом Полденом в 2016 году. В этой версии
@@ -94584,7 +94585,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="astral-chess" class="rules_game">
+        <div id="rules_astral-chess" class="rules_game">
           <div>
             <p> Астральные шахматы представляют собой вариант классической игры,
                 в который введена новая фигура под названием Телепорт.
@@ -94646,7 +94647,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="crazy-house" class="rules_game">
+        <div id="rules_crazy-house" class="rules_game">
           <div>
             <p>    КрейзиХаус представляет собой динамичную и непредсказуемую вариацию
                 классических шахмат, заимствовавшую одну из самых радикальных идей
@@ -94691,7 +94692,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="king-chess" class="rules_game">
+        <div id="rules_king-chess" class="rules_game">
           <div>
             <p> КингЧесс представляет собой радикальный отход от классической
                 начальной расстановки, предлагая игрокам начинать партию на
@@ -94750,7 +94751,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="anti-chess" class="rules_game">
+        <div id="rules_anti-chess" class="rules_game">
           <div>
             <p>    Шахматные поддавки, также известные как анти-шахматы, представляют
                 собой оригинальную разновидность классической шахматной игры,
@@ -94800,7 +94801,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="anti-checkers" class="rules_game">
+        <div id="rules_anti-checkers" class="rules_game">
           <div>
             <p>    Поддавки, которые также часто называют обратными русскими шашками или
                 анти-шашками, представляют собой увлекательную и парадоксальную разновидность
@@ -94843,7 +94844,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="three-check" class="rules_game">
+        <div id="rules_three-check" class="rules_game">
           <div>
             <p>    Шахматы до трёх шахов представляют собой динамичную и агрессивную
                 разновидность классических шахмат, которая радикально меняет привычную
@@ -94888,7 +94889,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="metamorph" class="rules_game">
+        <div id="rules_metamorph" class="rules_game">
           <div>
             <p>    Шахматный вариант «Метаморф» представляет собой увлекательное
                 переосмысление классической игры, в котором привычная статика фигур
@@ -94973,7 +94974,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="king-of-the-hill" class="rules_game">
+        <div id="rules_king-of-the-hill" class="rules_game">
           <div>
             <p>    Шахматный вариант «Царь горы» представляет собой модификацию
                 классической игры, которая сохраняет базовые правила перемещения
@@ -95015,7 +95016,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="atomic" class="rules_game">
+        <div id="rules_atomic" class="rules_game">
           <div>
             <p>    Атомные шахматы представляют собой увлекательный вариант
                 классической игры, который сохраняет стандартную начальную
@@ -95060,7 +95061,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="marseillais-chess" class="rules_game">
+        <div id="rules_marseillais-chess" class="rules_game">
           <div>
             <p>    Марсельские шахматы представляют собой увлекательный вариант
                 классической игры, главной особенностью которого является изменение
@@ -95106,7 +95107,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="andernach-chess" class="rules_game">
+        <div id="rules_andernach-chess" class="rules_game">
           <div>
             <p>    Андернахские шахматы представляют собой оригинальный и
                 нестандартный вариант классической игры, который относится к
@@ -95149,7 +95150,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="progressive-chess" class="rules_game">
+        <div id="rules_progressive-chess" class="rules_game">
           <div>
             <p>    Прогрессивные шахматы представляют собой нестандартный и динамичный
                 вариант классической игры, который кардинально меняет привычный темп
@@ -95198,7 +95199,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="pawn-duel" class="rules_game">
+        <div id="rules_pawn-duel" class="rules_game">
           <div>
             <p>    Пешечная дуэль представляет собой логическую игру, которая
                 разворачивается на стандартной шахматной доске. В этом состязании
@@ -95230,7 +95231,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="rook-game" class="rules_game">
+        <div id="rules_rook-game" class="rules_game">
           <div>
             <p>    Игра с ладьёй представляет собой логическую игру, которая
                 использует шахматную доску для наглядной иллюстрации принципов
@@ -95269,7 +95270,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="makruk" class="rules_game">
+        <div id="rules_makruk" class="rules_game">
           <div>
             <p>    Макрук, также известный как тайские шахматы, является древней
                 настольной игрой и национальной шахматной разновидностью Таиланда.
@@ -95312,7 +95313,7 @@ app.run();
             </p>
         </div>
         </div>
-        <div id="metamorph-with-dice" class="rules_game">
+        <div id="rules_metamorph-with-dice" class="rules_game">
           <div>
             <p>    Метаморф с костями представляют собой уникальное слияние
                 вероятностной динамики ДайсЧеса и биологической адаптивности

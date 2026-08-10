@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <js>
+        <item>xbook.xgame/resources/paged.polyfill.js</item>
+    </js>
+    <css>
+        <item>xbook.xgame/resources/default.css</item>
+        <item>xbook.xgame/resources/style.css</item>
+    </css>
+</root>

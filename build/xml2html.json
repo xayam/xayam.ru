@@ -4,35 +4,40 @@
       "base": "../docs/",
       "xml": "index.xml",
       "xsl": "x/index.xsl",
-      "html": "index.html"
+      "file": "index.html",
+      "templates": "index.xml"
     },
     {
       "base": "../docs/x/xmap/dice12/rules/",
       "xml": "ru-book.xml",
       "xsl": "ru-book.xsl",
-      "html": "ru-book.html"
+      "file": "ru-book.html",
+      "templates": "rules.xml"
     },
     {
       "base": "../docs/x/xmap/dice12/rules/",
       "xml": "ru-book.fb2.xml",
       "xsl": "ru-book.fb2.xsl",
-      "html": "ru-book.fb2"
+      "file": "ru-book.fb2",
+      "templates": ""
     },
     {
       "base": "../docs/x/xmap/dice12/rules/",
       "xml": "ru-book.pdf.xml",
       "xsl": "ru-book.xsl",
-      "html": "ru-book.pdf.html"
+      "file": "ru-book.pdf.html",
+      "templates": "rules.xml"
     },
     {
       "base": "../docs/x/xmap/dice12/playground/",
       "xml": "playground.xml",
       "xsl": "playground.xsl",
-      "html": "chessvariants.html"
+      "file": "chessvariants.html",
+      "templates": "playground.xml"
     }
   ],
 
-  "string_replacers": [
+  "tasks_string": [
     {
       "from": "<?xml version=\"1.0\"?>\n",
       "to": ""
@@ -40,165 +45,6 @@
     {
       "from": "x/xmap/dice12/rules/ru-book.xml",
       "to": "x/xmap/dice12/rules/ru-book.html"
-    }
-  ],
-
-  "file_replacers": [
-    {
-      "template": "{{{INDEX_DEFAULT_CSS}}}",
-      "file": "../docs/x/xstyle/resources/default.css"
-    },
-    {
-      "template": "{{{INDEX_STYLE_CSS}}}",
-      "file": "../docs/x/xstyle/resources/style.css"
-    },
-    {
-      "template": "{{{INDEX_SLIDER_CSS}}}",
-      "file": "../docs/x/xstyle/resources/slider.css"
-    },
-
-    {
-      "template": "{{{XGAME_DEFAULT_CSS}}}",
-      "file": "../docs/x/xmap/dice12/rules/xbook.xgame/resources/default.css"
-    },
-    {
-      "template": "{{{XGAME_STYLE_CSS}}}",
-      "file": "../docs/x/xmap/dice12/rules/xbook.xgame/resources/style.css"
-    },
-    {
-      "template": "{{{XGAME_PAGED}}}",
-      "file": "../docs/x/xmap/dice12/rules/xbook.xgame/resources/paged.polyfill.js"
-    },
-
-    {
-      "template": "{{{PG_CHESSBOARD_CSS}}}",
-      "file": "../docs/x/xmap/dice12/playground/css/third-party/chessboard.css"
-    },
-    {
-      "template": "{{{PG_DEFAULT_CSS}}}",
-      "file": "../docs/x/xmap/dice12/playground/css/default.css"
-    },
-    {
-      "template": "{{{PG_LAYOUT_CSS}}}",
-      "file": "../docs/x/xmap/dice12/playground/css/layout.css"
-    },
-
-    {
-      "template": "{{{PG_THREE_CORE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/external/1/three.core.js"
-    },
-    {
-      "template": "{{{PG_THREE_MODULE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/external/1/three.module.js"
-    },
-    {
-      "template": "{{{PG_JQUERY_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/external/1/jquery.js"
-    },
-    {
-      "template": "{{{PG_CHESSBOARD_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/external/1/chessboard.js"
-    },
-
-    {
-      "template": "{{{PG_UTILS_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/utils.js"
-    },
-    {
-      "template": "{{{PG_MATERIAL_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/view/material.js"
-    },
-    {
-      "template": "{{{PG_GEOMETRY_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/view/geometry.js"
-    },
-    {
-      "template": "{{{PG_BOARD_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/view/board.js"
-    },
-    {
-      "template": "{{{PG_FIGURE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/view/figure.js"
-    },
-    {
-      "template": "{{{PG_CAMERA_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/view/camera.js"
-    },
-    {
-      "template": "{{{PG_SCENE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/view/scene.js"
-    },
-    {
-      "template": "{{{PG_KEYBOARD_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/controller/io/keyboard.js"
-    },
-    {
-      "template": "{{{PG_MOUSE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/controller/io/mouse.js"
-    },
-    {
-      "template": "{{{PG_TOUCHE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/controller/io/touche.js"
-    },
-    {
-      "template": "{{{PG_ACTION_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/controller/io/action.js"
-    },
-    {
-      "template": "{{{PG_EVENT_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/controller/io/event.js"
-    },
-    {
-      "template": "{{{PG_UCI_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/controller/uci.js"
-    },
-    {
-      "template": "{{{PG_COMMAND_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/controller/command.js"
-    },
-    {
-      "template": "{{{PG_RULE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/rule.js"
-    },
-    {
-      "template": "{{{PG_GAME_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/game.js"
-    },
-    {
-      "template": "{{{PG_USER_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/user.js"
-    },
-    {
-      "template": "{{{PG_ENGINE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/engine/engine.js"
-    },
-    {
-      "template": "{{{PG_EVALUATE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/engine/evaluate.js"
-    },
-    {
-      "template": "{{{PG_SEARCH_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/engine/search.js"
-    },
-    {
-      "template": "{{{PG_AI_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/engine/ai.js"
-    },
-    {
-      "template": "{{{PG_STATE_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/model/state.js"
-    },
-    {
-      "template": "{{{PG_CONFIG_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/config.js"
-    },
-    {
-      "template": "{{{PG_APP_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/app.js"
-    },
-    {
-      "template": "{{{PG_LOAD_JS}}}",
-      "file": "../docs/x/xmap/dice12/playground/app/load.js"
     }
   ],
 

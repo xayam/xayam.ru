@@ -2,39 +2,39 @@
 <?xml-stylesheet type="text/xsl" href="playground.xsl"?>
 <root>
     <js>
-        <item>PG_THREE_CORE_JS</item>
-        <item>PG_THREE_MODULE_JS</item>
-        <item>PG_JQUERY_JS</item>
-        <item>PG_CHESSBOARD_JS</item>
-        <item>PG_UTILS_JS</item>
-        <item>PG_MATERIAL_JS</item>
-        <item>PG_GEOMETRY_JS</item>
-        <item>PG_BOARD_JS</item>
-        <item>PG_FIGURE_JS</item>
-        <item>PG_CAMERA_JS</item>
-        <item>PG_SCENE_JS</item>
-        <item>PG_KEYBOARD_JS</item>
-        <item>PG_MOUSE_JS</item>
-        <item>PG_TOUCHE_JS</item>
-        <item>PG_ACTION_JS</item>
-        <item>PG_EVENT_JS</item>
-        <item>PG_UCI_JS</item>
-        <item>PG_COMMAND_JS</item>
-        <item>PG_RULE_JS</item>
-        <item>PG_GAME_JS</item>
-        <item>PG_USER_JS</item>
-        <item>PG_ENGINE_JS</item>
-        <item>PG_EVALUATE_JS</item>
-        <item>PG_SEARCH_JS</item>
-        <item>PG_AI_JS</item>
-        <item>PG_STATE_JS</item>
-        <item>PG_CONFIG_JS</item>
-        <item>PG_APP_JS</item>
-        <item>PG_LOAD_JS</item>
+        <item>app/model/external/1/three.core.js</item>
+        <item>app/model/external/1/three.module.js</item>
+        <item>app/model/external/1/jquery.js</item>
+        <item>app/model/external/1/chessboard.js</item>
+        <item>app/model/utils.js</item>
+        <item>app/view/material.js</item>
+        <item>app/view/geometry.js</item>
+        <item>app/view/board.js</item>
+        <item>app/view/figure.js</item>
+        <item>app/view/camera.js</item>
+        <item>app/view/scene.js</item>
+        <item>app/controller/io/keyboard.js</item>
+        <item>app/controller/io/mouse.js</item>
+        <item>app/controller/io/touche.js</item>
+        <item>app/controller/io/action.js</item>
+        <item>app/controller/io/event.js</item>
+        <item>app/controller/uci.js</item>
+        <item>app/controller/command.js</item>
+        <item>app/model/rule.js</item>
+        <item>app/model/game.js</item>
+        <item>app/model/user.js</item>
+        <item>app/model/engine/engine.js</item>
+        <item>app/model/engine/evaluate.js</item>
+        <item>app/model/engine/search.js</item>
+        <item>app/model/engine/ai.js</item>
+        <item>app/model/state.js</item>
+        <item>app/config.js</item>
+        <item>app/app.js</item>
+        <item>app/load.js</item>
     </js>
     <css>
-        <item>PG_CHESSBOARD_CSS</item>
-        <item>PG_DEFAULT_CSS</item>
-        <item>PG_LAYOUT_CSS</item>
+        <item>css/third-party/chessboard.css</item>
+        <item>css/default.css</item>
+        <item>css/layout.css</item>
     </css>
 </root>

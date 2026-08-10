@@ -16,11 +16,10 @@
                       content="iJPmmxXlF90pWT2kSvlOGdg0aRLgyGgFv97HotfCksTnFoqT9pn6hgvoxwGbH60K" />
                 <link rel="shortcut icon" href="{$favicon}" type="image/x-icon"/>
                 <style>
-                    {{{INDEX_DEFAULT_CSS}}}
-
-                    {{{INDEX_STYLE_CSS}}}
-
-                    {{{INDEX_SLIDER_CSS}}}
+                    <xsl:variable name="css" select="/root/css/item"/>
+                    <xsl:for-each select="$css">
+                         {{{<xsl:value-of select="." />}}}
+                    </xsl:for-each>
                 </style>
             </head>
             <body>
