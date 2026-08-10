@@ -4,7 +4,7 @@ import json
 
 from lxml import etree
 
-with open("xml2html.json", 'r', encoding='utf-8') as f:
+with open("build.json", 'r', encoding='utf-8') as f:
     config = json.load(f)
 tasks = config["tasks"]
 string_replaces = config["tasks_string"]
@@ -18,7 +18,6 @@ for task in tasks:
         xml_template = etree.parse(task["base"] + task["templates"])
         root_template = xml_template.getroot()
         templates = [item.text for item in root_template.xpath("//item")]
-        # print(templates)
     transform = etree.XSLT(xsl_doc)
     task["output"] = str(transform(xml_doc))
     images = re.findall(r"src=\"(.+?)\.(png|jpg|webp)\"", task["output"])
@@ -48,4 +47,4 @@ for task in tasks:
         task["output"] = task["output"].replace("{{{" + r + "}}}", r_file)
     with open(task["base"] + task["file"], "w", encoding="utf-8") as f:
         f.write(task["output"])
-    print(f"✅ HTML успешно создан: {task['base'] + task['file']}")
+    print(f"✅ Файл успешно создан: {task['base'] + task['file']}")
