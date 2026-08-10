@@ -5,7 +5,7 @@
         <div id="chessboard">1</div>
         <div class="left">
             <div class="menus">
-                <label for="select_menu">Выберите режим:</label>
+                <label for="select_menu">Режим:</label>
                 <select id="select_menu" name="select_menu" class="select_menu">
                     <option value="mode_u_vs_ai_level_1">Пользователь против AI (Уровень 1)</option>
                     <option value="mode_u_vs_ai_level_2">Пользователь против AI (Уровень 2)</option>
@@ -20,7 +20,7 @@
                 </select>
             </div>
             <div class="games">
-                <label for="select_game">Выберите игру:</label>
+                <label for="select_game">Игра:</label>
                 <select id="select_game" name="select_game" class="select_game">
                     <xsl:variable name="parts" select="document('../rules/ru-parts.xml')/parts/part" />
                     <xsl:for-each select="$parts">

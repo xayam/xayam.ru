@@ -65,7 +65,7 @@
     padding: 0;
     box-sizing: border-box;
     background-color: #f1f3f4;
-    border: 0px solid black;
+    border-width: 0;
     scrollbar-color: gray white;
     overflow: hidden;
 }
@@ -90,17 +90,21 @@ canvas {
     display: none;
 }
 
-.rules {
-    overflow: visible;
-    word-wrap: break-word;
-}
-
 .rules_game {
     display: none;
 }
 
 .rules_game.active {
     display: block;
+}
+
+.games {
+    padding-bottom: 5px;
+}
+
+.games label, .menus label {
+    width: 60px;
+    min-width: 60px;
 }
 
                 
@@ -110,8 +114,6 @@ canvas {
     float: left;
     width: 30%;
     height: 100%;
-    overflow-x: auto;
-    overflow-y: scroll;
     border-right: 1px solid gray;
 }
 
@@ -126,6 +128,23 @@ canvas {
     width: 100%;
     background-color: white;
     border-bottom: 1px solid gray;
+}
+
+.rules_game {
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: scroll;
+    padding-bottom: 80px;
+    word-wrap: break-word;
+}
+
+.menus {
+    height: 40px;
+}
+
+.games {
+    height: 40px;
 }
 
                 </style>
@@ -92948,6 +92967,7 @@ class Config {
         this.menus_div = null;
         this.menus_label = null;
         this.menus_select = null;
+        this.rules_game_div = null;
     }
 
     initConfig() {
@@ -92959,6 +92979,7 @@ class Config {
         this.menus_div = document.getElementsByClassName("menus")[0];
         this.menus_label = document.querySelector('.menus label');
         this.menus_select = document.querySelector('.menus select');
+        this.rules_game_div = document.querySelector('.rules_game');
         this.select_game = document.querySelector('#select_game');
         this.select_game.addEventListener('change',
         () => {
@@ -92985,21 +93006,24 @@ class Config {
         this.vertical_layout["this.board_div.style.width"] = "100%";
         this.vertical_layout["this.board_div.style.height"] = "70%";
 
+        this.vertical_layout["this.games_div.style.height"] = "20px";
         this.vertical_layout["this.games_div.style.display"] = "flex";
         this.vertical_layout["this.games_div.style.alignItems"] = "center";
         this.vertical_layout["this.games_div.style.gap"] = "8px";
         this.vertical_layout["this.games_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.games_label.style.flexShrink"] = "0";
-        this.vertical_layout["this.games_label.style.width"] = "125px";
         this.vertical_layout["this.games_select.style.flex"] = "1";
 
+        this.vertical_layout["this.menus_div.style.height"] = "20px";
         this.vertical_layout["this.menus_div.style.display"] = "flex";
         this.vertical_layout["this.menus_div.style.alignItems"] = "center";
         this.vertical_layout["this.menus_div.style.gap"] = "8px";
         this.vertical_layout["this.menus_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.menus_label.style.flexShrink"] = "0";
-        this.vertical_layout["this.menus_label.style.width"] = "125px";
         this.vertical_layout["this.menus_select.style.flex"] = "1";
+
+        this.vertical_layout["this.rules_game_div.style.paddingBottom"] = "40px";
+
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
             eval(execute);
@@ -93077,7 +93101,7 @@ app.run();
     <div id="chessboard">1</div>
     <div class="left">
       <div class="menus">
-        <label for="select_menu">Выберите режим:</label>
+        <label for="select_menu">Режим:</label>
         <select id="select_menu" name="select_menu" class="select_menu">
           <option value="mode_u_vs_ai_level_1">Пользователь против AI (Уровень 1)</option>
           <option value="mode_u_vs_ai_level_2">Пользователь против AI (Уровень 2)</option>
@@ -93092,7 +93116,7 @@ app.run();
         </select>
       </div>
       <div class="games">
-        <label for="select_game">Выберите игру:</label>
+        <label for="select_game">Игра:</label>
         <select id="select_game" name="select_game" class="select_game">
           <optgroup label="Классические игры">
             <option value="chess">Шахматы</option>

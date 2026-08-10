@@ -4,8 +4,6 @@
     float: left;
     width: 30%;
     height: 100%;
-    overflow-x: auto;
-    overflow-y: scroll;
     border-right: 1px solid gray;
 }
 
@@ -20,4 +18,21 @@
     width: 100%;
     background-color: white;
     border-bottom: 1px solid gray;
+}
+
+.rules_game {
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: scroll;
+    padding-bottom: 80px;
+    word-wrap: break-word;
+}
+
+.menus {
+    height: 40px;
+}
+
+.games {
+    height: 40px;
 }

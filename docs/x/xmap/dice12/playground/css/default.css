@@ -4,7 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     background-color: #f1f3f4;
-    border: 0px solid black;
+    border-width: 0;
     scrollbar-color: gray white;
     overflow: hidden;
 }
@@ -29,15 +29,19 @@ canvas {
     display: none;
 }
 
-.rules {
-    overflow: visible;
-    word-wrap: break-word;
-}
-
 .rules_game {
     display: none;
 }
 
 .rules_game.active {
     display: block;
+}
+
+.games {
+    padding-bottom: 5px;
+}
+
+.games label, .menus label {
+    width: 60px;
+    min-width: 60px;
 }
