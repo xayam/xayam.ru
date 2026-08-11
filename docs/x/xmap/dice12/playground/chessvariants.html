@@ -6,13 +6,12 @@
     <title>Варианты шахмат на площадке от XAYAM.RU</title>
     <style>
                     
-.clearfix {
-    clear: both;
+#chessboard {
+    display: none;
 }
 
-.board {
-    border: 0 solid #404040;
-    box-sizing: content-box;
+.clearfix {
+    clear: both;
 }
 
 .square {
@@ -155,12 +154,17 @@ select {
 
                 
                     
-                
-                    
-#chessboard {
-    display: none;
+.splitter {
+    position: relative;
+    float: left;
+    width: 2%;
+    height: 100%;
+    border-right: 1px solid gray;
+    cursor: move;
 }
 
+                
+                    
 canvas {
     width: 100%;
     height: 100%;
@@ -169,7 +173,7 @@ canvas {
 .board {
     position: relative;
     float: left;
-    width: 70%;
+    width: 68%;
     height: 100%;
 }
 
@@ -93006,6 +93010,7 @@ class Config {
         this.menus_label = null;
         this.menus_select = null;
         this.rules_div = null;
+        this.splitter_div = null;
     }
 
     initConfig() {
@@ -93019,6 +93024,7 @@ class Config {
         this.menus_select = document.querySelector('.menus select');
         this.rules_div = document.querySelector('.rules');
         this.select_game = document.querySelector('#select_game');
+        this.splitter_div = document.getElementsByClassName("splitter")[0];
         this.select_game.addEventListener('change',
         () => {
             document.querySelectorAll('.rules_game').forEach(
@@ -93041,7 +93047,7 @@ class Config {
         this.vertical_layout["this.left_div.style.borderRightWidth"] = "0";
         this.vertical_layout["this.left_div.style.borderBottom"] = "1px solid gray";
         this.vertical_layout["this.board_div.style.width"] = "100%";
-        this.vertical_layout["this.board_div.style.height"] = "70%";
+        this.vertical_layout["this.board_div.style.height"] = "66%";
         this.vertical_layout["this.games_div.style.height"] = "10%";
         this.vertical_layout["this.games_div.style.display"] = "flex";
         this.vertical_layout["this.games_div.style.alignItems"] = "center";
@@ -93064,6 +93070,10 @@ class Config {
         this.vertical_layout["this.menus_select.style.flex"] = "1";
         this.vertical_layout["this.rules_div.style.height"] = "80%";
         this.vertical_layout["this.rules_div.style.fontSize"] = "2cqb";
+        this.vertical_layout["this.splitter_div.style.width"] = "100%";
+        this.vertical_layout["this.splitter_div.style.height"] = "4%";
+        this.vertical_layout["this.splitter_div.style.borderRightWidth"] = "0";
+        this.vertical_layout["this.splitter_div.style.borderBottom"] = "1px solid gray";
 
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
@@ -95507,6 +95517,10 @@ app.run();
         </div>
         </div>
       </div>
+    </div>
+    <div class="splitter">
+      <div clas="button">1</div>
+      <div clas="button">2</div>
     </div>
     <div class="board"/>
   </body>

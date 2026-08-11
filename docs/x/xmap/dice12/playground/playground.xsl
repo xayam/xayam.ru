@@ -82,7 +82,12 @@
                 </xsl:for-each>
             </div>
         </div>
+        <div class="splitter">
+            <div clas="button">1</div>
+            <div clas="button">2</div>
+        </div>
         <div class="board">
+
         </div>
     </xsl:template>
 

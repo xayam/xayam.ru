@@ -2,10 +2,10 @@
 <?xml-stylesheet type="text/xsl" href="playground.xsl"?>
 <root>
     <js save="chessvariants.js">
-        <item>app/model/external/1/three.core.js</item>
-        <item>app/model/external/1/three.module.js</item>
-        <item>app/model/external/1/jquery.js</item>
-        <item>app/model/external/1/chessboard.js</item>
+        <item>app/model/external/three.core.js</item>
+        <item>app/model/external/three.module.js</item>
+        <item>app/model/external/jquery.js</item>
+        <item>app/model/external/chessboard.js</item>
         <item>app/model/utils.js</item>
         <item>app/view/material.js</item>
         <item>app/view/geometry.js</item>
@@ -33,7 +33,7 @@
         <item>app/load.js</item>
     </js>
     <css>
-        <item>css/third-party/chessboard.css</item>
+        <item>css/chessboard.css</item>
         <item>css/default.css</item>
         <item>css/left.css</item>
         <item>css/spliter.css</item>

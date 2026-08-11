@@ -1,3 +1,13 @@
+// chessboard.js v1.0.0
+// https://github.com/oakmac/chessboardjs/
+//
+// Copyright (c) 2019, Chris Oakman
+// Released under the MIT license
+// https://github.com/oakmac/chessboardjs/blob/master/LICENSE.md
+
+// start anonymous scope
+;(function () {
+  'use strict'
 
   var $ = window['jQuery']
 
@@ -24,22 +34,22 @@
   // and simplify selectors
   // NOTE: these should never change
   var CSS = {}
-  CSS['alpha'] = 'alpha'
-  CSS['black'] = 'black'
-  CSS['board'] = 'board'
-  CSS['chessboard'] = 'chessboard'
-  CSS['clearfix'] = 'clearfix'
-  CSS['highlight1'] = 'highlight1'
-  CSS['highlight2'] = 'highlight2'
-  CSS['notation'] = 'notation'
-  CSS['numeric'] = 'numeric'
-  CSS['piece'] = 'piece'
-  CSS['row'] = 'row'
-  CSS['sparePieces'] = 'spare-pieces'
-  CSS['sparePiecesBottom'] = 'spare-pieces-bottom'
-  CSS['sparePiecesTop'] = 'spare-pieces-top'
-  CSS['square'] = 'square'
-  CSS['white'] = 'white'
+  CSS['alpha'] = 'alpha-d2270'
+  CSS['black'] = 'black-3c85d'
+  CSS['board'] = 'board-b72b1'
+  CSS['chessboard'] = 'chessboard-63f37'
+  CSS['clearfix'] = 'clearfix-7da63'
+  CSS['highlight1'] = 'highlight1-32417'
+  CSS['highlight2'] = 'highlight2-9c5d2'
+  CSS['notation'] = 'notation-322f9'
+  CSS['numeric'] = 'numeric-fc462'
+  CSS['piece'] = 'piece-417db'
+  CSS['row'] = 'row-5277c'
+  CSS['sparePieces'] = 'spare-pieces-7492f'
+  CSS['sparePiecesBottom'] = 'spare-pieces-bottom-ae20f'
+  CSS['sparePiecesTop'] = 'spare-pieces-top-4028b'
+  CSS['square'] = 'square-55d63'
+  CSS['white'] = 'white-1e1d7'
 
   // ---------------------------------------------------------------------------
   // Misc Util Functions
@@ -566,7 +576,8 @@
     // default piece theme is wikipedia
     if (!config.hasOwnProperty('pieceTheme') ||
         (!isString(config.pieceTheme) && !isFunction(config.pieceTheme))) {
-      config.pieceTheme = 'img/chesspieces/wikipedia/{piece}.png'
+//      config.pieceTheme = 'img/chesspieces/wikipedia/{piece}.png'
+      config.pieceTheme = ''
     }
 
     // animation speeds
@@ -859,7 +870,11 @@
     }
 
     function buildPieceHTML (piece, hidden, id) {
-      var html = '<img src="' + buildPieceImgSrc(piece) + '" '
+      var html = '<img src="' +
+
+//      buildPieceImgSrc(piece) +
+
+      '" '
       if (isString(id) && id !== '') {
         html += 'id="' + id + '" '
       }
@@ -874,7 +889,8 @@
 
       html += '" />'
 
-      return interpolateTemplate(html, CSS)
+      return ""
+//      return interpolateTemplate(html, CSS)
     }
 
     function buildSparePiecesHTML (color) {
@@ -1803,4 +1819,5 @@
 
   // expose util functions
   window['Chessboard']['fenToObj'] = fenToObj
-  window['Chessboard']['objToFen'] = objToFen;
+  window['Chessboard']['objToFen'] = objToFen
+})() // end anonymous wrapper

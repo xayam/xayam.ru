@@ -20,6 +20,7 @@ class Config {
         this.menus_label = null;
         this.menus_select = null;
         this.rules_div = null;
+        this.splitter_div = null;
     }
 
     initConfig() {
@@ -33,6 +34,7 @@ class Config {
         this.menus_select = document.querySelector('.menus select');
         this.rules_div = document.querySelector('.rules');
         this.select_game = document.querySelector('#select_game');
+        this.splitter_div = document.getElementsByClassName("splitter")[0];
         this.select_game.addEventListener('change',
         () => {
             document.querySelectorAll('.rules_game').forEach(
@@ -55,7 +57,7 @@ class Config {
         this.vertical_layout["this.left_div.style.borderRightWidth"] = "0";
         this.vertical_layout["this.left_div.style.borderBottom"] = "1px solid gray";
         this.vertical_layout["this.board_div.style.width"] = "100%";
-        this.vertical_layout["this.board_div.style.height"] = "70%";
+        this.vertical_layout["this.board_div.style.height"] = "66%";
         this.vertical_layout["this.games_div.style.height"] = "10%";
         this.vertical_layout["this.games_div.style.display"] = "flex";
         this.vertical_layout["this.games_div.style.alignItems"] = "center";
@@ -78,6 +80,10 @@ class Config {
         this.vertical_layout["this.menus_select.style.flex"] = "1";
         this.vertical_layout["this.rules_div.style.height"] = "80%";
         this.vertical_layout["this.rules_div.style.fontSize"] = "2cqb";
+        this.vertical_layout["this.splitter_div.style.width"] = "100%";
+        this.vertical_layout["this.splitter_div.style.height"] = "4%";
+        this.vertical_layout["this.splitter_div.style.borderRightWidth"] = "0";
+        this.vertical_layout["this.splitter_div.style.borderBottom"] = "1px solid gray";
 
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';

@@ -1,11 +1,10 @@
 
-.clearfix {
-    clear: both;
+#chessboard {
+    display: none;
 }
 
-.board {
-    border: 0 solid #404040;
-    box-sizing: content-box;
+.clearfix {
+    clear: both;
 }
 
 .square {
