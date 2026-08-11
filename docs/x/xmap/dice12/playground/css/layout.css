@@ -21,7 +21,8 @@
 }
 
 .rules {
-    height: calc(100% - 10%);
+    height: 84%;
+    font-size: 4cqb;
 }
 
 .rules_game {
@@ -33,11 +34,11 @@
 }
 
 .menus {
-    height: 5%;
+    height: 8%;
     container-type: size;
 }
 
 .games {
-    height: 5%;
+    height: 8%;
     container-type: size;
 }

@@ -99,8 +99,8 @@ canvas {
 }
 
 .games label, .menus label {
-    width: 10%;
-    margin-left: 5px;
+    width: 20%;
+    margin-left: 1%;
 }
 
 .games select, .games label {
@@ -114,6 +114,15 @@ canvas {
 option {
     background-color: white;
 }
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0;
+  border-width: 0;
+}
+
                 
                     
 .left {
@@ -138,7 +147,8 @@ option {
 }
 
 .rules {
-    height: calc(100% - 10%);
+    height: 84%;
+    font-size: 4cqb;
 }
 
 .rules_game {
@@ -150,12 +160,12 @@ option {
 }
 
 .menus {
-    height: 5%;
+    height: 8%;
     container-type: size;
 }
 
 .games {
-    height: 5%;
+    height: 8%;
     container-type: size;
 }
 
@@ -93029,7 +93039,7 @@ class Config {
         this.vertical_layout["this.games_div.style.height"] = "10%";
         this.vertical_layout["this.games_div.style.display"] = "flex";
         this.vertical_layout["this.games_div.style.alignItems"] = "center";
-        this.vertical_layout["this.games_div.style.gap"] = "8px";
+        this.vertical_layout["this.games_div.style.gap"] = "1%";
         this.vertical_layout["this.games_label.style.fontSize"] = "80cqb";
         this.vertical_layout["this.games_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.games_label.style.flexShrink"] = "0";
@@ -93038,7 +93048,7 @@ class Config {
         this.vertical_layout["this.menus_div.style.height"] = "10%";
         this.vertical_layout["this.menus_div.style.display"] = "flex";
         this.vertical_layout["this.menus_div.style.alignItems"] = "center";
-        this.vertical_layout["this.menus_div.style.gap"] = "8px";
+        this.vertical_layout["this.menus_div.style.gap"] = "1%";
         this.vertical_layout["this.menus_label.style.fontSize"] = "80cqb";
         this.vertical_layout["this.menus_label.style.lineHeight"] = "1";
         this.vertical_layout["this.menus_label.style.whiteSpace"] = "nowrap";
@@ -93046,7 +93056,8 @@ class Config {
         this.vertical_layout["this.menus_select.style.fontSize"] = "80cqb";
         this.vertical_layout["this.menus_select.style.lineHeight"] = "1";
         this.vertical_layout["this.menus_select.style.flex"] = "1";
-        this.vertical_layout["this.rules_div.style.height"] = "calc(100% - 20%)";
+        this.vertical_layout["this.rules_div.style.height"] = "80%";
+        this.vertical_layout["this.rules_div.style.fontSize"] = "2cqb";
 
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';

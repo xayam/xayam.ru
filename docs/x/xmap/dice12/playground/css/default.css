@@ -38,8 +38,8 @@ canvas {
 }
 
 .games label, .menus label {
-    width: 10%;
-    margin-left: 5px;
+    width: 20%;
+    margin-left: 1%;
 }
 
 .games select, .games label {
@@ -52,4 +52,12 @@ canvas {
 
 option {
     background-color: white;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0;
+  border-width: 0;
 }

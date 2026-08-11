@@ -59,7 +59,7 @@ class Config {
         this.vertical_layout["this.games_div.style.height"] = "10%";
         this.vertical_layout["this.games_div.style.display"] = "flex";
         this.vertical_layout["this.games_div.style.alignItems"] = "center";
-        this.vertical_layout["this.games_div.style.gap"] = "8px";
+        this.vertical_layout["this.games_div.style.gap"] = "1%";
         this.vertical_layout["this.games_label.style.fontSize"] = "80cqb";
         this.vertical_layout["this.games_label.style.whiteSpace"] = "nowrap";
         this.vertical_layout["this.games_label.style.flexShrink"] = "0";
@@ -68,7 +68,7 @@ class Config {
         this.vertical_layout["this.menus_div.style.height"] = "10%";
         this.vertical_layout["this.menus_div.style.display"] = "flex";
         this.vertical_layout["this.menus_div.style.alignItems"] = "center";
-        this.vertical_layout["this.menus_div.style.gap"] = "8px";
+        this.vertical_layout["this.menus_div.style.gap"] = "1%";
         this.vertical_layout["this.menus_label.style.fontSize"] = "80cqb";
         this.vertical_layout["this.menus_label.style.lineHeight"] = "1";
         this.vertical_layout["this.menus_label.style.whiteSpace"] = "nowrap";
@@ -76,7 +76,8 @@ class Config {
         this.vertical_layout["this.menus_select.style.fontSize"] = "80cqb";
         this.vertical_layout["this.menus_select.style.lineHeight"] = "1";
         this.vertical_layout["this.menus_select.style.flex"] = "1";
-        this.vertical_layout["this.rules_div.style.height"] = "calc(100% - 20%)";
+        this.vertical_layout["this.rules_div.style.height"] = "80%";
+        this.vertical_layout["this.rules_div.style.fontSize"] = "2cqb";
 
         for (let key in this.vertical_layout) {
             const execute = "this.horizontal_layout['"+ key + "'] = " + key + ';';
