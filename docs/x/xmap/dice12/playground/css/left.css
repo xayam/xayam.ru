@@ -1,4 +1,22 @@
 
+p {
+    text-indent: 20px;
+    text-align: justify;
+    margin: 10px;
+}
+
+option {
+    background-color: white;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0;
+  border-width: 0;
+}
+
 .left {
     position: relative;
     float: left;
@@ -7,11 +25,25 @@
     border-right: 1px solid gray;
 }
 
-.board {
-    position: relative;
-    float: left;
-    width: 70%;
-    height: 100%;
+.rules_game {
+    display: none;
+}
+
+.rules_game.active {
+    display: block;
+}
+
+.games label, .menus label {
+    width: 20%;
+    margin-left: 1%;
+}
+
+.games select, .games label {
+    font-size: 40cqb;
+}
+
+.menus select, .menus label {
+    font-size: 40cqb;
 }
 
 .select_menu, .select_game {

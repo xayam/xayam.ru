@@ -75,19 +75,32 @@ html, body {
     height: 100%;
 }
 
+                
+                    
 p {
     text-indent: 20px;
     text-align: justify;
     margin: 10px;
 }
 
-canvas {
-    width: 100%;
-    height: 100%;
+option {
+    background-color: white;
 }
 
-#chessboard {
-    display: none;
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0;
+  border-width: 0;
+}
+
+.left {
+    position: relative;
+    float: left;
+    width: 30%;
+    height: 100%;
+    border-right: 1px solid gray;
 }
 
 .rules_game {
@@ -109,35 +122,6 @@ canvas {
 
 .menus select, .menus label {
     font-size: 40cqb;
-}
-
-option {
-    background-color: white;
-}
-
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  padding: 0;
-  border-width: 0;
-}
-
-                
-                    
-.left {
-    position: relative;
-    float: left;
-    width: 30%;
-    height: 100%;
-    border-right: 1px solid gray;
-}
-
-.board {
-    position: relative;
-    float: left;
-    width: 70%;
-    height: 100%;
 }
 
 .select_menu, .select_game {
@@ -169,6 +153,28 @@ select {
     container-type: size;
 }
 
+                
+                    
+                
+                    
+#chessboard {
+    display: none;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.board {
+    position: relative;
+    float: left;
+    width: 70%;
+    height: 100%;
+}
+
+                
+                    
                 </style>
   </head>
   <body>

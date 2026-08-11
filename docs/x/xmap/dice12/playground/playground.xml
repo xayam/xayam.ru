@@ -35,6 +35,9 @@
     <css>
         <item>css/third-party/chessboard.css</item>
         <item>css/default.css</item>
-        <item>css/layout.css</item>
+        <item>css/left.css</item>
+        <item>css/spliter.css</item>
+        <item>css/board.css</item>
+        <item>css/other.css</item>
     </css>
 </root>
