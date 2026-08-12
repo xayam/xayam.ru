@@ -33,8 +33,8 @@ class App extends Config {
             this.loadLayout(this.vertical_layout);
         }
         this.state.update();
-        setTimeout(this.state.update, 500);
-        setTimeout(this.state.update, 1000);
+       // setTimeout(this.state.update, 500);
+       // setTimeout(this.state.update, 1000);
     }
 
     fullScreen() {

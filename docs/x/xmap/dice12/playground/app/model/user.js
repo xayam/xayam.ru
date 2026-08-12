@@ -1,7 +1,7 @@
 
 class User extends Game {
 
-    constructor(){
+    constructor() {
         super();
         this.user = null;
     }
