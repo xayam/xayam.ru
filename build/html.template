@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <html lang="en">
    <head>
-       <title>Index of folder "/{{{CURRENT_CATALOG}}}"</title>
+       <title>Index of folder "{{{CURRENT_CATALOG}}}"</title>
        <style type="text/css">
            * {
                font-family: monospace;

@@ -3,7 +3,7 @@ import os
 
 from dirsize import Size
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
+current_dir = os.path.dirname(os.path.abspath(__file__)).replace("\\", "/")
 
 def find_files_os_walk(start_dir, filename_pattern):
     found_files = []
@@ -96,12 +96,12 @@ def main():
                 "{{{HR}}}", "_" * (max_name + 61)
             )
             index_html = index_html.replace(
-                "{{{CURRENT_CATALOG}}}", current_files[-1]["current_folder"]
+                "{{{CURRENT_CATALOG}}}", current_files[-1]["current_folder"].replace(current_dir + "/../docs/", "")
             )
             create_html = current_files[-1]["current_folder"] + "/index.html"
             with open(create_html, encoding="UTF-8", mode="wt") as f:
                 f.write(index_html)
-                print(create_html)
+                print(create_html.replace(current_dir + "/../docs/", ""))
                 
             current_files = [files[index]]
 
