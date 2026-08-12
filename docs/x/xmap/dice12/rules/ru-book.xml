@@ -2,8 +2,6 @@
 <?xml-stylesheet type="text/xsl" href="ru-book.xsl"?>
 <book>
     <type>html</type>
-    <title>
-        <ru>Больше, чем одна игра</ru>
-        <en>More than one game</en>
-    </title>
+    <language>ru</language>
+    <title>Больше, чем одна игра</title>
 </book>

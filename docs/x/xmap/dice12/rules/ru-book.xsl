@@ -25,7 +25,7 @@
                         <xsl:variable name="id2" select="id" />
                         <xsl:variable name="name2" select="name" />
                         <xsl:variable name="content"
-                                      select="document(concat($number, '-', $id, '/', $number2, '-', $id2, '/ru.xml'))/ru/div"/>
+                                      select="document(concat($number, '-', $id, '/', $number2, '-', $id2, '/', $language, '.xml'))/*[local-name()=$language]/div"/>
                         <xsl:if test="$name2!=' '">
                             <br />
                             <a name="{$id2}" id="{$id2}" />
@@ -82,7 +82,7 @@
         <html lang="ru">
             <head>
                 <title>
-                    <xsl:value-of select="$title_ru" />
+                    <xsl:value-of select="$title" />
                 </title>
                 <meta charset="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>

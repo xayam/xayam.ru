@@ -51,4 +51,4 @@ for task in tasks:
         task["output"] = task["output"].replace("{{{" + r + "}}}", r_file)
     with open(task["base"] + task["file"], "w", encoding="utf-8") as f:
         f.write(task["output"])
-    print(f"✅ Файл успешно создан: {task['base'] + task['file']}")
+    print("✅ Файл успешно создан: " + task['base'].replace(current_dir + "/../docs/", "") + task['file'])

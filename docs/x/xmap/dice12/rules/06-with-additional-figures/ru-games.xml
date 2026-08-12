@@ -21,7 +21,7 @@
     <game>
         <number>04</number>
         <id>grand-chess</id>
-        <name>Большие шахматы или ГрандЧес</name>
+        <name>ГрандЧес</name>
         <gambling>true</gambling>
     </game>
     <game>
