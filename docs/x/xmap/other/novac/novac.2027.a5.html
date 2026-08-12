@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novac - Вечный квартальный солнечно-лунный календарь (декабрь 2019 — ноябрь 2041)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            padding: 0;
+            color: black;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .calendar-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0;
+            max-width: 100%;
+            padding: 0;
+        }
+
+        .quarter {
+            width: 148.5mm;
+            height: 627mm;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+
+        .winter {
+            background-color: white;
+            color: black;
+        }
+
+        .spring {
+            background-color: white;
+            color: black;
+        }
+
+        .summer {
+            background-color: white;
+            color: black;
+        }
+
+        .autumn {
+            background-color: white;
+            color: black;
+        }
+
+        .month {
+            width: 100%;
+            height: 33.3333%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-radius: 0;
+            overflow: hidden;
+            background-color: transparent;
+            padding: 22% 11.5%;
+            border: 0px solid black;
+        }
+
+        .month-header {
+            padding: 0 0 6px 0;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 200%;
+            background-color: inherit;
+            height: 8%;
+        }
+
+        .week-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            font-size: 200%;
+            text-align: center;
+            font-weight: bolder;
+            background-color: transparent;
+            height: 8%;
+        }
+
+        .week-days div {
+            padding: 0;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(6, 1fr); /* Всегда 6 строк */
+            gap: 0;
+            flex: 1;
+            background-color: transparent;
+            border-top: 2px solid black;
+            border-left: 2px solid black;
+            width: 100%;
+            height: 84%;
+        }
+
+        .day-cell {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 4px;
+            background-color: white;
+            border-right: 2px solid black;
+            border-bottom: 2px solid black;
+            position: relative;
+            overflow: hidden;
+            font-weight: 900;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cell-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .number-zone {
+            display: flex;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            font-size: 190%;
+            font-weight: bolder;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            height: 80%;
+            top: 10%;
+            z-index: 3;
+            color: white;
+            -webkit-text-stroke: 2px black;
+            -webkit-text-width: 2px;
+            -webkit-text-color: white;
+            background-color: white;
+            border-radius: 50%;
+            border: 2px solid black;
+        }
+
+        .beginLoop28 .number-zone {
+            border: 2px solid white;
+        }
+
+        .isNonWorking {
+            color: black;
+            -webkit-text-stroke: 1px white;
+            -webkit-text-width: 2px;
+            -webkit-text-color: black;
+        }
+
+        .type-zone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .type-zone.alpha {
+            background: repeating-linear-gradient(135deg, #000000, #000000 2px, transparent 2px, transparent 7%);
+        }
+
+        .type-zone.beta {
+            background: repeating-linear-gradient(90deg, #000000, #000000 2px, transparent 2px, transparent 10.6%);
+        }
+
+        /* .day-cell:has(.type-zone.beta)  {
+            border-left-width: 0;
+        } */
+
+        .type-zone.gamma {
+            background: repeating-linear-gradient(45deg, #000000, #000000 2px, transparent 2px, transparent 7%);
+        }
+
+        .type-zone.delta {
+            background: repeating-linear-gradient(0deg, #000000, #000000 2px, transparent 2px, transparent 8.1%);
+        }
+
+        /* .day-cell:has(.type-zone.delta)  {
+            border-bottom-width: 0;
+        } */
+        .empty {
+            background-color: transparent;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+                justify-content: flex-start;
+            }
+
+            .calendar-container {
+                gap: 0;
+                padding: 0;
+            }
+
+            .quarter {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                border: 2px solid white;
+            }
+
+            .winter {
+                background-color: white;
+                color: black;
+            }
+
+            .spring {
+                background-color: white;
+                color: black;
+            }
+
+            .summer {
+                background-color: white;
+                color: black;
+            }
+
+            .autumn {
+                background-color: white;
+                color: black;
+            }
+
+            .month {
+                border: 2px solid white;
+            }
+
+            .day-cell {
+                background-color: white;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="calendar-container" id="calendarContainer"></div>
+
+<script>
+    const container = document.getElementById('calendarContainer');
+
+    const monthNames = [
+        'ЯНВАРЬ', 'ФЕВРАЛЬ', 'МАРТ', 'АПРЕЛЬ', 'МАЙ', 'ИЮНЬ',
+        'ИЮЛЬ', 'АВГУСТ', 'СЕНТЯБРЬ', 'ОКТЯБРЬ', 'НОЯБРЬ', 'ДЕКАБРЬ'
+    ];
+    const dayNames = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+
+    // Праздничные дни (пример для РФ)
+    const holidays = new Set([
+        '01-01', '01-02', '01-03', '01-04', '01-05', '01-06', '01-07', '01-08',
+        '02-23',
+        '03-08',
+        '05-01', '05-09',
+        '06-12',
+        '11-04'
+    ]);
+
+    function isHoliday(date) {
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        return holidays.has(`${mm}-${dd}`);
+    }
+
+    function isWeekend(date) {
+        const day = date.getDay();
+        return day === 0 || day === 6; // Воскресенье или суббота
+    }
+
+    function isNonWorkingDay(date) {
+        return isWeekend(date) || isHoliday(date);
+    }
+
+    // Начало отсчёта: 1 декабря 2019 → "alpha"
+    const baseDate = new Date(2019, 11, 1); // декабрь = 11
+    const sequence = ['alpha', 'beta', 'gamma', 'delta']; // цикл после beta
+
+    function getDateType(date) {
+        const diffTime = date.getTime() - baseDate.getTime();
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays < 0) {
+            return 'beta';
+        }
+        const index = diffDays % 4;
+        return sequence[index];
+    }
+
+    let stat = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    function renderMonth(year, month, loop28) {
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const daysInMonth = lastDay.getDate();
+        const startDay = firstDay.getDay();
+        const startOffset = startDay === 0 ? 6 : startDay - 1;
+
+        const daysGrid = [];
+        let currentLoop28 = loop28;
+        // Всегда 6 недель × 7 дней = 42 ячейки
+        for (let i = 0; i < 42; i++) {
+            if (i < startOffset || i >= startOffset + daysInMonth) {
+                daysGrid.push('<div class="day-cell empty"></div>');
+            } else {
+                const day = i - startOffset + 1;
+                const date = new Date(year, month, day);
+                const type = getDateType(date);
+                const isNonWorking = isNonWorkingDay(date);
+                const numberStyle = isNonWorking ? 'isNonWorking' : '';
+                const isBeginLoop28 = currentLoop28 === 1;
+                const classBeginLoop28 = (isBeginLoop28) ? "beginLoop28" : "";
+                if (isBeginLoop28) {
+                    stat[day - 1] += 1;
+                }
+                daysGrid.push(`
+                        <div class="day-cell ${classBeginLoop28}">
+                            <div class="cell-content">
+                                <div class="number-zone ${numberStyle}" >${day}</div>
+                                <div class="type-zone ${type}"></div>
+                            </div>
+                        </div>
+                    `);
+                currentLoop28 = (currentLoop28 === 28 ) ? 1: currentLoop28 + 1;
+            }
+        }
+
+        const monthDiv = document.createElement('div');
+        monthDiv.className = 'month';
+        monthDiv.innerHTML = `
+                <div class="month-header">${monthNames[month]} ${year}</div>
+                <div class="week-days">${dayNames.map(d => `<div>${d}</div>`).join('')}</div>
+                <div class="days-grid">${daysGrid.join('')}</div>
+            `;
+        return [monthDiv, currentLoop28];
+    }
+
+    function getQuarter(monthIndex) {
+        if (monthIndex === 11 || monthIndex <= 1) return 'winter';
+        if (monthIndex >= 2 && monthIndex <= 4) return 'spring';
+        if (monthIndex >= 5 && monthIndex <= 7) return 'summer';
+        if (monthIndex >= 8 && monthIndex <= 10) return 'autumn';
+    }
+
+    // Генерация всех месяцев от декабря 2019 до ноября 2041
+    const totalMonths = 12;
+    let months = [];
+    let currentYear = 2026;
+    let currentMonth = 11;
+    let loop28 = 1;
+
+    for (let i = 0; i < totalMonths; i++) {
+        months.push({year: currentYear, month: currentMonth});
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+    }
+
+    // Группировка по кварталам (по 3 месяца)
+    const quarters = [];
+    for (let i = 0; i < months.length; i += 3) {
+        quarters.push(months.slice(i, i + 3));
+    }
+
+    // Рендеринг
+    quarters.forEach(q => {
+        const quarterDiv = document.createElement('div');
+        const quarterType = getQuarter(q[0].month);
+        quarterDiv.className = `quarter ${quarterType}`;
+
+        q.forEach(m => {
+            let month = renderMonth(m.year, m.month, loop28);
+            loop28 = month[1];
+            quarterDiv.appendChild(month[0]);
+
+        });
+
+        container.appendChild(quarterDiv);
+    });
+    console.log(stat);
+</script>
+</body>
+</html>
+
