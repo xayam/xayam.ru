@@ -3,10 +3,11 @@ import os
 
 from dirsize import Size
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 def find_files_os_walk(start_dir, filename_pattern):
     found_files = []
-    with open("htaccess.template", mode="r") as f:
+    with open(current_dir + "/htaccess.template", mode="r") as f:
         template_htaccess = f.read()
     for root, _, files in os.walk(start_dir):
         for filename in files:
@@ -19,18 +20,18 @@ def find_files_os_walk(start_dir, filename_pattern):
     return found_files
 
 def main():
-    files = find_files_os_walk('../docs', '.htaccess')
+    files = find_files_os_walk(current_dir + '/../docs', '.htaccess')
     parent_folders = set()
     for filename in files:
-        folder = "/".join(filename.split("/")[2:-1])
+        folder = "/".join(filename.split("/")[:-1])
         if folder:
             parent_folders.add(folder)
     parent_folders = list(parent_folders)
     files = []
     for current_folder in parent_folders:
-        for name in os.listdir("../docs/" + current_folder):
+        for name in os.listdir(current_folder):
             if name not in ["__secret__.py", ".htaccess"]:
-                pathname = "../docs/" + current_folder + "/" + name
+                pathname =  current_folder + "/" + name
                 isdir = os.path.isdir(pathname)
                 if isdir:
                     size = Size().size_recurse(path=pathname)
@@ -62,7 +63,7 @@ def main():
         files[index]["size"] = str(files[index]["size"]).rjust(27, "_")
         files[index]["size"] = str(files[index]["size"]).replace("_", "&nbsp;")
 
-    with open("html.template", mode="r") as f:
+    with open(current_dir + "/html.template", mode="r") as f:
         template_html = f.read()
     pred = 0
     current_files = [files[pred]]
@@ -97,7 +98,7 @@ def main():
             index_html = index_html.replace(
                 "{{{CURRENT_CATALOG}}}", current_files[-1]["current_folder"]
             )
-            create_html = "../docs/" + current_files[-1]["current_folder"] + "/index.html"
+            create_html = current_files[-1]["current_folder"] + "/index.html"
             with open(create_html, encoding="UTF-8", mode="wt") as f:
                 f.write(index_html)
                 print(create_html)
