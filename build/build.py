@@ -1,16 +1,20 @@
 import re
 import base64
 import json
+import os
 
 from lxml import etree
 
-with open("build.json", 'r', encoding='utf-8') as f:
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+with open(current_dir + "/build.json", 'r', encoding='utf-8') as f:
     config = json.load(f)
 tasks = config["tasks"]
 string_replaces = config["tasks_string"]
 mime_types = config["mime_types"]
 
 for task in tasks:
+    task["base"] = current_dir + "/" + task["base"]
     xml_doc = etree.parse(task["base"] + task["xml"])
     xsl_doc = etree.parse(task["base"] + task["xsl"])
     templates = []
