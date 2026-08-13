@@ -15,6 +15,13 @@
             "request":"launch",
             "program":"${workspaceFolder}/build/build_index.py",
             "console":"internalConsole"
+        },
+        {
+            "name":"png2nc.py",
+            "type":"debugpy",
+            "request":"launch",
+            "program":"${workspaceFolder}/docs/x/xmap/xlab/xgraver/cutlabx/png2nc.py",
+            "console":"internalConsole"
         }
     ]
 }

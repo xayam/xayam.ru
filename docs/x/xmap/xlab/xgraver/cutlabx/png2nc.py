@@ -7,6 +7,8 @@ from config import *
 from png2gif import greedy_path, matrix_path, liner_path, get_trajectory, get_liner_trajectory
 from gray import get_gray_trajectory
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
 # алгоритм траекторий
 # greedy_path для сложных картинок
 # matrix_path быстро, для текста и мелких кластеров
@@ -63,12 +65,12 @@ def optimize(filename: str, algorithm, speed: str, loop: int = 1) -> str:
 
 
 def get_gcode():
-    with open(f"begin.nc", 'r', encoding="UTF-8") as f:
+    with open(f"{current_dir}/begin.nc", 'r', encoding="UTF-8") as f:
         preamble = f.read()
-    with open(f"end.nc", 'r', encoding="UTF-8") as f:
+    with open(f"{current_dir}/end.nc", 'r', encoding="UTF-8") as f:
         postamble = f.read()
     inputs = [
-        f for f in os.listdir('./')
+        f for f in os.listdir(current_dir)
         if f.endswith('all.png') and f.startswith('matrix.')
     ]
     for filename in inputs:
@@ -83,12 +85,12 @@ def get_gcode():
         conf = f"S{power * 10}.00F{speed}.00"
         print(conf)
         if s2[0] == "gray":
-            optimized_points = algorithm.__call__(filename=filename, speed=speed, power=power)
+            optimized_points = algorithm.__call__(filename=f"{current_dir}/{filename}", speed=speed, power=power)
         else:
-            optimized_points = optimize(filename=filename, algorithm=algorithm,
+            optimized_points = optimize(filename=f"{current_dir}/{filename}", algorithm=algorithm,
                                         speed=conf, loop=loop)
 
-        with open(f"{filename[:-3]}nc", 'w', encoding="UTF-8") as f:
+        with open(f"{current_dir}/{filename[:-3]}nc", 'w', encoding="UTF-8") as f:
             f.write(preamble)
             f.write("\n\n")
             f.write(";L0\n")
