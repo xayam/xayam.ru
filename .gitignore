@@ -9,7 +9,7 @@ docs/x/xmap/other/comics/rus/*
 !docs/x/xmap/other/comics/rus/__init__.py
 !docs/x/xmap/other/comics/rus/.htaccess
 docs/rewlis/data/*
-!docs/rewlis/data/__init__.py
+!docs/rewlis/data/list.json
 *to.dgt.from.xayam.txt
 *.avi
 *.mp4
