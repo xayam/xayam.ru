@@ -1,6 +1,7 @@
 lxml
 base64
 
+chess
 #weasyprint
 
 #openai
