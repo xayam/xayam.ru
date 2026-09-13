@@ -3,12 +3,8 @@ lxml
 #base64
 
 build123d
-svgelements
 networkx
 trimesh
-#vpype
-numpy
-shapely>=2.0.0
 
 cadquery
 casadi
