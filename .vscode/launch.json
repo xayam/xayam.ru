@@ -29,6 +29,13 @@
             "request":"launch",
             "program":"${workspaceFolder}/docs/x/xmap/xlab/zigzagi/zigzagi.py",
             "console":"internalConsole"
+        },
+        {
+            "name":"figures.py",
+            "type":"debugpy",
+            "request":"launch",
+            "program":"${workspaceFolder}/docs/x/xmap/dice12/playground/app/view/figures/figures.py",
+            "console":"internalConsole"
         }
     ]
 }
