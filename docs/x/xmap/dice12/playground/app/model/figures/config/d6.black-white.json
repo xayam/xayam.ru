@@ -1,0 +1,18 @@
+{
+    "dice": {
+        "count_faces": 6,
+        "extrude_amount": 2.0,
+        "edge_size": 11.0,
+        "id_figures": ["bn", "bq", "bk", "bb", "bp", "br"],
+        "textures": "{}/textures/{}.svg",
+        "scale": [0.9, 0.99, 0.99, 0.92, 0.99, 0.85],
+        "rotate": [0.0, 0.0, -90.0, 0.0, 90.0, 180.0],
+        "base_color": "black",
+        "main_color": "white"
+    },
+    
+    "export": {
+        "output_file": "{}/output/d6.black-white.{}",
+        "output_formats": ["step", "glb"]
+    }
+}

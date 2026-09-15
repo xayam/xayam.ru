@@ -38,6 +38,10 @@ class Dice:
 
 
 if __name__ == "__main__":
-    
-    d6 = Dice(f"{script_dir}/config/d6.json")
-    d6.save()
+    jobs = [
+        f"{script_dir}/config/d6.white-black.json", 
+        f"{script_dir}/config/d6.black-white.json"
+        ]
+    for config in jobs:
+        dice = Dice(config)
+        dice.save()
