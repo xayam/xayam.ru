@@ -31,10 +31,10 @@
             "console":"internalConsole"
         },
         {
-            "name":"dice.py",
+            "name":"export.py",
             "type":"debugpy",
             "request":"launch",
-            "program":"${workspaceFolder}/docs/x/xmap/dice12/playground/app/view/figures/dice.py",
+            "program":"${workspaceFolder}/docs/x/xmap/dice12/playground/app/view/figures/export.py",
             "console":"internalConsole"
         }
     ]
