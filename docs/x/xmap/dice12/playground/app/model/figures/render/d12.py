@@ -1,17 +1,15 @@
 
 from build123d import Vertex, Edge, Face, Wire, Shell, Solid
 
-from design import Design
+from render.model import Model
 
 
-class D12(Design):
+class D12:
 
-    def __init__(self, config_dice):
+    def __init__(self, model: Model):
 
-        self.config_dice = config_dice
+        self.m = model
         self.base = self.dode()
-
-        super().__init__(self)
 
     def dode(self) -> Solid:
         

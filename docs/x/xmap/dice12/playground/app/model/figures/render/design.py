@@ -1,30 +1,35 @@
 
-from __init__ import script_dir
-
 from build123d import \
     BuildPart, BuildSketch, Compound, Plane, Location, \
-    Axis, Mode, Sphere, Circle, Rectangle, \
+    Axis, Mode, Sphere, Circle, Rectangle, Color, Cylinder, Pos, \
     scale, add, extrude, import_svg, sweep
 
+from render.model import Model
+from render.d6 import D6
+from render.d12 import D12
 
 class Design:
 
-    base: any = None 
-    corners: any = None
+    m: Model | None = None
+
+    corners: any= None
     fillets: any = None 
     sides: any = None 
     figures: any = None
+    face_planes: list = []
+    parts: list = []
 
-    svg_files = None
-    svg_scaling = None
-    svg_rotating = None
-    face_planes = []
-    parts = []
+    form: D6 | D12 | None = None
+    forms: dict = {6: D6, 12: D12}
 
-    def __init__(self):
+    def __init__(self, model: Model):
+        self.m = model
         self.init()
 
     def init(self):
+
+        if self.m.n in self.forms:
+            self.form = self.forms[self.m.n](self.m)
 
         self.apply_figures()
         self.apply_sides()
@@ -32,17 +37,13 @@ class Design:
         self.apply_corners()
 
     def apply_figures(self):
-        all_faces = self.base.faces()
-        self.svg_files = [
-            self.config_dice["svg_figures"].format(script_dir, figure)
-            for figure in self.config_dice["id_figures"]
-            ]   
+        all_faces = self.form.base.faces()   
         with BuildPart() as figures:
-            if len(all_faces) < self.config_dice["count_faces"]:
+            if len(all_faces) < self.m.n:
                 print(f"Warning: Not enough faces found ({len(all_faces)}) " + \
-                      f"for {self.config_dice["count_faces"]} SVGs")
+                      f"for {self.m.n} SVGs")
             for i, (face, svg_file) in enumerate(
-                zip(all_faces[:self.config_dice["count_faces"]], self.svg_files)
+                zip(all_faces[:self.m.n], self.m.textures)
                 ):
                 print(f"--- Processing face {i} with SVG: {svg_file}")
                 face_plane = Plane(face)
@@ -67,7 +68,7 @@ class Design:
                         transform=True
                         )
                     if svg_size > 0 and face_size > 0:
-                        scale_factor = (face_size * self.config_dice["svg_scaling"][i]) / svg_size
+                        scale_factor = (face_size * self.m.scale[i]) / svg_size
                         print(f"Scaling SVG by factor: {scale_factor}")
                         svg_compound = scale(
                             objects=svg_compound, 
@@ -76,18 +77,17 @@ class Design:
                             )
                     svg_compound = svg_compound.rotate(
                         axis=Axis.Z, 
-                        angle=self.config_dice["svg_rotating"][i],
+                        angle=self.m.rotate[i],
                         transform=True
                         )
                     add(svg_compound)
-                    c = Circle(0.99 * face_size / 2, mode=Mode.PRIVATE)
+                    Circle(0.99 * face_size / 2, mode=Mode.PRIVATE)
                     self.parts.append({
-                        "ring": c, 
                         "figure": svg_compound, 
                         "size": face_size,
                         "face": face
                         })
-                extrude(amount=self.config_dice["extrude_amount"], mode=Mode.ADD) 
+                extrude(amount=self.m.amount, mode=Mode.ADD) 
                 print(f"Successfully extruded SVG on face {i}")
         print(f"Successfully extruded self.figures")
         self.figures = figures
@@ -100,36 +100,37 @@ class Design:
                     r = Rectangle(self.parts[i]["size"], self.parts[i]["size"], mode=Mode.PRIVATE)
                     add(r)
                 extrude(
-                    amount=self.config_dice["extrude_amount"], 
+                    amount=self.m.amount, 
                     mode=Mode.ADD
                     )
                 with BuildSketch(face_plane):
                     add(self.parts[i]["figure"])
-                extrude(amount=self.config_dice["extrude_amount"], mode=Mode.SUBTRACT)
+                extrude(amount=self.m.amount, mode=Mode.SUBTRACT)
         print(f"Successfully extruded self.sides")
         self.sides = sides
 
     def apply_fillets(self):
-        with BuildPart() as fillets:
-            for i in range(len(self.parts)):
-                for edge in self.parts[i]["face"].edges():
-                    edge_plane = Plane(origin=edge.position_at(0.0), z_dir=edge.tangent_at(0.0))
-                    with BuildSketch(edge_plane):
-                        Circle(radius=self.config_dice["extrude_amount"], mode=Mode.ADD)
-                    sweep(
-                        path=edge,
-                        multisection=True, 
-                        mode=Mode.ADD
-                        )
-        print(f"Successfully extruded self.fillets")
+        fillets = None
+        for i in range(len(self.parts)):
+            for edge in self.parts[i]["face"].edges():
+                cylinder = edge.location_at(0.5) * Cylinder(radius=self.m.amount, height=edge.length)
+                fillet = cylinder - self.form.base
+                for solid in self.sides.part.solids():
+                    fillet -= solid
+                if fillets is None:
+                    fillets = fillet
+                else:
+                    fillets += fillet
         self.fillets = fillets
+        print(f"Successfully extruded self.fillets")
 
     def apply_corners(self):
-        vertices = self.base.vertices()
+        vertices = self.form.base.vertices()
         corners = None
         for vertex in vertices:
-            sphere = Sphere(radius=self.config_dice["extrude_amount"]).locate(Location(vertex))
-            corner = sphere - self.base
+            
+            sphere = Sphere(radius=self.m.amount).locate(Location(vertex))
+            corner = sphere - self.form.base
             for solid in self.fillets.solids():
                 corner -= solid
             if corners is None:
@@ -137,4 +138,31 @@ class Design:
             else:
                 corners += corner
         self.corners = corners
+
+    def coloring(self) -> Compound:
+
+        self.form.base.color = Color(self.m.base_color)
+        self.form.base.label = "Base, color #1"
+
+        self.corners.color = Color(self.m.base_color)
+        self.corners.label = "Corners, color #1"
+
+        self.fillets.color = Color(self.m.base_color)
+        self.fillets.label = "Fillets, color #1"
+
+        self.sides.part.color = Color(self.m.base_color)
+        self.sides.part.label = "Sides, color #1"
+
+        self.figures.part.color = Color(self.m.main_color)
+        self.figures.part.label = "Figures, color #2"
+
+        assembly = Compound(children=[
+            self.form.base, 
+            self.corners,
+            self.fillets, 
+            self.sides.part,  
+            self.figures.part
+        ])
+
+        return assembly
         

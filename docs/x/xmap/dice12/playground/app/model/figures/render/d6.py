@@ -1,29 +1,26 @@
 
 from build123d import Vertex, Edge, Face, Wire, Shell, Solid
 
-from design import Design
+from render.model import Model
 
+class D6:
 
-class D6(Design):
+    def __init__(self, model: Model):
 
-    def __init__(self, config_dice):
-
-        self.config_dice = config_dice
+        self.m = model
         self.base = self.cube()
-
-        super().__init__()
 
     def cube(self) -> Solid:
         
         vertices = [
-            Vertex(0.0, 0.0, self.config_dice["edge_size"]),
-            Vertex(0.0, self.config_dice["edge_size"], self.config_dice["edge_size"]),
-            Vertex(self.config_dice["edge_size"], self.config_dice["edge_size"], self.config_dice["edge_size"]),
-            Vertex(self.config_dice["edge_size"], 0.0, self.config_dice["edge_size"]),
+            Vertex(0.0, 0.0, self.m.edge),
+            Vertex(0.0, self.m.edge, self.m.edge),
+            Vertex(self.m.edge, self.m.edge, self.m.edge),
+            Vertex(self.m.edge, 0.0, self.m.edge),
             Vertex(0.0, 0.0, 0.0),
-            Vertex(0.0, self.config_dice["edge_size"], 0.0),
-            Vertex(self.config_dice["edge_size"], self.config_dice["edge_size"], 0.0),
-            Vertex(self.config_dice["edge_size"], 0.0, 0.0)
+            Vertex(0.0, self.m.edge, 0.0),
+            Vertex(self.m.edge, self.m.edge, 0.0),
+            Vertex(self.m.edge, 0.0, 0.0)
         ]
 
         top = [0, 1, 2, 3]
