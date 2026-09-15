@@ -1,5 +1,5 @@
 {
-    "version": "0.2.0",
+    "version": "0.4",
     "configurations": [
         
         {
@@ -24,17 +24,10 @@
             "console":"internalConsole"
         },
         {
-            "name":"zigzagi.py",
+            "name":"dice.py",
             "type":"debugpy",
             "request":"launch",
-            "program":"${workspaceFolder}/docs/x/xmap/xlab/zigzagi/zigzagi.py",
-            "console":"internalConsole"
-        },
-        {
-            "name":"export.py",
-            "type":"debugpy",
-            "request":"launch",
-            "program":"${workspaceFolder}/docs/x/xmap/dice12/playground/app/view/figures/export.py",
+            "program":"${workspaceFolder}/docs/x/xmap/dice12/playground/app/view/figures/dice.py",
             "console":"internalConsole"
         }
     ]
