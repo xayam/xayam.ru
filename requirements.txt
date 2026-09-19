@@ -22,7 +22,7 @@ chess
 #numpy
 #scikit-learn
 
-#opencv-python
+opencv-python
 #pillow
 #opencv-contrib-python
 #scipy

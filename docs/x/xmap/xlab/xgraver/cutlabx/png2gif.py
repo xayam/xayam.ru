@@ -5,8 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from scipy.spatial.distance import cdist
-from scipy.stats import false_discovery_control
-from telebot.service_utils import chunks
 
 np.random.seed(42)
 animate=False

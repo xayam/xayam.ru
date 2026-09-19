@@ -11,7 +11,7 @@
       "base": "../docs/x/xmap/dice12/rules/",
       "xml": "ru-book.xml",
       "xsl": "ru-book.xsl",
-      "file": "ru-book.html",
+      "file": "index.html",
       "templates": "rules.xml"
     },
     {
