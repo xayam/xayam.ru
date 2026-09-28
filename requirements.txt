@@ -11,6 +11,11 @@ casadi
 
 chess
 
+
+numpy 
+sounddevice 
+skyfield
+
 #weasyprint
 
 #openai
@@ -19,7 +24,6 @@ chess
 #pyroomacoustics
 #shapely
 #matplotlib
-#numpy
 #scikit-learn
 
 opencv-python
