@@ -1,0 +1,18 @@
+{
+    "dice": {
+        "count_faces": 12,
+        "extrude_amount": 3.0,
+        "edge_size": 11.0,
+        "id_figures": ["bb", "br", "bq", "bp", "bk", "bn", "wp", "wq", "wb", "wr", "wk", "wn"],
+        "textures": "{}/textures/{}.svg",
+        "scale": [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6],
+        "rotate": [-90.0, 126.0, 18.0, 162.0, 18.0, -126.0, -162.0, 162.0, -90.0, 234.0, 162.0, -54.0],
+        "base_color": "white",
+        "main_color": "black"
+    },
+    
+    "export": {
+        "output_file": "{}/output/d12.white-black.{}",
+        "output_formats": ["step"]
+    }
+}

@@ -1,5 +1,6 @@
 
-from build123d import Vertex, Edge, Face, Wire, Shell, Solid
+from build123d import Vertex, Edge, Face, Wire, Shell, \
+    Solid, Compound, Color
 
 from render.model import Model
 
@@ -38,8 +39,10 @@ class D6:
             fss = []
             for v in range(len(faces[f])):
                 fss.append(Edge.make_line(faces[f][v-1], faces[f][v]))
-            fs.append(Face(Wire(fss)))
-
-        shell = Shell(fs)
-
-        return Solid(shell)
+            face = Face(Wire(fss))
+            fs.append(face)
+        shell1 = Shell(fs) 
+        solid1 = Solid(shell1) 
+        solid1.color = Color(self.m.base_color)
+        solid1.label=f"Faces d6, color '{self.m.base_color}'" 
+        return [solid1, solid1, None]

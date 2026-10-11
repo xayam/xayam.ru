@@ -13,6 +13,6 @@
     
     "export": {
         "output_file": "{}/output/d6.black-white.{}",
-        "output_formats": ["step", "glb"]
+        "output_formats": ["step"]
     }
 }
