@@ -34,7 +34,7 @@ class Design:
         self.apply_figures()
 
     def apply_figures(self):
-        all_faces = self.form.base[0].__copy__().faces()  
+        all_faces = self.form.base[0].faces()  
         for i, (face, svg_file) in enumerate(
                                             zip(all_faces[:self.m.n], self.m.textures)
                                             ):
@@ -94,6 +94,15 @@ class Design:
         radius = self.m.amount / 3 * self.m.n / 6
         if self.m.n == 6:
             self.form.base[1] = fillet(self.form.base[1].edges(), radius=radius)
+            self.form.base[1].color = Color(self.m.base_color)
+            self.form.base[1].label=f"Faces d6, color '{self.m.base_color}'"
+        else:
+            self.form.base[1] = fillet(self.form.base[1].edges(), radius=radius)
+            self.form.base[1].color = Color(self.m.base_color)
+            self.form.base[1].label=f"Faces d12, color '{self.m.base_color}'"
+            self.form.base[2] = fillet(self.form.base[2].edges(), radius=radius)
+            self.form.base[2].color = Color(self.m.main_color)
+            self.form.base[2].label = f"Faces d12, color '{self.m.main_color}'"    
         figures = []
         for i in range(len(self.figures)):
             if i < 6:
@@ -104,20 +113,12 @@ class Design:
                 self.form.base[2] -= self.figures[i].part
             self.figures[i].part.color = Color(color)
             self.figures[i].part.label = f"Figures, color '{color}'"
-            
             figures.append(self.figures[i].part)
-        # faces = self.form.base[1].faces()
-        # if self.form.base[2] is not None:
-        #     faces += self.form.base[2].faces()
-        # shell = Shell(faces)
-        # solid = Solid(shell)
-        # figures.append(solid)
         figures.append(self.form.base[1])
         if self.form.base[2] is not None:
             figures.append(self.form.base[2])
         assembly = Compound(children=[ 
             *figures
         ])
-
         return assembly
         

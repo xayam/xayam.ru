@@ -39,6 +39,6 @@ class Dice:
 
 if __name__ == "__main__":
     config = f"{script_dir}/config/d12.json"
-    # config = f"{script_dir}/config/d6.white-black.json"
+    config = f"{script_dir}/config/d6.white-black.json"
     # config = f"{script_dir}/config/d6.black-white.json"
     Dice(config).save()

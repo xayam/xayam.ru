@@ -42,7 +42,5 @@ class D6:
             face = Face(Wire(fss))
             fs.append(face)
         shell1 = Shell(fs) 
-        solid1 = Solid(shell1) 
-        solid1.color = Color(self.m.base_color)
-        solid1.label=f"Faces d6, color '{self.m.base_color}'" 
+        solid1 = Solid(shell1)  
         return [solid1, solid1, None]
