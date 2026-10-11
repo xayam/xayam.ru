@@ -11,6 +11,8 @@ casadi
 
 chess
 
+pyvista 
+imageio
 
 numpy 
 sounddevice 

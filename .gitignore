@@ -12,7 +12,6 @@ docs/rewlis/data/*
 !docs/rewlis/data/list.json
 *to.dgt.from.xayam.txt
 *.avi
-*.mp4
 *.mkv
 *.mp3
 *.zip
