@@ -7,12 +7,12 @@
         "textures": "{}/textures/{}.svg",
         "scale": [0.7, 0.74, 0.74, 0.72, 0.7, 0.67],
         "rotate": [0.0, 0.0, -90.0, 0.0, 90.0, 180.0],
-        "base_color": "black",
-        "main_color": "white"
+        "base_color": "white",
+        "main_color": "black"
     },
     
     "export": {
-        "output_file": "{}/output/d6.black-white.{}",
+        "output_file": "{}/output/d6.chess-classic.white-black.{}",
         "output_formats": ["step"]
     }
 }

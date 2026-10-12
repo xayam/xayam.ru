@@ -15,12 +15,12 @@ class Model:
     def __init__(self, config: dict, textures: list):
 
         self.config = config
-        self.n = self.config["count_faces"]
-        self.edge = self.config["edge_size"]
-        self.amount = self.config["extrude_amount"]
+        self.n = self.config["dice"]["count_faces"]
+        self.edge = self.config["dice"]["edge_size"]
+        self.amount = self.config["dice"]["extrude_amount"]
         self.textures = textures
-        self.base_color = self.config["base_color"]
-        self.main_color = self.config["main_color"]
-        self.scale = self.config["scale"]
-        self.rotate = self.config["rotate"]
+        self.base_color = self.config["dice"]["base_color"]
+        self.main_color = self.config["dice"]["main_color"]
+        self.scale = self.config["dice"]["scale"]
+        self.rotate = self.config["dice"]["rotate"]
         
