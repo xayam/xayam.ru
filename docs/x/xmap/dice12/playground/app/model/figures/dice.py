@@ -34,15 +34,15 @@ class Dice:
 
     def save(self):
         render = self.render.coloring()       
-        if "step" in self.config["export"]["output_formats"]:
+        if "step" in self.model.output_formats:
             export_step(
                 to_export=render, 
-                file_path=self.config["export"]["output_file"].format(script_dir, "step")
+                file_path=self.model.output_file.format(script_dir, "step")
                 )
-        if "glb" in self.config["export"]["output_formats"]:
+        if "glb" in self.model.output_formats:
             export_gltf(
                 to_export=render,
-                file_path=self.config["export"]["output_file"].format(script_dir, "glb"),
+                file_path=self.model.output_file.format(script_dir, "glb"),
                 binary=True
                 )  
         print(f"Successfully export!") 
@@ -50,6 +50,6 @@ class Dice:
 
 if __name__ == "__main__":
     config = f"{script_dir}/config/d12.chess-classic.json"
-    config = f"{script_dir}/config/d6.chess-classic.white-black.json"
+    # config = f"{script_dir}/config/d6.chess-classic.white-black.json"
     # config = f"{script_dir}/config/d6.chess-classic.black-white.json"
     Dice(config).save()

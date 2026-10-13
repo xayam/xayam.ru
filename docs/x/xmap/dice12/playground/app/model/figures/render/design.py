@@ -13,7 +13,7 @@ class Design:
 
     m: Model | None = None
 
-    corners: any= None
+    corners: any = None
     fillets: any = None 
     sides: any = None 
     figures: list = []
@@ -92,17 +92,13 @@ class Design:
 
     def coloring(self) -> Compound:
         radius = self.m.amount / 3 * self.m.n / 6
-        if self.m.n == 6:
-            self.form.base[1] = fillet(self.form.base[1].edges(), radius=radius)
-            self.form.base[1].color = Color(self.m.base_color)
-            self.form.base[1].label=f"Faces d6, color '{self.m.base_color}'"
-        else:
-            self.form.base[1] = fillet(self.form.base[1].edges(), radius=radius)
-            self.form.base[1].color = Color(self.m.base_color)
-            self.form.base[1].label=f"Faces d12, color '{self.m.base_color}'"
+        self.form.base[1] = fillet(self.form.base[1].edges(), radius=radius)
+        self.form.base[1].color = Color(self.m.base_color)
+        self.form.base[1].label=f"Faces, color '{self.m.base_color}'"
+        if self.m.n != 6:
             self.form.base[2] = fillet(self.form.base[2].edges(), radius=radius)
             self.form.base[2].color = Color(self.m.main_color)
-            self.form.base[2].label = f"Faces d12, color '{self.m.main_color}'"    
+            self.form.base[2].label = f"Faces, color '{self.m.main_color}'"    
         figures = []
         for i in range(len(self.figures)):
             if i < 6:
