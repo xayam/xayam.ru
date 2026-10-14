@@ -1,11 +1,19 @@
-from build123d import Edge, Face, Wire, Shell, Solid
+from build123d import Vertex, Rot, Edge, Face, Wire, Shell, Solid
 
 class D:
 
-    def __init__(self):
-        pass
+    center: Vertex | None = None
 
-    def get(self, pieces, vertices, faces):
+    def __init__(self):
+        self.center = Vertex(0.0, 0.0, 0.0)
+        self.rotate = Rot(Y=0)
+
+    def get(self, vertices, faces):
+        pieces = [[
+                    (self.center, vertices[piece[p-1]], vertices[piece[p]])
+                    for p in range(len(piece))
+                    ] 
+                    for piece in faces]
         faces0, solids0 = [], []
         for p in range(len(pieces)):
             face, face0 = [], []
