@@ -1,0 +1,29 @@
+{
+    "dice": {
+        "count_faces": 12,
+        "extrude_amount": 0.8,
+        "edge_size": 11.0,
+        "colors": {
+            "bb": ["white", "black"], "bp": ["white", "black"], 
+            "br": ["white", "black"], "bq": ["white", "black"], 
+            "bk": ["white", "black"], "bn": ["white", "black"],
+            "bc": ["white", "black"], "bo": ["white", "black"], 
+            "be": ["white", "black"], "bj": ["white", "black"], 
+            "bm": ["white", "black"], "ba": ["white", "black"]
+        },
+        "textures": "{}/textures/adds/{}.svg",
+        "scale": [
+            0.57, 0.6, 0.55, 0.6, 0.6, 0.55, 
+            0.62, 0.69, 0.6, 0.6, 0.65, 0.6
+        ],
+        "rotate": [
+            -90.0, -18.0, 126.0, 18.0, 18.0, -126.0, 
+            -90.0, -162.0, 54.0, 162.0, -198.0, -54.0
+        ]
+    },
+    
+    "export": {
+        "output_file": "{}/output/d12.chess-adds.white-black.{}",
+        "output_formats": ["step"]
+    }
+}

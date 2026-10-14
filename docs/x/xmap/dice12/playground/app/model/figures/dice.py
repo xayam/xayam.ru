@@ -50,6 +50,8 @@ class Dice:
 
 if __name__ == "__main__":
     config = f"{script_dir}/config/d12.chess-classic.json"
-    config = f"{script_dir}/config/d6.chess-classic.white-black.json"
-    config = f"{script_dir}/config/d6.chess-classic.black-white.json"
+    # config = f"{script_dir}/config/d6.chess-classic.white-black.json"
+    # config = f"{script_dir}/config/d6.chess-classic.black-white.json"
+    config = f"{script_dir}/config/d12.chess-adds.white-black.json"
+    config = f"{script_dir}/config/d12.chess-adds.black-white.json"
     Dice(config).save()

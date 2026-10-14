@@ -56,7 +56,7 @@ class Design:
                         print(f"Error processing SVG {svg_file}: {e}")
                     finally:
                         print(f"SVG Bounding Box: {bbox}")
-                        print(f"Raw SVG import result type: {type(raw_svg)}, content: {raw_svg}")
+                        print(f"Raw SVG import result type: {type(raw_svg)}, content: -")
                         print(f"Face size: {face_size}, SVG size: {svg_size}")
                     svg_compound = svg_compound.translate(
                         vector=-bbox_center,
