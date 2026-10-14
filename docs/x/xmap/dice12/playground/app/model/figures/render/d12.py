@@ -1,15 +1,15 @@
 import math
-from build123d import Vertex, Edge, Face, Wire, Shell, Solid, Color, Compound
-from render.model import Model
+from build123d import Vertex, Edge, Face, Wire, Shell, Solid
 
-class D12:
+from render.model import Model
+from render.d import D
+
+class D12(D):
     def __init__(self, model: Model):
         self.m = model
-        base = self.dodecahedron()
-        self.base = base
-        # self.base_result = base[1]
+        self.base = self.dodecahedron()
 
-    def dodecahedron(self) -> Solid:
+    def dodecahedron(self):
         phi = (1.0 + math.sqrt(5.0)) / 2.0
         s = (phi / 2.0) * self.m.edge
         vertices = [
@@ -35,23 +35,11 @@ class D12:
             Vertex( s*phi,  s/phi,  0),     # 16 
             Vertex( s*phi, -s/phi,  0),     # 17
             Vertex(-s*phi,  s/phi,  0),     # 18 
-            Vertex(-s*phi, -s/phi,  0),     # 19 
-            Vertex(0, 0, 0)                 # 20   центр
+            Vertex(-s*phi, -s/phi,  0)      # 19 
         ]
-        faces_indices_adds = [
-            [ 0,  12, 20],
-            [12,  2, 20],
-            [ 2,  10, 20],
-            [ 10,  11, 20],
-            [ 11,  7, 20],
-            [ 7,  15, 20],
-            [ 15,  5, 20],
-            [ 5,  9, 20],
-            [ 9,  8, 20],
-            [ 8,  0, 20]   
-        ]
+        center = Vertex(0, 0, 0) 
         # 12 граней (пятиугольников), индексы версий заданы против часовой стрелки (нормали наружу)
-        faces_indices = [
+        faces = [
             [0, 12, 2, 17, 16],  # 0: противоположна грани 6
             [3, 13, 15, 7, 11],  # 1: противоположна грани 7
             [0, 16, 1, 9, 8],    # 2: противоположна грани 8
@@ -60,44 +48,48 @@ class D12:
             [2, 10, 11, 3, 17],  # 5: противоположна грани 11
             [5, 15, 7, 19, 18],  # 6: противоположна грани 0
             [0, 8, 4, 14, 12],   # 7: противоположна грани 1
-            [6, 10, 11, 7, 19],  # 8: противоположна грани 2
+            [19, 7, 11, 10, 6],  # 8: противоположна грани 2
             [2, 12, 14, 6, 10],  # 9: противоположна грани 3
             [4, 18, 19, 6, 14],  # 10: противоположна грани 4 король?
             [4, 8, 9, 5, 18]     # 11: противоположна грани 5 
         ]
-        faces = [[vertices[v] for v in face] for face in faces_indices_adds]
-        fsBlack, fsWhite = [], []
-        for f in range(len(faces)):
-            fss1, fss2 = [], []
-            for v in range(len(faces[f])):
-                fss1.append(Edge.make_line(faces[f][v-1], faces[f][v]))
-            for v in range(len(faces[f])):
-                fss2.append(Edge.make_line(faces[f][::-1][v-1], faces[f][::-1][v]))
-            face1 = Face(Wire(fss1))
-            fsBlack.append(face1)
-            face2 = Face(Wire(fss2))
-            fsWhite.append(face2)
-        faces = [[vertices[v] for v in face] for face in faces_indices]
-        fs1, fs2 = [], []
-        for f in range(0, 6):
-            fss = []
-            for v in range(len(faces[f])):
-                fss.append(Edge.make_line(faces[f][v-1], faces[f][v]))
-            face = Face(Wire(fss))
-            fs1.append(face)
-        fs11 = fs1 + fsBlack
-        for f in range(6, len(faces)):
-            fss = []
-            for v in range(len(faces[f])):
-                fss.append(Edge.make_line(faces[f][v-1], faces[f][v]))
-            face = Face(Wire(fss))
-            fs2.append(face)
-        fs22 = fs2 + fsWhite
-        shell0 = Shell(fs1 + fs2) 
-        solid0 = Solid(shell0)
-        shell1 = Shell(fs11) 
-        solid1 = Solid(shell1) 
-        shell2 = Shell(fs22)  
-        solid2 = Solid(shell2)  
-        return [solid0, solid1, solid2]
+        pieces = [[
+            (center, vertices[piece[p-1]], vertices[piece[p]])
+            for p in range(len(piece))
+            ] 
+            for piece in faces]
+        # fsBlack, fsWhite = [], []
+        # for f in range(len(faces)):
+        #     fss1, fss2 = [], []
+        #     for v in range(len(faces[f])):
+        #         fss1.append(Edge.make_line(faces[f][v-1], faces[f][v]))
+        #     for v in range(len(faces[f])):
+        #         fss2.append(Edge.make_line(faces[f][::-1][v-1], faces[f][::-1][v]))
+        #     face1 = Face(Wire(fss1))
+        #     fsBlack.append(face1)
+        #     face2 = Face(Wire(fss2))
+        #     fsWhite.append(face2)
+        # faces = [[vertices[v] for v in face] for face in faces_indices]
+        # fs1, fs2 = [], []
+        # for f in range(0, 6):
+        #     fss = []
+        #     for v in range(len(faces[f])):
+        #         fss.append(Edge.make_line(faces[f][v-1], faces[f][v]))
+        #     face = Face(Wire(fss))
+        #     fs1.append(face)
+        # fs11 = fs1 + fsBlack
+        # for f in range(6, len(faces)):
+        #     fss = []
+        #     for v in range(len(faces[f])):
+        #         fss.append(Edge.make_line(faces[f][v-1], faces[f][v]))
+        #     face = Face(Wire(fss))
+        #     fs2.append(face)
+        # fs22 = fs2 + fsWhite
+        # shell0 = Shell(fs1 + fs2) 
+        # solid0 = Solid(shell0)
+        # shell1 = Shell(fs11) 
+        # solid1 = Solid(shell1) 
+        # shell2 = Shell(fs22)  
+        # solid2 = Solid(shell2)  
+        return self.get(pieces, vertices, faces)
     

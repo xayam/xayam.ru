@@ -32,15 +32,12 @@ class Design:
         if self.m.n in self.forms:
             self.form = self.forms[self.m.n](self.m)
         self.apply_figures()
+        self.apply_fillets()
 
     def apply_figures(self):
-        all_faces = self.form.base[0].faces()  
-        for i, (face, svg_file) in enumerate(
-                                            zip(all_faces[:self.m.n], self.m.textures)
-                                            ):
-            if len(all_faces) < self.m.n:
-                print(f"Warning: Not enough faces found ({len(all_faces)}) " + \
-                      f"for {self.m.n} SVGs")
+        for i in range(len(self.form.base[0])):
+            face = self.form.base[0][i] 
+            svg_file = self.m.textures[i]
             with BuildPart() as figure: 
                 print(f"--- Processing face {i} with SVG: {svg_file}")
                 face_plane = Plane(face)
@@ -90,31 +87,24 @@ class Design:
             self.figures.append(figure)
         print(f"Successfully extruded self.figures")
 
-    def coloring(self) -> Compound:
-        radius = self.m.amount / 3 * self.m.n / 6
-        self.form.base[1] = fillet(self.form.base[1].edges(), radius=radius)
-        self.form.base[1].color = Color(self.m.base_color)
-        self.form.base[1].label=f"Faces, color '{self.m.base_color}'"
-        if self.m.n != 6:
-            self.form.base[2] = fillet(self.form.base[2].edges(), radius=radius)
-            self.form.base[2].color = Color(self.m.main_color)
-            self.form.base[2].label = f"Faces, color '{self.m.main_color}'"    
+    def apply_fillets(self):
+        i = 0
+        for id in self.m.colors:
+            self.form.base[1][i] = fillet(self.form.base[1][i].edges(), radius=self.m.radius)
+            self.form.base[1][i].color = Color(self.m.colors[id][0])
+            self.form.base[1][i].label=f"Faces, color '{self.m.colors[id][0]}'"
+            i += 1
+
+    def assembling(self) -> Compound:
         figures = []
-        for i in range(len(self.figures)):
-            if i < 6:
-                color = self.m.main_color
-                self.form.base[1] -= self.figures[i].part
-            else:
-                color = self.m.base_color
-                self.form.base[2] -= self.figures[i].part
-            self.figures[i].part.color = Color(color)
-            self.figures[i].part.label = f"Figures, color '{color}'"
+        i = 0
+        for id in self.m.colors:
+            self.form.base[1][i] -= self.figures[i].part
+            self.figures[i].part.color = Color(self.m.colors[id][1])
+            self.figures[i].part.label = f"Figures, color '{self.m.colors[id][1]}'"
             figures.append(self.figures[i].part)
-        figures.append(self.form.base[1])
-        if self.form.base[2] is not None:
-            figures.append(self.form.base[2])
-        assembly = Compound(children=[ 
-            *figures
-        ])
+            figures.append(self.form.base[1][i])
+            i += 1
+        assembly = Compound(children=figures)
         return assembly
         

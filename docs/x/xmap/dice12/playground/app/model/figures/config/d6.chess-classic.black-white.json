@@ -1,14 +1,16 @@
 {
     "dice": {
         "count_faces": 6,
-        "extrude_amount": 4.0,
+        "extrude_amount": 1.0,
         "edge_size": 15.0,
-        "id_figures": ["bn", "bq", "bk", "bb", "bp", "br"],
+        "colors": {
+            "bn": ["black", "white"], "bq": ["black", "white"], 
+            "bk": ["black", "white"], "bb": ["black", "white"], 
+            "bp": ["black", "white"], "br": ["black", "white"]
+        },
         "textures": "{}/textures/classic/{}.svg",
         "scale": [0.7, 0.74, 0.74, 0.72, 0.7, 0.67],
-        "rotate": [0.0, 0.0, -90.0, 0.0, 90.0, 180.0],
-        "base_color": "black",
-        "main_color": "white"
+        "rotate": [180.0, 0.0, 90.0, 0.0, 90.0, 180.0]
     },
     
     "export": {

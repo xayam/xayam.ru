@@ -1,17 +1,17 @@
 
-from build123d import Vertex, Edge, Face, Wire, Shell, \
-    Solid, Compound, Color
+from build123d import Vertex, Edge, Face, Wire, Shell, Solid
 
 from render.model import Model
+from render.d import D
 
-class D6:
+class D6(D):
 
     def __init__(self, model: Model):
 
         self.m = model
         self.base = self.cube()
 
-    def cube(self) -> Solid:
+    def cube(self):
         
         vertices = [
             Vertex(0.0, 0.0, self.m.edge),
@@ -23,24 +23,17 @@ class D6:
             Vertex(self.m.edge, self.m.edge, 0.0),
             Vertex(self.m.edge, 0.0, 0.0)
         ]
-
-        top = [0, 1, 2, 3]
+        center = Vertex(self.m.edge / 2, self.m.edge / 2, self.m.edge / 2)
+        top = [3, 2, 1, 0]
         bottom = [4, 5, 6, 7]
         left = [0, 1, 5, 4]
         right = [2, 3, 7, 6]
-        front = [0, 3, 7, 4]
+        front = [4, 7, 3, 0]
         back = [1, 2, 6, 5]
-
         faces = [top, right, front, left, back, bottom]
-        faces = [[vertices[v] for v in face] for face in faces]
-
-        fs = []
-        for f in range(len(faces)):
-            fss = []
-            for v in range(len(faces[f])):
-                fss.append(Edge.make_line(faces[f][v-1], faces[f][v]))
-            face = Face(Wire(fss))
-            fs.append(face)
-        shell1 = Shell(fs) 
-        solid1 = Solid(shell1)  
-        return [solid1, solid1, None]
+        pieces = [[
+            (center, vertices[piece[p-1]], vertices[piece[p]])
+            for p in range(len(piece))
+            ] 
+            for piece in faces]
+        return self.get(pieces, vertices, faces)

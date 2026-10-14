@@ -23,7 +23,7 @@ class Dice:
                 self.config = json.load(file)
             textures = [
                 self.config["dice"]["textures"].format(script_dir, figure)
-                for figure in self.config["dice"]["id_figures"]
+                for figure in self.config["dice"]["colors"]
                 ]
             self.model = Model(self.config, textures)
             self.render = Design(model=self.model)
@@ -33,7 +33,7 @@ class Dice:
             print(f"Error in format JSON {self.config_json}")
 
     def save(self):
-        render = self.render.coloring()       
+        render = self.render.assembling()       
         if "step" in self.model.output_formats:
             export_step(
                 to_export=render, 
@@ -50,6 +50,6 @@ class Dice:
 
 if __name__ == "__main__":
     config = f"{script_dir}/config/d12.chess-classic.json"
-    # config = f"{script_dir}/config/d6.chess-classic.white-black.json"
-    # config = f"{script_dir}/config/d6.chess-classic.black-white.json"
+    config = f"{script_dir}/config/d6.chess-classic.white-black.json"
+    config = f"{script_dir}/config/d6.chess-classic.black-white.json"
     Dice(config).save()
