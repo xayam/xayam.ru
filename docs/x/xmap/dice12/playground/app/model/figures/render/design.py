@@ -2,8 +2,8 @@ import math
 
 from build123d import \
     BuildPart, BuildSketch, Compound, Plane, \
-    Axis, Mode, Sphere, Color, fillet, Solid, Shell, \
-    scale, add, extrude, import_svg
+    Axis, Mode, Color, \
+    scale, add, extrude, import_svg, Part
 
 from render.model import Model
 from render.d6 import D6
@@ -13,9 +13,7 @@ class Design:
 
     m: Model | None = None
 
-    corners: any = None
-    fillets: any = None 
-    sides: any = None 
+    fillets: list = []
     figures: list = []
     faces: list = []
     face_planes: list = []
@@ -36,13 +34,11 @@ class Design:
 
     def apply_figures(self):
         for i in range(len(self.form.base[0])):
-            face = self.form.base[0][i] 
+            face = self.form.base[0][i]  
             svg_file = self.m.textures[i]
             with BuildPart() as figure: 
                 print(f"--- Processing face {i} with SVG: {svg_file}")
                 face_plane = Plane(face)
-                self.faces.append(face) 
-                self.face_planes.append(face_plane) 
                 with BuildSketch(face_plane):
                     try:
                         raw_svg = import_svg(svg_file)
@@ -76,35 +72,35 @@ class Design:
                         transform=True
                         )
                     add(svg_compound)
-                    # Circle(0.99 * face_size / 2, mode=Mode.PRIVATE)
-                    self.parts.append({
-                        "figure": svg_compound, 
-                        "size": face_size,
-                        "face": face
-                        })
                 extrude(amount=-self.m.amount, mode=Mode.ADD) 
                 print(f"Successfully extruded SVG on face {i}")
-            self.figures.append(figure)
+            self.figures.append(figure.part)
         print(f"Successfully extruded self.figures")
 
     def apply_fillets(self):
-        i = 0
-        for id in self.m.colors:
-            self.form.base[1][i] = fillet(self.form.base[1][i].edges(), radius=self.m.radius)
-            self.form.base[1][i].color = Color(self.m.colors[id][0])
-            self.form.base[1][i].label=f"Faces, color '{self.m.colors[id][0]}'"
-            i += 1
+        for i in range(len(self.form.base[2])):
+            with BuildPart() as fillet:  
+                add(self.form.base[2][i])
+                extrude(amount=5.0 * self.m.amount)
+            self.fillets.append(fillet.part)
+        fillets = Compound(children=self.fillets)
+        for i in range(len(self.form.base[1])):
+            self.form.base[1][i] = self.form.base[1][i] - fillets
+            self.form.base[1][i] = self.form.base[1][i] - self.figures[i]
+        print(f"Successfully apply_fillets")
 
-    def assembling(self) -> Compound:
-        figures = []
-        i = 0
-        for id in self.m.colors:
-            self.form.base[1][i] -= self.figures[i].part
-            self.figures[i].part.color = Color(self.m.colors[id][1])
-            self.figures[i].part.label = f"Figures, color '{self.m.colors[id][1]}'"
-            figures.append(self.figures[i].part)
-            figures.append(self.form.base[1][i])
-            i += 1
-        assembly = Compound(children=figures)
-        return assembly
+    def assembling(self): 
+        result = []       
+        for i, id in enumerate(self.m.colors): 
+            self.form.base[1][i].color = Color(self.m.colors[id][0])
+            self.form.base[1][i].label = f"Faces, color '{self.m.colors[id][0]}'"
+            result.append(self.form.base[1][i])
+            # figures.append(self.form.base[2][i])
+        for i, id in enumerate(self.m.colors):    
+            self.figures[i].color = Color(self.m.colors[id][1])
+            self.figures[i].label = f"Figures, color '{self.m.colors[id][1]}'"
+            result.append(self.figures[i])
+        print(f"Successfully assembling")
+        assembly = Compound(children=self.fillets)
+        return assembly    
         
