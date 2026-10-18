@@ -81,7 +81,9 @@ class Design:
         for i in range(len(self.form.base[2])):
             with BuildPart() as fillet:  
                 add(self.form.base[2][i])
-                extrude(amount=5.0 * self.m.amount)
+                extrude(
+                    dir=self.form.base[2][i].normal_at(), 
+                    amount=-self.m.amount)
             self.fillets.append(fillet.part)
         fillets = Compound(children=self.fillets)
         for i in range(len(self.form.base[1])):
@@ -101,6 +103,6 @@ class Design:
             self.figures[i].label = f"Figures, color '{self.m.colors[id][1]}'"
             result.append(self.figures[i])
         print(f"Successfully assembling")
-        assembly = Compound(children=self.fillets)
+        assembly = Compound(children=result)
         return assembly    
         
