@@ -8,6 +8,7 @@ class D12(D):
     def __init__(self, model: Model):
         super().__init__(model)
         self.m = model
+        self.rotate_angle = 36.0
         self.base = self.dodecahedron()
 
     def dodecahedron(self):
@@ -35,8 +36,7 @@ class D12(D):
             Vertex(-s*phi,  s/phi,      0), # 18 
             Vertex(-s*phi, -s/phi,      0)  # 19 
         ]
-        vertices = [vertice.moved(self.rotate) for vertice in vertices]
-        # self.center = self.center.moved(self.rotate)
+        vertices = [vertice for vertice in vertices]
         faces = [
             [ 0, 12,  2, 17, 16], #  0: противоположна грани  6
             [11,  7, 15, 13,  3], #  1: противоположна грани  7

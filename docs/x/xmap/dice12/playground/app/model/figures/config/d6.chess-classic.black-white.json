@@ -15,6 +15,6 @@
     
     "export": {
         "output_file": "{}/output/d6.chess-classic.black-white.{}",
-        "output_formats": ["step"]
+        "output_formats": ["glb"]
     }
 }

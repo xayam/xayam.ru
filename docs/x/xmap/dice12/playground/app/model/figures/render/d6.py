@@ -1,5 +1,5 @@
 
-from build123d import Vertex
+from build123d import Vertex, Rot
 
 from render.model import Model
 from render.d import D
@@ -9,6 +9,7 @@ class D6(D):
     def __init__(self, model: Model):
         super().__init__(model)
         self.m = model
+        self.rotate_angle = 0.0
         self.base = self.cube()
 
     def cube(self):

@@ -14,6 +14,7 @@ class Design:
     m: Model | None = None
 
     fillets: list = []
+    corners: list = []
     figures: list = []
     faces: list = []
     face_planes: list = []
@@ -85,10 +86,18 @@ class Design:
                     dir=self.form.base[2][i].normal_at(), 
                     amount=-self.m.amount)
             self.fillets.append(fillet.part)
+        for i in range(len(self.form.base[3])):
+            with BuildPart() as corner:  
+                add(self.form.base[3][i])
+                extrude(
+                    dir=self.form.base[3][i].normal_at(), 
+                    amount=-2.0 * self.m.amount)
+            self.corners.append(corner.part)
         fillets = Compound(children=self.fillets)
+        corners = Compound(children=self.corners)
         for i in range(len(self.form.base[1])):
-            self.form.base[1][i] = self.form.base[1][i] - fillets
-            self.form.base[1][i] = self.form.base[1][i] - self.figures[i]
+            self.form.base[1][i] = \
+                self.form.base[1][i] - fillets - corners - self.figures[i]
         print(f"Successfully apply_fillets")
 
     def assembling(self): 
@@ -104,5 +113,10 @@ class Design:
             result.append(self.figures[i])
         print(f"Successfully assembling")
         assembly = Compound(children=result)
+        # assembly = assembly.rotate(
+        #     axis=self.form.rotate_axis, 
+        #     angle=self.form.rotate_angle, 
+        #     transform=True
+        #     ) 
         return assembly    
         

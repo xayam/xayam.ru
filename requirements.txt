@@ -29,7 +29,7 @@ skyfield
 #scikit-learn
 
 opencv-python
-#pillow
+pillow
 #opencv-contrib-python
 #scipy
 #PyAudio
