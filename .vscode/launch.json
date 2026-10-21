@@ -31,6 +31,13 @@
             "console":"internalConsole"
         },
         {
+            "name":"animate.py",
+            "type":"debugpy",
+            "request":"launch",
+            "program":"${workspaceFolder}/docs/x/xmap/dice12/playground/app/model/animate/animate.py",
+            "console":"internalConsole"
+        },
+        {
             "name":"xrereflect.py",
             "type":"debugpy",
             "request":"launch",
