@@ -12,7 +12,7 @@ class D:
     def __init__(self, model):
         self.m = model
         self.center = Vertex(0.0, 0.0, 0.0)
-        self.rotate_axis = Axis.X
+        self.rotate_axis = Axis.Y
 
     def get(self, vertices, faces):
         pieces = [[

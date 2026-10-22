@@ -129,11 +129,11 @@ class Design:
                 fused.label = f"Part, color '{color}'"
                 result.append(fused)
         assembly = Compound(children=result)
+        assembly = assembly.rotate(
+            axis=self.form.rotate_axis, 
+            angle=self.form.rotate_angle, 
+            transform=False
+            ) 
         print(f"Successfully assembling")
-        # assembly = assembly.rotate(
-        #     axis=self.form.rotate_axis, 
-        #     angle=self.form.rotate_angle, 
-        #     transform=True
-        #     ) 
         return assembly    
         

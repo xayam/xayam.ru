@@ -34,7 +34,7 @@
             "name":"animate.py",
             "type":"debugpy",
             "request":"launch",
-            "program":"${workspaceFolder}/docs/x/xmap/dice12/playground/app/model/animate/animate.py",
+            "program":"${workspaceFolder}/docs/x/xmap/dice12/playground/app/model/figures/output/animate.py",
             "console":"internalConsole"
         },
         {

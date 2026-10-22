@@ -8,7 +8,7 @@ class D12(D):
     def __init__(self, model: Model):
         super().__init__(model)
         self.m = model
-        self.rotate_angle = 36.0
+        self.rotate_angle = 58.0
         self.base = self.dodecahedron()
 
     def dodecahedron(self):
