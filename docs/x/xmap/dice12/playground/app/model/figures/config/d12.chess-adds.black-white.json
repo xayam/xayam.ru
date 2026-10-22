@@ -24,6 +24,6 @@
     
     "export": {
         "output_file": "{}/output/d12.chess-adds.black-white.{}",
-        "output_formats": ["glb"]
+        "output_formats": ["glb", "step"]
     }
 }

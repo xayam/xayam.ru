@@ -59,7 +59,8 @@ for model_path in MODEL_PATHS:
         
         combined_mesh = pv.MultiBlock(blocks).combine()
         actor = plotter.add_mesh(combined_mesh, color=original_color)
-        current_actors.append(actor)
+        if actor is not None:
+            current_actors.append(actor)
         
     model_actors.append(current_actors)
 

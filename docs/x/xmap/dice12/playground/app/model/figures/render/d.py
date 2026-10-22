@@ -1,7 +1,7 @@
 
 import math
 
-from build123d import Vertex, Rot, Edge, Face, Wire, Shell, Solid, Vector, Axis
+from build123d import Vertex, Edge, Face, Wire, Shell, Solid, Vector, Axis
 
 class D:
 
@@ -35,7 +35,7 @@ class D:
             face.append(face0)
             shell = Shell(face) 
             solid = Solid(shell)
-            solids0.append(solid) 
+            solids0.append(solid)
         return faces0, solids0, \
             self._generate_edge_flanges(
                 faces0, 

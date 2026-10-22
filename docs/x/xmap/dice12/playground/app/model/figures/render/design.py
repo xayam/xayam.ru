@@ -100,19 +100,36 @@ class Design:
                 self.form.base[1][i] - fillets - corners - self.figures[i]
         print(f"Successfully apply_fillets")
 
+    def fuse_shapes(self, shapes):
+        if not shapes:
+            return None
+        result = shapes[0]
+        for shape in shapes[1:]:
+            result = result + shape
+        return result
+
     def assembling(self): 
-        result = []       
-        for i, id in enumerate(self.m.colors): 
-            self.form.base[1][i].color = Color(self.m.colors[id][0])
-            self.form.base[1][i].label = f"Faces, color '{self.m.colors[id][0]}'"
-            result.append(self.form.base[1][i])
-            # figures.append(self.form.base[2][i])
-        for i, id in enumerate(self.m.colors):    
-            self.figures[i].color = Color(self.m.colors[id][1])
-            self.figures[i].label = f"Figures, color '{self.m.colors[id][1]}'"
-            result.append(self.figures[i])
-        print(f"Successfully assembling")
+        colored = {} 
+        for i, id in enumerate(self.m.colors):
+              colored[self.m.colors[id][0]] = None
+              colored[self.m.colors[id][1]] = None 
+        for i, id in enumerate(self.m.colors):
+            if colored[self.m.colors[id][0]] is None:
+                colored[self.m.colors[id][0]] = self.form.base[1][i]
+            else:
+                colored[self.m.colors[id][0]] += self.form.base[1][i]
+            if colored[self.m.colors[id][1]] is None:
+                colored[self.m.colors[id][1]] = self.figures[i]
+            else:
+                colored[self.m.colors[id][1]] += self.figures[i]
+        result = []
+        for color, fused in colored.items():
+            if fused is not None:
+                fused.color = Color(color)
+                fused.label = f"Part, color '{color}'"
+                result.append(fused)
         assembly = Compound(children=result)
+        print(f"Successfully assembling")
         # assembly = assembly.rotate(
         #     axis=self.form.rotate_axis, 
         #     angle=self.form.rotate_angle, 
